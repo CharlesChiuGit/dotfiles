@@ -10,10 +10,17 @@ Place your dotfiles in each folder as if they are in the `home_dir`.
 ```sh
 wget https://mirror.ossplanet.net/gnu/stow/stow-latest.tar.gz
 tar -xvpzf stow-latest.tar.gz
-cd stow-latest
+cd stow-2.3.1
 ./configure --prefix=/home/charles/tools
 make
 make install
+```
+
+and put below lines in `.bashrc`:
+
+```sh
+# GNU Stow
+export PATH="$HOME/tools/stow-2.3.1/bin":$PATH
 ```
 
 ## Usage
