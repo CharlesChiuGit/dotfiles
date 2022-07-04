@@ -1,0 +1,208 @@
+format = """
+$status\
+$sudo\
+$shell\
+$shlvl\
+$username\
+$hostname\
+$localip\
+$kubernetes\
+$directory\
+$git_branch\
+$git_commit\
+$git_state\
+$git_status\
+$docker_context\
+$package\
+$c\
+$cmake\
+$nodejs\
+$python\
+$rust\
+$terraform\
+$vagrant\
+$conda\
+$env_var\
+$cmd_duration\
+$memory_usage\
+$line_break\
+$time\
+$character"""
+
+[sudo]
+symbol = "🧙"
+disabled = false
+style = "red"
+format = '[\[as $symbol\]]($style)'
+
+[hostname]
+disabled = false
+ssh_only = true
+style = "white"
+format = "<[$hostname]($style)> "
+trim_at = ".com"
+
+[directory]
+truncate_to_repo=false
+truncation_length=5
+read_only = " "
+
+[localip]
+disabled = true
+ssh_only = true
+format = "[IP:$localipv4]($style) "
+
+[cmd_duration]
+min_time = 500
+format = '\[[羽 $duration]($style)\]'
+
+[memory_usage]
+disabled = false
+symbol = " "
+threshold = 70
+format = '\[$symbol[$ram( | $swap)]($style)\]'
+
+[time]
+disabled = false
+time_format = "%T"
+format = '\[[$time]($style)\] '
+
+[username]
+disabled = false
+show_always = true
+style_user = "bold dimmed blue"
+format = '\[[$user]($style)\] '
+
+[c]
+symbol = " "
+format = '\[[$symbol($version(-$name))]($style)\]'
+
+[cmake]
+format = '\[[$symbol($version)]($style)\]'
+
+[conda]
+symbol = " "
+ignore_base = false
+format = '\[[$symbol$environment](dimmed green)\]'
+
+[docker_context]
+symbol = " "
+format = '\[[$symbol$context]($style)\]'
+
+[git_branch]
+symbol = " "
+format = '\[[$symbol$branch]($style)\]'
+
+[nodejs]
+symbol = " "
+format = '\[[$symbol($version)]($style)\]'
+
+[python]
+symbol = " "
+style = "bold green"
+format = '\[[${symbol}${pyenv_prefix}(${version})(\($virtualenv\))]($style)\]'
+
+[rust]
+symbol = " "
+format = '\[[$symbol($version)]($style)\]'
+
+[shell]
+disabled = false
+bash_indicator = " _"
+fish_indicator = " _"
+zsh_indicator = " _"
+powershell_indicator = " _"
+cmd_indicator = ' _'
+unknown_indicator = "? _"
+style = "cyan"
+format = '\[[$indicator]($style)\]'
+
+
+#### Disabled modules ####
+
+# add these back to format if you want them:
+[aws]
+disabled = true
+symbol = "  "
+format = '\[[$symbol($profile)(\($region\))(\[$duration\])]($style)\]'
+[buf]
+disabled = true
+symbol = " "
+[dart]
+disabled = true
+symbol = " "
+format = '\[[$symbol($version)]($style)\]'
+[dotnet]
+disabled = true
+[elixir]
+disabled = true
+symbol = " "
+format = '\[[$symbol($version \(OTP $otp_version\))]($style)\]'
+[elm]
+disabled = true
+symbol = " "
+format = '\[[$symbol($version)]($style)\]'
+[erlang]
+disabled = true
+[golang]
+disabled = true
+symbol = " "
+format = '\[[$symbol($version)]($style)\]'
+[helm]
+disabled = true
+[haskell]
+disabled = true
+symbol = " "
+format = '\[[$symbol($version)]($style)\]'
+[hg_branch]
+disabled = true
+symbol = " "
+format = '\[[$symbol$branch]($style)\]'
+[java]
+disabled = true
+symbol = " "
+format = '\[[$symbol($version)]($style)\]'
+[julia]
+disabled = true
+symbol = " "
+format = '\[[$symbol($version)]($style)\]'
+[kotlin]
+disabled = true
+[nim]
+disabled = true
+symbol = " "
+format = '\[[$symbol($version)]($style)\]'
+[nix_shell]
+disabled = true
+symbol = " "
+format = '\[[$symbol$state( \($name\))]($style)\]'
+[ocaml]
+disabled = true
+[package]
+disabled = true
+symbol = " "
+format = '\[[$symbol$version]($style)\]'
+[php]
+disabled = true
+[purescript]
+disabled = true
+[spack]
+disabled = true
+symbol = "🅢 "
+format = '\[[$symbol$environment]($style)\]'
+[swift]
+disabled = true
+[zig]
+disabled = true
+[gcloud]
+disabled = true
+[openstack]
+disabled = true
+[crystal]
+disabled = true
+[lua]
+disabled = true
+[jobs]
+disabled = true
+[battery]
+disabled = true
