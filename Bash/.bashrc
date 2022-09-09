@@ -131,10 +131,30 @@ export PATH="$PATH:$HOME/.plenv/bin"
 if which plenv > /dev/null; then
   eval "$(plenv init -)"
 fi
+eval export PATH="/home/ubuntu/.plenv/shims:${PATH}"
+export PLENV_SHELL=bash
+source '/home/ubuntu/.plenv/libexec/../completions/plenv.bash'
+
+plenv() {
+  local command
+
+  command="$1"
+  if [ "$#" -gt 0 ]; then
+    shift
+  fi
+
+  case "$command" in
+  rehash|shell)
+    eval "`plenv "sh-$command" "$@"`";;
+  *)
+    command plenv "$command" "$@";;
+  esac
+}
+
 export PATH="$PATH:$HOME/.rbenv/bin"
 ## Init rbenv
 if which rbenv > /dev/null; then
-  eval "$(rbenv init -)"
+  eval "$(rbenv init - bash)"
 fi
 
 [[ -s "$PATH:$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"

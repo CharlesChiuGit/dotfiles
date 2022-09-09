@@ -6,7 +6,7 @@ mkdir -p /var/swap # make swap dir
 
 cd /var/swap # enter swap dir
 
-dd if=/dev/zero of=/var/swap/swapfile bs=1M count=1024 # assign swap with 1024*1M
+dd if=/dev/zero of=/var/swap/swapfile bs=1k count=2048000 # assign swap with 2048000*1k
 
 chmod 600 swapfile
 

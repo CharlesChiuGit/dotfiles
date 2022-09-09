@@ -158,6 +158,7 @@ if [[ -z "$(command -v rbenv)" ]]; then
 	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
 		echo "export PATH=\"$RBENV_DIR/bin:\$PATH\"" >>"$HOME/.bashrc"
     export PATH="$RBENV_DIR/bin:$PATH"
+    eval "$(rbenv init - bash)"
 	fi
 
     # Setup rbenv in current shell

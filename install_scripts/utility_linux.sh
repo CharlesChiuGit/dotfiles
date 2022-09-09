@@ -4,7 +4,7 @@ set -eu
 set -o pipefail
 
 # Whether to add the path of the installed executables to system PATH
-ADD_TO_SYSTEM_PATH=false
+ADD_TO_SYSTEM_PATH=true
 
 # select which shell we are using
 USE_BASH_SHELL=true
@@ -449,7 +449,7 @@ fi
 #                       GNU stow part                                 #
 #######################################################################
 # NOTE: make sure perl is installed
-# NOTE: also, cpanm install Test::Output
+# NOTE: also, cpanm install Test::Output Test::Output
 STOW_DIR=$HOME/tools/stow
 STOW_SRC_NAME=$HOME/packages/stow.tar.gz
 STOW_LINK="https://ftp.gnu.org/gnu/stow/stow-2.3.1.tar.gz"
@@ -466,6 +466,7 @@ if [[ -z "$(command -v stow)" ]]; then
 		echo "Extracting to $HOME/tools/stow directory"
 		tar zxvf "$STOW_SRC_NAME" -C "$STOW_DIR" --strip-components 1
     cd "$STOW_DIR"
+    cpanm install Test::Output Test::Output
     echo "Assign perl location"
     export PERL_PREFIX="$HOME/.plenv/versions/5.36.0"
     ./configure --prefix="$PERL_PREFIX"
