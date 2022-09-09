@@ -8,19 +8,46 @@ Place your dotfiles in each folder as if they are in the `home_dir`.
 ## Install GNU stow
 
 ```sh
-wget https://mirror.ossplanet.net/gnu/stow/stow-latest.tar.gz
-tar -xvpzf stow-latest.tar.gz
-cd stow-2.3.1
-./configure --prefix=/home/charles/tools
-make
-make install
+# NOTE: make sure perl is installed
+# NOTE: also, cpanm install Test::Output
+STOW_DIR=$HOME/tools/stow
+STOW_SRC_NAME=$HOME/packages/stow.tar.gz
+STOW_LINK="https://ftp.gnu.org/gnu/stow/stow-2.3.1.tar.gz"
+if [[ -z "$(command -v stow)" ]]; then
+	echo "Install GNU stow"
+	if [[ ! -f $STOW_SRC_NAME ]]; then
+		echo "Downloading stow and renaming"
+		wget $STOW_LINK -O "$STOW_SRC_NAME"
+	fi
+
+	if [[ ! -d "$STOW_DIR" ]]; then
+		echo "Creating stow directory under tools directory"
+		mkdir -p "$STOW_DIR"
+		echo "Extracting to $HOME/tools/stow directory"
+		tar zxvf "$STOW_SRC_NAME" -C "$STOW_DIR" --strip-components 1
+    cd "$STOW_DIR"
+    echo "Assign perl location"
+    export PERL_PREFIX="$HOME/.plenv/versions/5.36.0"
+    ./configure --prefix="$PERL_PREFIX"
+    make
+    make install
+	fi
+
+	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
+		echo "export PATH=\"$STOW_DIR/bin:\$PATH\"" >>"$HOME/.bashrc"
+    export PATH="$STOW_DIR/bin:$PATH"
+	fi
+
+else
+	echo "GNU stow is already installed. Skip installing it."
+fi
 ```
 
 and put below lines in `.bashrc`:
 
 ```sh
 # GNU Stow
-export PATH="$HOME/tools/stow-2.3.1/bin":$PATH
+export PATH="$HOME/tools/stow/bin":$PATH
 ```
 
 ## Usage
