@@ -345,6 +345,7 @@ if [[ -z "$(command -v trash)" ]]; then
 	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
 		echo "export PATH=$HOME/.local/bin:\$PATH\"" >>"$HOME/.bashrc"
     export PATH=$HOME/.local/bin:$PATH
+    chmod +x ~/.local/bin/*
 	fi
 
 else
