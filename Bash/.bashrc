@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -37,7 +39,7 @@ fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-    xterm-color|*-256color) color_prompt=yes;;
+  xterm-color|*-256color) color_prompt=yes;;
 esac
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
@@ -57,31 +59,31 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+  PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+  PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
 unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
 xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
+  PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+  ;;
 *)
-    ;;
+  ;;
 esac
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
+  test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+  alias ls='ls --color=auto'
+  #alias dir='dir --color=auto'
+  #alias vdir='vdir --color=auto'
 
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
+  alias grep='grep --color=auto'
+  alias fgrep='fgrep --color=auto'
+  alias egrep='egrep --color=auto'
 fi
 
 # colored GCC warnings and errors
@@ -116,150 +118,64 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# Nvidia GPU config {{{
-### Check nvidia gpu
-# Some distro requires that the absolute path is given when invoking lspci
-# e.g. /sbin/lspci if the user is not root.
-gpu=$(lspci | grep -i '.* vga .* nvidia .*')
-
-# nocasematch: If set, Bash matches patterns in a case-insensitive fashion
-# when performing matching while executing case or [[ conditional commands,
-# when performing pattern substitution word expansions, or when filtering
-# possible completions as part of programmable completion.
-shopt -s nocasematch
-
-### CUDA PATH
-CUDA_PATH=/usr/local/cuda
-if [ -d "${CUDA_PATH}" ] && [[ $gpu == *' nvidia '* ]]; then
-    # echo "You have nvgpu and cuda installed!"
-    export PATH="${CUDA_PATH}/bin"${PATH:+:${PATH}}
-    export LD_LIBRARY_PATH="${CUDA_PATH}/lib64"${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
-  elif [ ! -d "${CUDA_PATH}" ] && [[ $gpu == *' nvidia '* ]]; then
-    echo "You have nvgpu, but you don't have cuda installed!"
-  elif ! [[ $gpu == *' nvidia '* ]]; then
-    : # return nothing
-    # echo "You don't have nvgpu or it's not loaded!"
+# Custom bash functions
+if [ -f ~/.bash_functions ]; then
+    . ~/.bash_functions
 fi
-# }}}
 
-# download_from_gdrive <FILE_ID> <OUTPUT_FILENAME> {{{
-download_from_gdrive() {
-    file_id=$1
-    file_name=$2
-
-    # first stage to get the warning html
-    curl -c /tmp/cookies \
-    "https://drive.google.com/uc?export=download&id=$file_id" > \
-    /tmp/intermezzo.html
-
-    # second stage to extract the download link from html above
-    download_link=$(cat /tmp/intermezzo.html | \
-    grep -Po 'uc-download-link" [^>]* href="\K[^"]*' | \
-    sed 's/\&amp;/\&/g')
-    curl -L -b /tmp/cookies \
-    "https://drive.google.com$download_link" > "$file_name"
-}
-# }}}
-
-# >>> conda initialize >>> {{{
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$($HOME '/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "$HOME/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "$HOME/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/charles/anaconda3/bin:$PATH"
-    fi
+# Program languages PATH
+export PATH="$PATH:$HOME/tools/anaconda/bin"
+export PATH="$PATH:$HOME/tools/nodejs/bin"
+export PATH="$PATH:$HOME/.plenv/bin"
+## Init plenv
+if which plenv > /dev/null; then
+  eval "$(plenv init -)"
 fi
-unset __conda_setup
-# <<< conda initialize <<< }}}
-
-# neofetch
-# Alias
-alias CA='conda activate'
-alias CD='conda deactivate'
-alias tb='tensorboard --logdir'
-alias sudo='sudo '
-alias sobash='source ~/.bashrc'
-alias nvbash='nvim ~/.bashrc'
-alias nv='nvim' # Neovim
-alias apt='nala' # nala, wrapper for apt-get
-alias ls='lsd -lFA' # Pretty ls
-alias cat='batcat --theme=gruvbox-dark --color=always' # batcat, wrapper for cat
-alias rm='trash' # mv to trash-bin
-alias ntfy='ntfy.exe -t '"'charles@WSL'"' ' # ntfy, wsl wrapper for ntfy in windows
-alias py='python'
-alias nvf='nvim `fzf`'
-alias fd='fdfind'
-
-# Add Poetry PATH
-# PATH=$PATH:$HOME/.local/bin
-# alias pt='poetry'
-
-# Starship
-eval "$(starship init bash)"
-
-# zoxide
-eval "$(zoxide init bash)"
-
-# Activate ssh key for github {{{
-# ssh-keygen -t ed25519-sk -C "your_email@example.com"
-# ssh-add [your-git-key]
-# https://stackoverflow.com/a/48509425/9268330
-if [ "$(ps ax | pgrep [s]sh-agent | wc -l)" -gt 0 ]; then
-    : # do nothing
-    # echo "ssh-agent is already running"
-else
-    eval "$(ssh-agent -s)"
-    echo "ssh-agent is now loaded, PID: $SSH_AGENT_PID"
-    if [ "$(ssh-add -l | wc -l)" == "The agent has no identities." ]; then
-        ssh-add ~/.ssh/id_rsa
-        echo "ssh-agent identities loaded."
-    fi
-
-    # Don't leave extra agents around: kill it on exit. You may not want this part.
-    trap "ssh-agent -k" exit
+export PATH="$PATH:$HOME/.rbenv/bin"
+## Init rbenv
+if which rbenv > /dev/null; then
+  eval "$(rbenv init -)"
 fi
-# }}}
 
-# fuck
-eval "$(thefuck --alias fuck)"
+[[ -s "$PATH:$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
+export PATH="$PATH:$HOME/tools/jdk/bin"
+export PATH="$PATH:$HOME/tools/julia/bin"
+export PATH="$PATH:$HOME/tools/lua/src"
+export PATH="$PATH:$HOME/tools/luajit/src"
+export PATH="$PATH:$HOME/tools/luarocks"
+export PATH="$PATH:$HOME/tools/php/bin"
+export RUSTUP_HOME=$PATH:$HOME/tools/rustup
+export CARGO_HOME=$PATH:$HOME/tools/cargo
+. "$HOME/tools/cargo/env"
 
-# nvm
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-
-# wsl X11 forwarding
-export DISPLAY=192.168.128.1:0
-
-# neovim support
+# Utility tools PATH
+export PATH=$PATH:$HOME/tools/batcat
+export PATH=$PATH:$HOME/tools/fdfind
+export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
+export PATH=$PATH:$HOME/tools/fzf
+export PATH=$PATH:$HOME/tools/fzy
+export PATH=$PATH:$HOME/tools/git-delta
+export PATH=$PATH:$HOME/tools/glow
+export PATH=$PATH:$HOME/tools/nvim
+export PATH=$PATH:$HOME/tools/lazygit
+export PATH=$PATH:$HOME/tools/lsd
+export PATH=$PATH:$HOME/tools/ripgrep
+export PATH=$PATH:$HOME/tools/tmux
+export PATH=$PATH:$HOME/tools/treesitter
+export PATH=$PATH:$HOME/tools/zoxide
+## neovim support
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
-# neovim perl provider
-eval "$(perl -I ~/perl5/lib/perl5/ -Mlocal::lib)"
-# gvm & go
-[[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
-export GOROOT_BOOTSTRAP=$GOROOT
-# gvm use go1.18.3 [--default]
-# cargo & rust
-. "$HOME/.cargo/env"
-
-# >>> juliaup initialize >>>
-
-# !! Contents within this block are managed by juliaup !!
-case ":$PATH:" in *:/home/charles/.juliaup/bin:*);; *)
-    export PATH=$HOME/.juliaup/bin${PATH:+:${PATH}};;
-esac
-
-# <<< juliaup initialize <<<
-
-# fzf config
-export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
-
-# bob's neovim path
-export PATH=$HOME/.local/share/neovim/bin${PATH:+:${PATH}}
-
-# node path
-export PATH=$HOME/.nvm/versions/node/v16.15.1/bin/${PATH:+:${PATH}}
+## Init zoxide
+if which zoxide > /dev/null; then
+  eval "$(zoxide init bash)"
+fi
+# Init thefuck
+if which thefuck > /dev/null; then
+  # alias to fuck
+  eval "$(thefuck --alias fuck)"
+fi
+# Init Starship
+if which starship > /dev/null; then
+  eval "$(starship init bash)"
+fi
