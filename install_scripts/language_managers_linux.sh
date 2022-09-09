@@ -162,7 +162,7 @@ if [[ -z "$(command -v rbenv)" ]]; then
 	fi
 
     # Setup rbenv in current shell
-  "$RBENV_DIR/bin/rbenv" init
+  # "$RBENV_DIR/bin/rbenv" init
   # List latest stable versions
   "$RBENV_DIR/bin/rbenv" install -l
   # Install ruby
