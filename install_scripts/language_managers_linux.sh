@@ -142,7 +142,7 @@ RBENV_DIR=$HOME/.rbenv
 RBENV_LINK="https://github.com/rbenv/rbenv.git"
 RBENV_BUILD_DIR=$RBENV_DIR/plugins/ruby-build
 RBENV_BUILD_LINK="https://github.com/rbenv/ruby-build.git"
-if [[ -z "$(command -v ruby)" ]]; then
+if [[ -z "$(command -v rbenv)" ]]; then
 	echo "Install rbenv"
 
 	if [[ ! -d "$RBENV_DIR" ]]; then
@@ -179,7 +179,7 @@ fi
 #######################################################################
 GVM_DIR=$HOME/.gvm
 GVM_LINK="https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer"
-if [[ -z "$(command -v go)" ]]; then
+if [[ -z "$(command -v gvm)" ]]; then
 
   if [[ ! -d "$GVM_DIR" ]]; then
     echo "Installing gvm"
