@@ -25,4 +25,4 @@ sudo nala install caca-utils imagemagick ffmpeg librsvg2-bin atool unrar p7zip-f
 sudo snap install bashtop cpufetch gdu-disk-usage-analyzer ascii-image-converter lolcat starship
 
 # system pip3 install
-sudo pip3 install thefuck gdown ntfy[emoji]
+sudo pip3 install thefuck gdown ntfy[emoji] trash-cli
