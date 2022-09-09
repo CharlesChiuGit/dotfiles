@@ -8,7 +8,7 @@ sudo apt install nala -y
 sudo nala install ssh \
 vim htop git curl \
 make build-essential software-properties-common mercurial binutils bison re2c \
-python3-apt python3-pip python3-dev python3-setuptools \
+python3-apt python3-pip python3-dev python3-setuptools python3.10-venv \
 pandoc highlight gzip tar plocate pkg-config bzip2 openssl \
 libxml2-dev libevent-dev libbz2-dev libcurl4-openssl-dev libpng-dev \
 libjpeg-dev libonig-dev libtidy-dev libxslt-dev libzip-dev \
@@ -25,4 +25,4 @@ sudo nala install caca-utils imagemagick ffmpeg librsvg2-bin atool unrar p7zip-f
 sudo snap install bashtop cpufetch gdu-disk-usage-analyzer ascii-image-converter lolcat starship
 
 # system pip3 install
-sudo pip3 install thefuck gdown ntfy[emoji] trash-cli
+sudo pip3 install thefuck gdown ntfy[emoji]

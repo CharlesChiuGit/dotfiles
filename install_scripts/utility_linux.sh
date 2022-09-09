@@ -325,6 +325,33 @@ else
 fi
 
 #######################################################################
+#                         trash-cli part                              #
+#######################################################################
+TRASH_DIR=$HOME/tools/trash-cli
+TRASH_LINK="https://github.com/andreafrancia/trash-cli.git"
+if [[ -z "$(command -v trash)" ]]; then
+	echo "Install trash-cli"
+
+	if [[ ! -d "$TRASH_DIR" ]]; then
+		echo "Creating trash-cli directory under tools directory"
+		mkdir -p "$TRASH_DIR"
+		echo "git clone to $HOME/tools/trash-cli directory"
+    git clone git clone --depth=1 "$TRASH_LINK" "$TRASH_DIR"
+    cd "$TRASH_DIR"
+    pip3 install .
+
+	fi
+
+	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
+		echo "export PATH=$HOME/.local:\$PATH\"" >>"$HOME/.bashrc"
+    export PATH=$HOME/.local:$PATH
+	fi
+
+else
+	echo "tree-sitter is already installed. Skip installing it."
+fi
+
+#######################################################################
 #                         zoxide part                                 #
 #######################################################################
 ZOXIDE_DIR=$HOME/tools/zoxide
