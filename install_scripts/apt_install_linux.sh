@@ -22,7 +22,7 @@ sudo nala install neofetch hollywood cmatrix jp2a speedtest-cli -y
 sudo nala install caca-utils imagemagick ffmpeg librsvg2-bin atool unrar p7zip-full p7zip-rar -y
 
 # Snap install
-sudo snap install bashtop cpufetch gdu-disk-usage-analyzer ascii-image-converter lolcat starship -y
+sudo snap install bashtop cpufetch gdu-disk-usage-analyzer ascii-image-converter lolcat starship
 
 # system pip3 install
 sudo pip3 install thefuck gdown ntfy[emoji]
