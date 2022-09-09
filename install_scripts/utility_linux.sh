@@ -336,7 +336,7 @@ if [[ -z "$(command -v trash)" ]]; then
 		echo "Creating trash-cli directory under tools directory"
 		mkdir -p "$TRASH_DIR"
 		echo "git clone to $HOME/tools/trash-cli directory"
-    git clone git clone --depth=1 "$TRASH_LINK" "$TRASH_DIR"
+    git clone --depth=1 "$TRASH_LINK" "$TRASH_DIR"
     cd "$TRASH_DIR"
     pip3 install .
 
