@@ -157,7 +157,7 @@ if which rbenv > /dev/null; then
   eval "$(rbenv init - bash)"
 fi
 
-[[ -s "$PATH:$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
+export PATH="$PATH:$HOME/tools/golang/bin"
 export PATH="$PATH:$HOME/tools/jdk/bin"
 export PATH="$PATH:$HOME/tools/julia/bin"
 export PATH="$PATH:$HOME/tools/lua/src"
@@ -169,6 +169,7 @@ export CARGO_HOME=$PATH:$HOME/tools/cargo
 . "$HOME/tools/cargo/env"
 
 # Utility tools PATH
+export PATH=$HOME/.local:$PATH
 export PATH=$PATH:$HOME/tools/batcat
 export PATH=$PATH:$HOME/tools/fdfind
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
