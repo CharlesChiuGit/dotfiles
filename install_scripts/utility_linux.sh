@@ -22,7 +22,7 @@ fi
 #######################################################################
 BATCAT_DIR=$HOME/tools/batcat
 BATCAT_SRC_NAME=$HOME/packages/batcat.tar.gz
-BATCAT_LINK="https://github.com/sharkdp/bat/releases/download/v0.22.0/bat-v0.22.0-x86_64-unknown-linux-musl.tar.gz"
+BATCAT_LINK="https://github.com/sharkdp/bat/releases/download/v0.22.1/bat-v0.22.1-x86_64-unknown-linux-musl.tar.gz"
 if [[ -z "$(command -v bat)" ]] && [[ ! -f "$BATCAT_DIR/bat" ]]; then
     echo "Install batcat"
     if [[ ! -f $BATCAT_SRC_NAME ]]; then
