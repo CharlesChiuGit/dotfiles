@@ -495,7 +495,8 @@ if [[ -z "$(command -v stow)" ]]; then
         cd "$STOW_DIR"
         cpanm install Test::Output Test::Output
         echo "Assign perl location"
-        export PERL_PREFIX="$HOME/tools/perl/bin/perl"
+        # export PERL_PREFIX="$HOME/.plenv/versions/5.36.0"
+        export PERL_PREFIX="$HOME/tools/perl"
         ./configure --prefix="$PERL_PREFIX"
         make
         make install
