@@ -265,7 +265,7 @@ fi
 #######################################################################
 JULIA_DIR=$HOME/tools/julia
 JULIA_SRC_NAME=$HOME/packages/julia.tar.gz
-JULIA_LINK="https://julialangnightlies-s3.julialang.org/bin/linux/x64/julia-latest-linux64.tar.gz"
+JULIA_LINK="https://julialang-s3.julialang.org/bin/musl/x64/1.7/julia-1.7.3-musl-x86_64.tar.gz"
 if [[ -z "$(command -v julia)" ]]; then
     echo "Install Julia"
     if [[ ! -f $JULIA_SRC_NAME ]]; then
