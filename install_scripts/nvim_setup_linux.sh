@@ -114,7 +114,7 @@ CPANM_DIR=$PERL_DIR/bin/cpanm
 #######################################################################
 RUBY_DIR=$HOME/tools/ruby
 
-"$RBENV_DIR/bin/gem" install neovim
+"$RUBY_DIR/bin/gem" install neovim
 
 
 #######################################################################
