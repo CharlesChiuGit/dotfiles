@@ -133,7 +133,7 @@ fi
 #######################################################################
 #                  Install rbenv for Ruby & gem                       #
 #######################################################################
-RUBY_DIR=$HOME/tools/ruby/
+RUBY_DIR=$HOME/tools/ruby
 RUBY_TAR_DIR=$HOME/tools/ruby/tarball
 RUBY_SRC_NAME=$HOME/packages/ruby.tar.gz
 RUBY_LINK="https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.2.tar.gz"
