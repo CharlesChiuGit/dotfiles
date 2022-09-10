@@ -17,5 +17,8 @@ swapon /var/swap/swapfile # activate swap
 echo "/var/swap/swapfile swap swap defaults 0 0" >>/etc/fstab # set for auto-mount while system reboot
 
 # Delete swap
-# swapoff swapfile
-# rm -rf swapfile
+# swapoff -a -v
+# NOTE: you need to restart for this
+# rm -rf /var/swap/swapfile
+# cp /etc/fstab /etc/fstab.bak # backup /etc/fstab
+# sed -i '/\/swapfile/d' /etc/fstab
