@@ -3,6 +3,7 @@
 # Alias
 alias sudo='sudo '
 alias apt='nala' # nala, wrapper for apt-get
+alias nvim='$HOME/tools/nvim/bin/nvim'
 alias sobash='source ~/.bashrc'
 alias nvbash='nvim ~/.bashrc'
 alias py='python'
