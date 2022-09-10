@@ -229,6 +229,7 @@ if [[ -z "$(command -v cargo)" ]]; then
         
         export PATH="$CARGO_HOME/bin:$PATH"
         echo "Install cargo"
+        # NOTE: might need to run `rustup default stable` afterwords
         "$CARGO_HOME/bin/rustup" default stable
         # Configure current shell
         source "$CARGO_HOME/env"
@@ -268,31 +269,31 @@ fi
 #######################################################################
 #                          Install Julia                              #
 #######################################################################
-# JULIA_DIR=$HOME/tools/julia
-# JULIA_SRC_NAME=$HOME/packages/julia.tar.gz
-# JULIA_LINK="https://julialangnightlies-s3.julialang.org/bin/linux/x64/julia-latest-linux64.tar.gz"
-# if [[ -z "$(command -v julia)" ]]; then
-#     echo "Install Julia"
-#     if [[ ! -f $JULIA_SRC_NAME ]]; then
-#         echo "Downloading Julia"
-#         wget "$JULIA_LINK" -O "$JULIA_SRC_NAME"
-#     fi
-
-#     if [[ ! -d "$JULIA_DIR" ]]; then
-#         echo "Creating Julia directory under tools directory"
-#         mkdir -p "$JULIA_DIR"
-#         echo "Extracting Julia"
-#         tar -xvzf "$JULIA_SRC_NAME" -C "$JULIA_DIR" --strip-components 1
-#     fi
-
-#     if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
-#         echo "export PATH=\"$JULIA_DIR/bin:\$PATH\"" >>"$HOME/.bashrc"
-#         export PATH="$JULIA_DIR/bin:$PATH"
-#     fi
-# else
-#     echo "Julia is already installed. Skip installing it."
-
-# fi
+JULIA_DIR=$HOME/tools/julia
+JULIA_SRC_NAME=$HOME/packages/julia.tar.gz
+JULIA_LINK="https://julialangnightlies-s3.julialang.org/bin/linux/x64/julia-latest-linux64.tar.gz"
+if [[ -z "$(command -v julia)" ]]; then
+    echo "Install Julia"
+    if [[ ! -f $JULIA_SRC_NAME ]]; then
+        echo "Downloading Julia"
+        wget "$JULIA_LINK" -O "$JULIA_SRC_NAME"
+    fi
+    
+    if [[ ! -d "$JULIA_DIR" ]]; then
+        echo "Creating Julia directory under tools directory"
+        mkdir -p "$JULIA_DIR"
+        echo "Extracting Julia"
+        tar -xvzf "$JULIA_SRC_NAME" -C "$JULIA_DIR" --strip-components 1
+    fi
+    
+    if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
+        echo "export PATH=\"$JULIA_DIR/bin:\$PATH\"" >>"$HOME/.bashrc"
+        export PATH="$JULIA_DIR/bin:$PATH"
+    fi
+else
+    echo "Julia is already installed. Skip installing it."
+    
+fi
 
 #######################################################################
 #                 Install Lua, LuaJIT and luarocks                    #
@@ -383,47 +384,47 @@ fi
 #                       Install PHP, Composer                         #
 #######################################################################
 # NOTE: sudo apt install build-essential autoconf bison re2c libxml2-dev libsqlite3-dev
-PHP_DIR=$HOME/tools/php
-PHP_LINK="https://github.com/php/php-src.git"
-if [[ -z "$(command -v php)" ]]; then
-    echo "Install PHP"
-    
-    if [[ ! -d "$PHP_DIR" ]]; then
-        echo "Creating php directory under tools directory"
-        mkdir -p "$PHP_DIR"
-        echo "git clone php repo"
-        git clone --depth=1 "$PHP_LINK" "$PHP_DIR"
-        cd "$PHP_DIR"
-        ./buildconf
-        ./configure --prefix="$PHP_DIR" --with-openssl --with-zlib
-        make -j4
-        make install
-    fi
-    
-    if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
-        echo "export PATH=\"$PHP_DIR/bin:\$PATH\"" >>"$HOME/.bashrc"
-        export PATH="$PHP_DIR/bin:$PATH"
-    fi
-    
-    # NOTE: sudo apt install zlib1g zlib1g-dev
-    PHP=$PHP_DIR/bin/php
-    EXPECTED_CHECKSUM="$($PHP -r 'copy("https://composer.github.io/installer.sig", "php://stdout");')"
-    php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-    ACTUAL_CHECKSUM="$($PHP -r "echo hash_file('sha384', 'composer-setup.php');")"
-    
-    if [ "$EXPECTED_CHECKSUM" != "$ACTUAL_CHECKSUM" ]
-    then
-        >&2 echo 'ERROR: Invalid installer checksum'
-        rm composer-setup.php
-        exit 1
-    fi
-    
-    $PHP composer-setup.php --quiet
-    rm composer-setup.php
-    mv composer.phar "$PHP_DIR/bin/composer"
-    
-else
-    echo "PHP is already installed. Skip installing it."
-fi
+# PHP_DIR=$HOME/tools/php
+# PHP_LINK="https://github.com/php/php-src.git"
+# if [[ -z "$(command -v php)" ]]; then
+#     echo "Install PHP"
+
+#     if [[ ! -d "$PHP_DIR" ]]; then
+#         echo "Creating php directory under tools directory"
+#         mkdir -p "$PHP_DIR"
+#         echo "git clone php repo"
+#         git clone --depth=1 "$PHP_LINK" "$PHP_DIR"
+#         cd "$PHP_DIR"
+#         ./buildconf
+#         ./configure --prefix="$PHP_DIR" --with-openssl --with-zlib
+#         make -j4
+#         make install
+#     fi
+
+#     if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
+#         echo "export PATH=\"$PHP_DIR/bin:\$PATH\"" >>"$HOME/.bashrc"
+#         export PATH="$PHP_DIR/bin:$PATH"
+#     fi
+
+#     # NOTE: sudo apt install zlib1g zlib1g-dev
+#     PHP=$PHP_DIR/bin/php
+#     EXPECTED_CHECKSUM="$($PHP -r 'copy("https://composer.github.io/installer.sig", "php://stdout");')"
+#     php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+#     ACTUAL_CHECKSUM="$($PHP -r "echo hash_file('sha384', 'composer-setup.php');")"
+
+#     if [ "$EXPECTED_CHECKSUM" != "$ACTUAL_CHECKSUM" ]
+#     then
+#         >&2 echo 'ERROR: Invalid installer checksum'
+#         rm composer-setup.php
+#         exit 1
+#     fi
+
+#     $PHP composer-setup.php --quiet
+#     rm composer-setup.php
+#     mv composer.phar "$PHP_DIR/bin/composer"
+
+# else
+#     echo "PHP is already installed. Skip installing it."
+# fi
 
 
