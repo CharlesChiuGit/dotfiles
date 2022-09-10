@@ -127,7 +127,7 @@ if [[ -z "$(command -v perl)" ]]; then
     fi
     
 else
-    echo "plenv is already installed. Skip installing it."
+    echo "Perl is already installed. Skip installing it."
 fi
 
 #######################################################################
