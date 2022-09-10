@@ -113,6 +113,7 @@ if [[ "$(command which perl)" = "/usr/bin/perl" ]]; then
     if [[ ! -d "$PERL_DIR" ]]; then
         echo "Creating Perl directory under tools directory"
         mkdir -p "$PERL_DIR"
+        mkdir -p "$CPANM_DIR"
         echo "Extracting to $HOME/tools/perl directory"
         tar xvf "$PERL_SRC_NAME" -C "$PERL_DIR" --strip-components 1
         cd "$PERL_DIR"
