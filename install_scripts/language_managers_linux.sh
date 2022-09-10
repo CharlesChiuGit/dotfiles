@@ -102,9 +102,6 @@ PERL_DIR=$HOME/tools/perl
 PERL_SRC_NAME=$HOME/packages/perl.tar.gz
 PERL_LINK="https://www.cpan.org/src/5.0/perl-5.36.0.tar.gz"
 CPANM_DIR=$HOME/tools/cpanm
-CPANM_SRC_NAME=$HOME/packages/cpanm.gz
-CPANM_LINK="https://manpages.ubuntu.com/manpages.gz/bionic/man1/cpanm.1p.gz"
-PERL_CPANM_HOME=$CPANM_DIR
 
 if [[ "$(command which perl)" = "/usr/bin/perl" ]]; then
     echo "Install perl"
@@ -123,9 +120,9 @@ if [[ "$(command which perl)" = "/usr/bin/perl" ]]; then
         make
         make install
         
-        # TODO: add cpanm
         echo "Install cpanm"
-        curl -L https://cpanmin.us | perl - App::cpanminus
+        export PERL_CPANM_HOME="$CPANM_DIR"
+        curl -L https://cpanmin.us | "$PERL_DIR/bin/perl" - App::cpanminus
     fi
     
     if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
