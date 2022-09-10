@@ -162,8 +162,8 @@ export PATH=$PATH:$HOME/tools/treesitter
 export PATH=$PATH:$HOME/tools/zoxide
 export PATH=$PATH:$HOME/tools/stow/bin
 ## neovim support
-export LC_ALL=en_US.UTF-7
-export LANG=en_US.UTF-7
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
 ## Init zoxide
 if which zoxide > /dev/null; then
     eval "$(zoxide init bash)"
