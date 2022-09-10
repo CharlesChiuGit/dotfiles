@@ -131,7 +131,7 @@ else
 fi
 
 #######################################################################
-#                  Install rbenv for Ruby & gem                       #
+#                         Install Ruby & gem                          #
 #######################################################################
 RUBY_DIR=$HOME/tools/ruby
 RUBY_TAR_DIR=$HOME/tools/ruby/tarball
@@ -201,21 +201,21 @@ fi
 RUSTUP_HOME=$HOME/tools/rustup
 CARGO_HOME=$HOME/tools/cargo
 
-if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
-    echo "export RUSTUP_HOME=$RUSTUP_HOME" >>"$HOME/.bashrc"
-    echo "export CARGO_HOME=$CARGO_HOME" >>"$HOME/.bashrc"
-    export RUSTUP_HOME=$RUSTUP_HOME
-    export CARGO_HOME=$CARGO_HOME
-fi
-
 if [[ -z "$(command -v cargo)" ]]; then
     
     if [[ ! -d "$CARGO_HOME" ]]; then
         echo "Creating rustup & cargo directory under tools directory"
         mkdir -p "$RUSTUP_HOME"
         mkdir -p "$CARGO_HOME"
+        if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
+            echo "export RUSTUP_HOME=$RUSTUP_HOME" >>"$HOME/.bashrc"
+            echo "export CARGO_HOME=$CARGO_HOME" >>"$HOME/.bashrc"
+            export RUSTUP_HOME=$RUSTUP_HOME
+            export CARGO_HOME=$CARGO_HOME
+        fi
         echo "Installing rustup"
         curl https://sh.rustup.rs -sSf | sh -s -- -y
+        
         
         if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
             echo "export PATH=\"$CARGO_HOME/bin:\$PATH\"" >>"$HOME/.bashrc"
@@ -263,31 +263,31 @@ fi
 #######################################################################
 #                          Install Julia                              #
 #######################################################################
-JULIA_DIR=$HOME/tools/julia
-JULIA_SRC_NAME=$HOME/packages/julia.tar.gz
-JULIA_LINK="https://julialangnightlies-s3.julialang.org/bin/linux/x64/julia-latest-linux64.tar.gz"
-if [[ -z "$(command -v julia)" ]]; then
-    echo "Install Julia"
-    if [[ ! -f $JULIA_SRC_NAME ]]; then
-        echo "Downloading Julia"
-        wget "$JULIA_LINK" -O "$JULIA_SRC_NAME"
-    fi
-    
-    if [[ ! -d "$JULIA_DIR" ]]; then
-        echo "Creating Julia directory under tools directory"
-        mkdir -p "$JULIA_DIR"
-        echo "Extracting Julia"
-        tar -xvzf "$JULIA_SRC_NAME" -C "$JULIA_DIR" --strip-components 1
-    fi
-    
-    if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
-        echo "export PATH=\"$JULIA_DIR/bin:\$PATH\"" >>"$HOME/.bashrc"
-        export PATH="$JULIA_DIR/bin:$PATH"
-    fi
-else
-    echo "Julia is already installed. Skip installing it."
-    
-fi
+# JULIA_DIR=$HOME/tools/julia
+# JULIA_SRC_NAME=$HOME/packages/julia.tar.gz
+# JULIA_LINK="https://julialangnightlies-s3.julialang.org/bin/linux/x64/julia-latest-linux64.tar.gz"
+# if [[ -z "$(command -v julia)" ]]; then
+#     echo "Install Julia"
+#     if [[ ! -f $JULIA_SRC_NAME ]]; then
+#         echo "Downloading Julia"
+#         wget "$JULIA_LINK" -O "$JULIA_SRC_NAME"
+#     fi
+
+#     if [[ ! -d "$JULIA_DIR" ]]; then
+#         echo "Creating Julia directory under tools directory"
+#         mkdir -p "$JULIA_DIR"
+#         echo "Extracting Julia"
+#         tar -xvzf "$JULIA_SRC_NAME" -C "$JULIA_DIR" --strip-components 1
+#     fi
+
+#     if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
+#         echo "export PATH=\"$JULIA_DIR/bin:\$PATH\"" >>"$HOME/.bashrc"
+#         export PATH="$JULIA_DIR/bin:$PATH"
+#     fi
+# else
+#     echo "Julia is already installed. Skip installing it."
+
+# fi
 
 #######################################################################
 #                 Install Lua, LuaJIT and luarocks                    #
