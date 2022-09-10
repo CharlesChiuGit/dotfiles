@@ -4,6 +4,7 @@ __pycache__/
 *$py.class
 *.pyc
 *.cpython-310.pyc
+TheFUCK/.config/thefuck/__pycache__/
 
 # C extensions
 *.so
