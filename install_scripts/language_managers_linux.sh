@@ -124,7 +124,8 @@ if [[ "$(command which perl)" = "/usr/bin/perl" ]]; then
         make install
         
         # TODO: add cpanm
-        
+        echo "Install cpanm"
+        curl -L https://cpanmin.us | perl - App::cpanminus
     fi
     
     if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
