@@ -98,7 +98,7 @@ alias l='ls -CF'
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
-# Alias definitions.
+# Alias definitions.PATH
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
@@ -124,37 +124,38 @@ if [ -f ~/.bash_functions ]; then
 fi
 
 # Program languages PATH
-# export PATH="$PATH:$HOME/tools/anaconda/bin" # commented out by conda initialize
-export PATH="$PATH:$HOME/tools/nodejs/bin"
-export PATH="$PATH:$HOME/tools/golang/bin"
-export PATH="$PATH:$HOME/tools/jdk/bin"
-export PATH="$PATH:$HOME/tools/julia/bin"
-export RUSTUP_HOME=$PATH:$HOME/tools/rustup
-export CARGO_HOME=$PATH:$HOME/tools/cargo
-export PATH="$PATH:$HOME/tools/cargo/bin"
-# source "$CARGO_HOME/env"
-export PATH="$PATH:$HOME/tools/lua/src"
-export PATH="$PATH:$HOME/tools/luajit/src"
-export PATH="$PATH:$HOME/tools/luarocks"
-export PATH="$PATH:$HOME/tools/php/bin"
+MY_HOME="/home/charles"
+# export PATH="$PATH:$MY_HOME/tools/anaconda/bin" # commented out by conda initialize
+export PATH="$PATH:$MY_HOME/tools/nodejs/bin"
+export PATH="$PATH:$MY_HOME/tools/golang/bin"
+export PATH="$PATH:$MY_HOME/tools/jdk/bin"
+export PATH="$PATH:$MY_HOME/tools/julia/bin"
+export RUSTUP_MY_HOME=$PATH:$MY_HOME/tools/rustup
+export CARGO_MY_HOME=$PATH:$MY_HOME/tools/cargo
+export PATH="$PATH:$MY_HOME/tools/cargo/bin"
+# source "$CARGO_MY_HOME/env"
+export PATH="$PATH:$MY_HOME/tools/lua/src"
+export PATH="$PATH:$MY_HOME/tools/luajit/src"
+export PATH="$PATH:$MY_HOME/tools/luarocks"
+export PATH="$PATH:$MY_HOME/tools/php/bin"
 
 # Utility tools PATH
-export PATH=$HOME/.local/bin:$PATH
-export PATH=$PATH:$HOME/tools/batcat
-export PATH=$PATH:$HOME/tools/fdfind
+export PATH=$MY_HOME/.local/bin:$PATH
+export PATH=$PATH:$MY_HOME/tools/batcat
+export PATH=$PATH:$MY_HOME/tools/fdfind
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
-export PATH=$PATH:$HOME/tools/fzf
-export PATH=$PATH:$HOME/tools/fzy
-export PATH=$PATH:$HOME/tools/git-delta
-export PATH=$PATH:$HOME/tools/glow
-export PATH=$PATH:$HOME/tools/nvim/bin
-export PATH=$PATH:$HOME/tools/lazygit
-export PATH=$PATH:$HOME/tools/lsd
-export PATH=$PATH:$HOME/tools/ripgrep
-export PATH=$PATH:$HOME/tools/tmux
-export PATH=$PATH:$HOME/tools/treesitter
-export PATH=$PATH:$HOME/tools/zoxide
-export PATH=$PATH:$HOME/tools/stow/bin
+export PATH=$PATH:$MY_HOME/tools/fzf
+export PATH=$PATH:$MY_HOME/tools/fzy
+export PATH=$PATH:$MY_HOME/tools/git-delta
+export PATH=$PATH:$MY_HOME/tools/glow
+export PATH=$PATH:$MY_HOME/tools/nvim/bin
+export PATH=$PATH:$MY_HOME/tools/lazygit
+export PATH=$PATH:$MY_HOME/tools/lsd
+export PATH=$PATH:$MY_HOME/tools/ripgrep
+export PATH=$PATH:$MY_HOME/tools/tmux
+export PATH=$PATH:$MY_HOME/tools/treesitter
+export PATH=$PATH:$MY_HOME/tools/zoxide
+export PATH=$PATH:$MY_HOME/tools/stow/bin
 ## neovim support
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
@@ -174,14 +175,14 @@ fi
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$("$HOME/tools/anaconda/bin/conda" 'shell.bash' 'hook' 2> /dev/null)"
+__conda_setup="$("$MY_HOME/tools/anaconda/bin/conda" 'shell.bash' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "$HOME/tools/anaconda/etc/profile.d/conda.sh" ]; then
-        . "$HOME/tools/anaconda/etc/profile.d/conda.sh"
+    if [ -f "$MY_HOME/tools/anaconda/etc/profile.d/conda.sh" ]; then
+        . "$MY_HOME/tools/anaconda/etc/profile.d/conda.sh"
     else
-        export PATH="$HOME/tools/anaconda/bin:$PATH"
+        export PATH="$MY_HOME/tools/anaconda/bin:$PATH"
     fi
 fi
 unset __conda_setup
