@@ -106,8 +106,8 @@ PERL_DIR=$HOME/tools/perl
 CPAN_DIR=$PERL_DIR/bin/cpan
 CPANM_DIR=$PERL_DIR/bin/cpanm
 
-"$CPAN_DIR" -n Neovim::Ext
-"$CPAN_DIR" -n App::cpanminus
+"$CPAN_DIR" Neovim::Ext
+"$CPAN_DIR" App::cpanminus
 "$CPANM_DIR" -n Neovim::Ext
 "$CPANM_DIR" -n App::cpanminus
 
