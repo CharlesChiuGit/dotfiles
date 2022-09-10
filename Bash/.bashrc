@@ -166,10 +166,11 @@ export PATH="$PATH:$HOME/tools/luarocks"
 export PATH="$PATH:$HOME/tools/php/bin"
 export RUSTUP_HOME=$PATH:$HOME/tools/rustup
 export CARGO_HOME=$PATH:$HOME/tools/cargo
+export PATH="$PATH:$HOME/tools/cargo/bin"
 . "$HOME/tools/cargo/env"
 
 # Utility tools PATH
-export PATH=$HOME/.local:$PATH
+export PATH=$HOME/.local/bin:$PATH
 export PATH=$PATH:$HOME/tools/batcat
 export PATH=$PATH:$HOME/tools/fdfind
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
@@ -200,3 +201,18 @@ fi
 if which starship > /dev/null; then
   eval "$(starship init bash)"
 fi
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$("$HOME/tools/anaconda/bin/conda" 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "$HOME/tools/anaconda/etc/profile.d/conda.sh" ]; then
+        . "$HOME/tools/anaconda/etc/profile.d/conda.sh"
+    else
+        export PATH="$HOME/tools/anaconda/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<

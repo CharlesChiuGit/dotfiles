@@ -224,9 +224,11 @@ if [[ -z "$(command -v cargo)" ]]; then
 		echo "Creating rustup & cargo directory under tools directory"
 		mkdir -p "$RUSTUP_HOME"
     mkdir -p "$CARGO_HOME"
-    echo "Installing cargo"
+    echo "Installing rustup"
     curl https://sh.rustup.rs -sSf | sh -s -- -y
 
+    echo "Install cargo"
+    rustup default stable
     # Configure current shell
     source "$CARGO_HOME/env"
   fi
