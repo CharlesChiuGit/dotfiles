@@ -133,7 +133,7 @@ export PATH="$PATH:$MY_HOME/tools/julia/bin"
 export RUSTUP_MY_HOME=$PATH:$MY_HOME/tools/rustup
 export CARGO_MY_HOME=$PATH:$MY_HOME/tools/cargo
 export PATH="$PATH:$MY_HOME/tools/cargo/bin"
-source "$CARGO_MY_HOME/env"
+# source "$CARGO_MY_HOME/env"
 export PATH="$PATH:$MY_HOME/tools/lua/src"
 export PATH="$PATH:$MY_HOME/tools/luajit/src"
 export PATH="$PATH:$MY_HOME/tools/luarocks"
