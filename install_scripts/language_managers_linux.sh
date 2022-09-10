@@ -217,8 +217,14 @@ if [[ -z "$(command -v cargo)" ]]; then
         echo "Installing rustup"
         curl https://sh.rustup.rs -sSf | sh -s -- -y
         
+        if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
+            echo "export PATH=\"$CARGO_HOME/bin:\$PATH\"" >>"$HOME/.bashrc"
+            export PATH="$CARGO_HOME/bin:$PATH"
+        fi
+        
+        export PATH="$CARGO_HOME/bin:$PATH"
         echo "Install cargo"
-        rustup default stable
+        "$CARGO_HOME/bin/rustup" default stable
         # Configure current shell
         source "$CARGO_HOME/env"
     fi
