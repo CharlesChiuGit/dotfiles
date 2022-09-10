@@ -121,6 +121,7 @@ if [[ "$(command which perl)" = "/usr/bin/perl" ]]; then
         make
         make install
         
+        alias perl="$HOME/tools/perl/bin/perl"
         echo "Install cpanm"
         export PERL_CPANM_HOME="$CPANM_DIR"
         curl -L https://cpanmin.us | "$PERL_DIR/bin/perl" - App::cpanminus
