@@ -101,8 +101,12 @@ fi
 PERL_DIR=$HOME/tools/perl
 PERL_SRC_NAME=$HOME/packages/perl.tar.gz
 PERL_LINK="https://www.cpan.org/src/5.0/perl-5.36.0.tar.gz"
+CPANM_DIR=$HOME/tools/cpanm
+CPANM_SRC_NAME=$HOME/packages/cpanm.gz
+CPANM_LINK="https://manpages.ubuntu.com/manpages.gz/bionic/man1/cpanm.1p.gz"
+PERL_CPANM_HOME=$CPANM_DIR
 
-if [[ -z "$(command -v perl)" ]]; then
+if [[ "$(command which perl)" = "/usr/bin/perl" ]]; then
     echo "Install perl"
     if [[ ! -f $PERL_SRC_NAME ]]; then
         echo "Downloading Perl and renaming"
@@ -118,6 +122,8 @@ if [[ -z "$(command -v perl)" ]]; then
         ./Configure -des -Dprefix="$PERL_DIR"
         make
         make install
+        
+        # TODO: add cpanm
         
     fi
     

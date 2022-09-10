@@ -7,7 +7,7 @@
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
-      *) return;;
+    *) return;;
 esac
 
 # don't put duplicate lines or lines starting with space in the history.
@@ -39,7 +39,7 @@ fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-  xterm-color|*-256color) color_prompt=yes;;
+    xterm-color|*-256color) color_prompt=yes;;
 esac
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
@@ -49,41 +49,41 @@ esac
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
+        # We have color support; assume it's compliant with Ecma-48
+        # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+        # a case would tend to support setf rather than setaf.)
+        color_prompt=yes
     else
-	color_prompt=
+        color_prompt=
     fi
 fi
 
 if [ "$color_prompt" = yes ]; then
-  PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 else
-  PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
 unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
-xterm*|rxvt*)
-  PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-  ;;
-*)
-  ;;
+    xterm*|rxvt*)
+        PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+    ;;
+    *)
+    ;;
 esac
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
-  test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-  alias ls='ls --color=auto'
-  #alias dir='dir --color=auto'
-  #alias vdir='vdir --color=auto'
-
-  alias grep='grep --color=auto'
-  alias fgrep='fgrep --color=auto'
-  alias egrep='egrep --color=auto'
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    #alias dir='dir --color=auto'
+    #alias vdir='vdir --color=auto'
+    
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
 fi
 
 # colored GCC warnings and errors
@@ -111,11 +111,11 @@ fi
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
 if ! shopt -oq posix; then
-  if [ -f /usr/share/bash-completion/bash_completion ]; then
-    . /usr/share/bash-completion/bash_completion
-  elif [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-  fi
+    if [ -f /usr/share/bash-completion/bash_completion ]; then
+        . /usr/share/bash-completion/bash_completion
+        elif [ -f /etc/bash_completion ]; then
+        . /etc/bash_completion
+    fi
 fi
 
 # Custom bash functions
@@ -124,50 +124,19 @@ if [ -f ~/.bash_functions ]; then
 fi
 
 # Program languages PATH
-export PATH="$PATH:$HOME/tools/anaconda/bin"
+# export PATH="$PATH:$HOME/tools/anaconda/bin" # commented out by conda initialize
 export PATH="$PATH:$HOME/tools/nodejs/bin"
-export PATH="$PATH:$HOME/.plenv/bin"
-## Init plenv
-if which plenv > /dev/null; then
-  eval "$(plenv init -)"
-fi
-eval export PATH="/home/ubuntu/.plenv/shims:${PATH}"
-export PLENV_SHELL=bash
-source '/home/ubuntu/.plenv/libexec/../completions/plenv.bash'
-
-plenv() {
-  local command
-
-  command="$1"
-  if [ "$#" -gt 0 ]; then
-    shift
-  fi
-
-  case "$command" in
-  rehash|shell)
-    eval "`plenv "sh-$command" "$@"`";;
-  *)
-    command plenv "$command" "$@";;
-  esac
-}
-
-export PATH="$PATH:$HOME/.rbenv/bin"
-## Init rbenv
-if which rbenv > /dev/null; then
-  eval "$(rbenv init - bash)"
-fi
-
 export PATH="$PATH:$HOME/tools/golang/bin"
 export PATH="$PATH:$HOME/tools/jdk/bin"
 export PATH="$PATH:$HOME/tools/julia/bin"
+export RUSTUP_HOME=$PATH:$HOME/tools/rustup
+export CARGO_HOME=$PATH:$HOME/tools/cargo
+export PATH="$PATH:$HOME/tools/cargo/bin"
+. "$CARGO_HOME/env"
 export PATH="$PATH:$HOME/tools/lua/src"
 export PATH="$PATH:$HOME/tools/luajit/src"
 export PATH="$PATH:$HOME/tools/luarocks"
 export PATH="$PATH:$HOME/tools/php/bin"
-export RUSTUP_HOME=$PATH:$HOME/tools/rustup
-export CARGO_HOME=$PATH:$HOME/tools/cargo
-export PATH="$PATH:$HOME/tools/cargo/bin"
-. "$HOME/tools/cargo/env"
 
 # Utility tools PATH
 export PATH=$HOME/.local/bin:$PATH
@@ -185,21 +154,22 @@ export PATH=$PATH:$HOME/tools/ripgrep
 export PATH=$PATH:$HOME/tools/tmux
 export PATH=$PATH:$HOME/tools/treesitter
 export PATH=$PATH:$HOME/tools/zoxide
+export PATH=$PATH:$HOME/tools/stow/bin
 ## neovim support
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 ## Init zoxide
 if which zoxide > /dev/null; then
-  eval "$(zoxide init bash)"
+    eval "$(zoxide init bash)"
 fi
 # Init thefuck
 if which thefuck > /dev/null; then
-  # alias to fuck
-  eval "$(thefuck --alias fuck)"
+    # alias to fuck
+    eval "$(thefuck --alias fuck)"
 fi
 # Init Starship
 if which starship > /dev/null; then
-  eval "$(starship init bash)"
+    eval "$(starship init bash)"
 fi
 
 # >>> conda initialize >>>
