@@ -445,7 +445,7 @@ fi
 TMUX_DIR=$HOME/tools/tmux
 TMUX_SRC_NAME=$HOME/packages/tmux.tar.gz
 TMUX_LINK="https://github.com/tmux/tmux/releases/download/3.3a/tmux-3.3a.tar.gz"
-if [[ "$(command which tmux)" = "/usr/bin/tmux" ]]; then
+if [[ ! -f "$TMUX_DIR/tmux" ]]; then
 	echo "Install tmux"
 	if [[ ! -f $TMUX_SRC_NAME ]]; then
 		echo "Downloading tmux and renaming"
