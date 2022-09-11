@@ -93,6 +93,7 @@ fi
 #######################################################################
 NODE_DIR=$HOME/tools/nodejs
 
+"$NODE_DIR/bin/npm" install npm@8.19.1 --location=global
 # Install neovim support for node plugins
 "$NODE_DIR/bin/npm" install neovim --location=global
 
