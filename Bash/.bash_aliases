@@ -1,5 +1,24 @@
 #!/usr/bin/env bash
 
+# Local tools alias
+alias node='~/tools/nodejs/bin/node'
+alias npm='~/tools/nodejs/bin/npm'
+alias perl='~/tools/perl/bin/perl'
+alias cpan='~/tools/perl/bin/cpan'
+alias cpanm='~/tools/perl/bin/cpanm'
+alias ruby='~/tools/ruby/bin/ruby'
+alias go='~/tools/golang/bin/go'
+alias java='~/tools/jdk/bin/java'
+alias javac='~/tools/jdk/bin/javac'
+alias julia='~/tools/julia/bin/julia'
+alias rustc='~/tools/cargo/bin/rustc'
+alias cargo='~/tools/cargo/bin/cargo'
+alias lua='~/tools/lua/src/lua'
+alias luajit='~/tools/luajit/src/luajit'
+alias luarocks='~/tools/luarocks/luarocks'
+alias php='~/tools/php/bin/php'
+alias tmux='~/tools/tmux/tmux'
+
 # Alias
 alias sudo='sudo '
 alias apt='nala' # nala, wrapper for apt-get

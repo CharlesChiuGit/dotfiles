@@ -126,13 +126,10 @@ fi
 # Program languages PATH
 # export PATH="$PATH:$MY_HOME/tools/anaconda/bin" # commented out by conda initialize
 export PATH="$PATH:$HOME/tools/nodejs/bin"
-export PATH="$PATH:$HOME/tools/golang/bin"
 export PATH="$PATH:$HOME/tools/perl/bin"
-alias perl='~/tools/perl/bin/perl'
-alias cpan='~/tools/perl/bin/cpan'
-alias cpanm='~/tools/perl/bin/cpanm'
 export PERL_CPANM_HOME="$HOME/tools/cpanm"
 export PATH="$PATH:$HOME/tools/ruby/bin"
+export PATH="$PATH:$HOME/tools/golang/bin"
 export PATH="$PATH:$HOME/tools/jdk/bin"
 export PATH="$PATH:$HOME/tools/julia/bin"
 export RUSTUP_HOME="$PATH:$HOME/tools/rustup"
@@ -161,7 +158,6 @@ export PATH="$PATH:$HOME/tools/lazygit"
 export PATH="$PATH:$HOME/tools/lsd"
 export PATH="$PATH:$HOME/tools/ripgrep"
 export PATH="$PATH:$HOME/tools/tmux"
-alias tmux='~/tools/tmux/tmux'
 export PATH="$PATH:$HOME/tools/treesitter"
 export PATH="$PATH:$HOME/tools/zoxide"
 export PATH="$PATH:$HOME/tools/stow/bin"
