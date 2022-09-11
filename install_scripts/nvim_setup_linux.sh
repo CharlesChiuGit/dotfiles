@@ -97,7 +97,7 @@ NODE_DIR=$HOME/tools/nodejs
 # Install neovim support for node plugins
 "$NODE_DIR/bin/npm" install neovim --location=global
 
-"$NODE_DIR/bin/npm" install ls_emmet --location=global
+"$NODE_DIR/bin/npm" install emmet-ls --location=global
 
 # Install tree-sitter-cli
 # "$NODE_DIR/bin/npm" install tree-sitter-cli --location=global
