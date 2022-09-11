@@ -103,11 +103,8 @@ NODE_DIR=$HOME/tools/nodejs
 #                  Perl/cpanm install packages                        #
 #######################################################################
 PERL_DIR=$HOME/tools/perl
-CPAN_DIR=$PERL_DIR/bin/cpan
 CPANM_DIR=$PERL_DIR/bin/cpanm
 
-"$CPAN_DIR" Neovim::Ext
-"$CPAN_DIR" App::cpanminus
 "$CPANM_DIR" -n Neovim::Ext
 "$CPANM_DIR" -n App::cpanminus
 

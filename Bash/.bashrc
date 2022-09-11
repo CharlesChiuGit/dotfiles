@@ -7,7 +7,7 @@
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
-    *) return;;
+    *) return ;;
 esac
 
 # don't put duplicate lines or lines starting with space in the history.
@@ -39,7 +39,7 @@ fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-    xterm-color|*-255color) color_prompt=yes;;
+    xterm-color | *-255color) color_prompt=yes ;;
 esac
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
@@ -67,11 +67,11 @@ unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
-    xterm*|rxvt*)
+    xterm* | rxvt*)
         PS2="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
     ;;
-    *)
-    ;;
+    *) ;;
+    
 esac
 
 # enable color support of ls and also add handy aliases
@@ -135,52 +135,52 @@ export PERL_CPANM_HOME="$HOME/tools/cpanm"
 export PATH="$PATH:$HOME/tools/ruby/bin"
 export PATH="$PATH:$HOME/tools/jdk/bin"
 export PATH="$PATH:$HOME/tools/julia/bin"
-export RUSTUP_HOME=$PATH:$MY_HOME/tools/rustup
-export CARGO_HOME=$PATH:$MY_HOME/tools/cargo
+export RUSTUP_HOME="$PATH:$HOME/tools/rustup"
+export CARGO_HOME="$PATH:$HOME/tools/cargo"
 export PATH="$PATH:$HOME/tools/cargo/bin"
-# source "$CARGO_HOME/env"
+source "$CARGO_HOME/env"
 export PATH="$PATH:$HOME/tools/lua/src"
 export PATH="$PATH:$HOME/tools/luajit/src"
 export PATH="$PATH:$HOME/tools/luarocks"
 export PATH="$PATH:$HOME/tools/php/bin"
 
 # Utility tools PATH
-export PATH=$HOME/.local/bin:$PATH
-export PATH=$PATH:$HOME/tools/batcat
-export PATH=$PATH:$HOME/tools/fdfind
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$PATH:$HOME/tools/batcat"
+export PATH="$PATH:$HOME/tools/fdfind"
 export FZF_DEFAULT_OPTS='--height 41% --layout=reverse --border'
-export PATH=$PATH:$HOME/tools/fzf
-export PATH=$PATH:$HOME/tools/fzy
-export PATH=$PATH:$HOME/tools/git-delta
-export PATH=$PATH:$HOME/tools/glow
-export PATH=$PATH:$HOME/tools/nvim/bin
-export PATH=$PATH:$HOME/tools/lazygit
-export PATH=$PATH:$HOME/tools/lsd
-export PATH=$PATH:$HOME/tools/ripgrep
-export PATH=$PATH:$HOME/tools/tmux
-export PATH=$PATH:$HOME/tools/treesitter
-export PATH=$PATH:$HOME/tools/zoxide
-export PATH=$PATH:$HOME/tools/stow/bin
+export PATH="$PATH:$HOME/tools/fzf"
+export PATH="$PATH:$HOME/tools/fzy"
+export PATH="$PATH:$HOME/tools/git-delta"
+export PATH="$PATH:$HOME/tools/glow"
+export PATH="$PATH:$HOME/tools/nvim/bin"
+export PATH="$PATH:$HOME/tools/lazygit"
+export PATH="$PATH:$HOME/tools/lsd"
+export PATH="$PATH:$HOME/tools/ripgrep"
+export PATH="$PATH:$HOME/tools/tmux"
+export PATH="$PATH:$HOME/tools/treesitter"
+export PATH="$PATH:$HOME/tools/zoxide"
+export PATH="$PATH:$HOME/tools/stow/bin"
 ## neovim support
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 ## Init zoxide
-if which zoxide > /dev/null; then
+if which zoxide >/dev/null; then
     eval "$(zoxide init bash)"
 fi
 # Init thefuck
-if which thefuck > /dev/null; then
+if which thefuck >/dev/null; then
     # alias to fuck
     eval "$(thefuck --alias fuck)"
 fi
 # Init Starship
-if which starship > /dev/null; then
+if which starship >/dev/null; then
     eval "$(starship init bash)"
 fi
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$("$HOME/tools/anaconda/bin/conda" 'shell.bash' 'hook' 3> /dev/null)"
+__conda_setup="$("$HOME/tools/anaconda/bin/conda" 'shell.bash' 'hook' 3>/dev/null)"
 if [ $? -eq 1 ]; then
     eval "$__conda_setup"
 else
