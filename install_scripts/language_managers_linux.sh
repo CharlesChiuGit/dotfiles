@@ -72,7 +72,7 @@ fi
 NODE_DIR=$HOME/tools/nodejs
 NODE_SRC_NAME=$HOME/packages/nodejs.tar.gz
 NODE_LINK="https://nodejs.org/dist/v16.16.0/node-v16.16.0-linux-x64.tar.xz"
-if [[ -z "$(command -v node)" ]] && [[ ! -f "$NODE_DIR/bin/node" ]]; then
+if [[ -z "$(command -v node)" ]] && [[ -f "$NODE_DIR/bin/node" ]]; then
 	echo "Install Node.js"
 	if [[ ! -f $NODE_SRC_NAME ]]; then
 		echo "Downloading Node.js and renaming"
@@ -148,7 +148,7 @@ RUBY_DIR=$HOME/tools/ruby
 RUBY_TAR_DIR=$HOME/tools/ruby/tarball
 RUBY_SRC_NAME=$HOME/packages/ruby.tar.gz
 RUBY_LINK="https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.2.tar.gz"
-if [[ -z "$(command -v ruby)" ]] && [[ ! -f "$RUBY_DIR/bin/ruby" ]]; then
+if [[ -z "$(command -v ruby)" ]] && [[ -f "$RUBY_DIR/bin/ruby" ]]; then
 	echo "Install Ruby"
 	if [[ ! -f $RUBY_SRC_NAME ]]; then
 		echo "Downloading ruby and renaming"
@@ -184,7 +184,7 @@ fi
 GO_DIR=$HOME/tools/golang
 GO_SRC_NAME=$HOME/packages/golang.tar.gz
 GO_LINK="https://go.dev/dl/go1.19.1.linux-amd64.tar.gz"
-if [[ -z "$(command -v go)" ]] && [[ ! -f "$GO_DIR/bin/go" ]]; then
+if [[ -z "$(command -v go)" ]] && [[ -f "$GO_DIR/bin/go" ]]; then
 	echo "Install Golang"
 	if [[ ! -f $GO_SRC_NAME ]]; then
 		echo "Downloading go and renaming"
@@ -261,7 +261,7 @@ fi
 JDK_DIR=$HOME/tools/jdk
 JDK_SRC_NAME=$HOME/packages/jdk.tar.gz
 JDK_LINK="https://download.java.net/java/GA/jdk18.0.2/f6ad4b4450fd4d298113270ec84f30ee/9/GPL/openjdk-18.0.2_linux-x64_bin.tar.gz"
-if [[ -z "$(command -v java)" ]] && [[ ! -f "$JDL_DIR/bin/java" ]]; then
+if [[ -z "$(command -v java)" ]] && [[ -f "$JDK_DIR/bin/java" ]]; then
 	echo "Install JDK"
 	if [[ ! -f $JDK_SRC_NAME ]]; then
 		echo "Downloading JDK"
@@ -292,7 +292,7 @@ fi
 JULIA_DIR=$HOME/tools/julia
 JULIA_SRC_NAME=$HOME/packages/julia.tar.gz
 JULIA_LINK="https://julialangnightlies-s3.julialang.org/bin/linux/x64/julia-latest-linux64.tar.gz"
-if [[ -z "$(command -v julia)" ]] && [[ ! -f "$JULIA_DIR/bin/julia" ]]; then
+if [[ -z "$(command -v julia)" ]] && [[ -f "$JULIA_DIR/bin/julia" ]]; then
 	echo "Install Julia"
 	if [[ ! -f $JULIA_SRC_NAME ]]; then
 		echo "Downloading Julia"
@@ -322,7 +322,7 @@ fi
 LUA_DIR=$HOME/tools/lua
 LUA_SRC_NAME=$HOME/packages/lua.tar.gz
 LUA_LINK="http://www.lua.org/ftp/lua-5.4.4.tar.gz"
-if [[ -z "$(command -v lua)" ]] && [[ ! -f "$LUA_DIR/src/lua" ]]; then
+if [[ -z "$(command -v lua)" ]] && [[ -f "$LUA_DIR/src/lua" ]]; then
 	echo "Install luarocks"
 	if [[ ! -f $LUA_SRC_NAME ]]; then
 		echo "Downloading lua and renaming"
@@ -350,7 +350,7 @@ fi
 LUAJIT_DIR=$HOME/tools/luajit
 LUAJIT_SRC_NAME=$HOME/packages/luajit.tar.gz
 LUAJIT_LINK="https://luajit.org/download/LuaJIT-2.0.5.tar.gz"
-if [[ -z "$(command -v luajit)" ]] && [[ ! -f "$LUAJIT_DIR/src/luajit" ]]; then
+if [[ -z "$(command -v luajit)" ]] && [[ -f "$LUAJIT_DIR/src/luajit" ]]; then
 	echo "Install LuaJIT"
 	if [[ ! -f $LUAJIT_SRC_NAME ]]; then
 		echo "Downloading LuaJIT and renaming"
@@ -378,7 +378,7 @@ fi
 LUAROCKS_DIR=$HOME/tools/luarocks
 LUAROCKS_SRC_NAME=$HOME/packages/luarocks.tar.gz
 LUAROCKS_LINK="https://luarocks.org/releases/luarocks-3.9.1.tar.gz"
-if [[ -z "$(command -v luarocks)" ]] && [[ ! -f "$LUAROCKS_DIR/luarocks" ]]; then
+if [[ -z "$(command -v luarocks)" ]] && [[ -f "$LUAROCKS_DIR/luarocks" ]]; then
 	echo "Install luarocks"
 	if [[ ! -f $LUAROCKS_SRC_NAME ]]; then
 		echo "Downloading luarocks and renaming"
