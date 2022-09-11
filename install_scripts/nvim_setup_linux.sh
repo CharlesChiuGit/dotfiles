@@ -44,21 +44,21 @@ fi
 
 if [[ ! "$PYTHON_INSTALLED" = true ]]; then
     echo "Installing Python in user HOME"
-    
+
     SYSTEM_PYTHON=false
-    
+
     echo "Downloading and installing conda"
-    
+
     if [[ ! -f "$HOME/packages/$CONDA_NAME" ]]; then
         curl -Lo "$HOME/packages/$CONDA_NAME" $CONDA_LINK
     fi
-    
+
     # Install conda silently
     if [[ -d $CONDA_DIR ]]; then
         rm -rf "$CONDA_DIR"
     fi
     bash "$HOME/packages/$CONDA_NAME" -b -p "$CONDA_DIR"
-    
+
     # Setting up environment variables
     if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
         echo "export PATH=\"$CONDA_DIR/bin:\$PATH\"" >>"$HOME/.bashrc"
@@ -74,7 +74,7 @@ declare -a py_packages=("pynvim" "yarp")
 
 if [[ "$SYSTEM_PYTHON" = true ]]; then
     echo "Using system Python to install $(PY_PACKAGES)"
-    
+
     # If we use system Python, we need to install these Python packages under
     # user HOME, since we do not have permissions to install them under system
     # directories.
@@ -96,6 +96,8 @@ NODE_DIR=$HOME/tools/nodejs
 "$NODE_DIR/bin/npm" install npm@8.19.1 --location=global
 # Install neovim support for node plugins
 "$NODE_DIR/bin/npm" install neovim --location=global
+
+"$NODE_DIR/bin/npm" install ls_emmet --location=global
 
 # Install tree-sitter-cli
 # "$NODE_DIR/bin/npm" install tree-sitter-cli --location=global
@@ -173,18 +175,18 @@ NVIM_LINK="https://github.com/neovim/neovim/releases/download/nightly/nvim-linux
 if [[ ! -f "$NVIM_DIR/bin/nvim" ]]; then
     echo "Installing Nvim"
     echo "Creating nvim directory under tools directory"
-    
+
     if [[ ! -d "$NVIM_DIR" ]]; then
         mkdir -p "$NVIM_DIR"
     fi
-    
+
     if [[ ! -f $NVIM_SRC_NAME ]]; then
         echo "Downloading Nvim"
         wget "$NVIM_LINK" -O "$NVIM_SRC_NAME"
     fi
     echo "Extracting neovim"
     tar zxvf "$NVIM_SRC_NAME" --strip-components 1 -C "$NVIM_DIR"
-    
+
     if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
         echo "export PATH=\"$NVIM_DIR/bin:\$PATH\"" >>"$HOME/.bashrc"
         export PATH="$NVIM_DIR/bin:$PATH"
