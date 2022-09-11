@@ -161,6 +161,7 @@ export PATH="$PATH:$HOME/tools/lazygit"
 export PATH="$PATH:$HOME/tools/lsd"
 export PATH="$PATH:$HOME/tools/ripgrep"
 export PATH="$PATH:$HOME/tools/tmux"
+alias tmux='~/tools/tmux/tmux'
 export PATH="$PATH:$HOME/tools/treesitter"
 export PATH="$PATH:$HOME/tools/zoxide"
 export PATH="$PATH:$HOME/tools/stow/bin"
