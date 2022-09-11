@@ -162,7 +162,8 @@ if [[ ! -f "$RUBY_DIR/bin/ruby" ]]; then
 		echo "Extracting to $HOME/tools/ruby/tarball directory"
 		tar xvf "$RUBY_SRC_NAME" -C "$RUBY_TAR_DIR" --strip-components 1
 		cd "$RUBY_TAR_DIR"
-		./configure --prefix="$RUBY_DIR"
+    # NOTE: sudo apt install openssl libssl-dev
+		./configure --prefix="$RUBY_DIR" --with-openssl-dir=/usr/bin/openssl
 		make
 		make install
 
