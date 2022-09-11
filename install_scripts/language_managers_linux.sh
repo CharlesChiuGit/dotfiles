@@ -91,7 +91,7 @@ if [[ ! -f "$NODE_DIR/bin/node" ]]; then
 		export PATH="$NODE_DIR/bin:$PATH"
     alias node='~/tools/nodejs/bin/node'
     alias npm='~/tools/nodejs/bin/npm'
-    npm config set fund false
+    "$NODE_DIR/bin/npm" config set fund false
 	fi
 else
 	echo "Node.js is already installed. Skip installing it."
@@ -105,7 +105,7 @@ PERL_SRC_NAME=$HOME/packages/perl.tar.gz
 PERL_LINK="https://www.cpan.org/src/5.0/perl-5.36.0.tar.gz"
 CPANM_DIR=$HOME/tools/cpanm
 
-if [[ "$(command which perl)" = "/usr/bin/perl" ]]; then
+if [[ ! -f "$PERL_DIR/bin/perl" ]]; then
 	echo "Install perl"
 	if [[ ! -f $PERL_SRC_NAME ]]; then
 		echo "Downloading Perl and renaming"
@@ -123,7 +123,7 @@ if [[ "$(command which perl)" = "/usr/bin/perl" ]]; then
 		make
 		make install
 
-		alias perl="$HOME/tools/perl/bin/perl"
+		alias perl="~/tools/perl/bin/perl"
 		echo "Install cpanm"
 		export PERL_CPANM_HOME="$CPANM_DIR"
 		curl -L https://cpanmin.us | "$PERL_DIR/bin/perl" - App::cpanminus
