@@ -210,50 +210,37 @@ else
 fi
 
 #######################################################################
-#                   Install cargo for Rust                            #
+#                   Install Rust and cargo                            #
 #######################################################################
-RUSTUP_HOME=$HOME/tools/rustup
-CARGO_HOME=$HOME/tools/cargo
-RUSTUP_TOOLCHAIN='stable'
-RUSTC_WRAPPER="$CARGO_HOME/bin/rustc"
-CARGO="$CARGO_HOME/bin/cargo"
+RUST_DIR=$HOME/tools/rust
+RUST_SRC_NAME=$HOME/packages/rust.tar.gz
+RUST_LINK="https://static.rust-lang.org/dist/rust-1.63.0-x86_64-unknown-linux-musl.tar.gz"
 
-if [[ ! -f "$CARGO_HOME/bin/cargo" ]]; then
+if [[ ! -f "$RUST_DIR/bin/rust" ]]; then
 
-	if [[ ! -d "$CARGO_HOME" ]]; then
-		echo "Creating rustup & cargo directory under tools directory"
-		mkdir -p "$RUSTUP_HOME"
-		mkdir -p "$CARGO_HOME"
-		if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
-			echo "export RUSTUP_HOME=$RUSTUP_HOME" >>"$HOME/.bashrc"
-			echo "export CARGO_HOME=$CARGO_HOME" >>"$HOME/.bashrc"
-			echo "export RUSTUP_TOOLCHAIN=$RUSTUP_TOOLCHAIN" >>"$HOME/.bashrc"
-			echo "export RUSTC_WRAPPER=$RUSTC_WRAPPER" >>"$HOME/.bashrc"
-			echo "export CARGO=$CARGO" >>"$HOME/.bashrc"
-			export RUSTUP_HOME="$RUSTUP_HOME"
-			export CARGO_HOME="$CARGO_HOME"
-      export RUSTUP_TOOLCHAIN="$RUSTUP_TOOLCHAIN"
-      export RUSTC_WRAPPER="$RUSTC_WRAPPER"
-      export CARGO="$CARGO"
-		fi
-		echo "Installing rustup"
-		# curl https://sh.rustup.rs -sSf | sh -s -- -y
-		curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain stable -y
-
-		if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
-			echo "export PATH=\"$CARGO_HOME/bin:\$PATH\"" >>"$HOME/.bashrc"
-			export PATH="$CARGO_HOME/bin:$PATH"
-      alias rustc='~/tools/cargo/bin/rustc'
-      alias cargo='~/tools/cargo/bin/cargo'
-		fi
-
-		# export PATH="$CARGO_HOME/bin:$PATH"
-		# echo "Install cargo"
-		# # NOTE: might need to run `rustup default stable` afterwards
-		# "$CARGO_HOME/bin/rustup" default stable
-		# Configure current shell
-		# source "$CARGO_HOME/env"
+	echo "Install Rust"
+	if [[ ! -f $RUST_SRC_NAME ]]; then
+		echo "Downloading Rust and renaming"
+		wget $RUST_LINK -O "$RUST_SRC_NAME"
 	fi
+
+	if [[ ! -d "$RUST_DIR" ]]; then
+		echo "Creating Rust directory under tools directory"
+		mkdir -p "$RUST_DIR"
+    echo "Extracting to $HOME/tools/rust directory"
+		tar xvf "$RUST_SRC_NAME" -C "$RUST_DIR" --strip-components 1
+  fi
+
+  if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
+    echo "export PATH=\"$RUST_DIR/cargo/bin:\$PATH\"" >>"$HOME/.bashrc"
+    echo "export PATH=\"$RUST_DIR/rustc/bin:\$PATH\"" >>"$HOME/.bashrc"
+    export PATH="$RUST_DIR/cargo/bin:$PATH"
+    export PATH="$RUST_DIR/rustc/bin:$PATH"
+    alias rustc='~/tools/rust/rustc/bin/rustc'
+    alias cargo='~/tools/rust/cargo/bin/cargo'
+  fi
+else
+  echo "Rust is already installed. Skip installing it."
 
 fi
 
