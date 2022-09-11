@@ -205,6 +205,9 @@ fi
 #######################################################################
 RUSTUP_HOME=$HOME/tools/rustup
 CARGO_HOME=$HOME/tools/cargo
+RUSTUP_TOOLCHAIN='stable'
+RUSTC_WRAPPER="$CARGO_HOME/bin/rustc"
+CARGO="$CARGO_HOME/bin/cargo"
 
 if [[ -z "$(command -v cargo)" ]]; then
 
@@ -215,8 +218,14 @@ if [[ -z "$(command -v cargo)" ]]; then
 		if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
 			echo "export RUSTUP_HOME=$RUSTUP_HOME" >>"$HOME/.bashrc"
 			echo "export CARGO_HOME=$CARGO_HOME" >>"$HOME/.bashrc"
-			export RUSTUP_HOME=$RUSTUP_HOME
-			export CARGO_HOME=$CARGO_HOME
+			echo "export RUSTUP_TOOLCHAIN=$RUSTUP_TOOLCHAIN" >>"$HOME/.bashrc"
+			echo "export RUSTC_WRAPPER=$RUSTC_WRAPPER" >>"$HOME/.bashrc"
+			echo "export CARGO=$CARGO" >>"$HOME/.bashrc"
+			export RUSTUP_HOME="$RUSTUP_HOME"
+			export CARGO_HOME="$CARGO_HOME"
+      export RUSTUP_TOOLCHAIN="$RUSTUP_TOOLCHAIN"
+      export RUSTC_WRAPPER="$RUSTC_WRAPPER"
+      export CARGO="$CARGO"
 		fi
 		echo "Installing rustup"
 		# curl https://sh.rustup.rs -sSf | sh -s -- -y
@@ -232,7 +241,7 @@ if [[ -z "$(command -v cargo)" ]]; then
 		# # NOTE: might need to run `rustup default stable` afterwards
 		# "$CARGO_HOME/bin/rustup" default stable
 		# Configure current shell
-		source "$CARGO_HOME/bin/env"
+		# source "$CARGO_HOME/env"
 	fi
 
 fi
