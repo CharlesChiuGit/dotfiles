@@ -157,6 +157,7 @@ export PATH="$PATH:$HOME/tools/tmux"
 export PATH="$PATH:$HOME/tools/treesitter"
 export PATH="$PATH:$HOME/tools/zoxide"
 export PATH="$PATH:$HOME/tools/stow/bin"
+export PATH="$PATH:$HOME/tools/joshuto"
 ## neovim support
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8

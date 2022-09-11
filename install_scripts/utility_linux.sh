@@ -513,23 +513,33 @@ else
 fi
 
 #######################################################################
-#                         Ranger part                                 #
+#                        Joshuto part                                 #
 #######################################################################
-# NOTE: sudo apt install caca-utils imagemagick ffmpeg librsvg2-bin atool unrar p7zip-full p7zip-rar
-RANGER_DIR=$HOME/tools/ranger
-RANGER_LINK="https://github.com/ranger/ranger.git"
-if [[ -z "$(command -v ranger)" ]]; then
-	echo "Install ranger"
+JOSHUTO_DIR=$HOME/tools/joshuto
+JOSHUTO_SRC_NAME=$HOME/packages/joshuto.tar.gz
+JOSHUTO_LINK="https://github.com/kamiyaa/joshuto/releases/download/v0.9.4/joshuto-v0.9.4-x86_64-unknown-linux-gnu.tar.gz"
+if [[ -z "$(command -v joshuto)" ]]; then
+	echo "Install joshuto"
+	if [[ ! -f $JOSHUTO_SRC_NAME ]]; then
+		echo "Downloading joshuto and renaming"
+		wget "$JOSHUTO_LINK" -O "$JOSHUTO_SRC_NAME"
+	fi
 
-	if [[ ! -d "$RANGER_DIR" ]]; then
-		echo "Creating ranger directory under tools directory"
-		mkdir -p "$RANGER_DIR"
-		echo "git clone ranger repo under tools directory"
-		git clone --depth=1 "$RANGER_LINK" "$RANGER_DIR"
-		cd "$RANGER_DIR"
-		sudo make install -C "$RANGER_DIR" # NOTE: Need sudo for this
+	if [[ ! -d "$JOSHUTO_DIR" ]]; then
+		echo "Creating joshuto directory under tools directory"
+		mkdir -p "$JOSHUTO_DIR"
+		echo "Extracting to $HOME/tools/joshuto directory"
+		tar zxvf "$JOSHUTO_SRC_NAME" -C "$JOSHUTO_DIR" --strip-components 1
+
+	fi
+
+	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
+    echo "export PATH=\"$JOSHUTO_DIR:\$PATH\"" >>"$HOME/.bashrc"
+    export PATH="$JOSHUTO_DIR:$PATH"
+    # for old habit
+		alias ranger='joshuto'
 	fi
 
 else
-	echo "ranger is already installed. Skip installing it."
+	echo "Joshuto is already installed. Skip installing it."
 fi
