@@ -513,33 +513,33 @@ else
 fi
 
 #######################################################################
-#                        Joshuto part                                 #
+#                           xplr part                                 #
 #######################################################################
-JOSHUTO_DIR=$HOME/tools/joshuto
-JOSHUTO_SRC_NAME=$HOME/packages/joshuto.tar.gz
-JOSHUTO_LINK="https://github.com/kamiyaa/joshuto/releases/download/v0.9.4/joshuto-v0.9.4-x86_64-unknown-linux-gnu.tar.gz"
-if [[ -z "$(command -v joshuto)" ]]; then
-	echo "Install joshuto"
-	if [[ ! -f $JOSHUTO_SRC_NAME ]]; then
-		echo "Downloading joshuto and renaming"
-		wget "$JOSHUTO_LINK" -O "$JOSHUTO_SRC_NAME"
+XPLR_DIR=$HOME/tools/xplr
+XPLR_SRC_NAME=$HOME/packages/xplr.tar.gz
+XPLR_LINK="https://github.com/sayanarijit/xplr/releases/download/v0.19.3/xplr-linux.tar.gz"
+if [[ -z "$(command -v xplr)" ]]; then
+	echo "Install xplr"
+	if [[ ! -f $XPLR_SRC_NAME ]]; then
+		echo "Downloading xplr and renaming"
+		wget "$XPLR_LINK" -O "$XPLR_SRC_NAME"
 	fi
 
-	if [[ ! -d "$JOSHUTO_DIR" ]]; then
-		echo "Creating joshuto directory under tools directory"
-		mkdir -p "$JOSHUTO_DIR"
-		echo "Extracting to $HOME/tools/joshuto directory"
-		tar zxvf "$JOSHUTO_SRC_NAME" -C "$JOSHUTO_DIR" --strip-components 1
+	if [[ ! -d "$XPLR_DIR" ]]; then
+		echo "Creating xplr directory under tools directory"
+		mkdir -p "$XPLR_DIR"
+		echo "Extracting to $HOME/tools/xplr directory"
+		tar zxvf "$XPLR_SRC_NAME" -C "$XPLR_DIR" --strip-components 1
 
 	fi
 
 	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
-    echo "export PATH=\"$JOSHUTO_DIR:\$PATH\"" >>"$HOME/.bashrc"
-    export PATH="$JOSHUTO_DIR:$PATH"
+    echo "export PATH=\"$XPLR_DIR:\$PATH\"" >>"$HOME/.bashrc"
+    export PATH="$XPLR_DIR:$PATH"
     # for old habit
-		alias ranger='joshuto'
+		alias ranger='xplr'
 	fi
 
 else
-	echo "Joshuto is already installed. Skip installing it."
+	echo "XPLR is already installed. Skip installing it."
 fi
