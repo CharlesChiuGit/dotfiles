@@ -1,0 +1,14 @@
+# This is Git's per-user configuration file.
+[user]
+# Please adapt and uncomment the following lines:
+	name = Charles Chiu
+	email = charleschiu2012@gmail.comn
+[alias]
+	st = status
+	cm = commit -m
+	co = checkout
+	br = branch
+	l = log --oneline --graph
+	ls = log --graph --pretty=format:\"%h <%an> %ar %s
+	lg = log --graph --pretty=format:'%C(bold red)%h%Creset %C(bold cyan)<%an>%Creset %C(yellow)%d%Creset %s %Cgreen(%cr)' --abbrev-commit --date=relative
+	rh = reset --hard origin/main
