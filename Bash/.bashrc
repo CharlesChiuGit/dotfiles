@@ -159,8 +159,8 @@ export PATH="$PATH:$HOME/tools/zoxide"
 export PATH="$PATH:$HOME/tools/stow/bin"
 export PATH="$PATH:$HOME/tools/joshuto"
 ## neovim support
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
+export LC_ALL="en_US.UTF-8"
+export LANG="en_US.UTF-8"
 ## Init zoxide
 if which zoxide >/dev/null; then
 	eval "$(zoxide init bash)"

@@ -1,7 +1,7 @@
 [default_view]
 
 keymap = [
-  { keys = ["escape"], command = "escape" },
+  { keys = ["esc"], command = "escape" },
   { keys = ["T"], command = "new_tab" },
   { keys = ["ctrl+t"], command = "new_tab" },
   { keys = ["W"], command = "close_tab" },

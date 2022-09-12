@@ -49,7 +49,7 @@ tilde_in_titlebar = true
 # - none
 # - absolute
 # - relative
-line_number_style = "absolute"
+line_number_style = "none"
 
 # Configurations related to file sorting
 [display.sort]

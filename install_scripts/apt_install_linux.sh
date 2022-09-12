@@ -25,3 +25,6 @@ sudo snap install bashtop cpufetch gdu-disk-usage-analyzer ascii-image-converter
 
 # system pip3 install
 sudo pip3 install thefuck gdown ntfy[emoji]
+
+# WSL: install kitty
+# sudo apt install libgles2-mesa libgles2-mesa-dev -y
