@@ -230,7 +230,7 @@ fi
 #######################################################################
 LSD_DIR=$HOME/tools/lsd
 LSD_SRC_NAME=$HOME/packages/lsd.tar.gz
-LSD_LINK="https://github.com/Peltoche/lsd/releases/download/0.23.0/lsd-0.23.0-x86_64-unknown-linux-musl.tar.gz"
+LSD_LINK="https://github.com/Peltoche/lsd/releases/download/0.23.1/lsd-0.23.1-x86_64-unknown-linux-gnu.tar.gz"
 if [[ -z "$(command -v lsd)" ]] && [[ ! -f "$LSD_DIR/lsd" ]]; then
 	echo "Install lsd"
 	if [[ ! -f $LSD_SRC_NAME ]]; then
