@@ -145,6 +145,7 @@ export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$HOME/tools/batcat"
 export PATH="$PATH:$HOME/tools/fdfind"
 export FZF_DEFAULT_OPTS='--height 41% --layout=reverse --border'
+export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
 export PATH="$PATH:$HOME/tools/fzf"
 export PATH="$PATH:$HOME/tools/fzy"
 export PATH="$PATH:$HOME/tools/git-delta"
@@ -158,6 +159,10 @@ export PATH="$PATH:$HOME/tools/treesitter"
 export PATH="$PATH:$HOME/tools/zoxide"
 export PATH="$PATH:$HOME/tools/stow/bin"
 export PATH="$PATH:$HOME/tools/xplr"
+export PATH="$PATH:$HOME/tools/dua-cli"
+export PATH="$PATH:$HOME/tools/viu"
+export PATH="$PATH:$HOME/tools/broot/x86_64-linux"
+export PATH="$PATH:$HOME/tools/tere"
 ## neovim support
 export LC_ALL="en_US.UTF-8"
 export LANG="en_US.UTF-8"

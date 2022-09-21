@@ -23,6 +23,7 @@ alias tmux='~/tools/tmux/tmux'
 # Alias
 alias sudo='sudo '
 alias apt='nala' # nala, wrapper for apt-get
+alias fzf="fzf --preview 'bat --style=numbers,changes --color=always --line-range :500 {}'"
 alias nvim='$HOME/tools/nvim/bin/nvim'
 alias sobash='source ~/.bashrc'
 alias nvbash='nvim ~/.bashrc'
@@ -39,3 +40,5 @@ alias CA='conda activate'
 alias CD='conda deactivate'
 alias tb='tensorboard --logdir'
 alias ranger='xplr'
+alias xcd='cd "$(xplr --print-pwd-as-result)"'
+alias tere='tere --mouse=on --smart-case'

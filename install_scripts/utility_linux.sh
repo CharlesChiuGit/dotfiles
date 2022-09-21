@@ -529,7 +529,7 @@ if [[ -z "$(command -v xplr)" ]]; then
 		echo "Creating xplr directory under tools directory"
 		mkdir -p "$XPLR_DIR"
 		echo "Extracting to $HOME/tools/xplr directory"
-		tar zxvf "$XPLR_SRC_NAME" -C "$XPLR_DIR" --strip-components 1
+		tar zxvf "$XPLR_SRC_NAME" -C "$XPLR_DIR"
 
 	fi
 
@@ -542,4 +542,116 @@ if [[ -z "$(command -v xplr)" ]]; then
 
 else
 	echo "XPLR is already installed. Skip installing it."
+fi
+
+#######################################################################
+#                        dua-cli part                                 #
+#######################################################################
+DUA_DIR=$HOME/tools/dua-cli
+DUA_SRC_NAME=$HOME/packages/dua-cli.tar.gz
+DUA_LINK="https://github.com/Byron/dua-cli/releases/download/v2.18.0/dua-v2.18.0-x86_64-unknown-linux-musl.tar.gz"
+if [[ -z "$(command -v dua)" ]]; then
+	echo "Install dua-cli"
+	if [[ ! -f $DUA_SRC_NAME ]]; then
+		echo "Downloading xplr and renaming"
+		wget "$DUA_LINK" -O "$DUA_SRC_NAME"
+	fi
+
+	if [[ ! -d "$DUA_DIR" ]]; then
+		echo "Creating dua directory under tools directory"
+		mkdir -p "$DUA_DIR"
+		echo "Extracting to $HOME/tools/dua directory"
+		tar zxvf "$DUA_SRC_NAME" -C "$DUA_DIR" --strip-components 1
+
+	fi
+
+	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
+    echo "export PATH=\"$DUA_DIR:\$PATH\"" >>"$HOME/.bashrc"
+    export PATH="$DUA_DIR:$PATH"
+	fi
+
+else
+	echo "dua-cli is already installed. Skip installing it."
+fi
+
+#######################################################################
+#                            viu part                                 #
+#######################################################################
+VIU_DIR=$HOME/tools/viu
+VIU_LINK="https://github.com/atanunq/viu/releases/download/v1.4.0/viu"
+if [[ -z "$(command -v viu)" ]]; then
+	echo "Install viu"
+	if [[ ! -d "$VIU_DIR" ]]; then
+		echo "Creating viu directory under tools directory"
+		mkdir -p "$VIU_DIR"
+    cd "$VIU_DIR"
+    wget "$VIU_LINK"
+    chmod +x "$VIU_DIR/viu"
+	fi
+
+	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
+    echo "export PATH=\"$VIU_DIR:\$PATH\"" >>"$HOME/.bashrc"
+    export PATH="$VIU_DIR:$PATH"
+	fi
+
+else
+	echo "viu is already installed. Skip installing it."
+fi
+
+#######################################################################
+#                          broot part                                 #
+#######################################################################
+BROOT_DIR=$HOME/tools/broot
+BROOT_SRC_NAME=$HOME/packages/broot.zip
+BROOT_LINK="https://github.com/Canop/broot/releases/download/v1.14.3/broot_1.14.3.zip"
+if [[ -z "$(command -v broot)" ]]; then
+	echo "Install broot"
+	if [[ ! -f $BROOT_SRC_NAME ]]; then
+		echo "Downloading broot and renaming"
+		wget "$BROOT_LINK" -O "$BROOT_SRC_NAME"
+	fi
+
+	if [[ ! -d "$BROOT_DIR" ]]; then
+		echo "Creating broot directory under tools directory"
+		mkdir -p "$BROOT_DIR"
+    unzip "$BROOT_SRC_NAME" -d "$BROOT_DIR"
+    chmod +x "$BROOT_DIR/x86_64-linux/broot"
+	fi
+
+	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
+    echo "export PATH=\"$BROOT_DIR/x86_64-linux:\$PATH\"" >>"$HOME/.bashrc"
+    export PATH="$BROOT_DIR/x86_64-linux:$PATH"
+	fi
+
+else
+	echo "Broot is already installed. Skip installing it."
+fi
+
+#######################################################################
+#                           tere part                                 #
+#######################################################################
+TERE_DIR=$HOME/tools/tere
+TERE_SRC_NAME=$HOME/packages/tere.zip
+TERE_LINK="https://github.com/mgunyho/tere/releases/download/v1.2.0/tere-1.2.0-x86_64-unknown-linux-gnu.zip"
+if [[ -z "$(command -v tere)" ]]; then
+	echo "Install tere"
+	if [[ ! -f $TERE_SRC_NAME ]]; then
+		echo "Downloading tere and renaming"
+		wget "$TERE_LINK" -O "$TERE_SRC_NAME"
+	fi
+
+	if [[ ! -d "$TERE_DIR" ]]; then
+		echo "Creating tere directory under tools directory"
+		mkdir -p "$TERE_DIR"
+    unzip "$TERE_SRC_NAME" -d "$TERE_DIR"
+    chmod +x "$TERE_DIR/tere"
+	fi
+
+	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
+    echo "export PATH=\"$TERE_DIR:\$PATH\"" >>"$HOME/.bashrc"
+    export PATH="$TERE_DIR:$PATH"
+	fi
+
+else
+	echo "Tere is already installed. Skip installing it."
 fi

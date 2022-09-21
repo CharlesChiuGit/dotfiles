@@ -21,10 +21,10 @@ libffi-dev libgdbm6 libgdbm-dev libdb-dev uuid-dev libsqlite3-dev -y
 sudo nala install caca-utils imagemagick ffmpeg librsvg2-bin atool unrar p7zip-full p7zip-rar -y
 
 # Snap install
-sudo snap install bashtop cpufetch gdu-disk-usage-analyzer ascii-image-converter lolcat starship
+sudo snap install bashtop cpufetch ascii-image-converter lolcat starship
 
 # system pip3 install
-sudo pip3 install thefuck gdown ntfy[emoji]
+sudo pip3 install thefuck gdown ntfy[emoji] asciinema
 
 # WSL: install kitty
 # sudo apt install libgles2-mesa libgles2-mesa-dev -y
