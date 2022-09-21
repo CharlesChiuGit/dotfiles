@@ -11,7 +11,7 @@ python3-apt python3-pip python3-dev python3-setuptools python3.10-venv \
 pandoc highlight gzip tar plocate pkg-config bzip2 openssl unzip \
 libxml2-dev libevent-dev libbz2-dev libcurl4-openssl-dev libpng-dev libssl-dev \
 libjpeg-dev libonig-dev libtidy-dev libxslt-dev libzip-dev libstdc++6 \
-autoconf libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev \
+autoconf libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev \
 libffi-dev libgdbm6 libgdbm-dev libdb-dev uuid-dev libsqlite3-dev -y
 
 # Cool stuff
