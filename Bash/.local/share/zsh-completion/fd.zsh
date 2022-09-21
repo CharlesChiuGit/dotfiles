@@ -117,7 +117,7 @@ _fd() {
     '*--ignore-file=[add a custom, low-precedence ignore-file with .gitignore format]: :_files'
 
     + '(filter-mtime-newer)' # filter by files modified after than
-    'modified within the given date/duration]:date or duration'
+    '--changed-within=[limit search to files/directories modified within the given date/duration]:date or duration'
     '!--change-newer-than=:date/duration'
     '!--newer=:date/duration'
 
@@ -146,7 +146,7 @@ _fd() {
 
     + '(about)' # about flags
     '(: * -)'{-h,--help}'[display help message]'
-    '(: * -)'{-V,--version}'[display version information]'
+    '(: * -)'{-v,--version}'[display version information]'
 
     + path-sep # set path separator for output
     $no'(--path-separator)--path-separator=[set the path separator to use when printing file paths]:path separator'
@@ -270,4 +270,4 @@ _fd "$@"
 # sh-indentation: 2
 # sh-basic-offset: 2
 # End:
-# vim: ft=zsh sw=2 ts=2 et--changed-within=[limit search to files/directories
+# vim: ft=zsh sw=2 ts=2 et
