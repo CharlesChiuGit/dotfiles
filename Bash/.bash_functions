@@ -69,11 +69,3 @@ else
     # Don't leave extra agents around: kill it on exit. You may not want this part.
     trap "ssh-agent -k" exit
 fi
-
-#######################################################################
-#                           tere function                             #
-#######################################################################
-tere() {
-    local result=$(command tere "$@")
-    [ -n "$result" ] && cd -- "$result" || exit
-}

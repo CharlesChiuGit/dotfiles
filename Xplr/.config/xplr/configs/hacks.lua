@@ -57,14 +57,6 @@ xplr.config.modes.builtin.default.key_bindings.on_key.R = {
 --   },
 -- }
 
--- Navigate using the tere file explorer (defaults to type-to-nav system).
-xplr.config.modes.builtin.default.key_bindings.on_key.T = {
-  help = "tere nav",
-  messages = {
-    { BashExec = [[echo ChangeDirectory: "'"$(tere)"'" >> "$XPLR_PIPE_MSG_IN"]] },
-  },
-}
-
 -- Preview text files in a native xplr pane (should be fast enough).
 local function stat(node)
   return node.mime_essence

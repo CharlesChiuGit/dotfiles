@@ -628,30 +628,30 @@ else
 fi
 
 #######################################################################
-#                           tere part                                 #
+#                             lf part                                 #
 #######################################################################
-TERE_DIR=$HOME/tools/tere
-TERE_SRC_NAME=$HOME/packages/tere.zip
-TERE_LINK="https://github.com/mgunyho/tere/releases/download/v1.2.0/tere-1.2.0-x86_64-unknown-linux-gnu.zip"
-if [[ -z "$(command -v tere)" ]]; then
-	echo "Install tere"
-	if [[ ! -f $TERE_SRC_NAME ]]; then
-		echo "Downloading tere and renaming"
-		wget "$TERE_LINK" -O "$TERE_SRC_NAME"
+LF_DIR=$HOME/tools/lf
+LF_SRC_NAME=$HOME/packages/lf.tat.gz
+LF_LINK="https://github.com/gokcehan/lf/releases/download/r27/lf-linux-amd64.tar.gz"
+if [[ -z "$(command -v lf)" ]]; then
+	echo "Install lf"
+	if [[ ! -f $LF_SRC_NAME ]]; then
+		echo "Downloading lf and renaming"
+		wget "$LF_LINK" -O "$LF_SRC_NAME"
 	fi
 
-	if [[ ! -d "$TERE_DIR" ]]; then
-		echo "Creating tere directory under tools directory"
-		mkdir -p "$TERE_DIR"
-    unzip "$TERE_SRC_NAME" -d "$TERE_DIR"
-    chmod +x "$TERE_DIR/tere"
+	if [[ ! -d "$LF_DIR" ]]; then
+		echo "Creating lf directory under tools directory"
+		mkdir -p "$LF_DIR"
+		echo "Extracting to $HOME/tools/lf directory"
+		tar zxvf "$LF_SRC_NAME" -C "$LF_DIR"
 	fi
 
 	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
-    echo "export PATH=\"$TERE_DIR:\$PATH\"" >>"$HOME/.bashrc"
-    export PATH="$TERE_DIR:$PATH"
+    echo "export PATH=\"$LF_DIR:\$PATH\"" >>"$HOME/.bashrc"
+    export PATH="$LF_DIR:$PATH"
 	fi
 
 else
-	echo "Tere is already installed. Skip installing it."
+	echo "LF is already installed. Skip installing it."
 fi

@@ -118,6 +118,11 @@ if ! shopt -oq posix; then
 	fi
 fi
 
+# Custom bash-completion
+if [ -d ~/.local/share/bash-completion ]; then
+  for f in ~/.local/share/bash-completion/*.bash; do source $f; done
+fi
+
 # Custom bash functions
 if [ -f ~/.bash_functions ]; then
 	. ~/.bash_functions
@@ -162,7 +167,7 @@ export PATH="$PATH:$HOME/tools/xplr"
 export PATH="$PATH:$HOME/tools/dua-cli"
 export PATH="$PATH:$HOME/tools/viu"
 export PATH="$PATH:$HOME/tools/broot/x86_64-linux"
-export PATH="$PATH:$HOME/tools/tere"
+export PATH="$PATH:$HOME/tools/lf"
 ## neovim support
 export LC_ALL="en_US.UTF-8"
 export LANG="en_US.UTF-8"
