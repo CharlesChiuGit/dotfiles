@@ -137,9 +137,9 @@ export PATH="$PATH:$HOME/tools/ruby/bin"
 export PATH="$PATH:$HOME/tools/golang/bin"
 export PATH="$PATH:$HOME/tools/jdk/bin"
 export PATH="$PATH:$HOME/tools/julia/bin"
-# export PATH="$PATH:$HOME/tools/rust/cargo/bin"
-# export PATH="$PATH:$HOME/tools/rust/rustc/bin"
-# export CARGO_HOME="$HOME/tools/cargo"
+if [ -f ~/.cargo/env ]; then
+  . "$HOME/.cargo/env"
+fi
 export PATH="$PATH:$HOME/tools/lua/src"
 export PATH="$PATH:$HOME/tools/luajit/src"
 export PATH="$PATH:$HOME/tools/luarocks"
@@ -149,7 +149,7 @@ export PATH="$PATH:$HOME/tools/php/bin"
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$HOME/tools/batcat"
 export PATH="$PATH:$HOME/tools/fdfind"
-export FZF_DEFAULT_OPTS='--height 41% --layout=reverse --border'
+export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
 export PATH="$PATH:$HOME/tools/fzf"
 export PATH="$PATH:$HOME/tools/fzy"
@@ -167,7 +167,15 @@ export PATH="$PATH:$HOME/tools/xplr"
 export PATH="$PATH:$HOME/tools/dua-cli"
 export PATH="$PATH:$HOME/tools/viu"
 export PATH="$PATH:$HOME/tools/broot/x86_64-linux"
+export PATH="$PATH:$HOME/tools/magick/bin"
+export MAGICK_HOME="$HOME/tools/magick"
+export LD_LIBRARY_PATH="${LD_LIBRARY_PATH:+$LD_LIBRARY_PATH:}$MAGICK_HOME/lib"
+export PATH="$PATH:$HOME/tools/chafa/bin"
+export PATH="$PATH:$HOME/tools/stpv"
 export PATH="$PATH:$HOME/tools/lf"
+if [ -f ~/.config/lf/icon.sh ]; then
+  source ~/.config/lf/icon.sh
+fi
 ## neovim support
 export LC_ALL="en_US.UTF-8"
 export LANG="en_US.UTF-8"
@@ -199,3 +207,4 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
+export PATH="/home/charles/tools/stpv:$PATH"

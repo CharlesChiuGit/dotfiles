@@ -212,41 +212,47 @@ fi
 #######################################################################
 #                   Install Rust and cargo                            #
 #######################################################################
-RUST_DIR=$HOME/tools/rust
-RUST_SRC_NAME=$HOME/packages/rust.tar.gz
-RUST_LINK="https://static.rust-lang.org/dist/rust-1.63.0-x86_64-unknown-linux-gnu.tar.gz"
-CARGO_DIR=$HOME/tools/cargo
+# RUST_DIR=$HOME/tools/rust
+# RUST_SRC_NAME=$HOME/packages/rust.tar.gz
+# RUST_LINK="https://static.rust-lang.org/dist/rust-1.63.0-x86_64-unknown-linux-gnu.tar.gz"
+# CARGO_DIR=$HOME/tools/cargo
 
-if [[ ! -f "$RUST_DIR/bin/rust" ]]; then
+# if [[ ! -f "$RUST_DIR/bin/rust" ]]; then
 
-	echo "Install Rust"
-	if [[ ! -f $RUST_SRC_NAME ]]; then
-		echo "Downloading Rust and renaming"
-		wget $RUST_LINK -O "$RUST_SRC_NAME"
-	fi
+# 	echo "Install Rust"
+# 	if [[ ! -f $RUST_SRC_NAME ]]; then
+# 		echo "Downloading Rust and renaming"
+# 		wget $RUST_LINK -O "$RUST_SRC_NAME"
+# 	fi
 
-	if [[ ! -d "$RUST_DIR" ]]; then
-		echo "Creating Rust directory under tools directory"
-		mkdir -p "$RUST_DIR"
-		mkdir -p "$CARGO_DIR"
-    echo "Extracting to $HOME/tools/rust directory"
-		tar xvf "$RUST_SRC_NAME" -C "$RUST_DIR" --strip-components 1
-  fi
+# 	if [[ ! -d "$RUST_DIR" ]]; then
+# 		echo "Creating Rust directory under tools directory"
+# 		mkdir -p "$RUST_DIR"
+# 		mkdir -p "$CARGO_DIR"
+#     echo "Extracting to $HOME/tools/rust directory"
+# 		tar xvf "$RUST_SRC_NAME" -C "$RUST_DIR" --strip-components 1
+#   fi
 
-  if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
-    echo "export PATH=\"$RUST_DIR/cargo/bin:\$PATH\"" >>"$HOME/.bashrc"
-    echo "export PATH=\"$RUST_DIR/rustc/bin:\$PATH\"" >>"$HOME/.bashrc"
-    export PATH="$RUST_DIR/cargo/bin:$PATH"
-    export PATH="$RUST_DIR/rustc/bin:$PATH"
-    export CARGO_HOME="$CARGO_DIR"
-    alias cargo='~/tools/rust/cargo/bin/cargo'
-    alias rustc='~/tools/rust/rustc/bin/rustc'
-    alias rustdoc='~/tools/rust/rustc/bin/rustdoc'
-  fi
-else
-  echo "Rust is already installed. Skip installing it."
+#   if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
+#     echo "export PATH=\"$RUST_DIR/cargo/bin:\$PATH\"" >>"$HOME/.bashrc"
+#     echo "export PATH=\"$RUST_DIR/rustc/bin:\$PATH\"" >>"$HOME/.bashrc"
+#     export PATH="$RUST_DIR/cargo/bin:$PATH"
+#     export PATH="$RUST_DIR/rustc/bin:$PATH"
+#     export CARGO_HOME="$CARGO_DIR"
+#     alias cargo='~/tools/rust/cargo/bin/cargo'
+#     alias rustc='~/tools/rust/rustc/bin/rustc'
+#     alias rustdoc='~/tools/rust/rustc/bin/rustdoc'
+#   fi
+# else
+#   echo "Rust is already installed. Skip installing it."
 
+# fi
+
+# Use rustup instead
+if [[ -z "$(command -v cargo)" ]]; then
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 fi
+
 
 #######################################################################
 #                       Install Java, JDK                             #

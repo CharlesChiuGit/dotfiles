@@ -599,32 +599,111 @@ else
 fi
 
 #######################################################################
-#                          broot part                                 #
+#                          ImageMagick part                                 #
 #######################################################################
-BROOT_DIR=$HOME/tools/broot
-BROOT_SRC_NAME=$HOME/packages/broot.zip
-BROOT_LINK="https://github.com/Canop/broot/releases/download/v1.14.3/broot_1.14.3.zip"
-if [[ -z "$(command -v broot)" ]]; then
-	echo "Install broot"
-	if [[ ! -f $BROOT_SRC_NAME ]]; then
-		echo "Downloading broot and renaming"
-		wget "$BROOT_LINK" -O "$BROOT_SRC_NAME"
-	fi
+MAGICK_DIR=$HOME/tools/magick
+MAGICK_LINK="https://github.com/ImageMagick/ImageMagick"
+if [[ -z "$(command -v magick)" ]]; then
+	echo "Install ImageMagick"
 
-	if [[ ! -d "$BROOT_DIR" ]]; then
-		echo "Creating broot directory under tools directory"
-		mkdir -p "$BROOT_DIR"
-    unzip "$BROOT_SRC_NAME" -d "$BROOT_DIR"
-    chmod +x "$BROOT_DIR/x86_64-linux/broot"
+	if [[ ! -d "$MAGICK_DIR" ]]; then
+		echo "Creating magick directory under tools directory"
+		mkdir -p "$MAGICK_DIR"
+    echo "git clone to $HOME/tools/magick directory"
+		git clone --depth=1 "$MAGICK_LINK" "$MAGICK_DIR"
+		cd "$MAGICK_DIR"
+		./configure --prefix="$MAGICK_DIR" --with-modules
+		make
+		make install
 	fi
 
 	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
-    echo "export PATH=\"$BROOT_DIR/x86_64-linux:\$PATH\"" >>"$HOME/.bashrc"
-    export PATH="$BROOT_DIR/x86_64-linux:$PATH"
+		echo "export PATH=\"$MAGICK_DIR/bin:\$PATH\"" >>"$HOME/.bashrc"
+		echo "export MAGICK_HOME=$MAGICK_DIR" >>"$HOME/.bashrc"
+    export MAGICK_HOME="$MAGICK_DIR"
+		export PATH="$MAGICK_DIR/bin:$PATH"
+    echo "export LD_LIBRARY_PATH=\"$\{LD_LIBRARY_PATH:+\$LD_LIBRARY_PATH:}\$MAGICK_HOME/lib" >>"$HOME/.bashrc"
+    LD_LIBRARY_PATH="${LD_LIBRARY_PATH:+$LD_LIBRARY_PATH:}$MAGICK_HOME/lib"
+    export LD_LIBRARY_PATH
 	fi
 
 else
-	echo "Broot is already installed. Skip installing it."
+	echo "ImageMagick is already installed. Skip installing it."
+fi
+
+#######################################################################
+#                          chafa part                                 #
+#######################################################################
+# NOTE: sudo apt install libfreetype6-dev libjpeg-dev librsvg2-dev libtiff5-dev libwebp-dev libmagickwand-dev libtool gtk-doc-tools
+CHAFA_DIR=$HOME/tools/chafa
+CHAFA_LINK="https://github.com/hpjansson/chafa.git"
+if [[ -z "$(command -v chafa)" ]]; then
+	echo "Install chafa"
+
+	if [[ ! -d "$CHAFA_DIR" ]]; then
+		echo "Creating chafa directory under tools directory"
+		mkdir -p "$CHAFA_DIR"
+    echo "git clone to $HOME/tools/chafa directory"
+		git clone --depth=1 "$CHAFA_LINK" "$CHAFA_DIR"
+		cd "$CHAFA_DIR"
+		# ./configure --prefix="$CHAFA_DIR"
+    ./autogen.sh --prefix="$CHAFA_DIR"
+		make
+		make install
+	fi
+
+	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
+		echo "export PATH=\"$CHAFA_DIR/bin:\$PATH\"" >>"$HOME/.bashrc"
+		export PATH="$CHAFA_DIR/bin:$PATH"
+	fi
+
+else
+	echo "chafa is already installed. Skip installing it."
+fi
+
+# #######################################################################
+# #                           stpv part                                 #
+# #######################################################################
+# STPV_DIR=$HOME/tools/stpv
+# STPV_LINK="https://github.com/Naheel-Azawy/stpv.git"
+# if [[ -z "$(command -v stpv)" ]]; then
+# 	echo "Install stpv"
+
+# 	if [[ ! -d "$STPV_DIR" ]]; then
+# 		echo "Creating stpv directory under tools directory"
+# 		mkdir -p "$STPV_DIR"
+#     echo "git clone to $HOME/tools/stpv directory"
+# 		git clone --depth=1 "$STPV_LINK" "$STPV_DIR"
+# 	fi
+
+# 	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
+# 		echo "export PATH=\"$STPV_DIR:\$PATH\"" >>"$HOME/.bashrc"
+# 		export PATH="$STPV_DIR:$PATH"
+# 	fi
+
+# else
+# 	echo "stpv is already installed. Skip installing it."
+# fi
+
+#######################################################################
+#                           ctpv part                                 #
+#######################################################################
+CTPV_DIR=$HOME/tools/ctpv
+CTPV_LINK="https://github.com/NikitaIvanovV/ctpv.git"
+if [[ -z "$(command -v ctpv)" ]]; then
+	echo "Install ctpv"
+
+	if [[ ! -d "$CTPV_DIR" ]]; then
+		echo "Creating ctpv directory under tools directory"
+		mkdir -p "$CTPV_DIR"
+    echo "git clone to $HOME/tools/ctpv directory"
+		git clone --depth=1 "$CTPV_LINK" "$CTPV_DIR"
+    cd "$CTPV_DIR"
+    sudo make install # NOTE: need sudo for this
+	fi
+
+else
+	echo "ctpv is already installed. Skip installing it."
 fi
 
 #######################################################################
@@ -654,4 +733,33 @@ if [[ -z "$(command -v lf)" ]]; then
 
 else
 	echo "LF is already installed. Skip installing it."
+fi
+
+#######################################################################
+#                          broot part                                 #
+#######################################################################
+BROOT_DIR=$HOME/tools/broot
+BROOT_SRC_NAME=$HOME/packages/broot.zip
+BROOT_LINK="https://github.com/Canop/broot/releases/download/v1.14.3/broot_1.14.3.zip"
+if [[ -z "$(command -v broot)" ]]; then
+	echo "Install broot"
+	if [[ ! -f $BROOT_SRC_NAME ]]; then
+		echo "Downloading broot and renaming"
+		wget "$BROOT_LINK" -O "$BROOT_SRC_NAME"
+	fi
+
+	if [[ ! -d "$BROOT_DIR" ]]; then
+		echo "Creating broot directory under tools directory"
+		mkdir -p "$BROOT_DIR"
+    unzip "$BROOT_SRC_NAME" -d "$BROOT_DIR"
+    chmod +x "$BROOT_DIR/x86_64-linux/broot"
+	fi
+
+	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
+    echo "export PATH=\"$BROOT_DIR/x86_64-linux:\$PATH\"" >>"$HOME/.bashrc"
+    export PATH="$BROOT_DIR/x86_64-linux:$PATH"
+	fi
+
+else
+	echo "Broot is already installed. Skip installing it."
 fi
