@@ -171,7 +171,7 @@ export PATH="$PATH:$HOME/tools/magick/bin"
 export MAGICK_HOME="$HOME/tools/magick"
 export LD_LIBRARY_PATH="${LD_LIBRARY_PATH:+$LD_LIBRARY_PATH:}$MAGICK_HOME/lib"
 export PATH="$PATH:$HOME/tools/chafa/bin"
-export PATH="$PATH:$HOME/tools/stpv"
+export PATH="$PATH:$HOME/tools/ctpv"
 export PATH="$PATH:$HOME/tools/lf"
 if [ -f ~/.config/lf/icon.sh ]; then
   source ~/.config/lf/icon.sh
@@ -207,4 +207,3 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
-export PATH="/home/charles/tools/stpv:$PATH"

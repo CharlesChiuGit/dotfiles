@@ -1,48 +1,25 @@
-# Basic Settings
+#######################################################################
+#                         Basic Settings                              #
+#######################################################################
+set shell sh
+set shellopts '-eu'
+set ifs "\n"
+set scrolloff 10
 set preview true
 set hidden true
 set drawbox true
 set icons true
 set ignorecase true
 
+# ctpv preview
 set previewer ctpv
 set cleaner ctpvclear
 &ctpv -s $id
 &ctpvquit $id
 
-# interpreter for shell commands
-set shell sh
-
-# set '-eu' options for shell commands
-# These options are used to have safer shell commands. Option '-e' is used to
-# exit on error and option '-u' is used to give error for unset variables.
-# Option '-f' disables pathname expansion which can be useful when $f, $fs, and
-# $fx variables contain names with '*' or '?' characters. However, this option
-# is used selectively within individual commands as it can be limiting at
-# times.
-set shellopts '-eu'
-
-# set internal field separator (IFS) to "\n" for shell commands
-# This is useful to automatically split file names in $fs and $fx properly
-# since default file separator used in these variables (i.e. 'filesep' option)
-# is newline. You need to consider the values of these options and create your
-# commands accordingly.
-set ifs "\n"
-
-# leave some space at the top and the bottom of the screen
-set scrolloff 10
-
-# use enter for shell commands
-map <enter> shell
-
-# execute current file (must be executable)
-map x $$f
-map X !$f
-
-# dedicated keys for file opener actions
-map o &mimeopen $f
-map O $mimeopen --ask $f
-
+#######################################################################
+#                         cmds/functions                              #
+#######################################################################
 # define a custom 'open' command
 # This command is called when current file is not a directory. You may want to
 # use either file extensions and/or mime types here. Below uses an editor for
@@ -55,42 +32,87 @@ cmd open ${{
     esac
 }}
 
-# define a custom 'rename' command without prompt for overwrite
-# cmd rename %[ -e $1 ] && printf "file exists" || mv $f $1
-# map r push :rename<space>
+cmd mkdir $mkdir -p "$(echo $* | tr ' ' '\ ')"
 
-# make sure trash folder exists
-# %mkdir -p ~/.trash
+cmd mkfile $touch "$(echo $* | tr ' ' '\ ')"
 
-# move current file or selected files to trash folder
-# (also see 'man mv' for backup/overwrite options)
-cmd trash %set -f; mv $fx ~/.trash
+cmd chmod ${{
+  printf "Mode Bits: "
+  read ans
 
-# define a custom 'delete' command
-# cmd delete ${{
-#     set -f
-#     printf "$fx\n"
-#     printf "delete?[y/n]"
-#     read ans
-#     [ "$ans" = "y" ] && rm -rf $fx
-# }}
+  for file in "$fx"
+  do
+    chmod $ans $file
+  done
 
-# use '<delete>' key for either 'trash' or 'delete' command
-# map <delete> trash
-# map <delete> delete
+  lf -remote 'send reload'
+}}
 
-# extract the current file with the right command
-# (xkcd link: https://xkcd.com/1168/)
 cmd extract ${{
-    set -f
-    case $f in
-        *.tar.bz|*.tar.bz2|*.tbz|*.tbz2) tar xjvf $f;;
-        *.tar.gz|*.tgz) tar xzvf $f;;
-        *.tar.xz|*.txz) tar xJvf $f;;
-        *.zip) unzip $f;;
-        *.rar) unrar x $f;;
-        *.7z) 7z x $f;;
-    esac
+	clear; tput cup $(($(tput lines)/3)); tput bold
+	set -f
+	printf "%s\n\t" "$fx"
+	printf "extract?[y/N]"
+	read ans
+	[ $ans = "y" ] && atool -x $fx
+}}
+
+cmd delete ${{
+  clear; tput cup $(($(tput lines)/3)); tput bold
+  set -f
+  printf "$fx\n"
+  printf "delete?[y/n]"
+  read ans
+  [ "$ans" = "y" ] && rm -rf $fx
+  [ "$ans" = "y" ] && trash $fx
+}}
+
+cmd moveto ${{
+	clear; tput cup $(($(tput lines)/3)); tput bold
+	set -f
+	clear; echo "Move to where?"
+	dest="$(sed -e 's/\s*#.*//' -e '/^$/d' -e 's/^\S*\s*//' ${XDG_CONFIG_HOME:-$HOME/.config}/shell/bm-dirs | fzf | sed 's|~|$HOME|')" &&
+	for x in $fx; do
+		eval mv -iv \"$x\" \"$dest\"
+	done &&
+	notify-send "🚚 File(s) moved." "File(s) moved to $dest."
+}}
+
+cmd copyto ${{
+	clear; tput cup $(($(tput lines)/3)); tput bold
+	set -f
+	clear; echo "Copy to where?"
+	dest="$(sed -e 's/\s*#.*//' -e '/^$/d' -e 's/^\S*\s*//' ${XDG_CONFIG_HOME:-$HOME/.config}/shell/bm-dirs | fzf | sed 's|~|$HOME|')" &&
+	for x in $fx; do
+		eval cp -ivr \"$x\" \"$dest\"
+	done &&
+	notify-send "📋 File(s) copied." "File(s) copies to $dest."
+}}
+
+cmd fzf_jump ${{
+  res="$(find . -maxdepth 3 | fzf --reverse --header='Jump to location')"
+  if [ -f "$res" ]; then
+    cmd="select"
+  elif [ -d "$res" ]; then
+    cmd="cd"
+  fi
+  lf -remote "send $id $cmd \"$res\""
+}}
+
+cmd broot_jump ${{
+  f=$(mktemp)
+  res="$(broot --outcmd $f && cat $f | sed 's/cd //')"
+  rm -f "$f"
+  if [ -f "$res" ]; then
+    cmd="select"
+  elif [ -d "$res" ]; then
+    cmd="cd"
+  fi
+  lf -remote "send $id $cmd \"$res\""
+}}
+
+cmd restore_trash ${{
+  trash-restore
 }}
 
 # compress current file or selected files with tar and gunzip
@@ -110,3 +132,33 @@ cmd zip ${{
     zip -r $1.zip $1
     rm -rf $1
 }}
+
+#######################################################################
+#                           Bindings                                  #
+#######################################################################
+# use enter for shell commands
+map <enter> shell
+
+# execute current file (must be executable)
+map x $$f
+map X !$f
+
+# dedicated keys for file opener actions
+map o &mimeopen $f
+map O $mimeopen --ask $f
+
+map <c-f> fzf_jump
+map dd delete
+map <delete> delete
+map p paste
+map x cut
+map y copy
+map r rename
+map <c-e> extract
+map yy copyto
+map M moveto
+map <c-r> reload
+map <c-s> set hidden!
+map <c-u> unselect
+
+map V push :!nvim<space>
