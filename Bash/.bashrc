@@ -176,6 +176,8 @@ export PATH="$PATH:$HOME/tools/lf"
 if [ -f ~/.config/lf/icon.sh ]; then
   source ~/.config/lf/icon.sh
 fi
+export PATH="$PATH:$HOME/tools/lnav"
+export PATH="$PATH:$HOME/tools/pistol"
 ## neovim support
 export LC_ALL="en_US.UTF-8"
 export LANG="en_US.UTF-8"

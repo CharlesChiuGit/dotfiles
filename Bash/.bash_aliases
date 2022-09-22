@@ -21,8 +21,9 @@ alias tmux='~/tools/tmux/tmux'
 alias sudo='sudo '
 alias apt='nala' # nala, wrapper for apt-get
 alias bat='bat --theme=gruvbox-dark --color=always --style=numbers,changes,header,grid --line-range :500' # bat option
-alias fzf="fzf --preview 'bat --theme=gruvbox-dark --color=always --style=numbers,changes,header,grid --line-range :500 {}'"
-alias fzfimg="fzf --preview '(~/.cargo/bin/termpix --width 50 --true-color {} || cat {}) 2> /dev/null'"
+# alias fzf="fzf --preview 'bat --theme=gruvbox-dark --color=always --style=numbers,changes,header,grid --line-range :500 {}'"
+# alias fzfimg="fzf --preview '(~/.cargo/bin/termpix --width 50 --true-color {} || cat {}) 2> /dev/null'"
+alias fzf="fzf --header 'E to edit' --preview='pistol {}' --bind 'E:execute(vi {})'"
 alias nvim='$HOME/tools/nvim/bin/nvim'
 alias sobash='source ~/.bashrc'
 alias nvbash='nvim ~/.bashrc'

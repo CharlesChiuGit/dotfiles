@@ -763,3 +763,82 @@ if [[ -z "$(command -v broot)" ]]; then
 else
 	echo "Broot is already installed. Skip installing it."
 fi
+
+#######################################################################
+#                          lnav part                                 #
+#######################################################################
+LNAV_DIR=$HOME/tools/lnav
+LNAV_SRC_NAME=$HOME/packages/lnav.zip
+LNAV_LINK="https://github.com/tstack/lnav/releases/download/v0.11.0/lnav-0.11.0-musl-64bit.zip"
+if [[ -z "$(command -v lnav)" ]]; then
+	echo "Install lnav"
+	if [[ ! -f $LNAV_SRC_NAME ]]; then
+		echo "Downloading lnav and renaming"
+		wget "$LNAV_LINK" -O "$LNAV_SRC_NAME"
+	fi
+
+
+	if [[ ! -d "$LNAV_DIR" ]]; then
+		echo "Creating lnav directory under tools directory"
+		mkdir -p "$LNAV_DIR"
+    unzip "$LNAV_SRC_NAME" -d "$LNAV_DIR"
+    for f in $LNAV_DIR/lnav-0.11.0/*; do cp $f "$LNAV_DIR"; done
+    rm -r "$LNAV_DIR/lnav-0.11.0"
+	fi
+
+	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
+		echo "export PATH=\"$LNAV_DIR:\$PATH\"" >>"$HOME/.bashrc"
+		export PATH="$LNAV_DIR:$PATH"
+	fi
+
+else
+	echo "lnav is already installed. Skip installing it."
+fi
+
+#######################################################################
+#                        termpix part                                 #
+#######################################################################
+TERMPIX_DIR=$HOME/tools/termpix
+TERMPIX_LINK="https://github.com/mmacedoeu/termpix.git"
+if [[ -z "$(command -v termpix)" ]]; then
+	echo "Install termpix"
+
+	if [[ ! -d "$TERMPIX_DIR" ]]; then
+		echo "Creating termpix directory under tools directory"
+		mkdir -p "$TERMPIX_DIR"
+    echo "git clone to $HOME/tools/termpix directory"
+		git clone --depth=1 "$TERMPIX_LINK" "$TERMPIX_DIR"
+    cd "$TERMPIX_DIR"
+    cargo build
+    cargo install --path .
+	fi
+
+else
+	echo "termpix is already installed. Skip installing it."
+fi
+
+#######################################################################
+#                           Pistol part                                 #
+#######################################################################
+PISTOL_DIR=$HOME/tools/pistol
+PISTOL_LINK="https://github.com/doronbehar/pistol.git"
+if [[ -z "$(command -v pistol)" ]]; then
+	echo "Install pistol"
+
+	if [[ ! -d "$PISTOL_DIR" ]]; then
+		echo "Creating pistol directory under tools directory"
+		mkdir -p "$PISTOL_DIR"
+    echo "git clone to $HOME/tools/pistol directory"
+		git clone --depth=1 "$PISTOL_LINK" "$PISTOL_DIR"
+    cd "$PISTOL_DIR"
+    make
+	fi
+
+	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
+    echo "export PATH=\"$PISTOL_DIR:\$PATH\"" >>"$HOME/.bashrc"
+    export PATH="$PISTOL_DIR:$PATH"
+	fi
+
+else
+	echo "Pistol is already installed. Skip installing it."
+fi
