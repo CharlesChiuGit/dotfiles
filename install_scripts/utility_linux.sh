@@ -18,7 +18,7 @@ if [[ ! -d "$HOME/tools/" ]]; then
 fi
 
 #######################################################################
-#                            statship part                             #
+#                           statship part                             #
 #######################################################################
 STARSHIP_DIR=$HOME/tools/starship
 STARSHIP_SRC_NAME=$HOME/packages/starship.tar.gz
@@ -40,6 +40,41 @@ if [[ -z "$(command -v starship)" ]]; then
 	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
 		echo "export PATH=\"$STARSHIP_DIR:\$PATH\"" >>"$HOME/.bashrc"
 		export PATH="$STARSHIP_DIR:$PATH"
+	fi
+
+	# # set up manpath and zsh completion for batcat
+	# mkdir -p $HOME/tools/ripgrep/doc/man/man1
+	# mv $HOME/tools/ripgrep/doc/rg.1 $HOME/tools/ripgrep/doc/man/man1
+
+else
+	echo "starship is already installed. Skip installing it."
+fi
+
+#######################################################################
+#                              btop part                              #
+#######################################################################
+BTOP_DIR=$HOME/tools/btop
+BTOP_SRC_NAME=$HOME/packages/btop.tbz
+BTOP_LINK="https://github.com/aristocratos/btop/releases/download/v1.2.9/btop-x86_64-linux-musl.tbz"
+if [[ -z "$(command -v btop)" ]]; then
+	echo "Install btop"
+	if [[ ! -f $BTOP_SRC_NAME ]]; then
+		echo "Downloading btop and renaming"
+		wget $BTOP_LINK -O "$BTOP_SRC_NAME"
+	fi
+
+	if [[ ! -d "$BTOP_DIR" ]]; then
+		echo "Creating btop directory under tools directory"
+		mkdir -p "$BTOP_DIR"
+		echo "Extracting to $HOME/tools/btop directory"
+		tar xjf "$BTOP_SRC_NAME" -C "$BTOP_DIR"
+    # cd  "$BTOP_DIR"
+    # make install PREFIX="$BTOP_DIR"
+	fi
+
+	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
+		echo "export PATH=\"$BTOP_DIR/bin:\$PATH\"" >>"$HOME/.bashrc"
+		export PATH="$BTOP_DIR/bin:$PATH"
 	fi
 
 	# # set up manpath and zsh completion for batcat

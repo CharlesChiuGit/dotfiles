@@ -148,6 +148,7 @@ export PATH="$PATH:$HOME/tools/php/bin"
 # Utility tools PATH
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$HOME/tools/starship"
+export PATH="$PATH:$HOME/tools/btop/bin"
 export PATH="$PATH:$HOME/tools/batcat"
 export PATH="$PATH:$HOME/tools/fdfind"
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
