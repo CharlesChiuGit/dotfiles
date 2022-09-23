@@ -18,6 +18,39 @@ if [[ ! -d "$HOME/tools/" ]]; then
 fi
 
 #######################################################################
+#                            statship part                             #
+#######################################################################
+STARSHIP_DIR=$HOME/tools/starship
+STARSHIP_SRC_NAME=$HOME/packages/starship.tar.gz
+STARSHIP_LINK="https://github.com/starship/starship/releases/download/v1.10.3/starship-x86_64-unknown-linux-gnu.tar.gz"
+if [[ -z "$(command -v starship)" ]]; then
+	echo "Install starship"
+	if [[ ! -f $STARSHIP_SRC_NAME ]]; then
+		echo "Downloading starship and renaming"
+		wget $STARSHIP_LINK -O "$STARSHIP_SRC_NAME"
+	fi
+
+	if [[ ! -d "$STARSHIP_DIR" ]]; then
+		echo "Creating starship directory under tools directory"
+		mkdir -p "$STARSHIP_DIR"
+		echo "Extracting to $HOME/tools/starship directory"
+		tar zxvf "$STARSHIP_SRC_NAME" -C "$STARSHIP_DIR"
+	fi
+
+	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
+		echo "export PATH=\"$STARSHIP_DIR:\$PATH\"" >>"$HOME/.bashrc"
+		export PATH="$STARSHIP_DIR:$PATH"
+	fi
+
+	# # set up manpath and zsh completion for batcat
+	# mkdir -p $HOME/tools/ripgrep/doc/man/man1
+	# mv $HOME/tools/ripgrep/doc/rg.1 $HOME/tools/ripgrep/doc/man/man1
+
+else
+	echo "starship is already installed. Skip installing it."
+fi
+
+#######################################################################
 #                            batcat part                             #
 #######################################################################
 BATCAT_DIR=$HOME/tools/batcat
@@ -43,8 +76,8 @@ if [[ -z "$(command -v bat)" ]] && [[ ! -f "$BATCAT_DIR/bat" ]]; then
 	fi
 
 	# # set up manpath and zsh completion for batcat
-	# mkdir -p $HOME/tools/batcat/doc/man/man1
-	# mv $HOME/tools/batcat/doc/rg.1 $HOME/tools/ripgrep/doc/man/man1
+	# mkdir -p $HOME/tools/ripgrep/doc/man/man1
+	# mv $HOME/tools/ripgrep/doc/rg.1 $HOME/tools/ripgrep/doc/man/man1
 
 else
 	echo "batcat is already installed. Skip installing it."

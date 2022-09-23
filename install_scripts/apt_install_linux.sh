@@ -23,7 +23,7 @@ libimage-exiftool-perl atool libmagic-dev -y
 sudo nala install caca-utils imagemagick ffmpeg librsvg2-bin atool unrar p7zip-full p7zip-rar -y
 
 # Snap install
-sudo snap install bashtop cpufetch ascii-image-converter lolcat starship
+sudo snap install cpufetch ascii-image-converter lolcat
 
 # system pip3 install
 sudo pip3 install pynvim yarp thefuck gdown ntfy[emoji] asciinema
