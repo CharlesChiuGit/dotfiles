@@ -9,6 +9,9 @@ ADD_TO_SYSTEM_PATH=false
 # select which shell we are using
 USE_BASH_SHELL=true
 
+# If using WSL
+USE_WSL=false
+
 if [[ ! -d "$HOME/packages/" ]]; then
 	mkdir -p "$HOME/packages/"
 fi
@@ -161,6 +164,17 @@ PHP_DIR=$HOME/tools/php
 COMPOSER_DIR=$PHP_DIR/bin/composer
 
 # "$COMPOSER_DIR" install
+
+#######################################################################
+#                 win32yamk for Neovim in WSL                         #
+#######################################################################
+if [[ "$USE_WSL" = true ]]; then
+  curl -sLo/tmp/win32yank.zip https://github.com/equalsraf/win32yank/releases/download/v0.0.4/win32yank-x64.zip
+  unzip -p /tmp/win32yank.zip win32yank.exe > /tmp/win32yank.exe
+  chmod +x /tmp/win32yank.exe
+  sudo mv /tmp/win32yank.exe /usr/local/bin/
+fi
+# NOTE: don't forget to `set clipboard=unnamedplus`
 
 #######################################################################
 #                           Nvim install                              #

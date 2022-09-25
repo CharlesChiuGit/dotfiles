@@ -142,6 +142,7 @@ if [ -f ~/.cargo/env ]; then
 fi
 export PATH="$PATH:$HOME/tools/lua/src"
 export PATH="$PATH:$HOME/tools/luajit/src"
+export LUA_LIBRARY="$HOME/tools/luajit/src/libluajit.so"
 export PATH="$PATH:$HOME/tools/luarocks"
 export PATH="$PATH:$HOME/tools/php/bin"
 
@@ -182,7 +183,6 @@ if [ -f ~/.config/lf/icon.sh ]; then
 fi
 export PATH="$PATH:$HOME/tools/lnav"
 export PATH="$PATH:$HOME/tools/pistol"
-export PATH="$PATH:$HOME/tools/xclip"
 ## neovim support
 export LC_ALL="en_US.UTF-8"
 export LANG="en_US.UTF-8"

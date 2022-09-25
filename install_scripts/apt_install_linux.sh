@@ -24,7 +24,7 @@ libx11-dev libxmu-headers libxt-dev libxmu-dev -y
 sudo nala install caca-utils ffmpeg librsvg2-bin atool unrar p7zip-full p7zip-rar -y
 
 # Snap install
-sudo snap install cpufetch ascii-image-converter lolcat
+sudo snap install ascii-image-converter lolcat
 
 # system pip3 install
 sudo pip3 install pynvim yarp thefuck gdown ntfy[emoji] asciinema
