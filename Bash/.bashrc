@@ -150,6 +150,7 @@ export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$HOME/tools/starship"
 export PATH="$PATH:$HOME/tools/btop/bin"
 export PATH="$PATH:$HOME/tools/batcat"
+export PATH="$PATH:$HOME/tools/cpufetch"
 export PATH="$PATH:$HOME/tools/fdfind"
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
@@ -162,6 +163,7 @@ export PATH="$PATH:$HOME/tools/lazygit"
 export PATH="$PATH:$HOME/tools/lsd"
 export PATH="$PATH:$HOME/tools/ripgrep"
 export PATH="$PATH:$HOME/tools/tmux"
+export TERM='screen-256color'
 export PATH="$PATH:$HOME/tools/treesitter"
 export PATH="$PATH:$HOME/tools/zoxide"
 export PATH="$PATH:$HOME/tools/stow/bin"
