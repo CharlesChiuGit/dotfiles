@@ -14,13 +14,14 @@ libjpeg-dev libonig-dev libtidy-dev libxslt-dev libzip-dev libstdc++6 \
 autoconf libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev \
 libffi-dev libgdbm6 libgdbm-dev libdb-dev uuid-dev libsqlite3-dev \
 libfreetype6-dev librsvg2-dev libtiff5-dev libwebp-dev libtool gtk-doc-tools \
-libimage-exiftool-perl atool libmagic-dev -y
+libimage-exiftool-perl atool libmagic-dev \
+libx11-dev libxmu-headers libxt-dev libxmu-dev -y
 
 # Cool stuff
 # sudo nala install neofetch hollywood cmatrix jp2a speedtest-cli -y
 
 # Ranger utils support
-sudo nala install caca-utils imagemagick ffmpeg librsvg2-bin atool unrar p7zip-full p7zip-rar -y
+sudo nala install caca-utils ffmpeg librsvg2-bin atool unrar p7zip-full p7zip-rar -y
 
 # Snap install
 sudo snap install cpufetch ascii-image-converter lolcat

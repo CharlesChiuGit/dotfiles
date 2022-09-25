@@ -182,6 +182,7 @@ if [ -f ~/.config/lf/icon.sh ]; then
 fi
 export PATH="$PATH:$HOME/tools/lnav"
 export PATH="$PATH:$HOME/tools/pistol"
+export PATH="$PATH:$HOME/tools/xclip"
 ## neovim support
 export LC_ALL="en_US.UTF-8"
 export LANG="en_US.UTF-8"

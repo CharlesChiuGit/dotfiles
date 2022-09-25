@@ -68,8 +68,6 @@ if [[ -z "$(command -v btop)" ]]; then
 		mkdir -p "$BTOP_DIR"
 		echo "Extracting to $HOME/tools/btop directory"
 		tar xjf "$BTOP_SRC_NAME" -C "$BTOP_DIR"
-    # cd  "$BTOP_DIR"
-    # make install PREFIX="$BTOP_DIR"
 	fi
 
 	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
@@ -82,7 +80,7 @@ if [[ -z "$(command -v btop)" ]]; then
 	# mv $HOME/tools/ripgrep/doc/rg.1 $HOME/tools/ripgrep/doc/man/man1
 
 else
-	echo "starship is already installed. Skip installing it."
+	echo "btop is already installed. Skip installing it."
 fi
 
 #######################################################################
@@ -116,6 +114,35 @@ if [[ -z "$(command -v bat)" ]] && [[ ! -f "$BATCAT_DIR/bat" ]]; then
 
 else
 	echo "batcat is already installed. Skip installing it."
+fi
+
+#######################################################################
+#                              cpufetch part                              #
+#######################################################################
+CPUFETCH_DIR=$HOME/tools/cpufetch
+CPUFETCH_LINK="https://github.com/Dr-Noob/cpufetch/releases/download/v1.02/cpufetch_x86-64_linux"
+if [[ -z "$(command -v cpufetch)" ]]; then
+	echo "Install cpufetch"
+
+	if [[ ! -d "$CPUFETCH_DIR" ]]; then
+		echo "Creating cpufetch directory under tools directory"
+		mkdir -p "$CPUFETCH_DIR"
+		echo "Download to $HOME/tools/cpufetch directory"
+    wget "$CPUFETCH_LINK" -O "$CPUFETCH_DIR/cpufetch"
+    chmod +x "$CPUFETCH_DIR/cpufetch"
+	fi
+
+	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
+		echo "export PATH=\"$CPUFETCH_DIR:\$PATH\"" >>"$HOME/.bashrc"
+		export PATH="$CPUFETCH_DIR:$PATH"
+	fi
+
+	# # set up manpath and zsh completion for batcat
+	# mkdir -p $HOME/tools/ripgrep/doc/man/man1
+	# mv $HOME/tools/ripgrep/doc/rg.1 $HOME/tools/ripgrep/doc/man/man1
+
+else
+	echo "cpufetch is already installed. Skip installing it."
 fi
 
 #######################################################################
@@ -537,6 +564,13 @@ if [[ ! -f "$TMUX_DIR/tmux" ]]; then
 		alias tmux='~/tools/tmux/tmux'
 	fi
 
+echo "Installing tpm"
+if [[ ! -d ~/.tmux/plugins/tpm ]]; then
+	git clone --depth=1 https://github.com/tmux-plugins/tpm \
+    ~/.tmux/plugins/tpm
+  # NOTE: `prefix` + `I` to install plugins via tpm.
+fi
+
 else
 	echo "tmux is already installed. Skip installing it."
 fi
@@ -605,7 +639,6 @@ if [[ -z "$(command -v xplr)" ]]; then
     echo "export PATH=\"$XPLR_DIR:\$PATH\"" >>"$HOME/.bashrc"
     export PATH="$XPLR_DIR:$PATH"
     # for old habit
-		alias ranger='xplr'
 	fi
 
 else
@@ -808,7 +841,7 @@ fi
 #######################################################################
 BROOT_DIR=$HOME/tools/broot
 BROOT_SRC_NAME=$HOME/packages/broot.zip
-BROOT_LINK="https://github.com/Canop/broot/releases/download/v1.14.3/broot_1.14.3.zip"
+BROOT_LINK="https://github.com/Canop/broot/releases/download/v1.15.0/broot_1.15.0.zip"
 if [[ -z "$(command -v broot)" ]]; then
 	echo "Install broot"
 	if [[ ! -f $BROOT_SRC_NAME ]]; then
@@ -886,7 +919,7 @@ else
 fi
 
 #######################################################################
-#                           Pistol part                                 #
+#                         Pistol part                                 #
 #######################################################################
 PISTOL_DIR=$HOME/tools/pistol
 PISTOL_LINK="https://github.com/doronbehar/pistol.git"
@@ -909,4 +942,62 @@ if [[ -z "$(command -v pistol)" ]]; then
 
 else
 	echo "Pistol is already installed. Skip installing it."
+fi
+
+#######################################################################
+#                       Lemonade part                                 #
+#######################################################################
+# LEMONADE_DIR=$HOME/tools/lemonade
+# LEMONADE_LINK="https://github.com/lemonade-command/lemonade.git"
+# GO_PATH=$HOME/tools/golang
+# if [[ -z "$(command -v lemonade)" ]]; then
+# 	echo "Install Lemonade"
+
+# 	if [[ ! -d "$LEMONADE_DIR" ]]; then
+# 		echo "Creating lemonade directory under tools directory"
+# 		mkdir -p "$LEMONADE_DIR"
+#     echo "git clone to $HOME/tools/lemonade directory"
+# 		git clone --depth=1 "$LEMONADE_LINK" "$LEMONADE_DIR"
+#     cd "$LEMONADE_DIR"
+#     make install
+# 	fi
+
+# 	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
+#     echo "export PATH=\"$PISTOL_DIR:\$PATH\"" >>"$HOME/.bashrc"
+#     export PATH="$PISTOL_DIR:$PATH"
+# 	fi
+
+# else
+# 	echo "Pistol is already installed. Skip installing it."
+# fi
+
+
+#######################################################################
+#                          xclip part                                 #
+#######################################################################
+XCLIP_DIR=$HOME/tools/xclip
+XCLIP_LINK="https://github.com/astrand/xclip.git"
+if [[ -z "$(command -v xclip)" ]]; then
+	echo "Install xclip"
+
+	if [[ ! -d "$XCLIP_DIR" ]]; then
+		echo "Creating xclip directory under tools directory"
+		mkdir -p "$XCLIP_DIR"
+    echo "git clone to $HOME/tools/xclip directory"
+		git clone --depth=1 "$XCLIP_LINK" "$XCLIP_DIR"
+    cd "$XCLIP_DIR"
+    autoreconf
+    ./configure --prefix="$XCLIP_DIR"
+    make
+    make install
+    make install.man
+	fi
+
+	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
+    echo "export PATH=\"$XCLIP_DIR:\$PATH\"" >>"$HOME/.bashrc"
+    export PATH="$XCLIP_DIR:$PATH"
+	fi
+
+else
+	echo "Xclip is already installed. Skip installing it."
 fi
