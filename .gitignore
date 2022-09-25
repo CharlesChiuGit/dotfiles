@@ -5,6 +5,7 @@ __pycache__/
 *.pyc
 *.cpython-310.pyc
 TheFUCK/.config/thefuck/__pycache__/
+Lazygit/.config/lazygit/state.yml
 
 # C extensions
 *.so
