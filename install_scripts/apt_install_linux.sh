@@ -5,7 +5,7 @@
 sudo apt install nala -y
 
 # Essential packages
-sudo nala install ssh vim htop git curl clang latexmk biber \
+sudo nala install ssh vim htop git curl clang latexmk biber ninja-build \
 make cmake build-essential software-properties-common mercurial binutils bison re2c \
 python3-apt python3-pip python3-dev python3-setuptools python3.10-venv \
 pandoc highlight gzip tar plocate pkg-config bzip2 openssl unzip \
