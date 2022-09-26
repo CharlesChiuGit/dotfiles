@@ -69,3 +69,19 @@ else
     # Don't leave extra agents around: kill it on exit. You may not want this part.
     trap "ssh-agent -k" exit
 fi
+
+#######################################################################
+#               fzf: Find Directory and Change                        #
+#######################################################################
+fzf_change_directory() {
+    local directory=$(
+      fd --type d | \
+      fzf --query="$1" --no-multi --select-1 --exit-0 \
+          --preview 'tree -C {} | head -100'
+      )
+    if [[ -n $directory ]]; then
+        cd "$directory"
+    fi
+}
+
+alias fcd='fzf_change_directory'
