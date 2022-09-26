@@ -31,3 +31,6 @@ sudo pip3 install pynvim yarp thefuck gdown ntfy[emoji] asciinema
 
 # WSL: install kitty
 # sudo apt install libgles2-mesa libgles2-mesa-dev -y
+
+# Alacritty dependencies
+sudo nala install cmake pkg-config libfreetype6-dev libfontconfig1-dev libxcb-xfixes0-dev libxkbcommon-dev python3 -y

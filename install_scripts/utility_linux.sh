@@ -18,7 +18,53 @@ if [[ ! -d "$HOME/tools/" ]]; then
 fi
 
 #######################################################################
-#                           statship part                             #
+#                          Alacritty part                             #
+#######################################################################
+ALACRITTY_DIR=$HOME/tools/alacritty
+ALACRITTY_LINK="https://github.com/alacritty/alacritty.git"
+if [[ -z "$(command -v alacritty)" ]]; then
+	echo "Install Alacritty"
+
+	if [[ ! -d "$ALACRITTY_DIR" ]]; then
+		echo "Creating starship directory under tools directory"
+		mkdir -p "$ALACRITTY_DIR"
+    echo "git clone to $HOME/tools/alacritty directory"
+		git clone --depth=1 "$ALACRITTY_LINK" "$ALACRITTY_DIR"
+		cd "$ALACRITTY_DIR"
+    cargo build --release
+	fi
+
+	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
+		echo "export PATH=\"$ALACRITTY_DIR/target/release:\$PATH\"" >>"$HOME/.bashrc"
+		export PATH="$ALACRITTY_DIR/target/release:$PATH"
+	fi
+
+	# # set up manpath and zsh completion for batcat
+	# mkdir -p $HOME/tools/ripgrep/doc/man/man1
+	# mv $HOME/tools/ripgrep/doc/rg.1 $HOME/tools/ripgrep/doc/man/man1
+
+  if [[ -f ~/dotfiles/Bash/.local/share/bash-completion/alacritty.bash ]]; then
+    rm ~/dotfiles/Bash/.local/share/bash-completion/alacritty.bash
+    cd "$ALACRITTY_DIR"
+    cp extra/completions/alacritty.bash ~/dotfiles/Bash/.local/share/bash-completion
+  else
+    cp extra/completions/alacritty.bash ~/dotfiles/Bash/.local/share/bash-completion
+  fi
+
+  if [[ -f ~/dotfiles/Bash/.local/share/zsh-completion/alacritty.bash ]]; then
+    rm ~/dotfiles/Bash/.local/share/zsh-completion/_alacritty
+    cd "$ALACRITTY_DIR"
+    cp extra/completions/_alacritty ~/dotfiles/Bash/.local/share/zsh-completion
+  else
+    cp extra/completions/_alacritty ~/dotfiles/Bash/.local/share/zsh-completion
+  fi
+
+else
+	echo "Alacritty is already installed. Skip installing it."
+fi
+
+#######################################################################
+#                           starship part                             #
 #######################################################################
 STARSHIP_DIR=$HOME/tools/starship
 STARSHIP_SRC_NAME=$HOME/packages/starship.tar.gz
@@ -47,7 +93,7 @@ if [[ -z "$(command -v starship)" ]]; then
 	# mv $HOME/tools/ripgrep/doc/rg.1 $HOME/tools/ripgrep/doc/man/man1
 
 else
-	echo "starship is already installed. Skip installing it."
+	echo "Starship is already installed. Skip installing it."
 fi
 
 #######################################################################
