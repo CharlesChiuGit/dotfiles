@@ -31,10 +31,11 @@ $character"""
 
 [sudo]
 # symbol = "🧙"
-symbol = ""
+symbol = ""
 disabled = false
 style = "red"
-format = '[⟬ $symbol ⟭]($style)'
+# format = '[ $symbol ]($style)'
+format = '\[[$symbol ]($style)\]'
 
 [hostname]
 disabled = false
