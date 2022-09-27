@@ -154,9 +154,9 @@ export PATH="$PATH:$HOME/tools/btop/bin"
 export PATH="$PATH:$HOME/tools/batcat"
 export PATH="$PATH:$HOME/tools/cpufetch"
 export PATH="$PATH:$HOME/tools/fdfind"
-export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
+export FZF_DEFAULT_OPTS='--ansi --height 40% --layout=reverse --border'
 export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
-export PATH="$PATH:$HOME/tools/fzf"
+export PATH="$PATH:$HOME/tools/fzf/bin"
 export PATH="$PATH:$HOME/tools/fzy"
 export PATH="$PATH:$HOME/tools/git-delta"
 export PATH="$PATH:$HOME/tools/glow"
@@ -184,6 +184,8 @@ if [ -f ~/.config/lf/icon.sh ]; then
 fi
 export PATH="$PATH:$HOME/tools/lnav"
 export PATH="$PATH:$HOME/tools/pistol"
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/lib"
+export PATH="$PATH:$HOME/tools/ugrep/bin"
 ## neovim support
 export LC_ALL="en_US.UTF-8"
 export LANG="en_US.UTF-8"

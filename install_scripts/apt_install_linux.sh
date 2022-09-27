@@ -34,3 +34,6 @@ sudo pip3 install pynvim yarp thefuck gdown ntfy[emoji] asciinema
 
 # Alacritty dependencies
 sudo nala install cmake pkg-config libfreetype6-dev libfontconfig1-dev libxcb-xfixes0-dev libxkbcommon-dev python3 -y
+
+# ugrep dependencies
+sudo nala install libpcre2-dev libz-dev libbz2-dev liblzma-dev liblz4-dev libzstd-dev -y
