@@ -41,6 +41,7 @@ alias CD='conda deactivate'
 alias tb='tensorboard --logdir'
 
 # upgrep Alias
+export PATH="$PATH:$HOME/tools/ugrep/bin"
 alias uq='ug -Q'       # short & quick query TUI (interactive, uses .ugrep config)
 alias ux='ug -UX'      # short & quick binary pattern search (uses .ugrep config)
 alias uz='ug -z'       # short & quick compressed files and archives search (uses .ugrep config)
