@@ -202,6 +202,10 @@ if [[ ! -f "$NVIM_DIR/bin/nvim" ]]; then
 		echo "export PATH=\"$NVIM_DIR/bin:\$PATH\"" >>"$HOME/.bashrc"
 		export PATH="$NVIM_DIR/bin:$PATH"
 	fi
+
+  # set up manpath
+	cp "$HOME/tools/nvim/share/man/man1/nvim.1" "$HOME/.local/share/man/man1"
+
 else
 	echo "Nvim is already installed. Skip installing it."
 fi

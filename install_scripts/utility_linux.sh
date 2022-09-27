@@ -26,7 +26,7 @@ if [[ -z "$(command -v alacritty)" ]]; then
 	echo "Install Alacritty"
 
 	if [[ ! -d "$ALACRITTY_DIR" ]]; then
-		echo "Creating starship directory under tools directory"
+		echo "Creating alacritty directory under tools directory"
 		mkdir -p "$ALACRITTY_DIR"
     echo "git clone to $HOME/tools/alacritty directory"
 		git clone --depth=1 "$ALACRITTY_LINK" "$ALACRITTY_DIR"
@@ -38,10 +38,6 @@ if [[ -z "$(command -v alacritty)" ]]; then
 		echo "export PATH=\"$ALACRITTY_DIR/target/release:\$PATH\"" >>"$HOME/.bashrc"
 		export PATH="$ALACRITTY_DIR/target/release:$PATH"
 	fi
-
-	# # set up manpath and zsh completion for batcat
-	# mkdir -p $HOME/tools/ripgrep/doc/man/man1
-	# mv $HOME/tools/ripgrep/doc/rg.1 $HOME/tools/ripgrep/doc/man/man1
 
   if [[ -f ~/dotfiles/Bash/.local/share/bash-completion/alacritty.bash ]]; then
     rm ~/dotfiles/Bash/.local/share/bash-completion/alacritty.bash
@@ -68,7 +64,7 @@ fi
 #######################################################################
 STARSHIP_DIR=$HOME/tools/starship
 STARSHIP_SRC_NAME=$HOME/packages/starship.tar.gz
-STARSHIP_LINK="https://github.com/starship/starship/releases/download/v1.10.3/starship-x86_64-unknown-linux-gnu.tar.gz"
+STARSHIP_LINK="https://github.com/starship/starship/releases/download/v1.10.3/starship-x86_64-unknown-linux-musl.tar.gz"
 if [[ -z "$(command -v starship)" ]]; then
 	echo "Install starship"
 	if [[ ! -f $STARSHIP_SRC_NAME ]]; then
@@ -87,10 +83,6 @@ if [[ -z "$(command -v starship)" ]]; then
 		echo "export PATH=\"$STARSHIP_DIR:\$PATH\"" >>"$HOME/.bashrc"
 		export PATH="$STARSHIP_DIR:$PATH"
 	fi
-
-	# # set up manpath and zsh completion for batcat
-	# mkdir -p $HOME/tools/ripgrep/doc/man/man1
-	# mv $HOME/tools/ripgrep/doc/rg.1 $HOME/tools/ripgrep/doc/man/man1
 
 else
 	echo "Starship is already installed. Skip installing it."
@@ -121,10 +113,6 @@ if [[ -z "$(command -v btop)" ]]; then
 		export PATH="$BTOP_DIR/bin:$PATH"
 	fi
 
-	# # set up manpath and zsh completion for batcat
-	# mkdir -p $HOME/tools/ripgrep/doc/man/man1
-	# mv $HOME/tools/ripgrep/doc/rg.1 $HOME/tools/ripgrep/doc/man/man1
-
 else
 	echo "btop is already installed. Skip installing it."
 fi
@@ -154,9 +142,8 @@ if [[ -z "$(command -v bat)" ]] && [[ ! -f "$BATCAT_DIR/bat" ]]; then
 		export PATH="$BATCAT_DIR:$PATH"
 	fi
 
-	# # set up manpath and zsh completion for batcat
-	# mkdir -p $HOME/tools/ripgrep/doc/man/man1
-	# mv $HOME/tools/ripgrep/doc/rg.1 $HOME/tools/ripgrep/doc/man/man1
+	# set up manpath
+  cp "$HOME/tools/ripgrep/doc/rg.1" "$HOME/.local/share/man/man1"
 
 else
 	echo "batcat is already installed. Skip installing it."
@@ -182,10 +169,6 @@ if [[ -z "$(command -v cpufetch)" ]]; then
 		echo "export PATH=\"$CPUFETCH_DIR:\$PATH\"" >>"$HOME/.bashrc"
 		export PATH="$CPUFETCH_DIR:$PATH"
 	fi
-
-	# # set up manpath and zsh completion for batcat
-	# mkdir -p $HOME/tools/ripgrep/doc/man/man1
-	# mv $HOME/tools/ripgrep/doc/rg.1 $HOME/tools/ripgrep/doc/man/man1
 
 else
 	echo "cpufetch is already installed. Skip installing it."
@@ -216,6 +199,9 @@ if [[ -z "$(command -v fd)" ]] && [[ ! -f "$FDFIND_DIR/fd" ]]; then
 		export PATH="$FDFIND_DIR:$PATH"
 	fi
 
+  # set up manpath
+	cp "$HOME/tools/fdfind/fd.1" "$HOME/.local/share/man/man1"
+
 else
 	echo "fdfind is already installed. Skip installing it."
 fi
@@ -224,26 +210,28 @@ fi
 #                            fzf part                                 #
 #######################################################################
 FZF_DIR=$HOME/tools/fzf
-FZF_SRC_NAME=$HOME/packages/fzf.tar.gz
-FZF_LINK="https://github.com/junegunn/fzf/releases/download/0.33.0/fzf-0.33.0-linux_amd64.tar.gz"
-if [[ -z "$(command -v fzf)" ]] && [[ ! -f "$FZF_DIR/fzf" ]]; then
+FZF_LINK="https://github.com/junegunn/fzf.git"
+if [[ -z "$(command -v fzf)" ]]; then
 	echo "Install fzf"
-	if [[ ! -f $FZF_SRC_NAME ]]; then
-		echo "Downloading fzf and renaming"
-		wget $FZF_LINK -O "$FZF_SRC_NAME"
-	fi
 
 	if [[ ! -d "$FZF_DIR" ]]; then
 		echo "Creating fzf directory under tools directory"
 		mkdir -p "$FZF_DIR"
-		echo "Extracting to $HOME/tools/fzf directory"
-		tar zxvf "$FZF_SRC_NAME" -C "$FZF_DIR"
+		echo "git clone to $HOME/tools/fzf directory"
+    cd "$HOME/tools"
+		git clone "$FZF_LINK"
+		cd "$FZF_DIR"
+    make
+    make install
 	fi
 
 	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
-		echo "export PATH=\"$FZF_DIR:\$PATH\"" >>"$HOME/.bashrc"
-		export PATH="$FZF_DIR:$PATH"
+		echo "export PATH=\"$FZF_DIR/bin:\$PATH\"" >>"$HOME/.bashrc"
+		export PATH="$FZF_DIR/bin:$PATH"
 	fi
+
+  # set up manpath
+	cp "$HOME/tools/fzf/man/man1/fzf.1" "$HOME/.local/share/man/man1"
 
 else
 	echo "fzf is already installed. Skip installing it."
@@ -274,6 +262,9 @@ if [[ -z "$(command -v fzy)" ]] && [[ ! -f "$FZY_DIR/fzy" ]]; then
 		echo "export PATH=\"$FZY_DIR:\$PATH\"" >>"$HOME/.bashrc"
 		export PATH="$FZY_DIR:$PATH"
 	fi
+
+  # set up manpath
+	cp "$HOME/tools/fzy/fzy.1" "$HOME/.local/share/man/man1"
 
 else
 	echo "fzy is already installed. Skip installing it."
@@ -371,7 +362,7 @@ fi
 #######################################################################
 LSD_DIR=$HOME/tools/lsd
 LSD_SRC_NAME=$HOME/packages/lsd.tar.gz
-LSD_LINK="https://github.com/Peltoche/lsd/releases/download/0.23.1/lsd-0.23.1-x86_64-unknown-linux-gnu.tar.gz"
+LSD_LINK="https://github.com/Peltoche/lsd/releases/download/0.23.1/lsd-0.23.1-x86_64-unknown-linux-musl.tar.gz"
 if [[ -z "$(command -v lsd)" ]] && [[ ! -f "$LSD_DIR/lsd" ]]; then
 	echo "Install lsd"
 	if [[ ! -f $LSD_SRC_NAME ]]; then
@@ -390,6 +381,9 @@ if [[ -z "$(command -v lsd)" ]] && [[ ! -f "$LSD_DIR/lsd" ]]; then
 		echo "export PATH=\"$LSD_DIR:\$PATH\"" >>"$HOME/.bashrc"
 		export PATH="$LSD_DIR:$PATH"
 	fi
+
+  # set up manpath
+	cp "$HOME/tools/lsd/lsd.1" "$HOME/.local/share/man/man1"
 
 else
 	echo "lsd is already installed. Skip installing it."
@@ -519,6 +513,9 @@ if [[ -z "$(command -v zoxide)" ]] && [[ ! -f "$ZOXIDE_DIR/zoxide" ]]; then
 		export PATH="$ZOXIDE_DIR:$PATH"
 	fi
 
+	# set up manpath
+  for f in $HOME/tools/zoxide/man/man1/*; do cp $f "$HOME/.local/share/man/man1"; done
+
 else
 	echo "zoxide is already installed. Skip installing it."
 fi
@@ -610,12 +607,16 @@ if [[ ! -f "$TMUX_DIR/tmux" ]]; then
 		alias tmux='~/tools/tmux/tmux'
 	fi
 
-echo "Installing tpm"
-if [[ ! -d ~/.tmux/plugins/tpm ]]; then
-	git clone --depth=1 https://github.com/tmux-plugins/tpm \
-    ~/.tmux/plugins/tpm
-  # NOTE: `prefix` + `I` to install plugins via tpm.
-fi
+	# set up manpath
+  cp "$HOME/tools/tmux/share/man/man1/tmux.1" "$HOME/.local/share/man/man1"
+
+
+  echo "Installing tpm"
+  if [[ ! -d ~/.tmux/plugins/tpm ]]; then
+    git clone --depth=1 https://github.com/tmux-plugins/tpm \
+      ~/.tmux/plugins/tpm
+    # NOTE: `prefix` + `I` to install plugins via tpm.
+  fi
 
 else
 	echo "tmux is already installed. Skip installing it."
@@ -774,6 +775,9 @@ if [[ -z "$(command -v magick)" ]]; then
     export LD_LIBRARY_PATH
 	fi
 
+  # set up manpath
+  for f in $HOME/tools/magick/share/man/man1/*; do cp $f "$HOME/.local/share/man/man1"; done
+
 else
 	echo "ImageMagick is already installed. Skip installing it."
 fi
@@ -849,6 +853,9 @@ if [[ -z "$(command -v ctpv)" ]]; then
     sudo make install # NOTE: need sudo for this
 	fi
 
+  # set up manpath
+	cp "$HOME/tools/ctpv/doc/ctpv.1" "$HOME/.local/share/man/man1"
+
 else
 	echo "ctpv is already installed. Skip installing it."
 fi
@@ -906,6 +913,9 @@ if [[ -z "$(command -v broot)" ]]; then
     echo "export PATH=\"$BROOT_DIR/x86_64-linux:\$PATH\"" >>"$HOME/.bashrc"
     export PATH="$BROOT_DIR/x86_64-linux:$PATH"
 	fi
+
+  # set up manpath
+	cp "$HOME/tools/broot/broot.1" "$HOME/.local/share/man/man1"
 
 else
 	echo "Broot is already installed. Skip installing it."
@@ -988,4 +998,35 @@ if [[ -z "$(command -v pistol)" ]]; then
 
 else
 	echo "Pistol is already installed. Skip installing it."
+fi
+
+#######################################################################
+#                         ugrep parti                                 #
+#######################################################################
+UGREP_DIR=$HOME/tools/ugrep
+UGREP_LINK="https://github.com/Genivia/ugrep.git"
+if [[ -z "$(command -v ugrep)" ]]; then
+	echo "Install ugrep"
+
+	if [[ ! -d "$UGREP_DIR" ]]; then
+		echo "Creating ugrep directory under tools directory"
+		mkdir -p "$UGREP_DIR"
+    echo "git clone to $HOME/tools/ugrep directory"
+		git clone --depth=1 "$UGREP_LINK" "$UGREP_DIR"
+    cd "$UGREP_DIR"
+    # INFO: build options: https://github.com/Genivia/ugrep#other-platforms-step-3-build
+    ./build.sh --enable-hidden --enable-pretty
+
+	fi
+
+	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
+    echo "export PATH=\"$UGREP_DIR/bin:\$PATH\"" >>"$HOME/.bashrc"
+    export PATH="$UGREP_DIR/bin:$PATH"
+	fi
+
+  # set up manpath
+	cp "$HOME/tools/ugrep/man/ugrep.1" "$HOME/.local/share/man/man1"
+
+else
+	echo "ugrep is already installed. Skip installing it."
 fi
