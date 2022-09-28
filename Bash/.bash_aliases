@@ -33,6 +33,7 @@ alias nvf='nvim `fzf`'
 alias ls='lsd -lFA' # Pretty ls
 alias cat='bat' # wrapper for bat
 alias rm='trash' # mv to trash-bin
+alias lg='lazygit'
 alias ntfy='ntfy.exe -t '"'charles@WSL'"' ' # ntfy, wsl wrapper for ntfy in windows
 alias tat='tmux a -t'
 alias tks='tmux kill-session -t'
