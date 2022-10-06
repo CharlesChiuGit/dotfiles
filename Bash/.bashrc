@@ -6,8 +6,8 @@
 
 # If not running interactively, don't do anything
 case $- in
-  *i*) ;;
-  *) return ;;
+*i*) ;;
+*) return ;;
 esac
 
 # don't put duplicate lines or lines starting with space in the history.
@@ -120,7 +120,7 @@ fi
 
 # Custom bash-completion
 if [ -d ~/.local/share/bash-completion ]; then
-  for f in ~/.local/share/bash-completion/*.bash; do source $f; done
+	for f in ~/.local/share/bash-completion/*.bash; do source $f; done
 fi
 
 # Custom bash functions
@@ -138,7 +138,7 @@ export PATH="$PATH:$HOME/tools/golang/bin"
 export PATH="$PATH:$HOME/tools/jdk/bin"
 export PATH="$PATH:$HOME/tools/julia/bin"
 if [ -f ~/.cargo/env ]; then
-  . "$HOME/.cargo/env"
+	. "$HOME/.cargo/env"
 fi
 export PATH="$PATH:$HOME/tools/lua/src"
 export PATH="$PATH:$HOME/tools/luajit/src"
@@ -180,7 +180,7 @@ export PATH="$PATH:$HOME/tools/chafa/bin"
 export PATH="$PATH:$HOME/tools/ctpv"
 export PATH="$PATH:$HOME/tools/lf"
 if [ -f ~/.config/lf/icon.sh ]; then
-  source ~/.config/lf/icon.sh
+	source ~/.config/lf/icon.sh
 fi
 export PATH="$PATH:$HOME/tools/lnav"
 export PATH="$PATH:$HOME/tools/pistol"
