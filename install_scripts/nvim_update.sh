@@ -35,10 +35,10 @@ fi
 echo "Extracting neovim"
 tar zxvf "$NVIM_SRC_NAME" --strip-components 1 -C "$NVIM_DIR"
 
-if [[ ! -d ~/.local/share/nvim/site/pack/packer/start/packer.nvim ]]; then
+if [[ ! -d ~/.local/share/nvim/site/pack/packer/opt/packer.nvim ]]; then
 	echo "Installing packer.nvim"
 	git clone --depth=1 https://github.com/wbthomason/packer.nvim \
-		~/.local/share/nvim/site/pack/packer/start/packer.nvim
+		~/.local/share/nvim/site/pack/packer/opt/packer.nvim
 fi
 
 echo "Updating nvim plugins, please wait"
