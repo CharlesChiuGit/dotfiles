@@ -4,7 +4,7 @@
 
 mkdir -p /var/swap # make swap dir
 
-cd /var/swap # enter swap dir
+cd /var/swap || exit # enter swap dir
 
 dd if=/dev/zero of=/var/swap/swapfile bs=1k count=2048000 # assign swap with 2048000*1k
 

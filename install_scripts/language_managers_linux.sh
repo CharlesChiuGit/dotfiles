@@ -89,9 +89,9 @@ if [[ ! -f "$NODE_DIR/bin/node" ]]; then
 	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
 		echo "export PATH=\"$NODE_DIR/bin:\$PATH\"" >>"$HOME/.bashrc"
 		export PATH="$NODE_DIR/bin:$PATH"
-    alias node='~/tools/nodejs/bin/node'
-    alias npm='~/tools/nodejs/bin/npm'
-    "$NODE_DIR/bin/npm" config set fund false
+		alias node='~/tools/nodejs/bin/node'
+		alias npm='~/tools/nodejs/bin/npm'
+		"$NODE_DIR/bin/npm" config set fund false
 	fi
 else
 	echo "Node.js is already installed. Skip installing it."
@@ -132,9 +132,9 @@ if [[ ! -f "$PERL_DIR/bin/perl" ]]; then
 	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
 		echo "export PATH=\"$PERL_DIR/bin:\$PATH\"" >>"$HOME/.bashrc"
 		export PATH="$PERL_DIR/bin:$PATH"
-    alias perl='~/tools/perl/bin/perl'
-    alias cpan='~/tools/perl/bin/cpan'
-    alias cpanm='~/tools/perl/bin/cpanm'
+		alias perl='~/tools/perl/bin/perl'
+		alias cpan='~/tools/perl/bin/cpan'
+		alias cpanm='~/tools/perl/bin/cpanm'
 	fi
 
 else
@@ -162,7 +162,7 @@ if [[ ! -f "$RUBY_DIR/bin/ruby" ]]; then
 		echo "Extracting to $HOME/tools/ruby/tarball directory"
 		tar xvf "$RUBY_SRC_NAME" -C "$RUBY_TAR_DIR" --strip-components 1
 		cd "$RUBY_TAR_DIR"
-    # NOTE: sudo apt install openssl libssl-dev
+		# NOTE: sudo apt install openssl libssl-dev
 		./configure --prefix="$RUBY_DIR" --with-openssl-dir=/usr/lib/ssl
 		make
 		make install
@@ -172,7 +172,7 @@ if [[ ! -f "$RUBY_DIR/bin/ruby" ]]; then
 	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
 		echo "export PATH=\"$RUBY_DIR/bin:\$PATH\"" >>"$HOME/.bashrc"
 		export PATH="$RUBY_DIR/bin:$PATH"
-    alias ruby='~/tools/ruby/bin/ruby'
+		alias ruby='~/tools/ruby/bin/ruby'
 	fi
 
 else
@@ -203,7 +203,7 @@ if [[ ! -f "$GO_DIR/bin/go" ]]; then
 	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
 		echo "export PATH=\"$GO_DIR/bin:\$PATH\"" >>"$HOME/.bashrc"
 		export PATH="$GO_DIR/bin:$PATH"
-    alias go='~/tools/golang/bin/go'
+		alias go='~/tools/golang/bin/go'
 	fi
 else
 	echo "Golang is already installed. Skip installing it."
@@ -250,9 +250,8 @@ fi
 
 # Use rustup instead
 if [[ -z "$(command -v cargo)" ]]; then
-  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 fi
-
 
 #######################################################################
 #                       Install Java, JDK                             #
@@ -277,8 +276,8 @@ if [[ ! -f "$JDK_DIR/bin/java" ]]; then
 	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
 		echo "export PATH=\"$JDK_DIR/bin:\$PATH\"" >>"$HOME/.bashrc"
 		export PATH="$JDK_DIR/bin:$PATH"
-    alias java='~/tools/jdk/bin/java'
-    alias javac='~/tools/jdk/bin/javac'
+		alias java='~/tools/jdk/bin/java'
+		alias javac='~/tools/jdk/bin/javac'
 	fi
 else
 	echo "JDK is already installed. Skip installing it."
@@ -308,7 +307,7 @@ if [[ ! -f "$JULIA_DIR/bin/julia" ]]; then
 	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
 		echo "export PATH=\"$JULIA_DIR/bin:\$PATH\"" >>"$HOME/.bashrc"
 		export PATH="$JULIA_DIR/bin:$PATH"
-    alias julia='~/tools/julia/bin/julia'
+		alias julia='~/tools/julia/bin/julia'
 	fi
 else
 	echo "Julia is already installed. Skip installing it."
@@ -340,7 +339,7 @@ if [[ ! -f "$LUA_DIR/src/lua" ]]; then
 	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
 		echo "export PATH=\"$LUA_DIR/src:\$PATH\"" >>"$HOME/.bashrc"
 		export PATH="$LUA_DIR/src:$PATH"
-    alias lua='~/tools/lua/src/lua'
+		alias lua='~/tools/lua/src/lua'
 	fi
 else
 	echo "Lua is already installed. Skip installing it."
@@ -368,7 +367,7 @@ if [[ ! -f "$LUAJIT_DIR/src/luajit" ]]; then
 	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
 		echo "export PATH=\"$LUAJIT_DIR/src:\$PATH\"" >>"$HOME/.bashrc"
 		export PATH="$LUAJIT_DIR/src:$PATH"
-    alias luajit='~/tools/luajit/src/luajit'
+		alias luajit='~/tools/luajit/src/luajit'
 	fi
 else
 	echo "LuaJIT is already installed. Skip installing it."
@@ -397,7 +396,7 @@ if [[ ! -f "$LUAROCKS_DIR/luarocks" ]]; then
 	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
 		echo "export PATH=\"$LUAROCKS_DIR:\$PATH\"" >>"$HOME/.bashrc"
 		export PATH="$LUAROCKS_DIR:$PATH"
-    alias luarocks='~/tools/luarocks/luarocks'
+		alias luarocks='~/tools/luarocks/luarocks'
 	fi
 else
 	echo "luarocks is already installed. Skip installing it."
@@ -410,43 +409,42 @@ fi
 PHP_DIR=$HOME/tools/php
 PHP_LINK="https://github.com/php/php-src.git"
 if [[ -z "$(command -v php)" ]]; then
-  echo "Install PHP"
+	echo "Install PHP"
 
-  if [[ ! -d "$PHP_DIR" ]]; then
-    echo "Creating php directory under tools directory"
-    mkdir -p "$PHP_DIR"
-    echo "git clone php repo"
-    git clone --depth=1 "$PHP_LINK" "$PHP_DIR"
-    cd "$PHP_DIR"
-    ./buildconf
-    ./configure --prefix="$PHP_DIR" --with-openssl --with-zlib
-    make -j4
-    make install
-  fi
+	if [[ ! -d "$PHP_DIR" ]]; then
+		echo "Creating php directory under tools directory"
+		mkdir -p "$PHP_DIR"
+		echo "git clone php repo"
+		git clone --depth=1 "$PHP_LINK" "$PHP_DIR"
+		cd "$PHP_DIR"
+		./buildconf
+		./configure --prefix="$PHP_DIR" --with-openssl --with-zlib
+		make -j4
+		make install
+	fi
 
-  if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
-    echo "export PATH=\"$PHP_DIR/bin:\$PATH\"" >>"$HOME/.bashrc"
-    export PATH="$PHP_DIR/bin:$PATH"
-    alias php='~/tools/php/bin/php'
-  fi
+	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
+		echo "export PATH=\"$PHP_DIR/bin:\$PATH\"" >>"$HOME/.bashrc"
+		export PATH="$PHP_DIR/bin:$PATH"
+		alias php='~/tools/php/bin/php'
+	fi
 
-  # NOTE: sudo apt install zlib1g zlib1g-dev
-  PHP=$PHP_DIR/bin/php
-  EXPECTED_CHECKSUM="$($PHP -r 'copy("https://composer.github.io/installer.sig", "php://stdout");')"
-  php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-  ACTUAL_CHECKSUM="$($PHP -r "echo hash_file('sha384', 'composer-setup.php');")"
+	# NOTE: sudo apt install zlib1g zlib1g-dev
+	PHP=$PHP_DIR/bin/php
+	EXPECTED_CHECKSUM="$($PHP -r 'copy("https://composer.github.io/installer.sig", "php://stdout");')"
+	php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+	ACTUAL_CHECKSUM="$($PHP -r "echo hash_file('sha384', 'composer-setup.php');")"
 
-  if [ "$EXPECTED_CHECKSUM" != "$ACTUAL_CHECKSUM" ]
-  then
-    >&2 echo 'ERROR: Invalid installer checksum'
-    rm composer-setup.php
-    exit 1
-  fi
+	if [ "$EXPECTED_CHECKSUM" != "$ACTUAL_CHECKSUM" ]; then
+		echo >&2 'ERROR: Invalid installer checksum'
+		rm composer-setup.php
+		exit 1
+	fi
 
-  $PHP composer-setup.php --quiet
-  rm composer-setup.php
-  mv composer.phar "$PHP_DIR/bin/composer"
+	$PHP composer-setup.php --quiet
+	rm composer-setup.php
+	mv composer.phar "$PHP_DIR/bin/composer"
 
 else
-  echo "PHP is already installed. Skip installing it."
+	echo "PHP is already installed. Skip installing it."
 fi

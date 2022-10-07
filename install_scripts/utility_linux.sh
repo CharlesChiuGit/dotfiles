@@ -28,10 +28,10 @@ if [[ -z "$(command -v alacritty)" ]]; then
 	if [[ ! -d "$ALACRITTY_DIR" ]]; then
 		echo "Creating alacritty directory under tools directory"
 		mkdir -p "$ALACRITTY_DIR"
-    echo "git clone to $HOME/tools/alacritty directory"
+		echo "git clone to $HOME/tools/alacritty directory"
 		git clone --depth=1 "$ALACRITTY_LINK" "$ALACRITTY_DIR"
 		cd "$ALACRITTY_DIR"
-    cargo build --release
+		cargo build --release
 	fi
 
 	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
@@ -39,21 +39,21 @@ if [[ -z "$(command -v alacritty)" ]]; then
 		export PATH="$ALACRITTY_DIR/target/release:$PATH"
 	fi
 
-  if [[ -f ~/dotfiles/Bash/.local/share/bash-completion/alacritty.bash ]]; then
-    rm ~/dotfiles/Bash/.local/share/bash-completion/alacritty.bash
-    cd "$ALACRITTY_DIR"
-    cp extra/completions/alacritty.bash ~/dotfiles/Bash/.local/share/bash-completion
-  else
-    cp extra/completions/alacritty.bash ~/dotfiles/Bash/.local/share/bash-completion
-  fi
+	if [[ -f ~/dotfiles/Bash/.local/share/bash-completion/alacritty.bash ]]; then
+		rm ~/dotfiles/Bash/.local/share/bash-completion/alacritty.bash
+		cd "$ALACRITTY_DIR"
+		cp extra/completions/alacritty.bash ~/dotfiles/Bash/.local/share/bash-completion
+	else
+		cp extra/completions/alacritty.bash ~/dotfiles/Bash/.local/share/bash-completion
+	fi
 
-  if [[ -f ~/dotfiles/Bash/.local/share/zsh-completion/alacritty.bash ]]; then
-    rm ~/dotfiles/Bash/.local/share/zsh-completion/_alacritty
-    cd "$ALACRITTY_DIR"
-    cp extra/completions/_alacritty ~/dotfiles/Bash/.local/share/zsh-completion
-  else
-    cp extra/completions/_alacritty ~/dotfiles/Bash/.local/share/zsh-completion
-  fi
+	if [[ -f ~/dotfiles/Bash/.local/share/zsh-completion/alacritty.bash ]]; then
+		rm ~/dotfiles/Bash/.local/share/zsh-completion/_alacritty
+		cd "$ALACRITTY_DIR"
+		cp extra/completions/_alacritty ~/dotfiles/Bash/.local/share/zsh-completion
+	else
+		cp extra/completions/_alacritty ~/dotfiles/Bash/.local/share/zsh-completion
+	fi
 
 else
 	echo "Alacritty is already installed. Skip installing it."
@@ -93,7 +93,7 @@ fi
 #######################################################################
 BTOP_DIR=$HOME/tools/btop
 BTOP_SRC_NAME=$HOME/packages/btop.tbz
-BTOP_LINK="https://github.com/aristocratos/btop/releases/download/v1.2.9/btop-x86_64-linux-musl.tbz"
+BTOP_LINK="https://github.com/aristocratos/btop/releases/download/v1.2.11/btop-x86_64-linux-musl.tbz"
 if [[ -z "$(command -v btop)" ]]; then
 	echo "Install btop"
 	if [[ ! -f $BTOP_SRC_NAME ]]; then
@@ -143,7 +143,7 @@ if [[ -z "$(command -v bat)" ]] && [[ ! -f "$BATCAT_DIR/bat" ]]; then
 	fi
 
 	# set up manpath
-  cp "$HOME/tools/ripgrep/doc/rg.1" "$HOME/.local/share/man/man1"
+	cp "$HOME/tools/ripgrep/doc/rg.1" "$HOME/.local/share/man/man1"
 
 else
 	echo "batcat is already installed. Skip installing it."
@@ -161,8 +161,8 @@ if [[ -z "$(command -v cpufetch)" ]]; then
 		echo "Creating cpufetch directory under tools directory"
 		mkdir -p "$CPUFETCH_DIR"
 		echo "Download to $HOME/tools/cpufetch directory"
-    wget "$CPUFETCH_LINK" -O "$CPUFETCH_DIR/cpufetch"
-    chmod +x "$CPUFETCH_DIR/cpufetch"
+		wget "$CPUFETCH_LINK" -O "$CPUFETCH_DIR/cpufetch"
+		chmod +x "$CPUFETCH_DIR/cpufetch"
 	fi
 
 	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
@@ -199,7 +199,7 @@ if [[ -z "$(command -v fd)" ]] && [[ ! -f "$FDFIND_DIR/fd" ]]; then
 		export PATH="$FDFIND_DIR:$PATH"
 	fi
 
-  # set up manpath
+	# set up manpath
 	cp "$HOME/tools/fdfind/fd.1" "$HOME/.local/share/man/man1"
 
 else
@@ -218,11 +218,11 @@ if [[ -z "$(command -v fzf)" ]]; then
 		echo "Creating fzf directory under tools directory"
 		mkdir -p "$FZF_DIR"
 		echo "git clone to $HOME/tools/fzf directory"
-    cd "$HOME/tools"
+		cd "$HOME/tools"
 		git clone "$FZF_LINK"
 		cd "$FZF_DIR"
-    make
-    make install
+		make
+		make install
 	fi
 
 	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
@@ -230,7 +230,7 @@ if [[ -z "$(command -v fzf)" ]]; then
 		export PATH="$FZF_DIR/bin:$PATH"
 	fi
 
-  # set up manpath
+	# set up manpath
 	cp "$HOME/tools/fzf/man/man1/fzf.1" "$HOME/.local/share/man/man1"
 
 else
@@ -263,7 +263,7 @@ if [[ -z "$(command -v fzy)" ]] && [[ ! -f "$FZY_DIR/fzy" ]]; then
 		export PATH="$FZY_DIR:$PATH"
 	fi
 
-  # set up manpath
+	# set up manpath
 	cp "$HOME/tools/fzy/fzy.1" "$HOME/.local/share/man/man1"
 
 else
@@ -382,7 +382,7 @@ if [[ -z "$(command -v lsd)" ]] && [[ ! -f "$LSD_DIR/lsd" ]]; then
 		export PATH="$LSD_DIR:$PATH"
 	fi
 
-  # set up manpath
+	# set up manpath
 	cp "$HOME/tools/lsd/lsd.1" "$HOME/.local/share/man/man1"
 
 else
@@ -514,7 +514,7 @@ if [[ -z "$(command -v zoxide)" ]] && [[ ! -f "$ZOXIDE_DIR/zoxide" ]]; then
 	fi
 
 	# set up manpath
-  for f in $HOME/tools/zoxide/man/man1/*; do cp $f "$HOME/.local/share/man/man1"; done
+	for f in $HOME/tools/zoxide/man/man1/*; do cp $f "$HOME/.local/share/man/man1"; done
 
 else
 	echo "zoxide is already installed. Skip installing it."
@@ -608,15 +608,14 @@ if [[ ! -f "$TMUX_DIR/tmux" ]]; then
 	fi
 
 	# set up manpath
-  cp "$HOME/tools/tmux/share/man/man1/tmux.1" "$HOME/.local/share/man/man1"
+	cp "$HOME/tools/tmux/share/man/man1/tmux.1" "$HOME/.local/share/man/man1"
 
-
-  echo "Installing tpm"
-  if [[ ! -d ~/.tmux/plugins/tpm ]]; then
-    git clone --depth=1 https://github.com/tmux-plugins/tpm \
-      ~/.tmux/plugins/tpm
-    # NOTE: `prefix` + `I` to install plugins via tpm.
-  fi
+	echo "Installing tpm"
+	if [[ ! -d ~/.tmux/plugins/tpm ]]; then
+		git clone --depth=1 https://github.com/tmux-plugins/tpm \
+			~/.tmux/plugins/tpm
+		# NOTE: `prefix` + `I` to install plugins via tpm.
+	fi
 
 else
 	echo "tmux is already installed. Skip installing it."
@@ -666,7 +665,7 @@ fi
 #######################################################################
 XPLR_DIR=$HOME/tools/xplr
 XPLR_SRC_NAME=$HOME/packages/xplr.tar.gz
-XPLR_LINK="https://github.com/sayanarijit/xplr/releases/download/v0.19.3/xplr-linux.tar.gz"
+XPLR_LINK="https://github.com/sayanarijit/xplr/releases/download/v0.19.4/xplr-linux-musl.tar.gz"
 if [[ -z "$(command -v xplr)" ]]; then
 	echo "Install xplr"
 	if [[ ! -f $XPLR_SRC_NAME ]]; then
@@ -683,9 +682,9 @@ if [[ -z "$(command -v xplr)" ]]; then
 	fi
 
 	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
-    echo "export PATH=\"$XPLR_DIR:\$PATH\"" >>"$HOME/.bashrc"
-    export PATH="$XPLR_DIR:$PATH"
-    # for old habit
+		echo "export PATH=\"$XPLR_DIR:\$PATH\"" >>"$HOME/.bashrc"
+		export PATH="$XPLR_DIR:$PATH"
+		# for old habit
 	fi
 
 else
@@ -714,8 +713,8 @@ if [[ -z "$(command -v dua)" ]]; then
 	fi
 
 	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
-    echo "export PATH=\"$DUA_DIR:\$PATH\"" >>"$HOME/.bashrc"
-    export PATH="$DUA_DIR:$PATH"
+		echo "export PATH=\"$DUA_DIR:\$PATH\"" >>"$HOME/.bashrc"
+		export PATH="$DUA_DIR:$PATH"
 	fi
 
 else
@@ -732,14 +731,14 @@ if [[ -z "$(command -v viu)" ]]; then
 	if [[ ! -d "$VIU_DIR" ]]; then
 		echo "Creating viu directory under tools directory"
 		mkdir -p "$VIU_DIR"
-    cd "$VIU_DIR"
-    wget "$VIU_LINK"
-    chmod +x "$VIU_DIR/viu"
+		cd "$VIU_DIR"
+		wget "$VIU_LINK"
+		chmod +x "$VIU_DIR/viu"
 	fi
 
 	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
-    echo "export PATH=\"$VIU_DIR:\$PATH\"" >>"$HOME/.bashrc"
-    export PATH="$VIU_DIR:$PATH"
+		echo "export PATH=\"$VIU_DIR:\$PATH\"" >>"$HOME/.bashrc"
+		export PATH="$VIU_DIR:$PATH"
 	fi
 
 else
@@ -757,7 +756,7 @@ if [[ -z "$(command -v magick)" ]]; then
 	if [[ ! -d "$MAGICK_DIR" ]]; then
 		echo "Creating magick directory under tools directory"
 		mkdir -p "$MAGICK_DIR"
-    echo "git clone to $HOME/tools/magick directory"
+		echo "git clone to $HOME/tools/magick directory"
 		git clone --depth=1 "$MAGICK_LINK" "$MAGICK_DIR"
 		cd "$MAGICK_DIR"
 		./configure --prefix="$MAGICK_DIR" --with-modules
@@ -768,15 +767,15 @@ if [[ -z "$(command -v magick)" ]]; then
 	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
 		echo "export PATH=\"$MAGICK_DIR/bin:\$PATH\"" >>"$HOME/.bashrc"
 		echo "export MAGICK_HOME=$MAGICK_DIR" >>"$HOME/.bashrc"
-    export MAGICK_HOME="$MAGICK_DIR"
+		export MAGICK_HOME="$MAGICK_DIR"
 		export PATH="$MAGICK_DIR/bin:$PATH"
-    echo "export LD_LIBRARY_PATH=\"$\{LD_LIBRARY_PATH:+\$LD_LIBRARY_PATH:}\$MAGICK_HOME/lib" >>"$HOME/.bashrc"
-    LD_LIBRARY_PATH="${LD_LIBRARY_PATH:+$LD_LIBRARY_PATH:}$MAGICK_HOME/lib"
-    export LD_LIBRARY_PATH
+		echo "export LD_LIBRARY_PATH=\"$\{LD_LIBRARY_PATH:+\$LD_LIBRARY_PATH:}\$MAGICK_HOME/lib" >>"$HOME/.bashrc"
+		LD_LIBRARY_PATH="${LD_LIBRARY_PATH:+$LD_LIBRARY_PATH:}$MAGICK_HOME/lib"
+		export LD_LIBRARY_PATH
 	fi
 
-  # set up manpath
-  for f in $HOME/tools/magick/share/man/man1/*; do cp $f "$HOME/.local/share/man/man1"; done
+	# set up manpath
+	for f in $HOME/tools/magick/share/man/man1/*; do cp $f "$HOME/.local/share/man/man1"; done
 
 else
 	echo "ImageMagick is already installed. Skip installing it."
@@ -794,11 +793,11 @@ if [[ -z "$(command -v chafa)" ]]; then
 	if [[ ! -d "$CHAFA_DIR" ]]; then
 		echo "Creating chafa directory under tools directory"
 		mkdir -p "$CHAFA_DIR"
-    echo "git clone to $HOME/tools/chafa directory"
+		echo "git clone to $HOME/tools/chafa directory"
 		git clone --depth=1 "$CHAFA_LINK" "$CHAFA_DIR"
 		cd "$CHAFA_DIR"
 		# ./configure --prefix="$CHAFA_DIR"
-    ./autogen.sh --prefix="$CHAFA_DIR"
+		./autogen.sh --prefix="$CHAFA_DIR"
 		make
 		make install
 	fi
@@ -847,13 +846,13 @@ if [[ -z "$(command -v ctpv)" ]]; then
 	if [[ ! -d "$CTPV_DIR" ]]; then
 		echo "Creating ctpv directory under tools directory"
 		mkdir -p "$CTPV_DIR"
-    echo "git clone to $HOME/tools/ctpv directory"
+		echo "git clone to $HOME/tools/ctpv directory"
 		git clone --depth=1 "$CTPV_LINK" "$CTPV_DIR"
-    cd "$CTPV_DIR"
-    sudo make install # NOTE: need sudo for this
+		cd "$CTPV_DIR"
+		sudo make install # NOTE: need sudo for this
 	fi
 
-  # set up manpath
+	# set up manpath
 	cp "$HOME/tools/ctpv/doc/ctpv.1" "$HOME/.local/share/man/man1"
 
 else
@@ -881,8 +880,8 @@ if [[ -z "$(command -v lf)" ]]; then
 	fi
 
 	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
-    echo "export PATH=\"$LF_DIR:\$PATH\"" >>"$HOME/.bashrc"
-    export PATH="$LF_DIR:$PATH"
+		echo "export PATH=\"$LF_DIR:\$PATH\"" >>"$HOME/.bashrc"
+		export PATH="$LF_DIR:$PATH"
 	fi
 
 else
@@ -905,16 +904,16 @@ if [[ -z "$(command -v broot)" ]]; then
 	if [[ ! -d "$BROOT_DIR" ]]; then
 		echo "Creating broot directory under tools directory"
 		mkdir -p "$BROOT_DIR"
-    unzip "$BROOT_SRC_NAME" -d "$BROOT_DIR"
-    chmod +x "$BROOT_DIR/x86_64-linux/broot"
+		unzip "$BROOT_SRC_NAME" -d "$BROOT_DIR"
+		chmod +x "$BROOT_DIR/x86_64-linux/broot"
 	fi
 
 	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
-    echo "export PATH=\"$BROOT_DIR/x86_64-linux:\$PATH\"" >>"$HOME/.bashrc"
-    export PATH="$BROOT_DIR/x86_64-linux:$PATH"
+		echo "export PATH=\"$BROOT_DIR/x86_64-linux:\$PATH\"" >>"$HOME/.bashrc"
+		export PATH="$BROOT_DIR/x86_64-linux:$PATH"
 	fi
 
-  # set up manpath
+	# set up manpath
 	cp "$HOME/tools/broot/broot.1" "$HOME/.local/share/man/man1"
 
 else
@@ -934,13 +933,12 @@ if [[ -z "$(command -v lnav)" ]]; then
 		wget "$LNAV_LINK" -O "$LNAV_SRC_NAME"
 	fi
 
-
 	if [[ ! -d "$LNAV_DIR" ]]; then
 		echo "Creating lnav directory under tools directory"
 		mkdir -p "$LNAV_DIR"
-    unzip "$LNAV_SRC_NAME" -d "$LNAV_DIR"
-    for f in $LNAV_DIR/lnav-0.11.0/*; do cp $f "$LNAV_DIR"; done
-    rm -r "$LNAV_DIR/lnav-0.11.0"
+		unzip "$LNAV_SRC_NAME" -d "$LNAV_DIR"
+		for f in $LNAV_DIR/lnav-0.11.0/*; do cp $f "$LNAV_DIR"; done
+		rm -r "$LNAV_DIR/lnav-0.11.0"
 	fi
 
 	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
@@ -963,11 +961,11 @@ if [[ -z "$(command -v termpix)" ]]; then
 	if [[ ! -d "$TERMPIX_DIR" ]]; then
 		echo "Creating termpix directory under tools directory"
 		mkdir -p "$TERMPIX_DIR"
-    echo "git clone to $HOME/tools/termpix directory"
+		echo "git clone to $HOME/tools/termpix directory"
 		git clone --depth=1 "$TERMPIX_LINK" "$TERMPIX_DIR"
-    cd "$TERMPIX_DIR"
-    cargo build
-    cargo install --path .
+		cd "$TERMPIX_DIR"
+		cargo build
+		cargo install --path .
 	fi
 
 else
@@ -985,15 +983,15 @@ if [[ -z "$(command -v pistol)" ]]; then
 	if [[ ! -d "$PISTOL_DIR" ]]; then
 		echo "Creating pistol directory under tools directory"
 		mkdir -p "$PISTOL_DIR"
-    echo "git clone to $HOME/tools/pistol directory"
+		echo "git clone to $HOME/tools/pistol directory"
 		git clone --depth=1 "$PISTOL_LINK" "$PISTOL_DIR"
-    cd "$PISTOL_DIR"
-    make
+		cd "$PISTOL_DIR"
+		make
 	fi
 
 	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
-    echo "export PATH=\"$PISTOL_DIR:\$PATH\"" >>"$HOME/.bashrc"
-    export PATH="$PISTOL_DIR:$PATH"
+		echo "export PATH=\"$PISTOL_DIR:\$PATH\"" >>"$HOME/.bashrc"
+		export PATH="$PISTOL_DIR:$PATH"
 	fi
 
 else
@@ -1011,20 +1009,20 @@ if [[ -z "$(command -v ugrep)" ]]; then
 	if [[ ! -d "$UGREP_DIR" ]]; then
 		echo "Creating ugrep directory under tools directory"
 		mkdir -p "$UGREP_DIR"
-    echo "git clone to $HOME/tools/ugrep directory"
+		echo "git clone to $HOME/tools/ugrep directory"
 		git clone --depth=1 "$UGREP_LINK" "$UGREP_DIR"
-    cd "$UGREP_DIR"
-    # INFO: build options: https://github.com/Genivia/ugrep#other-platforms-step-3-build
-    ./build.sh --enable-hidden --enable-pretty
+		cd "$UGREP_DIR"
+		# INFO: build options: https://github.com/Genivia/ugrep#other-platforms-step-3-build
+		./build.sh --enable-hidden --enable-pretty
 
 	fi
 
 	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
-    echo "export PATH=\"$UGREP_DIR/bin:\$PATH\"" >>"$HOME/.bashrc"
-    export PATH="$UGREP_DIR/bin:$PATH"
+		echo "export PATH=\"$UGREP_DIR/bin:\$PATH\"" >>"$HOME/.bashrc"
+		export PATH="$UGREP_DIR/bin:$PATH"
 	fi
 
-  # set up manpath
+	# set up manpath
 	cp "$HOME/tools/ugrep/man/ugrep.1" "$HOME/.local/share/man/man1"
 
 else

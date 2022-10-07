@@ -171,10 +171,10 @@ COMPOSER_DIR=$PHP_DIR/bin/composer
 #                 win32yamk for Neovim in WSL                         #
 #######################################################################
 if [[ "$USE_WSL" = true ]]; then
-  curl -sLo/tmp/win32yank.zip https://github.com/equalsraf/win32yank/releases/download/v0.0.4/win32yank-x64.zip
-  unzip -p /tmp/win32yank.zip win32yank.exe > /tmp/win32yank.exe
-  chmod +x /tmp/win32yank.exe
-  sudo mv /tmp/win32yank.exe /usr/local/bin/
+	curl -sLo/tmp/win32yank.zip https://github.com/equalsraf/win32yank/releases/download/v0.0.4/win32yank-x64.zip
+	unzip -p /tmp/win32yank.zip win32yank.exe >/tmp/win32yank.exe
+	chmod +x /tmp/win32yank.exe
+	sudo mv /tmp/win32yank.exe /usr/local/bin/
 fi
 # NOTE: don't forget to `set clipboard=unnamedplus`
 
@@ -205,7 +205,7 @@ if [[ ! -f "$NVIM_DIR/bin/nvim" ]]; then
 		export PATH="$NVIM_DIR/bin:$PATH"
 	fi
 
-  # set up manpath
+	# set up manpath
 	cp "$HOME/tools/nvim/share/man/man1/nvim.1" "$HOME/.local/share/man/man1"
 
 else
