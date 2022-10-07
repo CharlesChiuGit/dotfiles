@@ -3,14 +3,14 @@ https://github.com/Byron/dua-cli/releases/download/v2.18.0/dua-v2.18.0-x86_64-un
 https://github.com/Dr-Noob/cpufetch/releases/download/v1.02/cpufetch_x86-64_linux
 https://github.com/Peltoche/lsd/releases/download/0.23.1/lsd-0.23.1-x86_64-unknown-linux-musl.tar.gz
 https://github.com/ajeetdsouza/zoxide/releases/download/v0.8.3/zoxide-0.8.3-x86_64-unknown-linux-musl.tar.gz
-https://github.com/aristocratos/btop/releases/download/v1.2.11/btop-x86_64-linux-musl.tbz
+https://github.com/aristocratos/btop/releases/download/v1.2.12/btop-x86_64-linux-musl.tbz
 https://github.com/charmbracelet/glow/releases/download/v1.4.1/glow_1.4.1_linux_x86_64.tar.gz
 https://github.com/dandavison/delta/releases/download/0.14.0/delta-0.14.0-x86_64-unknown-linux-musl.tar.gz
 https://github.com/jesseduffield/lazygit/releases/download/v0.35/lazygit_0.35_Linux_x86_64.tar.gz
 https://github.com/sharkdp/bat/releases/download/v0.22.1/bat-v0.22.1-x86_64-unknown-linux-musl.tar.gz
 https://github.com/sharkdp/fd/releases/download/v8.4.0/fd-v8.4.0-x86_64-unknown-linux-musl.tar.gz
 https://github.com/starship/starship/releases/download/v1.10.3/starship-x86_64-unknown-linux-musl.tar.gz
-https://github.com/Canop/broot/releases/download/v1.15.0/broot_1.15.0.zip
+https://github.com/Canop/broot/releases/download/v1.16.0/broot_1.16.0.zip
 https://github.com/atanunq/viu/releases/download/v1.4.0/viu
 https://github.com/gokcehan/lf/releases/download/r27/lf-linux-amd64.tar.gz
 https://github.com/jhawthorn/fzy/releases/download/1.0/fzy-1.0.tar.gz

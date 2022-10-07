@@ -93,7 +93,7 @@ fi
 #######################################################################
 BTOP_DIR=$HOME/tools/btop
 BTOP_SRC_NAME=$HOME/packages/btop.tbz
-BTOP_LINK="https://github.com/aristocratos/btop/releases/download/v1.2.11/btop-x86_64-linux-musl.tbz"
+BTOP_LINK="https://github.com/aristocratos/btop/releases/download/v1.2.12/btop-x86_64-linux-musl.tbz"
 if [[ -z "$(command -v btop)" ]]; then
 	echo "Install btop"
 	if [[ ! -f $BTOP_SRC_NAME ]]; then
@@ -893,7 +893,7 @@ fi
 #######################################################################
 BROOT_DIR=$HOME/tools/broot
 BROOT_SRC_NAME=$HOME/packages/broot.zip
-BROOT_LINK="https://github.com/Canop/broot/releases/download/v1.15.0/broot_1.15.0.zip"
+BROOT_LINK="https://github.com/Canop/broot/releases/download/v1.16.0/broot_1.16.0.zip"
 if [[ -z "$(command -v broot)" ]]; then
 	echo "Install broot"
 	if [[ ! -f $BROOT_SRC_NAME ]]; then
