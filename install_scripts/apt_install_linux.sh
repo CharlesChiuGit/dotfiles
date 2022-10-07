@@ -37,3 +37,6 @@ sudo nala install cmake pkg-config libfreetype6-dev libfontconfig1-dev libxcb-xf
 
 # ugrep dependencies
 sudo nala install libpcre2-dev libz-dev libbz2-dev liblzma-dev liblz4-dev libzstd-dev -y
+
+# lldb: c/cpp/rust debugger
+sudo nala install lldb -y
