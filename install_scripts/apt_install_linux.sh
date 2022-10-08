@@ -12,7 +12,7 @@ sudo nala install ssh vim htop git curl clang latexmk biber tree ninja-build \
 	libxml2-dev libevent-dev libbz2-dev libcurl4-openssl-dev libpng-dev libssl-dev \
 	libjpeg-dev libonig-dev libtidy-dev libxslt-dev libzip-dev libstdc++6 \
 	autoconf libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev \
-	libffi-dev libgdbm6 libgdbm-dev libdb-dev uuid-dev libsqlite3-dev \
+	libffi-dev libgdbm6 libgdbm-dev libdb-dev uuid-dev sqlite3 libsqlite3-dev \
 	libfreetype6-dev librsvg2-dev libtiff5-dev libwebp-dev libtool gtk-doc-tools \
 	libimage-exiftool-perl atool libmagic-dev \
 	libx11-dev libxmu-headers libxt-dev libxmu-dev -y
