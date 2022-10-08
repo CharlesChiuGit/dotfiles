@@ -159,6 +159,9 @@ LUA_DIR=$HOME/tools/lua
 LUAJIT_DIR=$HOME/tools/luajit
 LUAROCKS_DIR=$HOME/tools/luarocks/luarocks
 
+"$LUAROCKS_DIR" install sqlite
+"$LUAROCKS_DIR" install luv
+
 #######################################################################
 #                 PHP/composer install packages                       #
 #######################################################################
