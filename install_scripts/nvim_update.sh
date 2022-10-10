@@ -11,9 +11,9 @@ if [[ ! -d "$HOME/tools/" ]]; then
 	mkdir -p "$HOME/tools/"
 fi
 
-#######################################################################
-#                            Nvim update                              #
-#######################################################################
+######################################################################
+#                           Update Neovim                            #
+######################################################################
 NVIM_DIR=$HOME/tools/nvim
 NVIM_SRC_NAME=$HOME/packages/nvim-linux64.tar.gz
 NVIM_LINK="https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz"

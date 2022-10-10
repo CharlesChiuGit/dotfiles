@@ -20,9 +20,9 @@ if [[ ! -d "$HOME/tools/" ]]; then
 	mkdir -p "$HOME/tools/"
 fi
 
-#######################################################################
-#                    Anaconda or miniconda install                    #
-#######################################################################
+######################################################################
+#               Install Anaconda/Miniconda(Python env)               #
+######################################################################
 
 # Whether python3 has been installed on the system
 PYTHON_INSTALLED=true
@@ -91,9 +91,9 @@ else
 	done
 fi
 
-#######################################################################
-#                      Node install packages                          #
-#######################################################################
+######################################################################
+#                       Install Node packages                        #
+######################################################################
 NODE_DIR=$HOME/tools/nodejs
 
 "$NODE_DIR/bin/npm" install npm@8.19.2 --location=global
@@ -107,72 +107,72 @@ NODE_DIR=$HOME/tools/nodejs
 # Install tree-sitter-cli
 # "$NODE_DIR/bin/npm" install tree-sitter-cli --location=global
 
-#######################################################################
-#                  Perl/cpanm install packages                        #
-#######################################################################
+######################################################################
+#                    Install Perl/cpanm packages                     #
+######################################################################
 PERL_DIR=$HOME/tools/perl
 CPANM_DIR=$PERL_DIR/bin/cpanm
 
 "$CPANM_DIR" -n Neovim::Ext
 "$CPANM_DIR" -n App::cpanminus
 
-#######################################################################
-#                   Ruby/gem install packages                         #
-#######################################################################
+######################################################################
+#                     Install Ruby/gem packages                      #
+######################################################################
 RUBY_DIR=$HOME/tools/ruby
 
 "$RUBY_DIR/bin/gem" install neovim
 
-#######################################################################
-#                      Go install packages                            #
-#######################################################################
-GVM_DIR=$HOME/.gvm
+######################################################################
+#                        Install Go packages                         #
+######################################################################
+# GVM_DIR=$HOME/.gvm
 
 # "$GVM_DIR/gos/go1.19.1/bin/go" install
 
-#######################################################################
-#                   Rust/cargo install packages                       #
-#######################################################################
-RUSTUP_HOME=$HOME/tools/rustup
-CARGO_HOME=$HOME/tools/cargo
+######################################################################
+#                    Install Rust/cargo packages                     #
+######################################################################
+# RUSTUP_HOME=$HOME/tools/rustup
+# CARGO_HOME=$HOME/tools/cargo
 
 # "$CARGO_HOME/bin/cargo" install
 
-#######################################################################
-#                      Java install packages                          #
-#######################################################################
-JDK_DIR=$HOME/tools/jdk
+######################################################################
+#                       Install Java packages                        #
+######################################################################
+# JDK_DIR=$HOME/tools/jdk
 
 # "$JDK_DIR/bin/java" install
 
-#######################################################################
-#                     Julia install packages                          #
-#######################################################################
-JULIA_DIR=$HOME/tools/julia
+######################################################################
+#                       Install Julia packages                       #
+######################################################################
+# JULIA_DIR=$HOME/tools/julia
 
 # "$JULIA_DIR/bin/julia" install
 
-#######################################################################
-#             Lua, LuaJIT/luarocks install packages                   #
-#######################################################################
-LUA_DIR=$HOME/tools/lua
-LUAJIT_DIR=$HOME/tools/luajit
+######################################################################
+#                Install Lua/LuaJIT/Luarocks packages                #
+######################################################################
+# LUA_DIR=$HOME/tools/lua
+# LUAJIT_DIR=$HOME/tools/luajit
 LUAROCKS_DIR=$HOME/tools/luarocks/luarocks
 
 "$LUAROCKS_DIR" install sqlite
 "$LUAROCKS_DIR" install luv
 
-#######################################################################
-#                 PHP/composer install packages                       #
-#######################################################################
-PHP_DIR=$HOME/tools/php
-COMPOSER_DIR=$PHP_DIR/bin/composer
+######################################################################
+#                   Install PHP/composer packages                    #
+######################################################################
+# PHP_DIR=$HOME/tools/php
+# COMPOSER_DIR=$PHP_DIR/bin/composer
 
 # "$COMPOSER_DIR" install
 
-#######################################################################
-#                 win32yamk for Neovim in WSL                         #
-#######################################################################
+######################################################################
+#                    win32yank for Neovim in WSL                     #
+######################################################################
 if [[ "$USE_WSL" = true ]]; then
 	curl -sLo/tmp/win32yank.zip https://github.com/equalsraf/win32yank/releases/download/v0.0.4/win32yank-x64.zip
 	unzip -p /tmp/win32yank.zip win32yank.exe >/tmp/win32yank.exe
@@ -181,9 +181,9 @@ if [[ "$USE_WSL" = true ]]; then
 fi
 # NOTE: don't forget to `set clipboard=unnamedplus`
 
-#######################################################################
-#                           Nvim install                              #
-#######################################################################
+######################################################################
+#                           Install Neovim                           #
+######################################################################
 NVIM_DIR=$HOME/tools/nvim
 NVIM_SRC_NAME=$HOME/packages/nvim-linux64.tar.gz
 NVIM_CONFIG_DIR=$HOME/.config/nvim

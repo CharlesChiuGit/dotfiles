@@ -17,9 +17,9 @@ if [[ ! -d "$HOME/tools/" ]]; then
 	mkdir -p "$HOME/tools/"
 fi
 
-#######################################################################
-#                          Alacritty part                             #
-#######################################################################
+######################################################################
+#                           Alacritty Part                           #
+######################################################################
 ALACRITTY_DIR=$HOME/tools/alacritty
 ALACRITTY_LINK="https://github.com/alacritty/alacritty.git"
 if [[ -z "$(command -v alacritty)" ]]; then
@@ -59,9 +59,9 @@ else
 	echo "Alacritty is already installed. Skip installing it."
 fi
 
-#######################################################################
-#                           starship part                             #
-#######################################################################
+######################################################################
+#                           Starship Part                            #
+######################################################################
 STARSHIP_DIR=$HOME/tools/starship
 STARSHIP_SRC_NAME=$HOME/packages/starship.tar.gz
 STARSHIP_LINK="https://github.com/starship/starship/releases/download/v1.10.3/starship-x86_64-unknown-linux-musl.tar.gz"
@@ -88,9 +88,9 @@ else
 	echo "Starship is already installed. Skip installing it."
 fi
 
-#######################################################################
-#                              btop part                              #
-#######################################################################
+######################################################################
+#                            Btop++ Part                             #
+######################################################################
 BTOP_DIR=$HOME/tools/btop
 BTOP_SRC_NAME=$HOME/packages/btop.tbz
 BTOP_LINK="https://github.com/aristocratos/btop/releases/download/v1.2.12/btop-x86_64-linux-musl.tbz"
@@ -117,9 +117,9 @@ else
 	echo "btop is already installed. Skip installing it."
 fi
 
-#######################################################################
-#                            batcat part                             #
-#######################################################################
+######################################################################
+#                            Batcat Part                             #
+######################################################################
 BATCAT_DIR=$HOME/tools/batcat
 BATCAT_SRC_NAME=$HOME/packages/batcat.tar.gz
 BATCAT_LINK="https://github.com/sharkdp/bat/releases/download/v0.22.1/bat-v0.22.1-x86_64-unknown-linux-musl.tar.gz"
@@ -149,9 +149,9 @@ else
 	echo "batcat is already installed. Skip installing it."
 fi
 
-#######################################################################
-#                              cpufetch part                              #
-#######################################################################
+######################################################################
+#                           Cpufetch Part                            #
+######################################################################
 CPUFETCH_DIR=$HOME/tools/cpufetch
 CPUFETCH_LINK="https://github.com/Dr-Noob/cpufetch/releases/download/v1.02/cpufetch_x86-64_linux"
 if [[ -z "$(command -v cpufetch)" ]]; then
@@ -174,9 +174,9 @@ else
 	echo "cpufetch is already installed. Skip installing it."
 fi
 
-#######################################################################
-#                            fdfind part                              #
-#######################################################################
+######################################################################
+#                            Fdfind Part                             #
+######################################################################
 FDFIND_DIR=$HOME/tools/fdfind
 FDFIND_SRC_NAME=$HOME/packages/fdfind.tar.gz
 FDFIND_LINK="https://github.com/sharkdp/fd/releases/download/v8.4.0/fd-v8.4.0-x86_64-unknown-linux-musl.tar.gz"
@@ -206,9 +206,9 @@ else
 	echo "fdfind is already installed. Skip installing it."
 fi
 
-#######################################################################
-#                            fzf part                                 #
-#######################################################################
+######################################################################
+#                              Fzd Part                              #
+######################################################################
 FZF_DIR=$HOME/tools/fzf
 FZF_LINK="https://github.com/junegunn/fzf.git"
 if [[ -z "$(command -v fzf)" ]]; then
@@ -237,9 +237,9 @@ else
 	echo "fzf is already installed. Skip installing it."
 fi
 
-#######################################################################
-#                            fzy part                                 #
-#######################################################################
+######################################################################
+#                              Fzy Part                              #
+######################################################################
 FZY_DIR=$HOME/tools/fzy
 FZY_SRC_NAME=$HOME/packages/fzy.tar.gz
 FZY_LINK="https://github.com/jhawthorn/fzy/releases/download/1.0/fzy-1.0.tar.gz"
@@ -270,9 +270,9 @@ else
 	echo "fzy is already installed. Skip installing it."
 fi
 
-#######################################################################
-#                      git-delta part                                 #
-#######################################################################
+######################################################################
+#                           Git-delta Part                           #
+######################################################################
 GITDELTA_DIR=$HOME/tools/git-delta
 GITDELTA_SRC_NAME=$HOME/packages/git-delta.tar.gz
 GITDELTA_LINK="https://github.com/dandavison/delta/releases/download/0.14.0/delta-0.14.0-x86_64-unknown-linux-musl.tar.gz"
@@ -299,9 +299,9 @@ else
 	echo "git-delta is already installed. Skip installing it."
 fi
 
-#######################################################################
-#                           glow part                                 #
-#######################################################################
+######################################################################
+#                             Glow Part                              #
+######################################################################
 GLOW_DIR=$HOME/tools/glow
 GLOW_SRC_NAME=$HOME/packages/glow.tar.gz
 GLOW_LINK="https://github.com/charmbracelet/glow/releases/download/v1.4.1/glow_1.4.1_linux_x86_64.tar.gz"
@@ -328,9 +328,9 @@ else
 	echo "glow is already installed. Skip installing it."
 fi
 
-#######################################################################
-#                        lazygit part                                 #
-#######################################################################
+######################################################################
+#                            Lazygit Part                            #
+######################################################################
 LAZYGIT_DIR=$HOME/tools/lazygit
 LAZYGIT_SRC_NAME=$HOME/packages/lazygit.tar.gz
 LAZYGIT_LINK="https://github.com/jesseduffield/lazygit/releases/download/v0.35/lazygit_0.35_Linux_x86_64.tar.gz"
@@ -357,9 +357,9 @@ else
 	echo "lazygit is already installed. Skip installing it."
 fi
 
-#######################################################################
-#                       LSDeluxe part                                 #
-#######################################################################
+######################################################################
+#                           LSDeluxe Part                            #
+######################################################################
 LSD_DIR=$HOME/tools/lsd
 LSD_SRC_NAME=$HOME/packages/lsd.tar.gz
 LSD_LINK="https://github.com/Peltoche/lsd/releases/download/0.23.1/lsd-0.23.1-x86_64-unknown-linux-musl.tar.gz"
@@ -389,9 +389,9 @@ else
 	echo "lsd is already installed. Skip installing it."
 fi
 
-#######################################################################
-#                            Ripgrep part                             #
-#######################################################################
+######################################################################
+#                            Ripgrep Part                            #
+######################################################################
 RIPGREP_DIR=$HOME/tools/ripgrep
 RIPGREP_SRC_NAME=$HOME/packages/ripgrep.tar.gz
 RIPGREP_LINK="https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep-13.0.0-x86_64-unknown-linux-musl.tar.gz"
@@ -428,9 +428,9 @@ else
 	echo "ripgrep is already installed. Skip installing it."
 fi
 
-#######################################################################
-#                       tree-sitter part                              #
-#######################################################################
+######################################################################
+#                          Tree-sitter Part                          #
+######################################################################
 TS_DIR=$HOME/tools/treesitter
 TS_SRC_NAME=$HOME/packages/tree-sitter-linux-x64.gz
 TS_LINK="https://github.com/tree-sitter/tree-sitter/releases/download/v0.20.7/tree-sitter-linux-x64.gz"
@@ -459,9 +459,9 @@ else
 	echo "tree-sitter is already installed. Skip installing it."
 fi
 
-#######################################################################
-#                         trash-cli part                              #
-#######################################################################
+######################################################################
+#                           Trash-cli Part                           #
+######################################################################
 TRASH_DIR=$HOME/tools/trash-cli
 TRASH_LINK="https://github.com/andreafrancia/trash-cli.git"
 if [[ -z "$(command -v trash)" ]]; then
@@ -486,9 +486,9 @@ else
 	echo "tree-sitter is already installed. Skip installing it."
 fi
 
-#######################################################################
-#                         zoxide part                                 #
-#######################################################################
+######################################################################
+#                            Zoxide Part                             #
+######################################################################
 ZOXIDE_DIR=$HOME/tools/zoxide
 ZOXIDE_SRC_NAME=$HOME/packages/zoxide.tar.gz
 ZOXIDE_LINK="https://github.com/ajeetdsouza/zoxide/releases/download/v0.8.3/zoxide-0.8.3-x86_64-unknown-linux-musl.tar.gz"
@@ -520,9 +520,9 @@ else
 	echo "zoxide is already installed. Skip installing it."
 fi
 
-#######################################################################
-#                       Pandoc part                                 #
-#######################################################################
+######################################################################
+#                            Pandoc Part                             #
+######################################################################
 # PANDOC_DIR=$HOME/tools/pandoc
 # PANDOC_SRC_NAME=$HOME/packages/pandoc.tar.gz
 # PANDOC_LINK="https://github.com/jgm/pandoc/releases/download/2.19.2/pandoc-2.19.2-linux-amd64.tar.gz"
@@ -549,9 +549,9 @@ fi
 # 	echo "pandoc is already installed. Skip installing it."
 # fi
 
-#######################################################################
-#                           nala part                                 #
-#######################################################################
+######################################################################
+#                             Nala Part                              #
+######################################################################
 # NOTE: Make sure the following build depends are installed.
 # NOTE: sudo apt install git python3-apt pandoc -y
 # NALA_DIR=$HOME/tools/nala
@@ -576,9 +576,9 @@ fi
 # 	echo "nala is already installed. Skip installing it."
 # fi
 
-#######################################################################
-#                           tmux part                                 #
-#######################################################################
+######################################################################
+#                             Tmux Part                              #
+######################################################################
 # NOTE: sudo apt install libevent-dev
 TMUX_DIR=$HOME/tools/tmux
 TMUX_SRC_NAME=$HOME/packages/tmux.tar.gz
@@ -621,9 +621,9 @@ else
 	echo "tmux is already installed. Skip installing it."
 fi
 
-#######################################################################
-#                       GNU stow part                                 #
-#######################################################################
+######################################################################
+#                           GNU stow Part                            #
+######################################################################
 # NOTE: make sure perl is installed
 # NOTE: also, cpanm install Test::Output Test::Output
 STOW_DIR=$HOME/tools/stow
@@ -660,9 +660,9 @@ else
 	echo "GNU stow is already installed. Skip installing it."
 fi
 
-#######################################################################
-#                           xplr part                                 #
-#######################################################################
+######################################################################
+#                             Xplr Part                              #
+######################################################################
 XPLR_DIR=$HOME/tools/xplr
 XPLR_SRC_NAME=$HOME/packages/xplr.tar.gz
 XPLR_LINK="https://github.com/sayanarijit/xplr/releases/download/v0.19.4/xplr-linux-musl.tar.gz"
@@ -691,9 +691,9 @@ else
 	echo "XPLR is already installed. Skip installing it."
 fi
 
-#######################################################################
-#                        dua-cli part                                 #
-#######################################################################
+######################################################################
+#                            Dua-cli Part                            #
+######################################################################
 DUA_DIR=$HOME/tools/dua-cli
 DUA_SRC_NAME=$HOME/packages/dua-cli.tar.gz
 DUA_LINK="https://github.com/Byron/dua-cli/releases/download/v2.18.0/dua-v2.18.0-x86_64-unknown-linux-musl.tar.gz"
@@ -721,9 +721,9 @@ else
 	echo "dua-cli is already installed. Skip installing it."
 fi
 
-#######################################################################
-#                            viu part                                 #
-#######################################################################
+######################################################################
+#                              Viu Part                              #
+######################################################################
 VIU_DIR=$HOME/tools/viu
 VIU_LINK="https://github.com/atanunq/viu/releases/download/v1.4.0/viu"
 if [[ -z "$(command -v viu)" ]]; then
@@ -745,11 +745,12 @@ else
 	echo "viu is already installed. Skip installing it."
 fi
 
-#######################################################################
-#                          ImageMagick part                                 #
-#######################################################################
+######################################################################
+#                          ImageMagick Part                          #
+######################################################################
 MAGICK_DIR=$HOME/tools/magick
 MAGICK_LINK="https://github.com/ImageMagick/ImageMagick"
+MAGICK_MAN="$HOME/.local/share/man/man1/magick"
 if [[ -z "$(command -v magick)" ]]; then
 	echo "Install ImageMagick"
 
@@ -775,15 +776,18 @@ if [[ -z "$(command -v magick)" ]]; then
 	fi
 
 	# set up manpath
-	for f in $HOME/tools/magick/share/man/man1/*; do cp $f "$HOME/.local/share/man/man1"; done
+	if [[ ! -d "$MAGICK_MAN" ]]; then
+		mkdir -p "$MAGICK_MAN"
+	fi
+	for f in $HOME/tools/magick/share/man/man1/*; do cp $f "$MAGICK_MAN"; done
 
 else
 	echo "ImageMagick is already installed. Skip installing it."
 fi
 
-#######################################################################
-#                          chafa part                                 #
-#######################################################################
+######################################################################
+#                             Chafa Part                             #
+######################################################################
 # NOTE: sudo apt install libfreetype6-dev libjpeg-dev librsvg2-dev libtiff5-dev libwebp-dev libmagickwand-dev libtool gtk-doc-tools
 CHAFA_DIR=$HOME/tools/chafa
 CHAFA_LINK="https://github.com/hpjansson/chafa.git"
@@ -811,33 +815,9 @@ else
 	echo "chafa is already installed. Skip installing it."
 fi
 
-#######################################################################
-#                           stpv part                                 #
-#######################################################################
-# STPV_DIR=$HOME/tools/stpv
-# STPV_LINK="https://github.com/Naheel-Azawy/stpv.git"
-# if [[ -z "$(command -v stpv)" ]]; then
-# 	echo "Install stpv"
-
-# 	if [[ ! -d "$STPV_DIR" ]]; then
-# 		echo "Creating stpv directory under tools directory"
-# 		mkdir -p "$STPV_DIR"
-#     echo "git clone to $HOME/tools/stpv directory"
-# 		git clone --depth=1 "$STPV_LINK" "$STPV_DIR"
-# 	fi
-
-# 	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
-# 		echo "export PATH=\"$STPV_DIR:\$PATH\"" >>"$HOME/.bashrc"
-# 		export PATH="$STPV_DIR:$PATH"
-# 	fi
-
-# else
-# 	echo "stpv is already installed. Skip installing it."
-# fi
-
-#######################################################################
-#                           ctpv part                                 #
-#######################################################################
+######################################################################
+#                             Ctpv Part                              #
+######################################################################
 CTPV_DIR=$HOME/tools/ctpv
 CTPV_LINK="https://github.com/NikitaIvanovV/ctpv.git"
 if [[ -z "$(command -v ctpv)" ]]; then
@@ -859,9 +839,9 @@ else
 	echo "ctpv is already installed. Skip installing it."
 fi
 
-#######################################################################
-#                             lf part                                 #
-#######################################################################
+######################################################################
+#                              Lf Part                               #
+######################################################################
 LF_DIR=$HOME/tools/lf
 LF_SRC_NAME=$HOME/packages/lf.tat.gz
 LF_LINK="https://github.com/gokcehan/lf/releases/download/r27/lf-linux-amd64.tar.gz"
@@ -888,9 +868,9 @@ else
 	echo "LF is already installed. Skip installing it."
 fi
 
-#######################################################################
-#                          broot part                                 #
-#######################################################################
+######################################################################
+#                             Broot Part                             #
+######################################################################
 BROOT_DIR=$HOME/tools/broot
 BROOT_SRC_NAME=$HOME/packages/broot.zip
 BROOT_LINK="https://github.com/Canop/broot/releases/download/v1.16.0/broot_1.16.0.zip"
@@ -920,9 +900,9 @@ else
 	echo "Broot is already installed. Skip installing it."
 fi
 
-#######################################################################
-#                          lnav part                                 #
-#######################################################################
+######################################################################
+#                             Lnav Part                              #
+######################################################################
 LNAV_DIR=$HOME/tools/lnav
 LNAV_SRC_NAME=$HOME/packages/lnav.zip
 LNAV_LINK="https://github.com/tstack/lnav/releases/download/v0.11.0/lnav-0.11.0-musl-64bit.zip"
@@ -950,9 +930,9 @@ else
 	echo "lnav is already installed. Skip installing it."
 fi
 
-#######################################################################
-#                        termpix part                                 #
-#######################################################################
+######################################################################
+#                            Termpix Part                            #
+######################################################################
 TERMPIX_DIR=$HOME/tools/termpix
 TERMPIX_LINK="https://github.com/mmacedoeu/termpix.git"
 if [[ -z "$(command -v termpix)" ]]; then
@@ -972,9 +952,9 @@ else
 	echo "termpix is already installed. Skip installing it."
 fi
 
-#######################################################################
-#                         Pistol part                                 #
-#######################################################################
+######################################################################
+#                            Pistol Part                             #
+######################################################################
 PISTOL_DIR=$HOME/tools/pistol
 PISTOL_LINK="https://github.com/doronbehar/pistol.git"
 if [[ -z "$(command -v pistol)" ]]; then
@@ -998,9 +978,9 @@ else
 	echo "Pistol is already installed. Skip installing it."
 fi
 
-#######################################################################
-#                         ugrep parti                                 #
-#######################################################################
+######################################################################
+#                             Ugrep Part                             #
+######################################################################
 UGREP_DIR=$HOME/tools/ugrep
 UGREP_LINK="https://github.com/Genivia/ugrep.git"
 if [[ -z "$(command -v ugrep)" ]]; then

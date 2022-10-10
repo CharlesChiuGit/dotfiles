@@ -17,9 +17,9 @@ if [[ ! -d "$HOME/tools/" ]]; then
 	mkdir -p "$HOME/tools/"
 fi
 
-#######################################################################
-#                    Anaconda or miniconda install                    #
-#######################################################################
+######################################################################
+#               Install Anaconda/Miniconda(Python env)               #
+######################################################################
 
 # Whether python3 has been installed on the system
 PYTHON_INSTALLED=true
@@ -66,9 +66,9 @@ else
 	echo "Python is already installed. Skip installing it."
 fi
 
-#######################################################################
-#                           Install node                              #
-#######################################################################
+######################################################################
+#                            Node Install                            #
+######################################################################
 NODE_DIR=$HOME/tools/nodejs
 NODE_SRC_NAME=$HOME/packages/nodejs.tar.gz
 NODE_LINK="https://nodejs.org/dist/v16.16.0/node-v16.16.0-linux-x64.tar.xz"
@@ -97,9 +97,9 @@ else
 	echo "Node.js is already installed. Skip installing it."
 fi
 
-#######################################################################
-#                      Install Perl & cpanm                           #
-#######################################################################
+######################################################################
+#                         Perl/Cpanm Install                         #
+######################################################################
 PERL_DIR=$HOME/tools/perl
 PERL_SRC_NAME=$HOME/packages/perl.tar.gz
 PERL_LINK="https://www.cpan.org/src/5.0/perl-5.36.0.tar.gz"
@@ -141,9 +141,9 @@ else
 	echo "Perl is already installed. Skip installing it."
 fi
 
-#######################################################################
-#                         Install Ruby & gem                          #
-#######################################################################
+######################################################################
+#                          Ruby/Gem Install                          #
+######################################################################
 RUBY_DIR=$HOME/tools/ruby
 RUBY_TAR_DIR=$HOME/tools/ruby/tarball
 RUBY_SRC_NAME=$HOME/packages/ruby.tar.gz
@@ -179,9 +179,9 @@ else
 	echo "Ruby is already installed. Skip installing it."
 fi
 
-#######################################################################
-#                          Install Go                                 #
-#######################################################################
+######################################################################
+#                             Go Install                             #
+######################################################################
 GO_DIR=$HOME/tools/golang
 GO_SRC_NAME=$HOME/packages/golang.tar.gz
 GO_LINK="https://go.dev/dl/go1.19.1.linux-amd64.tar.gz"
@@ -209,53 +209,17 @@ else
 	echo "Golang is already installed. Skip installing it."
 fi
 
-#######################################################################
-#                   Install Rust and cargo                            #
-#######################################################################
-# RUST_DIR=$HOME/tools/rust
-# RUST_SRC_NAME=$HOME/packages/rust.tar.gz
-# RUST_LINK="https://static.rust-lang.org/dist/rust-1.63.0-x86_64-unknown-linux-gnu.tar.gz"
-# CARGO_DIR=$HOME/tools/cargo
-
-# if [[ ! -f "$RUST_DIR/bin/rust" ]]; then
-
-# 	echo "Install Rust"
-# 	if [[ ! -f $RUST_SRC_NAME ]]; then
-# 		echo "Downloading Rust and renaming"
-# 		wget $RUST_LINK -O "$RUST_SRC_NAME"
-# 	fi
-
-# 	if [[ ! -d "$RUST_DIR" ]]; then
-# 		echo "Creating Rust directory under tools directory"
-# 		mkdir -p "$RUST_DIR"
-# 		mkdir -p "$CARGO_DIR"
-#     echo "Extracting to $HOME/tools/rust directory"
-# 		tar xvf "$RUST_SRC_NAME" -C "$RUST_DIR" --strip-components 1
-#   fi
-
-#   if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
-#     echo "export PATH=\"$RUST_DIR/cargo/bin:\$PATH\"" >>"$HOME/.bashrc"
-#     echo "export PATH=\"$RUST_DIR/rustc/bin:\$PATH\"" >>"$HOME/.bashrc"
-#     export PATH="$RUST_DIR/cargo/bin:$PATH"
-#     export PATH="$RUST_DIR/rustc/bin:$PATH"
-#     export CARGO_HOME="$CARGO_DIR"
-#     alias cargo='~/tools/rust/cargo/bin/cargo'
-#     alias rustc='~/tools/rust/rustc/bin/rustc'
-#     alias rustdoc='~/tools/rust/rustc/bin/rustdoc'
-#   fi
-# else
-#   echo "Rust is already installed. Skip installing it."
-
-# fi
-
-# Use rustup instead
+######################################################################
+#                         Rust/Cargo Install                         #
+######################################################################
+# Use rustup
 if [[ -z "$(command -v cargo)" ]]; then
 	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 fi
 
-#######################################################################
-#                       Install Java, JDK                             #
-#######################################################################
+######################################################################
+#                          Java/JDK Install                          #
+######################################################################
 JDK_DIR=$HOME/tools/jdk
 JDK_SRC_NAME=$HOME/packages/jdk.tar.gz
 JDK_LINK="https://download.java.net/java/GA/jdk18.0.2/f6ad4b4450fd4d298113270ec84f30ee/9/GPL/openjdk-18.0.2_linux-x64_bin.tar.gz"
@@ -284,9 +248,9 @@ else
 
 fi
 
-#######################################################################
-#                          Install Julia                              #
-#######################################################################
+######################################################################
+#                           Julia Install                            #
+######################################################################
 JULIA_DIR=$HOME/tools/julia
 JULIA_SRC_NAME=$HOME/packages/julia.tar.gz
 JULIA_LINK="https://julialangnightlies-s3.julialang.org/bin/linux/x64/julia-latest-linux64.tar.gz"
@@ -314,9 +278,9 @@ else
 
 fi
 
-#######################################################################
-#                 Install Lua, LuaJIT and luarocks                    #
-#######################################################################
+######################################################################
+#                    Lua/LuaJIT/Luarocks Install                     #
+######################################################################
 LUA_DIR=$HOME/tools/lua
 LUA_SRC_NAME=$HOME/packages/lua.tar.gz
 LUA_LINK="http://www.lua.org/ftp/lua-5.4.4.tar.gz"
@@ -402,9 +366,9 @@ else
 	echo "luarocks is already installed. Skip installing it."
 fi
 
-#######################################################################
-#                       Install PHP, Composer                         #
-#######################################################################
+######################################################################
+#                        PHP/Composer Install                        #
+######################################################################
 # NOTE: sudo apt install build-essential autoconf bison re2c libxml2-dev libsqlite3-dev
 PHP_DIR=$HOME/tools/php
 PHP_LINK="https://github.com/php/php-src.git"
@@ -432,7 +396,7 @@ if [[ -z "$(command -v php)" ]]; then
 	# NOTE: sudo apt install zlib1g zlib1g-dev
 	PHP=$PHP_DIR/bin/php
 	EXPECTED_CHECKSUM="$($PHP -r 'copy("https://composer.github.io/installer.sig", "php://stdout");')"
-	php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+	"$PHP" -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 	ACTUAL_CHECKSUM="$($PHP -r "echo hash_file('sha384', 'composer-setup.php');")"
 
 	if [ "$EXPECTED_CHECKSUM" != "$ACTUAL_CHECKSUM" ]; then
