@@ -917,8 +917,8 @@ if [[ -z "$(command -v lnav)" ]]; then
 		echo "Creating lnav directory under tools directory"
 		mkdir -p "$LNAV_DIR"
 		unzip "$LNAV_SRC_NAME" -d "$LNAV_DIR"
-		for f in "$LNAV_DIR"/lnav-0.11.0/*; do cp "$f" "$LNAV_DIR"; done
-		rm -r "$LNAV_DIR/lnav-0.11.0"
+		for f in "$LNAV_DIR"/lnav-*/*; do cp "$f" "$LNAV_DIR"; done
+		rm -r "$LNAV_DIR"/lnav-*
 	fi
 
 	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
