@@ -40,3 +40,6 @@ sudo nala install libpcre2-dev libz-dev libbz2-dev liblzma-dev liblz4-dev libzst
 
 # lldb: c/cpp/rust debugger
 sudo nala install lldb -y
+
+# Latex packages
+sudo nala install latexmk texlive-fonts-extra texlive-fonts-recommended texlive-latex-extra --no-install-recommends
