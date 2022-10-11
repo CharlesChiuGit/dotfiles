@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# shellcheck disable=SC1090
+# shellcheck disable=SC2015,SC1090
 
 # ~/.bashrc: executed by bash(2) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
@@ -105,7 +105,7 @@ alias alert='notify-send --urgency=low -i "$([ $? = 1 ] && echo terminal || echo
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
 if [ -f ~/.bash_aliases ]; then
-	. ~/.bash_aliases
+	. "$HOME/.bash_aliases"
 fi
 
 # enable programmable completion features (you don't need to enable
@@ -121,12 +121,12 @@ fi
 
 # Custom bash-completion
 if [ -d ~/.local/share/bash-completion ]; then
-	for f in ~/.local/share/bash-completion/*.bash; do source $f; done
+	for f in ~/.local/share/bash-completion/*.bash; do source "$f"; done
 fi
 
 # Custom bash functions
 if [ -f ~/.bash_functions ]; then
-	. ~/.bash_functions
+	. "$HOME/.bash_functions"
 fi
 
 # Program languages PATH
@@ -181,7 +181,7 @@ export PATH="$PATH:$HOME/tools/chafa/bin"
 export PATH="$PATH:$HOME/tools/ctpv"
 export PATH="$PATH:$HOME/tools/lf"
 if [ -f ~/.config/lf/icon.sh ]; then
-	source ~/.config/lf/icon.sh
+	source "$HOME/.config/lf/icon.sh"
 fi
 export PATH="$PATH:$HOME/tools/lnav"
 export PATH="$PATH:$HOME/tools/pistol"

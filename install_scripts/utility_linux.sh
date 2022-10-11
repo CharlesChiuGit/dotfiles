@@ -514,7 +514,7 @@ if [[ -z "$(command -v zoxide)" ]] && [[ ! -f "$ZOXIDE_DIR/zoxide" ]]; then
 	fi
 
 	# set up manpath
-	for f in $HOME/tools/zoxide/man/man1/*; do cp $f "$HOME/.local/share/man/man1"; done
+	for f in "$HOME"/tools/zoxide/man/man1/*; do cp "$f" "$HOME/.local/share/man/man1"; done
 
 else
 	echo "zoxide is already installed. Skip installing it."
@@ -779,7 +779,7 @@ if [[ -z "$(command -v magick)" ]]; then
 	if [[ ! -d "$MAGICK_MAN" ]]; then
 		mkdir -p "$MAGICK_MAN"
 	fi
-	for f in $HOME/tools/magick/share/man/man1/*; do cp $f "$MAGICK_MAN"; done
+	for f in "$HOME"/tools/magick/share/man/man1/*; do cp "$f" "$MAGICK_MAN"; done
 
 else
 	echo "ImageMagick is already installed. Skip installing it."
@@ -917,7 +917,7 @@ if [[ -z "$(command -v lnav)" ]]; then
 		echo "Creating lnav directory under tools directory"
 		mkdir -p "$LNAV_DIR"
 		unzip "$LNAV_SRC_NAME" -d "$LNAV_DIR"
-		for f in $LNAV_DIR/lnav-0.11.0/*; do cp $f "$LNAV_DIR"; done
+		for f in "$LNAV_DIR"/lnav-0.11.0/*; do cp "$f" "$LNAV_DIR"; done
 		rm -r "$LNAV_DIR/lnav-0.11.0"
 	fi
 
