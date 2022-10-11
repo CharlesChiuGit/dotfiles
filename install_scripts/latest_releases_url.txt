@@ -17,4 +17,4 @@ https://github.com/jhawthorn/fzy/releases/download/1.0/fzy-1.0.tar.gz
 https://github.com/sayanarijit/xplr/releases/download/v0.19.4/xplr-linux-musl.tar.gz
 https://github.com/tmux/tmux/releases/download/3.3a/tmux-3.3a.tar.gz
 https://github.com/tree-sitter/tree-sitter/releases/download/v0.20.7/tree-sitter-linux-x64.gz
-https://github.com/tstack/lnav/releases/download/v0.11.0/lnav-0.11.0-musl-64bit.zip
+https://github.com/tstack/lnav/releases/download/v0.11.1/lnav-0.11.1-x86_64-linux-musl.zip

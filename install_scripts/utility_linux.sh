@@ -905,7 +905,7 @@ fi
 ######################################################################
 LNAV_DIR=$HOME/tools/lnav
 LNAV_SRC_NAME=$HOME/packages/lnav.zip
-LNAV_LINK="https://github.com/tstack/lnav/releases/download/v0.11.0/lnav-0.11.0-musl-64bit.zip"
+LNAV_LINK="https://github.com/tstack/lnav/releases/download/v0.11.1/lnav-0.11.1-x86_64-linux-musl.zip"
 if [[ -z "$(command -v lnav)" ]]; then
 	echo "Install lnav"
 	if [[ ! -f $LNAV_SRC_NAME ]]; then
