@@ -188,6 +188,7 @@ export PATH="$PATH:$HOME/tools/lnav"
 export PATH="$PATH:$HOME/tools/pistol"
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/lib"
 export PATH="$PATH:$HOME/tools/ugrep/bin"
+export PATH="$PATH:$HOME/tools/navi"
 ## neovim support
 export LC_ALL="en_US.UTF-8"
 export LANG="en_US.UTF-8"

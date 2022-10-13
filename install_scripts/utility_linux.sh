@@ -843,7 +843,7 @@ fi
 #                              Lf Part                               #
 ######################################################################
 LF_DIR=$HOME/tools/lf
-LF_SRC_NAME=$HOME/packages/lf.tat.gz
+LF_SRC_NAME=$HOME/packages/lf.tar.gz
 LF_LINK="https://github.com/gokcehan/lf/releases/download/r27/lf-linux-amd64.tar.gz"
 if [[ -z "$(command -v lf)" ]]; then
 	echo "Install lf"
@@ -1007,4 +1007,33 @@ if [[ -z "$(command -v ugrep)" ]]; then
 
 else
 	echo "ugrep is already installed. Skip installing it."
+fi
+
+######################################################################
+#                             Navi Part                              #
+######################################################################
+NAVI_DIR=$HOME/tools/navi
+NAVI_SRC_NAME=$HOME/packages/navi.tar.gz
+NAVI_LINK="https://github.com/denisidoro/navi/releases/download/v2.20.1/navi-v2.20.1-x86_64-unknown-linux-musl.tar.gz"
+if [[ -z "$(command -v navi)" ]]; then
+	echo "Install navi"
+	if [[ ! -f $NAVI_SRC_NAME ]]; then
+		echo "Downloading navi and renaming"
+		wget "$NAVI_LINK" -O "$NAVI_SRC_NAME"
+	fi
+
+	if [[ ! -d "$NAVI_DIR" ]]; then
+		echo "Creating navi directory under tools directory"
+		mkdir -p "$NAVI_DIR"
+		echo "Extracting to $HOME/tools/navi directory"
+		tar zxvf "$NAVI_SRC_NAME" -C "$NAVI_DIR"
+	fi
+
+	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
+		echo "export PATH=\"$NAVI_DIR:\$PATH\"" >>"$HOME/.bashrc"
+		export PATH="$NAVI_DIR:$PATH"
+	fi
+
+else
+	echo "Navi is already installed. Skip installing it."
 fi
