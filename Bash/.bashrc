@@ -136,6 +136,7 @@ export PATH="$PATH:$HOME/tools/perl/bin"
 export PERL_CPANM_HOME="$HOME/tools/cpanm"
 export PATH="$PATH:$HOME/tools/ruby/bin"
 export PATH="$PATH:$HOME/tools/golang/bin"
+export PATH="$PATH:$HOME/go/bin"
 export PATH="$PATH:$HOME/tools/jdk/bin"
 export PATH="$PATH:$HOME/tools/julia/bin"
 if [ -f ~/.cargo/env ]; then
