@@ -163,6 +163,7 @@ export PATH="$PATH:$HOME/tools/fzy"
 export PATH="$PATH:$HOME/tools/git-delta"
 export PATH="$PATH:$HOME/tools/glow"
 export PATH="$PATH:$HOME/tools/nvim/bin"
+export EDITOR='nvim'
 export PATH="$PATH:$HOME/tools/lazygit"
 export PATH="$PATH:$HOME/tools/lsd"
 export PATH="$PATH:$HOME/tools/ripgrep"

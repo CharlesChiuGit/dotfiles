@@ -71,7 +71,9 @@ else
 	echo "Python is already installed. Skip installing it."
 fi
 
-# Install some Python packages used by Nvim plugins.
+######################################################################
+#                      Install Python packages                       #
+######################################################################
 echo "Installing Python packages"
 declare -a py_packages=("pynvim" "yarp")
 
