@@ -107,6 +107,9 @@ NODE_DIR=$HOME/tools/nodejs
 # Install tree-sitter-cli
 # "$NODE_DIR/bin/npm" install tree-sitter-cli --location=global
 
+# Install tldr btw
+"$NODE_DIR/bin/npm" install tldr --location-global
+
 ######################################################################
 #                    Install Perl/cpanm packages                     #
 ######################################################################
