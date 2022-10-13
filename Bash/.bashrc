@@ -175,6 +175,9 @@ export PATH="$PATH:$HOME/tools/xplr"
 export PATH="$PATH:$HOME/tools/dua-cli"
 export PATH="$PATH:$HOME/tools/viu"
 export PATH="$PATH:$HOME/tools/broot/x86_64-linux"
+if [ -f ~/.config/broot/launcher/bash/br ]; then
+	source "$HOME/.config/broot/launcher/bash/br"
+fi
 export PATH="$PATH:$HOME/tools/magick/bin"
 export MAGICK_HOME="$HOME/tools/magick"
 export LD_LIBRARY_PATH="${LD_LIBRARY_PATH:+$LD_LIBRARY_PATH:}$MAGICK_HOME/lib"
