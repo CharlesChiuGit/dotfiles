@@ -7,6 +7,9 @@ __pycache__/
 TheFUCK/.config/thefuck/__pycache__/
 Lazygit/.config/lazygit/state.yml
 Tmux/.config/tmux/plugins/*
+install_scripts/node_modules/
+package-lock.json
+package.json
 
 # C extensions
 *.so
