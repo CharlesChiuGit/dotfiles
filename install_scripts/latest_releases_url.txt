@@ -10,7 +10,7 @@ https://github.com/jesseduffield/lazygit/releases/download/v0.35/lazygit_0.35_Li
 https://github.com/sharkdp/bat/releases/download/v0.22.1/bat-v0.22.1-x86_64-unknown-linux-musl.tar.gz
 https://github.com/sharkdp/fd/releases/download/v8.4.0/fd-v8.4.0-x86_64-unknown-linux-musl.tar.gz
 https://github.com/starship/starship/releases/download/v1.10.3/starship-x86_64-unknown-linux-musl.tar.gz
-https://github.com/Canop/broot/releases/download/v1.16.0/broot_1.16.0.zip
+https://github.com/Canop/broot/releases/download/v1.16.1/broot_1.16.1.zip
 https://github.com/atanunq/viu/releases/download/v1.4.0/viu
 https://github.com/gokcehan/lf/releases/download/r27/lf-linux-amd64.tar.gz
 https://github.com/jhawthorn/fzy/releases/download/1.0/fzy-1.0.tar.gz

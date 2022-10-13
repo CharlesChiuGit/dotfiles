@@ -873,7 +873,7 @@ fi
 ######################################################################
 BROOT_DIR=$HOME/tools/broot
 BROOT_SRC_NAME=$HOME/packages/broot.zip
-BROOT_LINK="https://github.com/Canop/broot/releases/download/v1.16.0/broot_1.16.0.zip"
+BROOT_LINK=""https://github.com/Canop/broot/releases/download/v1.16.1/broot_1.16.1.zip
 if [[ -z "$(command -v broot)" ]]; then
 	echo "Install broot"
 	if [[ ! -f $BROOT_SRC_NAME ]]; then
