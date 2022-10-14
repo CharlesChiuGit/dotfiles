@@ -105,12 +105,12 @@ NODE_DIR=$HOME/tools/nodejs
 "$NODE_DIR/bin/npm" install emmet-ls --location=global
 
 # Add for markdown-preview.nvim
-"$NODE_DIR/bin/npm" install tslib --location-global
+"$NODE_DIR/bin/npm" install tslib --location=global
 # Install tree-sitter-cli
 # "$NODE_DIR/bin/npm" install tree-sitter-cli --location=global
 
 # Install tldr btw
-"$NODE_DIR/bin/npm" install tldr --location-global
+"$NODE_DIR/bin/npm" install tldr --location=global
 
 ######################################################################
 #                    Install Perl/cpanm packages                     #
