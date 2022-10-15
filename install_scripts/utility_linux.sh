@@ -64,7 +64,7 @@ fi
 ######################################################################
 STARSHIP_DIR=$HOME/tools/starship
 STARSHIP_SRC_NAME=$HOME/packages/starship.tar.gz
-STARSHIP_LINK="https://github.com/starship/starship/releases/download/v1.10.3/starship-x86_64-unknown-linux-musl.tar.gz"
+STARSHIP_LINK="https://github.com/starship/starship/releases/download/v1.11.0/starship-x86_64-unknown-linux-musl.tar.gz"
 if [[ -z "$(command -v starship)" ]]; then
 	echo "Install starship"
 	if [[ ! -f $STARSHIP_SRC_NAME ]]; then
