@@ -102,7 +102,7 @@ NODE_DIR=$HOME/tools/nodejs
 # Install neovim support for node plugins
 "$NODE_DIR/bin/npm" install neovim --location=global
 
-"$NODE_DIR/bin/npm" install emmet-ls --location=global
+# "$NODE_DIR/bin/npm" install emmet-ls --location=global
 
 # Add for markdown-preview.nvim
 "$NODE_DIR/bin/npm" install tslib --location=global
@@ -225,7 +225,7 @@ if [[ -d "$NVIM_CONFIG_DIR" ]]; then
 	mv "$NVIM_CONFIG_DIR" "$NVIM_CONFIG_DIR.backup"
 fi
 
-git clone https://github.com/CharlesChiuGit/nvimdots.git "$NVIM_CONFIG_DIR"
+git clone https://github.com/CharlesChiuGit/nvimdots.lua.git "$NVIM_CONFIG_DIR"
 
 echo "Installing packer.nvim"
 if [[ ! -d ~/.local/share/nvim/site/pack/packer/opt/packer.nvim ]]; then
