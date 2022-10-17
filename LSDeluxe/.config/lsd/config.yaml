@@ -36,7 +36,7 @@ color:
 # When "classic" is set, this is set to "date".
 # Possible values: date, relative, '+<date_format>'
 # `date_format` will be a `strftime` formatted value. e.g. `date: '+%d %b %y %X'` will give you a date like this: 17 Jun 21 20:14:55
-date: '+%Y-%m-%d %X'
+date: "+%Y-%m-%d %X"
 
 # == Dereference ==
 # Whether to dereference symbolic links.
@@ -78,7 +78,7 @@ indicators: true
 # Which layout to use. "oneline" might be a bit confusing here and should be
 # called "one-per-line". It might be changed in the future.
 # Possible values: grid, tree, oneline
-layout: grid
+layout: oneline
 
 # == Recursion ==
 recursion:
@@ -115,12 +115,12 @@ sorting:
 # == No Symlink ==
 # Whether to omit showing symlink targets
 # Possible values: false, true
-no-symlink: true
+no-symlink: false
 
 # == Total size ==
 # Whether to display the total size of directories.
 # Possible values: false, true
-total-size: false
+total-size: true
 
 # == Hyperlink ==
 # Attach hyperlink to filenames
