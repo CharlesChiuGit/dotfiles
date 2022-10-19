@@ -75,7 +75,8 @@ fi
 #                      Install Python packages                       #
 ######################################################################
 echo "Installing Python packages"
-declare -a py_packages=("pynvim" "yarp")
+# INFO: klepto is needed by Sniprun
+declare -a py_packages=("pynvim" "klepto")
 
 if [[ "$SYSTEM_PYTHON" = true ]]; then
 	echo "Using system Python to install $(PY_PACKAGES)"
@@ -214,7 +215,12 @@ if [[ ! -f "$NVIM_DIR/bin/nvim" ]]; then
 	fi
 
 	# set up manpath
-	cp "$HOME/tools/nvim/share/man/man1/nvim.1" "$HOME/.local/share/man/man1"
+	if [[ -f "$HOME/.local/share/man/man1/nvim.1" ]]; then
+		rm "$HOME/.local/share/man/man1/nvim.1"
+		ln -s "$NVIM_DIR/share/man/man1/nvim.1" "$HOME/.local/share/man/man1/nvim.1"
+	else
+		ln -s "$NVIM_DIR/share/man/man1/nvim.1" "$HOME/.local/share/man/man1/nvim.1"
+	fi
 
 else
 	echo "Nvim is already installed. Skip installing it."

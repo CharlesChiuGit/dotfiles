@@ -17,6 +17,8 @@ if [[ ! -d "$HOME/tools/" ]]; then
 	mkdir -p "$HOME/tools/"
 fi
 
+MAN_PATH=$HOME/.local/share/man/man1
+
 ######################################################################
 #                           Alacritty Part                           #
 ######################################################################
@@ -143,7 +145,12 @@ if [[ -z "$(command -v bat)" ]] && [[ ! -f "$BATCAT_DIR/bat" ]]; then
 	fi
 
 	# set up manpath
-	cp "$HOME/tools/ripgrep/doc/rg.1" "$HOME/.local/share/man/man1"
+	if [[ -f "$MAN_PATH/bat.1" ]]; then
+		rm "$MAN_PATH/bat.1"
+		ln -s "$HOME/tools/batcat/bat.1" "$MAN_PATH/bat.1"
+	else
+		ln -s "$HOME/tools/batcat/bat.1" "$MAN_PATH/bat.1"
+	fi
 
 else
 	echo "batcat is already installed. Skip installing it."
@@ -200,7 +207,12 @@ if [[ -z "$(command -v fd)" ]] && [[ ! -f "$FDFIND_DIR/fd" ]]; then
 	fi
 
 	# set up manpath
-	cp "$HOME/tools/fdfind/fd.1" "$HOME/.local/share/man/man1"
+	if [[ -f "$MAN_PATH/fd.1" ]]; then
+		rm "$MAN_PATH/fd.1"
+		ln -s "$HOME/tools/fdfind/fd.1" "$MAN_PATH/fd.1"
+	else
+		ln -s "$HOME/tools/fdfind/fd.1" "$MAN_PATH/fd.1"
+	fi
 
 else
 	echo "fdfind is already installed. Skip installing it."
@@ -231,7 +243,12 @@ if [[ -z "$(command -v fzf)" ]]; then
 	fi
 
 	# set up manpath
-	cp "$HOME/tools/fzf/man/man1/fzf.1" "$HOME/.local/share/man/man1"
+	if [[ -f "$MAN_PATH/fzf.1" ]]; then
+		rm "$MAN_PATH/fzf.1"
+		ln -s "$HOME/tools/fzf/man/man1/fzf.1" "$MAN_PATH/fzf.1"
+	else
+		ln -s "$HOME/tools/fzf/man/man1/fzf.1" "$MAN_PATH/fzf.1"
+	fi
 
 else
 	echo "fzf is already installed. Skip installing it."
@@ -264,7 +281,12 @@ if [[ -z "$(command -v fzy)" ]] && [[ ! -f "$FZY_DIR/fzy" ]]; then
 	fi
 
 	# set up manpath
-	cp "$HOME/tools/fzy/fzy.1" "$HOME/.local/share/man/man1"
+	if [[ -f "$MAN_PATH/fzy.1" ]]; then
+		rm "$MAN_PATH/fzy.1"
+		ln -s "$HOME/tools/fzy/fzy.1" "$MAN_PATH/fzy.1"
+	else
+		ln -s "$HOME/tools/fzy/fzy.1" "$MAN_PATH/fzy.1"
+	fi
 
 else
 	echo "fzy is already installed. Skip installing it."
@@ -383,7 +405,12 @@ if [[ -z "$(command -v lsd)" ]] && [[ ! -f "$LSD_DIR/lsd" ]]; then
 	fi
 
 	# set up manpath
-	cp "$HOME/tools/lsd/lsd.1" "$HOME/.local/share/man/man1"
+	if [[ -f "$MAN_PATH/lsd.1" ]]; then
+		rm "$MAN_PATH/lsd.1"
+		ln -s "$HOME/tools/lsd/lsd.1" "$MAN_PATH/lsd.1"
+	else
+		ln -s "$HOME/tools/lsd/lsd.1" "$MAN_PATH/lsd.1"
+	fi
 
 else
 	echo "lsd is already installed. Skip installing it."
@@ -414,9 +441,13 @@ if [[ -z "$(command -v rg)" ]] && [[ ! -f "$RIPGREP_DIR/rg" ]]; then
 		export PATH="$RIPGREP_DIR:$PATH"
 	fi
 
-	# # set up manpath and zsh completion for ripgrep
-	# mkdir -p $HOME/tools/ripgrep/doc/man/man1
-	# mv $HOME/tools/ripgrep/doc/rg.1 $HOME/tools/ripgrep/doc/man/man1
+	# set up manpath
+	if [[ -f "$MAN_PATH/rg.1" ]]; then
+		rm "$MAN_PATH/rg.1"
+		ln -s "$HOME/tools/ripgrep/doc/rg.1" "$MAN_PATH/rg.1"
+	else
+		ln -s "$HOME/tools/ripgrep/doc/rg.1" "$MAN_PATH/rg.1"
+	fi
 
 	# if [[ "$USE_BASH_SHELL" = true ]]; then
 	# 	echo 'export MANPATH=$HOME/tools/ripgrep/doc/man:$MANPATH' >>"$HOME/.bashrc"
@@ -482,6 +513,8 @@ if [[ -z "$(command -v trash)" ]]; then
 		export PATH=$HOME/.local/bin:$PATH
 	fi
 
+	# INFO: trash-*.1 is being placed at ~/.local/share/man/man1 during installation.
+
 else
 	echo "tree-sitter is already installed. Skip installing it."
 fi
@@ -492,6 +525,7 @@ fi
 ZOXIDE_DIR=$HOME/tools/zoxide
 ZOXIDE_SRC_NAME=$HOME/packages/zoxide.tar.gz
 ZOXIDE_LINK="https://github.com/ajeetdsouza/zoxide/releases/download/v0.8.3/zoxide-0.8.3-x86_64-unknown-linux-musl.tar.gz"
+ZOXIDE_MAN=$HOME/.local/share/man/man1/zoxide
 if [[ -z "$(command -v zoxide)" ]] && [[ ! -f "$ZOXIDE_DIR/zoxide" ]]; then
 	echo "Install zoxide"
 	if [[ ! -f $ZOXIDE_SRC_NAME ]]; then
@@ -514,8 +548,13 @@ if [[ -z "$(command -v zoxide)" ]] && [[ ! -f "$ZOXIDE_DIR/zoxide" ]]; then
 	fi
 
 	# set up manpath
-	for f in "$HOME"/tools/zoxide/man/man1/*; do cp "$f" "$HOME/.local/share/man/man1"; done
-
+	# for f in "$HOME"/tools/zoxide/man/man1/*; do cp "$f" "$HOME/.local/share/man/man1"; done
+	if [[ -d "$MAN_PATH/zoxide" ]]; then
+		rm "$MAN_PATH/zoxide"
+		ln -s "$HOME/tools/zoxide/man/man1" "$ZOXIDE_MAN"
+	else
+		ln -s "$HOME/tools/zoxide/man/man1" "$ZOXIDE_MAN"
+	fi
 else
 	echo "zoxide is already installed. Skip installing it."
 fi
@@ -608,7 +647,12 @@ if [[ ! -f "$TMUX_DIR/tmux" ]]; then
 	fi
 
 	# set up manpath
-	cp "$HOME/tools/tmux/share/man/man1/tmux.1" "$HOME/.local/share/man/man1"
+	if [[ -f "$MAN_PATH/tmux.1" ]]; then
+		rm "$MAN_PATH/tmux.1"
+		ln -s "$TMUX_DIR/share/man/man1/tmux.1" "$MAN_PATH/tmux.1"
+	else
+		ln -s "$TMUX_DIR/share/man/man1/tmux.1" "$MAN_PATH/tmux.1"
+	fi
 
 	echo "Installing tpm"
 	if [[ ! -d ~/.tmux/plugins/tpm ]]; then
@@ -684,7 +728,6 @@ if [[ -z "$(command -v xplr)" ]]; then
 	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
 		echo "export PATH=\"$XPLR_DIR:\$PATH\"" >>"$HOME/.bashrc"
 		export PATH="$XPLR_DIR:$PATH"
-		# for old habit
 	fi
 
 else
@@ -776,10 +819,13 @@ if [[ -z "$(command -v magick)" ]]; then
 	fi
 
 	# set up manpath
-	if [[ ! -d "$MAGICK_MAN" ]]; then
-		mkdir -p "$MAGICK_MAN"
+	if [[ -d "$MAGICK_MAN" ]]; then
+		rm -r "$MAGICK_MAN"
+		ln -s "$MAGICK_DIR/share/man/man1" "$MAGICK_MAN"
+	else
+		ln -s "$MAGICK_DIR/share/man/man1" "$MAGICK_MAN"
 	fi
-	for f in "$HOME"/tools/magick/share/man/man1/*; do cp "$f" "$MAGICK_MAN"; done
+	# for f in "$HOME"/tools/magick/share/man/man1/*; do cp "$f" "$MAGICK_MAN"; done
 
 else
 	echo "ImageMagick is already installed. Skip installing it."
@@ -833,7 +879,12 @@ if [[ -z "$(command -v ctpv)" ]]; then
 	fi
 
 	# set up manpath
-	cp "$HOME/tools/ctpv/doc/ctpv.1" "$HOME/.local/share/man/man1"
+	if [[ -f "$MAN_PATH/ctpv.1" ]]; then
+		rm "$MAN_PATH/ctpv.1"
+		ln -s "$CTPV_DIR/doc/ctpv.1" "$MAN_PATH/ctpv.1"
+	else
+		ln -s "$CTPV_DIR/doc/ctpv.1" "$MAN_PATH/ctpv.1"
+	fi
 
 else
 	echo "ctpv is already installed. Skip installing it."
@@ -894,7 +945,12 @@ if [[ -z "$(command -v broot)" ]]; then
 	fi
 
 	# set up manpath
-	cp "$HOME/tools/broot/broot.1" "$HOME/.local/share/man/man1"
+	if [[ -f "$MAN_PATH/broot.1" ]]; then
+		rm "$MAN_PATH/broot.1"
+		ln -s "$BROOT_DIR/broot.1" "$MAN_PATH/broot.1"
+	else
+		ln -s "$BROOT_DIR/broot.1" "$MAN_PATH/broot.1"
+	fi
 
 else
 	echo "Broot is already installed. Skip installing it."
@@ -1003,7 +1059,12 @@ if [[ -z "$(command -v ugrep)" ]]; then
 	fi
 
 	# set up manpath
-	cp "$HOME/tools/ugrep/man/ugrep.1" "$HOME/.local/share/man/man1"
+	if [[ -f "$MAN_PATH/ugrep.1" ]]; then
+		rm "$MAN_PATH/ugrep.1"
+		ln -s "$UGREP_DIR/man/ugrep.1" "$MAN_PATH/ugrep.1"
+	else
+		ln -s "$UGREP_DIR/man/ugrep.1" "$MAN_PATH/ugrep.1"
+	fi
 
 else
 	echo "ugrep is already installed. Skip installing it."
