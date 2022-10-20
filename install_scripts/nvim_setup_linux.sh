@@ -76,7 +76,7 @@ fi
 ######################################################################
 echo "Installing Python packages"
 # INFO: klepto is needed by Sniprun
-declare -a py_packages=("pynvim" "klepto")
+declare -a py_packages=("pynvim" "klepto" "rich")
 
 if [[ "$SYSTEM_PYTHON" = true ]]; then
 	echo "Using system Python to install $(PY_PACKAGES)"
