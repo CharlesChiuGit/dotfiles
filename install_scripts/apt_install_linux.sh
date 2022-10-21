@@ -27,7 +27,7 @@ sudo nala install caca-utils ffmpeg librsvg2-bin atool unrar p7zip-full p7zip-ra
 sudo snap install ascii-image-converter lolcat
 
 # system pip3 install
-sudo pip3 install pynvim yarp thefuck gdown ntfy[emoji] asciinema
+sudo pip3 install pynvim gdown ntfy[emoji] asciinema
 
 # WSL: install kitty
 # sudo apt install libgles2-mesa libgles2-mesa-dev -y
