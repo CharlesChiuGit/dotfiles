@@ -165,7 +165,6 @@ export PATH="$PATH:$HOME/tools/glow"
 export PATH="$PATH:$HOME/tools/nvim/bin"
 export EDITOR='nvim'
 export PATH="$PATH:$HOME/tools/lazygit"
-export PATH="$PATH:$HOME/tools/lsd"
 export PATH="$PATH:$HOME/tools/ripgrep"
 export PATH="$PATH:$HOME/tools/tmux"
 export TERM='screen-256color'
@@ -199,11 +198,6 @@ export LANG="en_US.UTF-8"
 ## Init zoxide
 if which zoxide >/dev/null; then
 	eval "$(zoxide init bash)"
-fi
-# Init thefuck
-if which thefuck >/dev/null; then
-	# alias to fuck
-	eval "$(thefuck --alias fuck)"
 fi
 # Init Starship
 if which starship >/dev/null; then

@@ -6,46 +6,46 @@
 ### Check nvidia gpu
 # Some distro requires that the absolute path is given when invoking lspci
 # e.g. /sbin/lspci if the user is not root.
-gpu=$(lspci | grep -i '.* vga .* nvidia .*')
+# gpu=$(lspci | grep -i '.* vga .* nvidia .*')
 
 # nocasematch: If set, Bash matches patterns in a case-insensitive fashion
 # when performing matching while executing case or [[ conditional commands,
 # when performing pattern substitution word expansions, or when filtering
 # possible completions as part of programmable completion.
-shopt -s nocasematch
+# shopt -s nocasematch
 
 ### CUDA PATH
-CUDA_PATH=/usr/local/cuda
-if [ -d "${CUDA_PATH}" ] && [[ $gpu == *' nvidia '* ]]; then
-	# echo "You have nvgpu and cuda installed!"
-	export PATH="${CUDA_PATH}/bin"${PATH:+:${PATH}}
-	export LD_LIBRARY_PATH="${CUDA_PATH}/lib64"${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
-elif [ ! -d "${CUDA_PATH}" ] && [[ $gpu == *' nvidia '* ]]; then
-	echo "You have nvgpu, but you don't have cuda installed!"
-elif ! [[ $gpu == *' nvidia '* ]]; then
-	: # return nothing
-	# echo "You don't have nvgpu or it's not loaded!"
-fi
+# CUDA_PATH=/usr/local/cuda
+# if [ -d "${CUDA_PATH}" ] && [[ $gpu == *' nvidia '* ]]; then
+# 	# echo "You have nvgpu and cuda installed!"
+# 	export PATH="${CUDA_PATH}/bin"${PATH:+:${PATH}}
+# 	export LD_LIBRARY_PATH="${CUDA_PATH}/lib64"${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+# elif [ ! -d "${CUDA_PATH}" ] && [[ $gpu == *' nvidia '* ]]; then
+# 	echo "You have nvgpu, but you don't have cuda installed!"
+# elif ! [[ $gpu == *' nvidia '* ]]; then
+# 	: # return nothing
+# 	# echo "You don't have nvgpu or it's not loaded!"
+# fi
 
 #######################################################################
 #                    gdrive download script                           #
 #######################################################################
 # download_from_gdrive <FILE_ID> <OUTPUT_FILENAME>
-download_from_gdrive() {
-	file_id=$1
-	file_name=$2
+# download_from_gdrive() {
+# 	file_id=$1
+# 	file_name=$2
 
-	# first stage to get the warning html
-	curl -c /tmp/cookies \
-		"https://drive.google.com/uc?export=download&id=$file_id" >/tmp/intermezzo.html
+# 	# first stage to get the warning html
+# 	curl -c /tmp/cookies \
+# 		"https://drive.google.com/uc?export=download&id=$file_id" >/tmp/intermezzo.html
 
-	# second stage to extract the download link from html above
-	download_link=$(cat </tmp/intermezzo.html |
-		grep -Po 'uc-download-link" [^>]* href="\K[^"]*' |
-		sed 's/\&amp;/\&/g')
-	curl -L -b /tmp/cookies \
-		"https://drive.google.com$download_link" >"$file_name"
-}
+# 	# second stage to extract the download link from html above
+# 	download_link=$(cat </tmp/intermezzo.html |
+# 		grep -Po 'uc-download-link" [^>]* href="\K[^"]*' |
+# 		sed 's/\&amp;/\&/g')
+# 	curl -L -b /tmp/cookies \
+# 		"https://drive.google.com$download_link" >"$file_name"
+# }
 
 #######################################################################
 #                    ssh-keys loadin check                            #
