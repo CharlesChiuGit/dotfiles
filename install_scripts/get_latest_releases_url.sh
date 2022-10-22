@@ -69,7 +69,7 @@ get_latest_release_custom() {
 get_latest_release 'BurntSushi/ripgrep' 'tar.gz' 'musl'
 get_latest_release 'Byron/dua-cli' 'tar.gz' 'musl'
 get_latest_release 'Dr-Noob/cpufetch' '' ''
-get_latest_release 'Peltoche/lsd' 'tar.gz' 'musl'
+# get_latest_release 'Peltoche/lsd' 'tar.gz' 'musl'
 get_latest_release 'ajeetdsouza/zoxide' 'tar.gz' 'musl'
 get_latest_release 'aristocratos/btop' 'tbz' 'musl'
 get_latest_release 'charmbracelet/glow' 'tar.gz' ''

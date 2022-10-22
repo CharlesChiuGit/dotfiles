@@ -382,39 +382,39 @@ fi
 ######################################################################
 #                           LSDeluxe Part                            #
 ######################################################################
-LSD_DIR=$HOME/tools/lsd
-LSD_SRC_NAME=$HOME/packages/lsd.tar.gz
-LSD_LINK="https://github.com/Peltoche/lsd/releases/download/0.23.1/lsd-0.23.1-x86_64-unknown-linux-musl.tar.gz"
-if [[ -z "$(command -v lsd)" ]] && [[ ! -f "$LSD_DIR/lsd" ]]; then
-	echo "Install lsd"
-	if [[ ! -f $LSD_SRC_NAME ]]; then
-		echo "Downloading lsd and renaming"
-		wget $LSD_LINK -O "$LSD_SRC_NAME"
-	fi
+# LSD_DIR=$HOME/tools/lsd
+# LSD_SRC_NAME=$HOME/packages/lsd.tar.gz
+# LSD_LINK="https://github.com/Peltoche/lsd/releases/download/0.23.1/lsd-0.23.1-x86_64-unknown-linux-musl.tar.gz"
+# if [[ -z "$(command -v lsd)" ]] && [[ ! -f "$LSD_DIR/lsd" ]]; then
+# 	echo "Install lsd"
+# 	if [[ ! -f $LSD_SRC_NAME ]]; then
+# 		echo "Downloading lsd and renaming"
+# 		wget $LSD_LINK -O "$LSD_SRC_NAME"
+# 	fi
 
-	if [[ ! -d "$LSD_DIR" ]]; then
-		echo "Creating lsd directory under tools directory"
-		mkdir -p "$LSD_DIR"
-		echo "Extracting to $HOME/tools/lsd directory"
-		tar zxvf "$LSD_SRC_NAME" -C "$LSD_DIR" --strip-components 1
-	fi
+# 	if [[ ! -d "$LSD_DIR" ]]; then
+# 		echo "Creating lsd directory under tools directory"
+# 		mkdir -p "$LSD_DIR"
+# 		echo "Extracting to $HOME/tools/lsd directory"
+# 		tar zxvf "$LSD_SRC_NAME" -C "$LSD_DIR" --strip-components 1
+# 	fi
 
-	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
-		echo "export PATH=\"$LSD_DIR:\$PATH\"" >>"$HOME/.bashrc"
-		export PATH="$LSD_DIR:$PATH"
-	fi
+# 	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
+# 		echo "export PATH=\"$LSD_DIR:\$PATH\"" >>"$HOME/.bashrc"
+# 		export PATH="$LSD_DIR:$PATH"
+# 	fi
 
-	# set up manpath
-	if [[ -f "$MAN_PATH/lsd.1" ]]; then
-		rm "$MAN_PATH/lsd.1"
-		ln -s "$HOME/tools/lsd/lsd.1" "$MAN_PATH/lsd.1"
-	else
-		ln -s "$HOME/tools/lsd/lsd.1" "$MAN_PATH/lsd.1"
-	fi
+# 	# set up manpath
+# 	if [[ -f "$MAN_PATH/lsd.1" ]]; then
+# 		rm "$MAN_PATH/lsd.1"
+# 		ln -s "$HOME/tools/lsd/lsd.1" "$MAN_PATH/lsd.1"
+# 	else
+# 		ln -s "$HOME/tools/lsd/lsd.1" "$MAN_PATH/lsd.1"
+# 	fi
 
-else
-	echo "lsd is already installed. Skip installing it."
-fi
+# else
+# 	echo "lsd is already installed. Skip installing it."
+# fi
 
 ######################################################################
 #                            Ripgrep Part                            #
