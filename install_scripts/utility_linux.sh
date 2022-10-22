@@ -1098,3 +1098,8 @@ if [[ -z "$(command -v navi)" ]]; then
 else
 	echo "Navi is already installed. Skip installing it."
 fi
+
+######################################################################
+#                              Exa PaRT                              #
+######################################################################
+cargo install exa
