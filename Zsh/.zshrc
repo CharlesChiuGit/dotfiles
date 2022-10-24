@@ -1,5 +1,4 @@
 #!/usr/bin/zsh
-
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
 HISTSIZE=1000
@@ -31,21 +30,18 @@ if which zoxide >/dev/null; then
 fi
 
 # Init Starship
-if which starship >/dev/null; then
-	eval "$(starship init zsh)"
-fi
+eval "$(starship init zsh)"
+
+## Init shelden
+eval "$(sheldon source)"
+bindkey '^[[a' history-substring-search-up
+bindkey '^[[b' history-substring-search-down
+bindkey ',' autosuggest-accept
 
 # >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$("$HOME/tools/anaconda/bin/conda" 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
+if [ -f "$HOME/tools/anaconda/etc/profile.d/conda.sh" ]; then
+    . "$HOME/tools/anaconda/etc/profile.d/conda.sh"
 else
-    if [ -f "$HOME/tools/anaconda/etc/profile.d/conda.sh" ]; then
-        . "$HOME/tools/anaconda/etc/profile.d/conda.sh"
-    else
-        export PATH="$HOME/tools/anaconda/bin:$PATH"
-    fi
+    export PATH="$HOME/tools/anaconda/bin:$PATH"
 fi
-unset __conda_setup
 # <<< conda initialize <<<

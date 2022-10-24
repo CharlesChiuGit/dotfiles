@@ -1,7 +1,7 @@
 #!/usr/bin/zsh
 
-. "$HOME/.cargo/env"
 path=(~/.cargo/bin $path)
+. "$HOME/.cargo/env"
 path=(~/tools/nodejs/bin $path)
 path=(~/tools/perl/bin $path)
 export PERL_CPANM_HOME="$HOME/tools/cpanm"
@@ -14,7 +14,10 @@ path=(~/tools/lua/src $path)
 path=(~/tools/luajit/src $path)
 path=(~/tools/luarocks $path)
 
+path=(~/.local/bin $path)
 path=(~/tools/starship $path)
+path=(~/tools/sheldon $path)
+path=(~/tools/ripgrep $path)
 path=(~/tools/btop/bin $path)
 path=(~/tools/batcat $path)
 path=(~/tools/cpufetch $path)
