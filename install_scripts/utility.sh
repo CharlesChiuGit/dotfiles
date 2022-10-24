@@ -91,6 +91,30 @@ else
 fi
 
 ######################################################################
+#                            Sheldon Part                            #
+######################################################################
+SHELDON_DIR=$HOME/tools/sheldon
+SHELDON_SRC_NAME=$HOME/packages/sheldon.tar.gz
+SHELDON_LINK=""https://github.com/rossmacarthur/sheldon/releases/download/0.7.0/sheldon-0.7.0-x86_64-unknown-linux-musl.tar.gz
+if [[ -z "$(command -v sheldon)" ]]; then
+	echo "Install sheldon"
+	if [[ ! -f $SHELDON_SRC_NAME ]]; then
+		echo "Downloading sheldon and renaming"
+		wget $SHELDON_LINK -O "$SHELDON_SRC_NAME"
+	fi
+
+	if [[ ! -d "$SHELDON_DIR" ]]; then
+		echo "Creating sheldon directory under tools directory"
+		mkdir -p "$SHELDON_DIR"
+		echo "Extracting to $HOME/tools/sheldon directory"
+		tar zxvf "$SHELDON_SRC_NAME" -C "$SHELDON_DIR"
+	fi
+
+else
+	echo "Sheldon is already installed. Skip installing it."
+fi
+
+######################################################################
 #                            Btop++ Part                             #
 ######################################################################
 BTOP_DIR=$HOME/tools/btop
