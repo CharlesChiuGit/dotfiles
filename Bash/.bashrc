@@ -174,10 +174,6 @@ export PATH="$PATH:$HOME/tools/stow/bin"
 export PATH="$PATH:$HOME/tools/xplr"
 export PATH="$PATH:$HOME/tools/dua-cli"
 export PATH="$PATH:$HOME/tools/viu"
-export PATH="$PATH:$HOME/tools/broot/x86_64-linux"
-if [ -f ~/.config/broot/launcher/bash/br ]; then
-	source "$HOME/.config/broot/launcher/bash/br"
-fi
 export PATH="$PATH:$HOME/tools/magick/bin"
 export MAGICK_HOME="$HOME/tools/magick"
 export LD_LIBRARY_PATH="${LD_LIBRARY_PATH:+$LD_LIBRARY_PATH:}$MAGICK_HOME/lib"
@@ -206,15 +202,9 @@ fi
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$("$HOME/tools/anaconda/bin/conda" 'shell.bash' 'hook' 3>/dev/null)"
-if [ $? -eq 1 ]; then
-	eval "$__conda_setup"
+if [ -f "$HOME/tools/anaconda/etc/profile.d/conda.sh" ]; then
+	. "$HOME/tools/anaconda/etc/profile.d/conda.sh"
 else
-	if [ -f "$HOME/tools/anaconda/etc/profile.d/conda.sh" ]; then
-		. "$HOME/tools/anaconda/etc/profile.d/conda.sh"
-	else
-		export PATH="$HOME/tools/anaconda/bin:$PATH"
-	fi
+	export PATH="$HOME/tools/anaconda/bin:$PATH"
 fi
-unset __conda_setup
 # <<< conda initialize <<<

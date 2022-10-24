@@ -243,7 +243,7 @@ else
 fi
 
 ######################################################################
-#                              Fzd Part                              #
+#                              Fzf Part                              #
 ######################################################################
 FZF_DIR=$HOME/tools/fzf
 FZF_LINK="https://github.com/junegunn/fzf.git"
@@ -404,43 +404,6 @@ else
 fi
 
 ######################################################################
-#                           LSDeluxe Part                            #
-######################################################################
-# LSD_DIR=$HOME/tools/lsd
-# LSD_SRC_NAME=$HOME/packages/lsd.tar.gz
-# LSD_LINK="https://github.com/Peltoche/lsd/releases/download/0.23.1/lsd-0.23.1-x86_64-unknown-linux-musl.tar.gz"
-# if [[ -z "$(command -v lsd)" ]] && [[ ! -f "$LSD_DIR/lsd" ]]; then
-# 	echo "Install lsd"
-# 	if [[ ! -f $LSD_SRC_NAME ]]; then
-# 		echo "Downloading lsd and renaming"
-# 		wget $LSD_LINK -O "$LSD_SRC_NAME"
-# 	fi
-
-# 	if [[ ! -d "$LSD_DIR" ]]; then
-# 		echo "Creating lsd directory under tools directory"
-# 		mkdir -p "$LSD_DIR"
-# 		echo "Extracting to $HOME/tools/lsd directory"
-# 		tar zxvf "$LSD_SRC_NAME" -C "$LSD_DIR" --strip-components 1
-# 	fi
-
-# 	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
-# 		echo "export PATH=\"$LSD_DIR:\$PATH\"" >>"$HOME/.bashrc"
-# 		export PATH="$LSD_DIR:$PATH"
-# 	fi
-
-# 	# set up manpath
-# 	if [[ -f "$MAN_PATH/lsd.1" ]]; then
-# 		rm "$MAN_PATH/lsd.1"
-# 		ln -s "$HOME/tools/lsd/lsd.1" "$MAN_PATH/lsd.1"
-# 	else
-# 		ln -s "$HOME/tools/lsd/lsd.1" "$MAN_PATH/lsd.1"
-# 	fi
-
-# else
-# 	echo "lsd is already installed. Skip installing it."
-# fi
-
-######################################################################
 #                            Ripgrep Part                            #
 ######################################################################
 RIPGREP_DIR=$HOME/tools/ripgrep
@@ -582,62 +545,6 @@ if [[ -z "$(command -v zoxide)" ]] && [[ ! -f "$ZOXIDE_DIR/zoxide" ]]; then
 else
 	echo "zoxide is already installed. Skip installing it."
 fi
-
-######################################################################
-#                            Pandoc Part                             #
-######################################################################
-# PANDOC_DIR=$HOME/tools/pandoc
-# PANDOC_SRC_NAME=$HOME/packages/pandoc.tar.gz
-# PANDOC_LINK="https://github.com/jgm/pandoc/releases/download/2.19.2/pandoc-2.19.2-linux-amd64.tar.gz"
-# if [[ -z "$(command -v pandoc)" ]] && [[ ! -f "$PANDOC_DIR/pandoc" ]]; then
-# 	echo "Install pandoc"
-# 	if [[ ! -f $PANDOC_SRC_NAME ]]; then
-# 		echo "Downloading pandoc and renaming"
-# 		wget $PANDOC_LINK -O "$PANDOC_SRC_NAME"
-# 	fi
-
-# 	if [[ ! -d "$PANDOC_DIR" ]]; then
-# 		echo "Creating pandoc directory under tools directory"
-# 		mkdir -p "$PANDOC_DIR"
-# 		echo "Extracting to $HOME/tools/pandoc directory"
-# 		tar zxvf "$PANDOC_SRC_NAME" -C "$PANDOC_DIR" --strip-components 1
-# 	fi
-
-# 	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
-# 		echo "export PATH=\"$PANDOC_DIR/bin:\$PATH\"" >>"$HOME/.bashrc"
-#     export PATH="$PANDOC_DIR/bin:$PATH"
-# 	fi
-
-# else
-# 	echo "pandoc is already installed. Skip installing it."
-# fi
-
-######################################################################
-#                             Nala Part                              #
-######################################################################
-# NOTE: Make sure the following build depends are installed.
-# NOTE: sudo apt install git python3-apt pandoc -y
-# NALA_DIR=$HOME/tools/nala
-# NALA_LINK="https://gitlab.com/volian/nala.git"
-# if [[ -z "$(command -v nala)" ]]; then
-# 	echo "Install nala"
-
-# 	if [[ ! -d "$NALA_DIR" ]]; then
-# 		echo "Creating nala directory under tools directory"
-# 		mkdir -p "$NALA_DIR"
-# 		echo "git clone nala repo under tools directory"
-#     git clone --depth=1 "$NALA_LINK" "$NALA_DIR"
-#     make install -C "$NALA_DIR" # might need sudo for this
-
-# 	fi
-
-# 	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
-# 		echo "export PATH=\"$NALA_DIR/bin:\$PATH\"" >>"$HOME/.bashrc"
-# 	fi
-
-# else
-# 	echo "nala is already installed. Skip installing it."
-# fi
 
 ######################################################################
 #                             Tmux Part                              #
@@ -941,43 +848,6 @@ if [[ -z "$(command -v lf)" ]]; then
 
 else
 	echo "LF is already installed. Skip installing it."
-fi
-
-######################################################################
-#                             Broot Part                             #
-######################################################################
-BROOT_DIR=$HOME/tools/broot
-BROOT_SRC_NAME=$HOME/packages/broot.zip
-BROOT_LINK=""https://github.com/Canop/broot/releases/download/v1.16.1/broot_1.16.1.zip
-if [[ -z "$(command -v broot)" ]]; then
-	echo "Install broot"
-	if [[ ! -f $BROOT_SRC_NAME ]]; then
-		echo "Downloading broot and renaming"
-		wget "$BROOT_LINK" -O "$BROOT_SRC_NAME"
-	fi
-
-	if [[ ! -d "$BROOT_DIR" ]]; then
-		echo "Creating broot directory under tools directory"
-		mkdir -p "$BROOT_DIR"
-		unzip "$BROOT_SRC_NAME" -d "$BROOT_DIR"
-		chmod +x "$BROOT_DIR/x86_64-linux/broot"
-	fi
-
-	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
-		echo "export PATH=\"$BROOT_DIR/x86_64-linux:\$PATH\"" >>"$HOME/.bashrc"
-		export PATH="$BROOT_DIR/x86_64-linux:$PATH"
-	fi
-
-	# set up manpath
-	if [[ -f "$MAN_PATH/broot.1" ]]; then
-		rm "$MAN_PATH/broot.1"
-		ln -s "$BROOT_DIR/broot.1" "$MAN_PATH/broot.1"
-	else
-		ln -s "$BROOT_DIR/broot.1" "$MAN_PATH/broot.1"
-	fi
-
-else
-	echo "Broot is already installed. Skip installing it."
 fi
 
 ######################################################################
