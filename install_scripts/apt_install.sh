@@ -42,4 +42,7 @@ sudo nala install libpcre2-dev libz-dev libbz2-dev liblzma-dev liblz4-dev libzst
 sudo nala install lldb -y
 
 # Latex packages
-sudo nala install latexmk texlive-fonts-extra texlive-fonts-recommended texlive-latex-extra --no-install-recommends
+sudo nala install latexmk texlive-fonts-extra texlive-fonts-recommended texlive-latex-extra --no-install-recommends -y
+
+# sshfs
+sudo nala install sshfs -y

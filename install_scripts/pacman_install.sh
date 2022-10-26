@@ -5,3 +5,4 @@ sudo pacman -S freetype2 libjpeg-turbo librsvg libtiff libwebp autoconf automake
 sudo pacman -S cmake
 sudo pacman -S ImageMagick
 sudo pacman -S python-pip python-setuptools
+sudo pacman -S sshfs
