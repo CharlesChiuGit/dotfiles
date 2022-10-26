@@ -916,6 +916,7 @@ if [[ -z "$(command -v pistol)" ]]; then
 		echo "git clone to $HOME/tools/pistol directory"
 		git clone --depth=1 "$PISTOL_LINK" "$PISTOL_DIR"
 		cd "$PISTOL_DIR"
+        go mod tidy
 		make
 	fi
 
