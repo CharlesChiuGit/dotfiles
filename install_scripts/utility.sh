@@ -22,44 +22,44 @@ MAN_PATH=$HOME/.local/share/man/man1
 ######################################################################
 #                           Alacritty Part                           #
 ######################################################################
-ALACRITTY_DIR=$HOME/tools/alacritty
-ALACRITTY_LINK="https://github.com/alacritty/alacritty.git"
-if [[ -z "$(command -v alacritty)" ]]; then
-	echo "Install Alacritty"
+# ALACRITTY_DIR=$HOME/tools/alacritty
+# ALACRITTY_LINK="https://github.com/alacritty/alacritty.git"
+# if [[ -z "$(command -v alacritty)" ]]; then
+# 	echo "Install Alacritty"
 
-	if [[ ! -d "$ALACRITTY_DIR" ]]; then
-		echo "Creating alacritty directory under tools directory"
-		mkdir -p "$ALACRITTY_DIR"
-		echo "git clone to $HOME/tools/alacritty directory"
-		git clone --depth=1 "$ALACRITTY_LINK" "$ALACRITTY_DIR"
-		cd "$ALACRITTY_DIR"
-		cargo build --release
-	fi
+# 	if [[ ! -d "$ALACRITTY_DIR" ]]; then
+# 		echo "Creating alacritty directory under tools directory"
+# 		mkdir -p "$ALACRITTY_DIR"
+# 		echo "git clone to $HOME/tools/alacritty directory"
+# 		git clone --depth=1 "$ALACRITTY_LINK" "$ALACRITTY_DIR"
+# 		cd "$ALACRITTY_DIR"
+# 		cargo build --release
+# 	fi
 
-	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
-		echo "export PATH=\"$ALACRITTY_DIR/target/release:\$PATH\"" >>"$HOME/.bashrc"
-		export PATH="$ALACRITTY_DIR/target/release:$PATH"
-	fi
+# 	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
+# 		echo "export PATH=\"$ALACRITTY_DIR/target/release:\$PATH\"" >>"$HOME/.bashrc"
+# 		export PATH="$ALACRITTY_DIR/target/release:$PATH"
+# 	fi
 
-	if [[ -f ~/dotfiles/Bash/.local/share/bash-completion/alacritty.bash ]]; then
-		rm ~/dotfiles/Bash/.local/share/bash-completion/alacritty.bash
-		cd "$ALACRITTY_DIR"
-		cp extra/completions/alacritty.bash ~/dotfiles/Bash/.local/share/bash-completion
-	else
-		cp extra/completions/alacritty.bash ~/dotfiles/Bash/.local/share/bash-completion
-	fi
+# 	if [[ -f ~/dotfiles/Bash/.local/share/bash-completion/alacritty.bash ]]; then
+# 		rm ~/dotfiles/Bash/.local/share/bash-completion/alacritty.bash
+# 		cd "$ALACRITTY_DIR"
+# 		cp extra/completions/alacritty.bash ~/dotfiles/Bash/.local/share/bash-completion
+# 	else
+# 		cp extra/completions/alacritty.bash ~/dotfiles/Bash/.local/share/bash-completion
+# 	fi
 
-	if [[ -f ~/dotfiles/Bash/.local/share/zsh-completion/alacritty.bash ]]; then
-		rm ~/dotfiles/Bash/.local/share/zsh-completion/_alacritty
-		cd "$ALACRITTY_DIR"
-		cp extra/completions/_alacritty ~/dotfiles/Bash/.local/share/zsh-completion
-	else
-		cp extra/completions/_alacritty ~/dotfiles/Bash/.local/share/zsh-completion
-	fi
+# 	if [[ -f ~/dotfiles/Bash/.local/share/zsh-completion/alacritty.bash ]]; then
+# 		rm ~/dotfiles/Bash/.local/share/zsh-completion/_alacritty
+# 		cd "$ALACRITTY_DIR"
+# 		cp extra/completions/_alacritty ~/dotfiles/Bash/.local/share/zsh-completion
+# 	else
+# 		cp extra/completions/_alacritty ~/dotfiles/Bash/.local/share/zsh-completion
+# 	fi
 
-else
-	echo "Alacritty is already installed. Skip installing it."
-fi
+# else
+# 	echo "Alacritty is already installed. Skip installing it."
+# fi
 
 ######################################################################
 #                           Starship Part                            #
@@ -319,31 +319,31 @@ fi
 ######################################################################
 #                           Git-delta Part                           #
 ######################################################################
-GITDELTA_DIR=$HOME/tools/git-delta
-GITDELTA_SRC_NAME=$HOME/packages/git-delta.tar.gz
-GITDELTA_LINK="https://github.com/dandavison/delta/releases/download/0.14.0/delta-0.14.0-x86_64-unknown-linux-musl.tar.gz"
-if [[ -z "$(command -v delta)" ]] && [[ ! -f "$GITDELTA_DIR/delta" ]]; then
-	echo "Install git-delta"
-	if [[ ! -f $GITDELTA_SRC_NAME ]]; then
-		echo "Downloading git-delta and renaming"
-		wget $GITDELTA_LINK -O "$GITDELTA_SRC_NAME"
-	fi
+# GITDELTA_DIR=$HOME/tools/git-delta
+# GITDELTA_SRC_NAME=$HOME/packages/git-delta.tar.gz
+# GITDELTA_LINK="https://github.com/dandavison/delta/releases/download/0.14.0/delta-0.14.0-x86_64-unknown-linux-musl.tar.gz"
+# if [[ -z "$(command -v delta)" ]] && [[ ! -f "$GITDELTA_DIR/delta" ]]; then
+# 	echo "Install git-delta"
+# 	if [[ ! -f $GITDELTA_SRC_NAME ]]; then
+# 		echo "Downloading git-delta and renaming"
+# 		wget $GITDELTA_LINK -O "$GITDELTA_SRC_NAME"
+# 	fi
 
-	if [[ ! -d "$GITDELTA_DIR" ]]; then
-		echo "Creating git-delta directory under tools directory"
-		mkdir -p "$GITDELTA_DIR"
-		echo "Extracting to $HOME/tools/git-delta directory"
-		tar zxvf "$GITDELTA_SRC_NAME" -C "$GITDELTA_DIR" --strip-components 1
-	fi
+# 	if [[ ! -d "$GITDELTA_DIR" ]]; then
+# 		echo "Creating git-delta directory under tools directory"
+# 		mkdir -p "$GITDELTA_DIR"
+# 		echo "Extracting to $HOME/tools/git-delta directory"
+# 		tar zxvf "$GITDELTA_SRC_NAME" -C "$GITDELTA_DIR" --strip-components 1
+# 	fi
 
-	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
-		echo "export PATH=\"$GITDELTA_DIR:\$PATH\"" >>"$HOME/.bashrc"
-		export PATH="$GITDELTA_DIR:$PATH"
-	fi
+# 	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
+# 		echo "export PATH=\"$GITDELTA_DIR:\$PATH\"" >>"$HOME/.bashrc"
+# 		export PATH="$GITDELTA_DIR:$PATH"
+# 	fi
 
-else
-	echo "git-delta is already installed. Skip installing it."
-fi
+# else
+# 	echo "git-delta is already installed. Skip installing it."
+# fi
 
 ######################################################################
 #                             Glow Part                              #
@@ -638,32 +638,32 @@ fi
 ######################################################################
 #                             Xplr Part                              #
 ######################################################################
-XPLR_DIR=$HOME/tools/xplr
-XPLR_SRC_NAME=$HOME/packages/xplr.tar.gz
-XPLR_LINK="https://github.com/sayanarijit/xplr/releases/download/v0.19.4/xplr-linux-musl.tar.gz"
-if [[ -z "$(command -v xplr)" ]]; then
-	echo "Install xplr"
-	if [[ ! -f $XPLR_SRC_NAME ]]; then
-		echo "Downloading xplr and renaming"
-		wget "$XPLR_LINK" -O "$XPLR_SRC_NAME"
-	fi
+# XPLR_DIR=$HOME/tools/xplr
+# XPLR_SRC_NAME=$HOME/packages/xplr.tar.gz
+# XPLR_LINK="https://github.com/sayanarijit/xplr/releases/download/v0.19.4/xplr-linux-musl.tar.gz"
+# if [[ -z "$(command -v xplr)" ]]; then
+# 	echo "Install xplr"
+# 	if [[ ! -f $XPLR_SRC_NAME ]]; then
+# 		echo "Downloading xplr and renaming"
+# 		wget "$XPLR_LINK" -O "$XPLR_SRC_NAME"
+# 	fi
 
-	if [[ ! -d "$XPLR_DIR" ]]; then
-		echo "Creating xplr directory under tools directory"
-		mkdir -p "$XPLR_DIR"
-		echo "Extracting to $HOME/tools/xplr directory"
-		tar zxvf "$XPLR_SRC_NAME" -C "$XPLR_DIR"
+# 	if [[ ! -d "$XPLR_DIR" ]]; then
+# 		echo "Creating xplr directory under tools directory"
+# 		mkdir -p "$XPLR_DIR"
+# 		echo "Extracting to $HOME/tools/xplr directory"
+# 		tar zxvf "$XPLR_SRC_NAME" -C "$XPLR_DIR"
 
-	fi
+# 	fi
 
-	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
-		echo "export PATH=\"$XPLR_DIR:\$PATH\"" >>"$HOME/.bashrc"
-		export PATH="$XPLR_DIR:$PATH"
-	fi
+# 	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
+# 		echo "export PATH=\"$XPLR_DIR:\$PATH\"" >>"$HOME/.bashrc"
+# 		export PATH="$XPLR_DIR:$PATH"
+# 	fi
 
-else
-	echo "XPLR is already installed. Skip installing it."
-fi
+# else
+# 	echo "XPLR is already installed. Skip installing it."
+# fi
 
 ######################################################################
 #                            Dua-cli Part                            #

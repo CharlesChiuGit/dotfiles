@@ -370,45 +370,45 @@ fi
 #                        PHP/Composer Install                        #
 ######################################################################
 # NOTE: sudo apt install build-essential autoconf bison re2c libxml2-dev libsqlite3-dev
-PHP_DIR=$HOME/tools/php
-PHP_LINK="https://github.com/php/php-src.git"
-if [[ -z "$(command -v php)" ]]; then
-	echo "Install PHP"
+# PHP_DIR=$HOME/tools/php
+# PHP_LINK="https://github.com/php/php-src.git"
+# if [[ -z "$(command -v php)" ]]; then
+# 	echo "Install PHP"
 
-	if [[ ! -d "$PHP_DIR" ]]; then
-		echo "Creating php directory under tools directory"
-		mkdir -p "$PHP_DIR"
-		echo "git clone php repo"
-		git clone --depth=1 "$PHP_LINK" "$PHP_DIR"
-		cd "$PHP_DIR"
-		./buildconf
-		./configure --prefix="$PHP_DIR" --with-openssl --with-zlib
-		make -j4
-		make install
-	fi
+# 	if [[ ! -d "$PHP_DIR" ]]; then
+# 		echo "Creating php directory under tools directory"
+# 		mkdir -p "$PHP_DIR"
+# 		echo "git clone php repo"
+# 		git clone --depth=1 "$PHP_LINK" "$PHP_DIR"
+# 		cd "$PHP_DIR"
+# 		./buildconf
+# 		./configure --prefix="$PHP_DIR" --with-openssl --with-zlib
+# 		make -j4
+# 		make install
+# 	fi
 
-	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
-		echo "export PATH=\"$PHP_DIR/bin:\$PATH\"" >>"$HOME/.bashrc"
-		export PATH="$PHP_DIR/bin:$PATH"
-		alias php='~/tools/php/bin/php'
-	fi
+# 	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
+# 		echo "export PATH=\"$PHP_DIR/bin:\$PATH\"" >>"$HOME/.bashrc"
+# 		export PATH="$PHP_DIR/bin:$PATH"
+# 		alias php='~/tools/php/bin/php'
+# 	fi
 
-	# NOTE: sudo apt install zlib1g zlib1g-dev
-	PHP=$PHP_DIR/bin/php
-	EXPECTED_CHECKSUM="$($PHP -r 'copy("https://composer.github.io/installer.sig", "php://stdout");')"
-	"$PHP" -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-	ACTUAL_CHECKSUM="$($PHP -r "echo hash_file('sha384', 'composer-setup.php');")"
+# 	# NOTE: sudo apt install zlib1g zlib1g-dev
+# 	PHP=$PHP_DIR/bin/php
+# 	EXPECTED_CHECKSUM="$($PHP -r 'copy("https://composer.github.io/installer.sig", "php://stdout");')"
+# 	"$PHP" -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+# 	ACTUAL_CHECKSUM="$($PHP -r "echo hash_file('sha384', 'composer-setup.php');")"
 
-	if [ "$EXPECTED_CHECKSUM" != "$ACTUAL_CHECKSUM" ]; then
-		echo >&2 'ERROR: Invalid installer checksum'
-		rm composer-setup.php
-		exit 1
-	fi
+# 	if [ "$EXPECTED_CHECKSUM" != "$ACTUAL_CHECKSUM" ]; then
+# 		echo >&2 'ERROR: Invalid installer checksum'
+# 		rm composer-setup.php
+# 		exit 1
+# 	fi
 
-	$PHP composer-setup.php --quiet
-	rm composer-setup.php
-	mv composer.phar "$PHP_DIR/bin/composer"
+# 	$PHP composer-setup.php --quiet
+# 	rm composer-setup.php
+# 	mv composer.phar "$PHP_DIR/bin/composer"
 
-else
-	echo "PHP is already installed. Skip installing it."
-fi
+# else
+# 	echo "PHP is already installed. Skip installing it."
+# fi
