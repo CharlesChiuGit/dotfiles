@@ -3,8 +3,6 @@ __pycache__/
 *.py[cod]
 *$py.class
 *.pyc
-*.cpython-310.pyc
-TheFUCK/.config/thefuck/__pycache__/
 Lazygit/.config/lazygit/state.yml
 Tmux/.config/tmux/plugins/*
 install_scripts/node_modules/

@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+for s in $(tmux ls | awk '{print $1}' | rg ':' -r '' | fzf --header="Attach Sessions >"); do
+	tmux attach-session -t "$s"
+done
