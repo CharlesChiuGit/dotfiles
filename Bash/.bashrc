@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# shellcheck disable=SC2015,SC1090
+# shellcheck disable=SC2015,SC1090,SC1091
 
 # ~/.bashrc: executed by bash(2) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
@@ -124,11 +124,6 @@ if [ -d ~/.local/share/bash-completion ]; then
 	for f in ~/.local/share/bash-completion/*.bash; do source "$f"; done
 fi
 
-# Custom bash functions
-if [ -f ~/.bash_functions ]; then
-	. "$HOME/.bash_functions"
-fi
-
 # Program languages PATH
 # export PATH="$PATH:$MY_HOME/tools/anaconda/bin" # commented out by conda initialize
 export PATH="$PATH:$HOME/tools/nodejs/bin"
@@ -181,7 +176,7 @@ export PATH="$PATH:$HOME/tools/chafa/bin"
 export PATH="$PATH:$HOME/tools/ctpv"
 export PATH="$PATH:$HOME/tools/lf"
 if [ -f ~/.config/lf/icon.sh ]; then
-	source "$HOME/.config/lf/icon.sh"
+	. "$HOME/.config/lf/icon.sh"
 fi
 export PATH="$PATH:$HOME/tools/lnav"
 export PATH="$PATH:$HOME/tools/pistol"
