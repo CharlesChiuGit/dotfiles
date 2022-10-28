@@ -3,6 +3,7 @@
 # Local tools alias
 alias node='~/tools/nodejs/bin/node'
 alias npm='~/tools/nodejs/bin/npm'
+alias npx='~/tools/nodejs/bin/npx'
 alias perl='~/tools/perl/bin/perl'
 alias cpan='~/tools/perl/bin/cpan'
 alias cpanm='~/tools/perl/bin/cpanm'
