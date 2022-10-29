@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+######################################################################
+#                        Pipe cht.sh to navi                         #
+######################################################################
+not_in_tmux() {
+	[ -z "$TMUX" ]
+}
+
+read -r -p "Enter Query: " query
+
+if not_in_tmux; then
+	navi --cheatsh "$query"
+else
+	navi --fzf-overrides '--height 100%' --cheatsh "$query"
+fi

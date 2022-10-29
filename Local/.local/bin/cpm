@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+######################################################################
+#         Select multiple files in fzf and copy to given fir         #
+######################################################################
+results=$(fzf -m | tr '\n' ' ')
+echo "cp -r ${results::-1} $1"
+eval "cp -r $results $1"

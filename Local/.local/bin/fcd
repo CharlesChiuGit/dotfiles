@@ -6,7 +6,7 @@
 # NOTE: You need to use `source XXX.sh` or `. XXX.sh` to make `cd` in scripts valid,
 # NOTE:  so add a alias to use scripts like this.
 result=$(
-	fd --type d . "$HOME" |
+	fd -H --type d . "$HOME" |
 		fzf --query="$1" --no-multi --select-1 --exit-0 \
 			--preview 'tree -C {} | head -100'
 )

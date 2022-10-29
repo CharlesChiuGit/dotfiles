@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+######################################################################
+#          Select multiple files in fzf and open with nvim           #
+######################################################################
+results=$(fzf -m | tr '\n' ' ')
+echo "nvim ${results::-1}"
+eval nvim "$results"

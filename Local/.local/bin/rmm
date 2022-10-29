@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+######################################################################
+#             Select multiple files in fzf and trash it              #
+######################################################################
+results=$(fzf -m | tr '\n' ' ')
+echo "trash ${results::-1}"
+eval "trash $results"

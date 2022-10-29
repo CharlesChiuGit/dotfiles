@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+######################################################################
+#         Select multiple files in fzf and move to given dir         #
+######################################################################
+results=$(fzf -m)
+for f in $results; do
+	mv "$f" "$1"
+done
