@@ -18,7 +18,7 @@ sudo nala install ssh vim htop git curl clang latexmk biber tree ninja-build \
 	libx11-dev libxmu-headers libxt-dev libxmu-dev -y
 
 # Cool stuff
-# sudo nala install neofetch hollywood cmatrix jp2a speedtest-cli -y
+sudo nala install neofetch hollywood cmatrix jp2a speedtest-cli toilet -y
 
 # Ranger utils support
 sudo nala install caca-utils ffmpeg librsvg2-bin atool unrar p7zip-full p7zip-rar -y
