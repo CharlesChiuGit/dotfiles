@@ -145,17 +145,21 @@ export PATH="$PATH:$HOME/tools/php/bin"
 
 # Utility tools PATH
 export PATH="$PATH:$HOME/.local/bin"
-export PATH="$PATH:$HOME/tools/alacritty/target/release"
+# export PATH="$PATH:$HOME/tools/alacritty/target/release"
 export PATH="$PATH:$HOME/tools/starship"
 export PATH="$PATH:$HOME/tools/btop/bin"
 export PATH="$PATH:$HOME/tools/batcat"
 export PATH="$PATH:$HOME/tools/cpufetch"
 export PATH="$PATH:$HOME/tools/fdfind"
-export FZF_DEFAULT_OPTS='--ansi --height 40% --layout=reverse --border'
-export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
+export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow'
+export FZF_DEFAULT_OPTS='--ansi --height 40% --layout=reverse --border --preview='"'pistol {}'"''
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_CTRL_T_OPTS="$FZF_DEFAULT_OPTS"
+export FZF_ALT_C_COMMAND='fd -H --type d . --color=never'
+export FZF_ALT_C_OPTS="$FZF_DEFAULT_OPTS"
 export PATH="$PATH:$HOME/tools/fzf/bin"
 export PATH="$PATH:$HOME/tools/fzy"
-export PATH="$PATH:$HOME/tools/git-delta"
+# export PATH="$PATH:$HOME/tools/git-delta"
 export PATH="$PATH:$HOME/tools/glow"
 export PATH="$PATH:$HOME/tools/nvim/bin"
 export EDITOR='nvim'
@@ -166,7 +170,7 @@ export TERM='screen-256color'
 export PATH="$PATH:$HOME/tools/treesitter"
 export PATH="$PATH:$HOME/tools/zoxide"
 export PATH="$PATH:$HOME/tools/stow/bin"
-export PATH="$PATH:$HOME/tools/xplr"
+# export PATH="$PATH:$HOME/tools/xplr"
 export PATH="$PATH:$HOME/tools/dua-cli"
 export PATH="$PATH:$HOME/tools/viu"
 export PATH="$PATH:$HOME/tools/magick/bin"

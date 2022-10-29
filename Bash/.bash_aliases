@@ -20,24 +20,22 @@ alias tmux='~/tools/tmux/tmux'
 
 # Alias
 alias sudo='sudo '
-alias apt='nala'                                                                                          # nala, wrapper for apt-get
-alias bat='bat --theme=gruvbox-dark --color=always --style=numbers,changes,header,grid --line-range :500' # bat option
-# alias fzf="fzf --preview 'bat --theme=gruvbox-dark --color=always --style=numbers,changes,header,grid --line-range :500 {}'"
+alias apt='nala'
+alias bat='bat --theme=gruvbox-dark --color=always --style=numbers,changes,header,grid --line-range :500'
 # alias fzfimg="fzf --preview '(~/.cargo/bin/termpix --width 50 --true-color {} || cat {}) 2> /dev/null'"
-alias fzf="fzf --header 'E to edit' --preview='pistol {}' --bind 'E:execute(vi {})'"
+alias fzf="fzf --header 'E to edit' --bind 'E:execute(nvim {})'"
 alias nvim='$HOME/tools/nvim/bin/nvim'
 alias sobash='source ~/.bashrc'
 alias nvbash='nvim ~/.bashrc'
 alias py='python'
 alias nv='nvim' # Neovim
 alias nvf='nvim `fzf`'
-alias ls='exa -1 -l -T -F --colour always --icons -a -L=1 --group-directories-first -b -h --git --time-style long-iso --no-permissions --octal-permissions'
+alias ls='exa -1 -l -T -F --colour always --icons -a -L=1 \
+    --group-directories-first -b -h --git --time-style long-iso --no-permissions --octal-permissions'
 alias cat='bat'  # wrapper for bat
 alias rm='trash' # mv to trash-bin
 alias lg='lazygit'
 # alias ntfy='ntfy.exe -t '"'charles@WSL'"' ' # ntfy, wsl wrapper for ntfy in windows
-alias tat='tmux a -t'
-alias tks='tmux kill-session -t'
 alias CA='conda activate'
 alias CD='conda deactivate'
 alias tb='tensorboard --logdir'
