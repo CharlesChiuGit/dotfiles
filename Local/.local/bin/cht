@@ -19,7 +19,7 @@ fi
 
 read -r -p "Enter Query: " query
 
-if grep -qs "$selected" ~/.tmux-cht-languages; then
+if grep -qsw "$selected" ~/.tmux-cht-languages; then
 	query=$(echo "$query" | tr ' ' '+')
 	echo "\"curl cht.sh/$selected\"" &
 	curl "cht.sh/$selected" &
