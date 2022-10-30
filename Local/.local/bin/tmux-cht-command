@@ -17,7 +17,6 @@ less
 head
 tail
 tar
-cp
 rm
 rename
 jq
