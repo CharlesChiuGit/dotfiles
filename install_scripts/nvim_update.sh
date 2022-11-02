@@ -1,7 +1,5 @@
-#!/bin/bash -i
+#!/bin/bash
 # INFO: https://dywang.csie.cyut.edu.tw/dywang/linuxProgram/node61.html
-set -exu
-set -o pipefail
 
 if [[ ! -d "$HOME/packages/" ]]; then
 	mkdir -p "$HOME/packages/"
