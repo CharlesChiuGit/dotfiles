@@ -119,7 +119,7 @@ fi
 ######################################################################
 BTOP_DIR=$HOME/tools/btop
 BTOP_SRC_NAME=$HOME/packages/btop.tbz
-BTOP_LINK="https://github.com/aristocratos/btop/releases/download/v1.2.12/btop-x86_64-linux-musl.tbz"
+BTOP_LINK="https://github.com/aristocratos/btop/releases/download/v1.2.13/btop-x86_64-linux-musl.tbz"
 if [[ -z "$(command -v btop)" ]]; then
 	echo "Install btop"
 	if [[ ! -f $BTOP_SRC_NAME ]]; then
@@ -128,10 +128,10 @@ if [[ -z "$(command -v btop)" ]]; then
 	fi
 
 	if [[ ! -d "$BTOP_DIR" ]]; then
-		echo "Creating btop directory under tools directory"
-		mkdir -p "$BTOP_DIR"
+		# echo "Creating btop directory under tools directory"
+		# mkdir -p "$BTOP_DIR"
 		echo "Extracting to $HOME/tools/btop directory"
-		tar xjf "$BTOP_SRC_NAME" -C "$BTOP_DIR"
+		tar xjvf "$BTOP_SRC_NAME" -C "$HOME/tools"
 	fi
 
 	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
@@ -210,7 +210,7 @@ fi
 ######################################################################
 FDFIND_DIR=$HOME/tools/fdfind
 FDFIND_SRC_NAME=$HOME/packages/fdfind.tar.gz
-FDFIND_LINK="https://github.com/sharkdp/fd/releases/download/v8.5.1/fd-v8.5.1-x86_64-unknown-linux-musl.tar.gz"
+FDFIND_LINK=""https://github.com/sharkdp/fd/releases/download/v8.5.2/fd-v8.5.2-x86_64-unknown-linux-musl.tar.gz
 if [[ -z "$(command -v fd)" ]] && [[ ! -f "$FDFIND_DIR/fd" ]]; then
 	echo "Install fdfind"
 	if [[ ! -f $FDFIND_SRC_NAME ]]; then
@@ -916,7 +916,7 @@ if [[ -z "$(command -v pistol)" ]]; then
 		echo "git clone to $HOME/tools/pistol directory"
 		git clone --depth=1 "$PISTOL_LINK" "$PISTOL_DIR"
 		cd "$PISTOL_DIR"
-        go mod tidy
+		go mod tidy
 		make
 	fi
 
