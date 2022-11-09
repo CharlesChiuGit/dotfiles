@@ -99,7 +99,7 @@ fi
 ######################################################################
 NODE_DIR=$HOME/tools/nodejs
 
-"$NODE_DIR/bin/npm" install npm@8.19.2 --location=global
+"$NODE_DIR/bin/npm" install npm@8.19.3 --location=global
 # Install neovim support for node plugins
 "$NODE_DIR/bin/npm" install neovim --location=global
 
@@ -137,9 +137,9 @@ RUBY_DIR=$HOME/tools/ruby
 #                    Install Rust/cargo packages                     #
 ######################################################################
 # RUSTUP_HOME=$HOME/tools/rustup
-# CARGO_HOME=$HOME/tools/cargo
+CARGO_HOME=$HOME/tools/cargo
 
-# "$CARGO_HOME/bin/cargo" install
+"$CARGO_HOME/bin/cargo" install silicon
 
 ######################################################################
 #                       Install Java packages                        #

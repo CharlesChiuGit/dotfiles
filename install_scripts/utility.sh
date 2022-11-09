@@ -744,7 +744,7 @@ if [[ -z "$(command -v magick)" ]]; then
 		echo "export MAGICK_HOME=$MAGICK_DIR" >>"$HOME/.bashrc"
 		export MAGICK_HOME="$MAGICK_DIR"
 		export PATH="$MAGICK_DIR/bin:$PATH"
-		echo "export LD_LIBRARY_PATH=\"$\{LD_LIBRARY_PATH:+\$LD_LIBRARY_PATH:}\$MAGICK_HOME/lib" >>"$HOME/.bashrc"
+		echo "export LD_LIBRARY_PATH=\"$\{LD_LIBRARY_PATH:+\$LD_LIBRARY_PATH:}\$MAGICK_HOME/lib\"" >>"$HOME/.bashrc"
 		LD_LIBRARY_PATH="${LD_LIBRARY_PATH:+$LD_LIBRARY_PATH:}$MAGICK_HOME/lib"
 		export LD_LIBRARY_PATH
 	fi
