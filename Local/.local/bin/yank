@@ -1,7 +1,11 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
+set -eu
+
+# INFO: https://github.com/samoshkin/tmux-config/blob/master/tmux/yank.sh
+# INFO: https://medium.com/free-code-camp/tmux-in-practice-integration-with-system-clipboard-bcd72c62ff7b
 # INFO: https://github.com/sunaku/home/blob/master/bin/yank
-#
+
 # Usage: yank [FILE...]
 #
 # Copies the contents of the given files (or stdin, if no files are given) to
@@ -44,8 +48,8 @@ test -n "$TMUX" && maybe tmux load-buffer -
 printf_escape() {
 	esc=$1
 	test -n "$TMUX" -o -z "${TERM##screen*}" && esc="\033Ptmux;\033$esc\033\\"
-	printf '..%s..' "$esc"
+	printf "$esc"
 }
 len=$(input | wc -c) max=74994
-test "$len" -gt $max && echo "$0: input is $((len - max)) bytes too long" >&2
+test $len -gt $max && echo "$0: input is $((len - max)) bytes too long" >&2
 printf_escape "\033]52;c;$(input | head -c $max | base64 | tr -d '\r\n')\a"
