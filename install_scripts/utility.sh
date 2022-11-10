@@ -9,11 +9,11 @@ ADD_TO_SYSTEM_PATH=true
 # select which shell we are using
 USE_BASH_SHELL=true
 
-if [[ ! -d "$HOME/packages/" ]]; then
+if [[ ! -d $HOME/packages/ ]]; then
 	mkdir -p "$HOME/packages/"
 fi
 
-if [[ ! -d "$HOME/tools/" ]]; then
+if [[ ! -d $HOME/tools/ ]]; then
 	mkdir -p "$HOME/tools/"
 fi
 
@@ -24,10 +24,10 @@ MAN_PATH=$HOME/.local/share/man/man1
 ######################################################################
 # ALACRITTY_DIR=$HOME/tools/alacritty
 # ALACRITTY_LINK="https://github.com/alacritty/alacritty.git"
-# if [[ -z "$(command -v alacritty)" ]]; then
+# if [[ -z $(command -v alacritty) ]]; then
 # 	echo "Install Alacritty"
 
-# 	if [[ ! -d "$ALACRITTY_DIR" ]]; then
+# 	if [[ ! -d $ALACRITTY_DIR ]]; then
 # 		echo "Creating alacritty directory under tools directory"
 # 		mkdir -p "$ALACRITTY_DIR"
 # 		echo "git clone to $HOME/tools/alacritty directory"
@@ -36,7 +36,7 @@ MAN_PATH=$HOME/.local/share/man/man1
 # 		cargo build --release
 # 	fi
 
-# 	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
+# 	if [[ $ADD_TO_SYSTEM_PATH = true ]] && [[ $USE_BASH_SHELL = true ]]; then
 # 		echo "export PATH=\"$ALACRITTY_DIR/target/release:\$PATH\"" >>"$HOME/.bashrc"
 # 		export PATH="$ALACRITTY_DIR/target/release:$PATH"
 # 	fi
@@ -67,21 +67,21 @@ MAN_PATH=$HOME/.local/share/man/man1
 STARSHIP_DIR=$HOME/tools/starship
 STARSHIP_SRC_NAME=$HOME/packages/starship.tar.gz
 STARSHIP_LINK="https://github.com/starship/starship/releases/download/v1.11.0/starship-x86_64-unknown-linux-musl.tar.gz"
-if [[ -z "$(command -v starship)" ]]; then
+if [[ -z $(command -v starship) ]]; then
 	echo "Install starship"
 	if [[ ! -f $STARSHIP_SRC_NAME ]]; then
 		echo "Downloading starship and renaming"
 		wget $STARSHIP_LINK -O "$STARSHIP_SRC_NAME"
 	fi
 
-	if [[ ! -d "$STARSHIP_DIR" ]]; then
+	if [[ ! -d $STARSHIP_DIR ]]; then
 		echo "Creating starship directory under tools directory"
 		mkdir -p "$STARSHIP_DIR"
 		echo "Extracting to $HOME/tools/starship directory"
 		tar zxvf "$STARSHIP_SRC_NAME" -C "$STARSHIP_DIR"
 	fi
 
-	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
+	if [[ $ADD_TO_SYSTEM_PATH = true ]] && [[ $USE_BASH_SHELL = true ]]; then
 		echo "export PATH=\"$STARSHIP_DIR:\$PATH\"" >>"$HOME/.bashrc"
 		export PATH="$STARSHIP_DIR:$PATH"
 	fi
@@ -96,14 +96,14 @@ fi
 SHELDON_DIR=$HOME/tools/sheldon
 SHELDON_SRC_NAME=$HOME/packages/sheldon.tar.gz
 SHELDON_LINK="https://github.com/rossmacarthur/sheldon/releases/download/0.7.1/sheldon-0.7.1-x86_64-unknown-linux-musl.tar.gz"
-if [[ -z "$(command -v sheldon)" ]]; then
+if [[ -z $(command -v sheldon) ]]; then
 	echo "Install sheldon"
 	if [[ ! -f $SHELDON_SRC_NAME ]]; then
 		echo "Downloading sheldon and renaming"
 		wget $SHELDON_LINK -O "$SHELDON_SRC_NAME"
 	fi
 
-	if [[ ! -d "$SHELDON_DIR" ]]; then
+	if [[ ! -d $SHELDON_DIR ]]; then
 		echo "Creating sheldon directory under tools directory"
 		mkdir -p "$SHELDON_DIR"
 		echo "Extracting to $HOME/tools/sheldon directory"
@@ -120,21 +120,21 @@ fi
 BTOP_DIR=$HOME/tools/btop
 BTOP_SRC_NAME=$HOME/packages/btop.tbz
 BTOP_LINK="https://github.com/aristocratos/btop/releases/download/v1.2.13/btop-x86_64-linux-musl.tbz"
-if [[ -z "$(command -v btop)" ]]; then
+if [[ -z $(command -v btop) ]]; then
 	echo "Install btop"
 	if [[ ! -f $BTOP_SRC_NAME ]]; then
 		echo "Downloading btop and renaming"
 		wget $BTOP_LINK -O "$BTOP_SRC_NAME"
 	fi
 
-	if [[ ! -d "$BTOP_DIR" ]]; then
+	if [[ ! -d $BTOP_DIR ]]; then
 		# echo "Creating btop directory under tools directory"
 		# mkdir -p "$BTOP_DIR"
 		echo "Extracting to $HOME/tools/btop directory"
 		tar xjvf "$BTOP_SRC_NAME" -C "$HOME/tools"
 	fi
 
-	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
+	if [[ $ADD_TO_SYSTEM_PATH = true ]] && [[ $USE_BASH_SHELL = true ]]; then
 		echo "export PATH=\"$BTOP_DIR/bin:\$PATH\"" >>"$HOME/.bashrc"
 		export PATH="$BTOP_DIR/bin:$PATH"
 	fi
@@ -149,27 +149,27 @@ fi
 BATCAT_DIR=$HOME/tools/batcat
 BATCAT_SRC_NAME=$HOME/packages/batcat.tar.gz
 BATCAT_LINK="https://github.com/sharkdp/bat/releases/download/v0.22.1/bat-v0.22.1-x86_64-unknown-linux-musl.tar.gz"
-if [[ -z "$(command -v bat)" ]] && [[ ! -f "$BATCAT_DIR/bat" ]]; then
+if [[ -z $(command -v bat) ]] && [[ ! -f $BATCAT_DIR/bat ]]; then
 	echo "Install batcat"
 	if [[ ! -f $BATCAT_SRC_NAME ]]; then
 		echo "Downloading batcat and renaming"
 		wget $BATCAT_LINK -O "$BATCAT_SRC_NAME"
 	fi
 
-	if [[ ! -d "$BATCAT_DIR" ]]; then
+	if [[ ! -d $BATCAT_DIR ]]; then
 		echo "Creating batcat directory under tools directory"
 		mkdir -p "$BATCAT_DIR"
 		echo "Extracting to $HOME/tools/batcat directory"
 		tar zxvf "$BATCAT_SRC_NAME" -C "$BATCAT_DIR" --strip-components 1
 	fi
 
-	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
+	if [[ $ADD_TO_SYSTEM_PATH = true ]] && [[ $USE_BASH_SHELL = true ]]; then
 		echo "export PATH=\"$BATCAT_DIR:\$PATH\"" >>"$HOME/.bashrc"
 		export PATH="$BATCAT_DIR:$PATH"
 	fi
 
 	# set up manpath
-	if [[ -f "$MAN_PATH/bat.1" ]]; then
+	if [[ -f $MAN_PATH/bat.1 ]]; then
 		rm "$MAN_PATH/bat.1"
 		ln -s "$HOME/tools/batcat/bat.1" "$MAN_PATH/bat.1"
 	else
@@ -185,10 +185,10 @@ fi
 ######################################################################
 CPUFETCH_DIR=$HOME/tools/cpufetch
 CPUFETCH_LINK="https://github.com/Dr-Noob/cpufetch/releases/download/v1.02/cpufetch_x86-64_linux"
-if [[ -z "$(command -v cpufetch)" ]]; then
+if [[ -z $(command -v cpufetch) ]]; then
 	echo "Install cpufetch"
 
-	if [[ ! -d "$CPUFETCH_DIR" ]]; then
+	if [[ ! -d $CPUFETCH_DIR ]]; then
 		echo "Creating cpufetch directory under tools directory"
 		mkdir -p "$CPUFETCH_DIR"
 		echo "Download to $HOME/tools/cpufetch directory"
@@ -196,7 +196,7 @@ if [[ -z "$(command -v cpufetch)" ]]; then
 		chmod +x "$CPUFETCH_DIR/cpufetch"
 	fi
 
-	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
+	if [[ $ADD_TO_SYSTEM_PATH = true ]] && [[ $USE_BASH_SHELL = true ]]; then
 		echo "export PATH=\"$CPUFETCH_DIR:\$PATH\"" >>"$HOME/.bashrc"
 		export PATH="$CPUFETCH_DIR:$PATH"
 	fi
@@ -211,27 +211,27 @@ fi
 FDFIND_DIR=$HOME/tools/fdfind
 FDFIND_SRC_NAME=$HOME/packages/fdfind.tar.gz
 FDFIND_LINK=""https://github.com/sharkdp/fd/releases/download/v8.5.2/fd-v8.5.2-x86_64-unknown-linux-musl.tar.gz
-if [[ -z "$(command -v fd)" ]] && [[ ! -f "$FDFIND_DIR/fd" ]]; then
+if [[ -z $(command -v fd) ]] && [[ ! -f $FDFIND_DIR/fd ]]; then
 	echo "Install fdfind"
 	if [[ ! -f $FDFIND_SRC_NAME ]]; then
 		echo "Downloading fdfind and renaming"
 		wget $FDFIND_LINK -O "$FDFIND_SRC_NAME"
 	fi
 
-	if [[ ! -d "$FDFIND_DIR" ]]; then
+	if [[ ! -d $FDFIND_DIR ]]; then
 		echo "Creating fdfind directory under tools directory"
 		mkdir -p "$FDFIND_DIR"
 		echo "Extracting to $HOME/tools/fdfind directory"
 		tar zxvf "$FDFIND_SRC_NAME" -C "$FDFIND_DIR" --strip-components 1
 	fi
 
-	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
+	if [[ $ADD_TO_SYSTEM_PATH = true ]] && [[ $USE_BASH_SHELL = true ]]; then
 		echo "export PATH=\"$FDFIND_DIR:\$PATH\"" >>"$HOME/.bashrc"
 		export PATH="$FDFIND_DIR:$PATH"
 	fi
 
 	# set up manpath
-	if [[ -f "$MAN_PATH/fd.1" ]]; then
+	if [[ -f $MAN_PATH/fd.1 ]]; then
 		rm "$MAN_PATH/fd.1"
 		ln -s "$HOME/tools/fdfind/fd.1" "$MAN_PATH/fd.1"
 	else
@@ -247,10 +247,10 @@ fi
 ######################################################################
 FZF_DIR=$HOME/tools/fzf
 FZF_LINK="https://github.com/junegunn/fzf.git"
-if [[ -z "$(command -v fzf)" ]]; then
+if [[ -z $(command -v fzf) ]]; then
 	echo "Install fzf"
 
-	if [[ ! -d "$FZF_DIR" ]]; then
+	if [[ ! -d $FZF_DIR ]]; then
 		echo "Creating fzf directory under tools directory"
 		mkdir -p "$FZF_DIR"
 		echo "git clone to $HOME/tools/fzf directory"
@@ -261,13 +261,13 @@ if [[ -z "$(command -v fzf)" ]]; then
 		make install
 	fi
 
-	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
+	if [[ $ADD_TO_SYSTEM_PATH = true ]] && [[ $USE_BASH_SHELL = true ]]; then
 		echo "export PATH=\"$FZF_DIR/bin:\$PATH\"" >>"$HOME/.bashrc"
 		export PATH="$FZF_DIR/bin:$PATH"
 	fi
 
 	# set up manpath
-	if [[ -f "$MAN_PATH/fzf.1" ]]; then
+	if [[ -f $MAN_PATH/fzf.1 ]]; then
 		rm "$MAN_PATH/fzf.1"
 		ln -s "$HOME/tools/fzf/man/man1/fzf.1" "$MAN_PATH/fzf.1"
 	else
@@ -284,14 +284,14 @@ fi
 FZY_DIR=$HOME/tools/fzy
 FZY_SRC_NAME=$HOME/packages/fzy.tar.gz
 FZY_LINK="https://github.com/jhawthorn/fzy/releases/download/1.0/fzy-1.0.tar.gz"
-if [[ -z "$(command -v fzy)" ]] && [[ ! -f "$FZY_DIR/fzy" ]]; then
+if [[ -z $(command -v fzy) ]] && [[ ! -f $FZY_DIR/fzy ]]; then
 	echo "Install fzy"
 	if [[ ! -f $FZY_SRC_NAME ]]; then
 		echo "Downloading fzy and renaming"
 		wget $FZY_LINK -O "$FZY_SRC_NAME"
 	fi
 
-	if [[ ! -d "$FZY_DIR" ]]; then
+	if [[ ! -d $FZY_DIR ]]; then
 		echo "Creating fzy directory under tools directory"
 		mkdir -p "$FZY_DIR"
 		echo "Extracting to $HOME/tools/fzy directory"
@@ -299,13 +299,13 @@ if [[ -z "$(command -v fzy)" ]] && [[ ! -f "$FZY_DIR/fzy" ]]; then
 		make -C "$FZY_DIR"
 	fi
 
-	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
+	if [[ $ADD_TO_SYSTEM_PATH = true ]] && [[ $USE_BASH_SHELL = true ]]; then
 		echo "export PATH=\"$FZY_DIR:\$PATH\"" >>"$HOME/.bashrc"
 		export PATH="$FZY_DIR:$PATH"
 	fi
 
 	# set up manpath
-	if [[ -f "$MAN_PATH/fzy.1" ]]; then
+	if [[ -f $MAN_PATH/fzy.1 ]]; then
 		rm "$MAN_PATH/fzy.1"
 		ln -s "$HOME/tools/fzy/fzy.1" "$MAN_PATH/fzy.1"
 	else
@@ -322,21 +322,21 @@ fi
 # GITDELTA_DIR=$HOME/tools/git-delta
 # GITDELTA_SRC_NAME=$HOME/packages/git-delta.tar.gz
 # GITDELTA_LINK="https://github.com/dandavison/delta/releases/download/0.14.0/delta-0.14.0-x86_64-unknown-linux-musl.tar.gz"
-# if [[ -z "$(command -v delta)" ]] && [[ ! -f "$GITDELTA_DIR/delta" ]]; then
+# if [[ -z $(command -v delta) ]] && [[ ! -f $GITDELTA_DIR/delta ]]; then
 # 	echo "Install git-delta"
 # 	if [[ ! -f $GITDELTA_SRC_NAME ]]; then
 # 		echo "Downloading git-delta and renaming"
 # 		wget $GITDELTA_LINK -O "$GITDELTA_SRC_NAME"
 # 	fi
 
-# 	if [[ ! -d "$GITDELTA_DIR" ]]; then
+# 	if [[ ! -d $GITDELTA_DIR ]]; then
 # 		echo "Creating git-delta directory under tools directory"
 # 		mkdir -p "$GITDELTA_DIR"
 # 		echo "Extracting to $HOME/tools/git-delta directory"
 # 		tar zxvf "$GITDELTA_SRC_NAME" -C "$GITDELTA_DIR" --strip-components 1
 # 	fi
 
-# 	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
+# 	if [[ $ADD_TO_SYSTEM_PATH = true ]] && [[ $USE_BASH_SHELL = true ]]; then
 # 		echo "export PATH=\"$GITDELTA_DIR:\$PATH\"" >>"$HOME/.bashrc"
 # 		export PATH="$GITDELTA_DIR:$PATH"
 # 	fi
@@ -351,21 +351,21 @@ fi
 GLOW_DIR=$HOME/tools/glow
 GLOW_SRC_NAME=$HOME/packages/glow.tar.gz
 GLOW_LINK="https://github.com/charmbracelet/glow/releases/download/v1.4.1/glow_1.4.1_linux_x86_64.tar.gz"
-if [[ -z "$(command -v glow)" ]] && [[ ! -f "$GLOW_DIR/glow" ]]; then
+if [[ -z $(command -v glow) ]] && [[ ! -f $GLOW_DIR/glow ]]; then
 	echo "Install glow"
 	if [[ ! -f $GLOW_SRC_NAME ]]; then
 		echo "Downloading glow and renaming"
 		wget $GLOW_LINK -O "$GLOW_SRC_NAME"
 	fi
 
-	if [[ ! -d "$GLOW_DIR" ]]; then
+	if [[ ! -d $GLOW_DIR ]]; then
 		echo "Creating glow directory under tools directory"
 		mkdir -p "$GLOW_DIR"
 		echo "Extracting to $HOME/tools/glow directory"
 		tar zxvf "$GLOW_SRC_NAME" -C "$GLOW_DIR"
 	fi
 
-	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
+	if [[ $ADD_TO_SYSTEM_PATH = true ]] && [[ $USE_BASH_SHELL = true ]]; then
 		echo "export PATH=\"$GLOW_DIR:\$PATH\"" >>"$HOME/.bashrc"
 		export PATH="$GLOW_DIR:$PATH"
 	fi
@@ -380,21 +380,21 @@ fi
 LAZYGIT_DIR=$HOME/tools/lazygit
 LAZYGIT_SRC_NAME=$HOME/packages/lazygit.tar.gz
 LAZYGIT_LINK="https://github.com/jesseduffield/lazygit/releases/download/v0.35/lazygit_0.35_Linux_x86_64.tar.gz"
-if [[ -z "$(command -v lazygit)" ]] && [[ ! -f "$LAZYGIT_DIR/lazygit" ]]; then
+if [[ -z $(command -v lazygit) ]] && [[ ! -f $LAZYGIT_DIR/lazygit ]]; then
 	echo "Install lazygit"
 	if [[ ! -f $LAZYGIT_SRC_NAME ]]; then
 		echo "Downloading lazygit and renaming"
 		wget $LAZYGIT_LINK -O "$LAZYGIT_SRC_NAME"
 	fi
 
-	if [[ ! -d "$LAZYGIT_DIR" ]]; then
+	if [[ ! -d $LAZYGIT_DIR ]]; then
 		echo "Creating lazygit directory under tools directory"
 		mkdir -p "$LAZYGIT_DIR"
 		echo "Extracting to $HOME/tools/lazygit directory"
 		tar zxvf "$LAZYGIT_SRC_NAME" -C "$LAZYGIT_DIR"
 	fi
 
-	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
+	if [[ $ADD_TO_SYSTEM_PATH = true ]] && [[ $USE_BASH_SHELL = true ]]; then
 		echo "export PATH=\"$LAZYGIT_DIR:\$PATH\"" >>"$HOME/.bashrc"
 		export PATH="$LAZYGIT_DIR:$PATH"
 	fi
@@ -409,34 +409,34 @@ fi
 RIPGREP_DIR=$HOME/tools/ripgrep
 RIPGREP_SRC_NAME=$HOME/packages/ripgrep.tar.gz
 RIPGREP_LINK="https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep-13.0.0-x86_64-unknown-linux-musl.tar.gz"
-if [[ -z "$(command -v rg)" ]] && [[ ! -f "$RIPGREP_DIR/rg" ]]; then
+if [[ -z $(command -v rg) ]] && [[ ! -f $RIPGREP_DIR/rg ]]; then
 	echo "Install ripgrep"
 	if [[ ! -f $RIPGREP_SRC_NAME ]]; then
 		echo "Downloading ripgrep and renaming"
 		wget $RIPGREP_LINK -O "$RIPGREP_SRC_NAME"
 	fi
 
-	if [[ ! -d "$RIPGREP_DIR" ]]; then
+	if [[ ! -d $RIPGREP_DIR ]]; then
 		echo "Creating ripgrep directory under tools directory"
 		mkdir -p "$RIPGREP_DIR"
 		echo "Extracting to $HOME/tools/ripgrep directory"
 		tar zxvf "$RIPGREP_SRC_NAME" -C "$RIPGREP_DIR" --strip-components 1
 	fi
 
-	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
+	if [[ $ADD_TO_SYSTEM_PATH = true ]] && [[ $USE_BASH_SHELL = true ]]; then
 		echo "export PATH=\"$RIPGREP_DIR:\$PATH\"" >>"$HOME/.bashrc"
 		export PATH="$RIPGREP_DIR:$PATH"
 	fi
 
 	# set up manpath
-	if [[ -f "$MAN_PATH/rg.1" ]]; then
+	if [[ -f $MAN_PATH/rg.1 ]]; then
 		rm "$MAN_PATH/rg.1"
 		ln -s "$HOME/tools/ripgrep/doc/rg.1" "$MAN_PATH/rg.1"
 	else
 		ln -s "$HOME/tools/ripgrep/doc/rg.1" "$MAN_PATH/rg.1"
 	fi
 
-	# if [[ "$USE_BASH_SHELL" = true ]]; then
+	# if [[ $USE_BASH_SHELL = true ]]; then
 	# 	echo 'export MANPATH=$HOME/tools/ripgrep/doc/man:$MANPATH' >>"$HOME/.bashrc"
 	# else
 	# 	echo 'export MANPATH=$HOME/tools/ripgrep/doc/man:$MANPATH' >>"$HOME/.zshrc"
@@ -452,14 +452,14 @@ fi
 TS_DIR=$HOME/tools/treesitter
 TS_SRC_NAME=$HOME/packages/tree-sitter-linux-x64.gz
 TS_LINK="https://github.com/tree-sitter/tree-sitter/releases/download/v0.20.7/tree-sitter-linux-x64.gz"
-if [[ -z "$(command -v tree-sitter)" ]] && [[ ! -f "$TS_DIR/tree-sitter" ]]; then
+if [[ -z $(command -v tree-sitter) ]] && [[ ! -f $TS_DIR/tree-sitter ]]; then
 	echo "Install treesitter"
 	if [[ ! -f $TS_SRC_NAME ]]; then
 		echo "Downloading treesitter and renaming"
 		wget $TS_LINK -P "$HOME/packages"
 	fi
 
-	if [[ ! -d "$TS_DIR" ]]; then
+	if [[ ! -d $TS_DIR ]]; then
 		echo "Creating tree-sitter directory under tools directory"
 		mkdir -p "$TS_DIR"
 		echo "Extracting to $HOME/tools/treesitter directory"
@@ -468,7 +468,7 @@ if [[ -z "$(command -v tree-sitter)" ]] && [[ ! -f "$TS_DIR/tree-sitter" ]]; the
 		chmod u+x "$TS_DIR/tree-sitter"
 	fi
 
-	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
+	if [[ $ADD_TO_SYSTEM_PATH = true ]] && [[ $USE_BASH_SHELL = true ]]; then
 		echo "export PATH=\"$TS_DIR:\$PATH\"" >>"$HOME/.bashrc"
 		export PATH="$TS_DIR:$PATH"
 	fi
@@ -482,10 +482,10 @@ fi
 ######################################################################
 TRASH_DIR=$HOME/tools/trash-cli
 TRASH_LINK="https://github.com/andreafrancia/trash-cli.git"
-if [[ -z "$(command -v trash)" ]]; then
+if [[ -z $(command -v trash) ]]; then
 	echo "Install trash-cli"
 
-	if [[ ! -d "$TRASH_DIR" ]]; then
+	if [[ ! -d $TRASH_DIR ]]; then
 		echo "Creating trash-cli directory under tools directory"
 		mkdir -p "$TRASH_DIR"
 		echo "git clone to $HOME/tools/trash-cli directory"
@@ -495,7 +495,7 @@ if [[ -z "$(command -v trash)" ]]; then
 
 	fi
 
-	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
+	if [[ $ADD_TO_SYSTEM_PATH = true ]] && [[ $USE_BASH_SHELL = true ]]; then
 		echo "export PATH=\"$HOME/.local/bin:\$PATH\"" >>"$HOME/.bashrc"
 		export PATH=$HOME/.local/bin:$PATH
 	fi
@@ -513,14 +513,14 @@ ZOXIDE_DIR=$HOME/tools/zoxide
 ZOXIDE_SRC_NAME=$HOME/packages/zoxide.tar.gz
 ZOXIDE_LINK="https://github.com/ajeetdsouza/zoxide/releases/download/v0.8.3/zoxide-0.8.3-x86_64-unknown-linux-musl.tar.gz"
 ZOXIDE_MAN=$HOME/.local/share/man/man1/zoxide
-if [[ -z "$(command -v zoxide)" ]] && [[ ! -f "$ZOXIDE_DIR/zoxide" ]]; then
+if [[ -z $(command -v zoxide) ]] && [[ ! -f $ZOXIDE_DIR/zoxide ]]; then
 	echo "Install zoxide"
 	if [[ ! -f $ZOXIDE_SRC_NAME ]]; then
 		echo "Downloading zoxide and renaming"
 		wget $ZOXIDE_LINK -O "$ZOXIDE_SRC_NAME"
 	fi
 
-	if [[ ! -d "$ZOXIDE_DIR" ]]; then
+	if [[ ! -d $ZOXIDE_DIR ]]; then
 		echo "Creating zoxide directory under tools directory"
 		mkdir -p "$ZOXIDE_DIR"
 		echo "Extracting to $HOME/tools/zoxide directory"
@@ -529,14 +529,14 @@ if [[ -z "$(command -v zoxide)" ]] && [[ ! -f "$ZOXIDE_DIR/zoxide" ]]; then
 		##ln -s "$ZOXIDE_DIR/zoxide.bash" "$ZOXIDE_DIR/zoxide"
 	fi
 
-	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
+	if [[ $ADD_TO_SYSTEM_PATH = true ]] && [[ $USE_BASH_SHELL = true ]]; then
 		echo "export PATH=\"$ZOXIDE_DIR:\$PATH\"" >>"$HOME/.bashrc"
 		export PATH="$ZOXIDE_DIR:$PATH"
 	fi
 
 	# set up manpath
 	# for f in "$HOME"/tools/zoxide/man/man1/*; do cp "$f" "$HOME/.local/share/man/man1"; done
-	if [[ -d "$MAN_PATH/zoxide" ]]; then
+	if [[ -d $MAN_PATH/zoxide ]]; then
 		rm "$MAN_PATH/zoxide"
 		ln -s "$HOME/tools/zoxide/man/man1" "$ZOXIDE_MAN"
 	else
@@ -553,14 +553,14 @@ fi
 TMUX_DIR=$HOME/tools/tmux
 TMUX_SRC_NAME=$HOME/packages/tmux.tar.gz
 TMUX_LINK="https://github.com/tmux/tmux/releases/download/3.3a/tmux-3.3a.tar.gz"
-if [[ ! -f "$TMUX_DIR/tmux" ]]; then
+if [[ ! -f $TMUX_DIR/tmux ]]; then
 	echo "Install tmux"
 	if [[ ! -f $TMUX_SRC_NAME ]]; then
 		echo "Downloading tmux and renaming"
 		wget $TMUX_LINK -O "$TMUX_SRC_NAME"
 	fi
 
-	if [[ ! -d "$TMUX_DIR" ]]; then
+	if [[ ! -d $TMUX_DIR ]]; then
 		echo "Creating tmux directory under tools directory"
 		mkdir -p "$TMUX_DIR"
 		echo "Extracting to $HOME/tools/tmux directory"
@@ -571,14 +571,14 @@ if [[ ! -f "$TMUX_DIR/tmux" ]]; then
 		make install
 	fi
 
-	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
+	if [[ $ADD_TO_SYSTEM_PATH = true ]] && [[ $USE_BASH_SHELL = true ]]; then
 		echo "export PATH=\"$TMUX_DIR:\$PATH\"" >>"$HOME/.bashrc"
 		export PATH="$TMUX_DIR:$PATH"
 		alias tmux='~/tools/tmux/tmux'
 	fi
 
 	# set up manpath
-	if [[ -f "$MAN_PATH/tmux.1" ]]; then
+	if [[ -f $MAN_PATH/tmux.1 ]]; then
 		rm "$MAN_PATH/tmux.1"
 		ln -s "$TMUX_DIR/share/man/man1/tmux.1" "$MAN_PATH/tmux.1"
 	else
@@ -604,14 +604,14 @@ fi
 STOW_DIR=$HOME/tools/stow
 STOW_SRC_NAME=$HOME/packages/stow.tar.gz
 STOW_LINK="https://ftp.gnu.org/gnu/stow/stow-2.3.1.tar.gz"
-if [[ -z "$(command -v stow)" ]]; then
+if [[ -z $(command -v stow) ]]; then
 	echo "Install GNU stow"
 	if [[ ! -f $STOW_SRC_NAME ]]; then
 		echo "Downloading stow and renaming"
 		wget $STOW_LINK -O "$STOW_SRC_NAME"
 	fi
 
-	if [[ ! -d "$STOW_DIR" ]]; then
+	if [[ ! -d $STOW_DIR ]]; then
 		echo "Creating stow directory under tools directory"
 		mkdir -p "$STOW_DIR"
 		echo "Extracting to $HOME/tools/stow directory"
@@ -626,7 +626,7 @@ if [[ -z "$(command -v stow)" ]]; then
 		make install
 	fi
 
-	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
+	if [[ $ADD_TO_SYSTEM_PATH = true ]] && [[ $USE_BASH_SHELL = true ]]; then
 		echo "export PATH=\"$STOW_DIR/bin:\$PATH\"" >>"$HOME/.bashrc"
 		export PATH="$STOW_DIR/bin:$PATH"
 	fi
@@ -641,14 +641,14 @@ fi
 # XPLR_DIR=$HOME/tools/xplr
 # XPLR_SRC_NAME=$HOME/packages/xplr.tar.gz
 # XPLR_LINK="https://github.com/sayanarijit/xplr/releases/download/v0.19.4/xplr-linux-musl.tar.gz"
-# if [[ -z "$(command -v xplr)" ]]; then
+# if [[ -z $(command -v xplr) ]]; then
 # 	echo "Install xplr"
 # 	if [[ ! -f $XPLR_SRC_NAME ]]; then
 # 		echo "Downloading xplr and renaming"
 # 		wget "$XPLR_LINK" -O "$XPLR_SRC_NAME"
 # 	fi
 
-# 	if [[ ! -d "$XPLR_DIR" ]]; then
+# 	if [[ ! -d $XPLR_DIR ]]; then
 # 		echo "Creating xplr directory under tools directory"
 # 		mkdir -p "$XPLR_DIR"
 # 		echo "Extracting to $HOME/tools/xplr directory"
@@ -656,7 +656,7 @@ fi
 
 # 	fi
 
-# 	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
+# 	if [[ $ADD_TO_SYSTEM_PATH = true ]] && [[ $USE_BASH_SHELL = true ]]; then
 # 		echo "export PATH=\"$XPLR_DIR:\$PATH\"" >>"$HOME/.bashrc"
 # 		export PATH="$XPLR_DIR:$PATH"
 # 	fi
@@ -671,14 +671,14 @@ fi
 DUA_DIR=$HOME/tools/dua-cli
 DUA_SRC_NAME=$HOME/packages/dua-cli.tar.gz
 DUA_LINK="https://github.com/Byron/dua-cli/releases/download/v2.18.0/dua-v2.18.0-x86_64-unknown-linux-musl.tar.gz"
-if [[ -z "$(command -v dua)" ]]; then
+if [[ -z $(command -v dua) ]]; then
 	echo "Install dua-cli"
 	if [[ ! -f $DUA_SRC_NAME ]]; then
 		echo "Downloading xplr and renaming"
 		wget "$DUA_LINK" -O "$DUA_SRC_NAME"
 	fi
 
-	if [[ ! -d "$DUA_DIR" ]]; then
+	if [[ ! -d $DUA_DIR ]]; then
 		echo "Creating dua directory under tools directory"
 		mkdir -p "$DUA_DIR"
 		echo "Extracting to $HOME/tools/dua directory"
@@ -686,7 +686,7 @@ if [[ -z "$(command -v dua)" ]]; then
 
 	fi
 
-	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
+	if [[ $ADD_TO_SYSTEM_PATH = true ]] && [[ $USE_BASH_SHELL = true ]]; then
 		echo "export PATH=\"$DUA_DIR:\$PATH\"" >>"$HOME/.bashrc"
 		export PATH="$DUA_DIR:$PATH"
 	fi
@@ -700,9 +700,9 @@ fi
 ######################################################################
 VIU_DIR=$HOME/tools/viu
 VIU_LINK="https://github.com/atanunq/viu/releases/download/v1.4.0/viu"
-if [[ -z "$(command -v viu)" ]]; then
+if [[ -z $(command -v viu) ]]; then
 	echo "Install viu"
-	if [[ ! -d "$VIU_DIR" ]]; then
+	if [[ ! -d $VIU_DIR ]]; then
 		echo "Creating viu directory under tools directory"
 		mkdir -p "$VIU_DIR"
 		cd "$VIU_DIR"
@@ -710,7 +710,7 @@ if [[ -z "$(command -v viu)" ]]; then
 		chmod +x "$VIU_DIR/viu"
 	fi
 
-	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
+	if [[ $ADD_TO_SYSTEM_PATH = true ]] && [[ $USE_BASH_SHELL = true ]]; then
 		echo "export PATH=\"$VIU_DIR:\$PATH\"" >>"$HOME/.bashrc"
 		export PATH="$VIU_DIR:$PATH"
 	fi
@@ -725,10 +725,10 @@ fi
 MAGICK_DIR=$HOME/tools/magick
 MAGICK_LINK="https://github.com/ImageMagick/ImageMagick"
 MAGICK_MAN="$HOME/.local/share/man/man1/magick"
-if [[ -z "$(command -v magick)" ]]; then
+if [[ -z $(command -v magick) ]]; then
 	echo "Install ImageMagick"
 
-	if [[ ! -d "$MAGICK_DIR" ]]; then
+	if [[ ! -d $MAGICK_DIR ]]; then
 		echo "Creating magick directory under tools directory"
 		mkdir -p "$MAGICK_DIR"
 		echo "git clone to $HOME/tools/magick directory"
@@ -739,7 +739,7 @@ if [[ -z "$(command -v magick)" ]]; then
 		make install
 	fi
 
-	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
+	if [[ $ADD_TO_SYSTEM_PATH = true ]] && [[ $USE_BASH_SHELL = true ]]; then
 		echo "export PATH=\"$MAGICK_DIR/bin:\$PATH\"" >>"$HOME/.bashrc"
 		echo "export MAGICK_HOME=$MAGICK_DIR" >>"$HOME/.bashrc"
 		export MAGICK_HOME="$MAGICK_DIR"
@@ -750,7 +750,7 @@ if [[ -z "$(command -v magick)" ]]; then
 	fi
 
 	# set up manpath
-	if [[ -d "$MAGICK_MAN" ]]; then
+	if [[ -d $MAGICK_MAN ]]; then
 		rm -r "$MAGICK_MAN"
 		ln -s "$MAGICK_DIR/share/man/man1" "$MAGICK_MAN"
 	else
@@ -768,10 +768,10 @@ fi
 # NOTE: sudo apt install libfreetype6-dev libjpeg-dev librsvg2-dev libtiff5-dev libwebp-dev libmagickwand-dev libtool gtk-doc-tools
 CHAFA_DIR=$HOME/tools/chafa
 CHAFA_LINK="https://github.com/hpjansson/chafa.git"
-if [[ -z "$(command -v chafa)" ]]; then
+if [[ -z $(command -v chafa) ]]; then
 	echo "Install chafa"
 
-	if [[ ! -d "$CHAFA_DIR" ]]; then
+	if [[ ! -d $CHAFA_DIR ]]; then
 		echo "Creating chafa directory under tools directory"
 		mkdir -p "$CHAFA_DIR"
 		echo "git clone to $HOME/tools/chafa directory"
@@ -783,7 +783,7 @@ if [[ -z "$(command -v chafa)" ]]; then
 		make install
 	fi
 
-	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
+	if [[ $ADD_TO_SYSTEM_PATH = true ]] && [[ $USE_BASH_SHELL = true ]]; then
 		echo "export PATH=\"$CHAFA_DIR/bin:\$PATH\"" >>"$HOME/.bashrc"
 		export PATH="$CHAFA_DIR/bin:$PATH"
 	fi
@@ -797,10 +797,10 @@ fi
 ######################################################################
 CTPV_DIR=$HOME/tools/ctpv
 CTPV_LINK="https://github.com/NikitaIvanovV/ctpv.git"
-if [[ -z "$(command -v ctpv)" ]]; then
+if [[ -z $(command -v ctpv) ]]; then
 	echo "Install ctpv"
 
-	if [[ ! -d "$CTPV_DIR" ]]; then
+	if [[ ! -d $CTPV_DIR ]]; then
 		echo "Creating ctpv directory under tools directory"
 		mkdir -p "$CTPV_DIR"
 		echo "git clone to $HOME/tools/ctpv directory"
@@ -810,7 +810,7 @@ if [[ -z "$(command -v ctpv)" ]]; then
 	fi
 
 	# set up manpath
-	if [[ -f "$MAN_PATH/ctpv.1" ]]; then
+	if [[ -f $MAN_PATH/ctpv.1 ]]; then
 		rm "$MAN_PATH/ctpv.1"
 		ln -s "$CTPV_DIR/doc/ctpv.1" "$MAN_PATH/ctpv.1"
 	else
@@ -827,21 +827,21 @@ fi
 LF_DIR=$HOME/tools/lf
 LF_SRC_NAME=$HOME/packages/lf.tar.gz
 LF_LINK="https://github.com/gokcehan/lf/releases/download/r27/lf-linux-amd64.tar.gz"
-if [[ -z "$(command -v lf)" ]]; then
+if [[ -z $(command -v lf) ]]; then
 	echo "Install lf"
 	if [[ ! -f $LF_SRC_NAME ]]; then
 		echo "Downloading lf and renaming"
 		wget "$LF_LINK" -O "$LF_SRC_NAME"
 	fi
 
-	if [[ ! -d "$LF_DIR" ]]; then
+	if [[ ! -d $LF_DIR ]]; then
 		echo "Creating lf directory under tools directory"
 		mkdir -p "$LF_DIR"
 		echo "Extracting to $HOME/tools/lf directory"
 		tar zxvf "$LF_SRC_NAME" -C "$LF_DIR"
 	fi
 
-	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
+	if [[ $ADD_TO_SYSTEM_PATH = true ]] && [[ $USE_BASH_SHELL = true ]]; then
 		echo "export PATH=\"$LF_DIR:\$PATH\"" >>"$HOME/.bashrc"
 		export PATH="$LF_DIR:$PATH"
 	fi
@@ -856,14 +856,14 @@ fi
 LNAV_DIR=$HOME/tools/lnav
 LNAV_SRC_NAME=$HOME/packages/lnav.zip
 LNAV_LINK="https://github.com/tstack/lnav/releases/download/v0.11.1/lnav-0.11.1-x86_64-linux-musl.zip"
-if [[ -z "$(command -v lnav)" ]]; then
+if [[ -z $(command -v lnav) ]]; then
 	echo "Install lnav"
 	if [[ ! -f $LNAV_SRC_NAME ]]; then
 		echo "Downloading lnav and renaming"
 		wget "$LNAV_LINK" -O "$LNAV_SRC_NAME"
 	fi
 
-	if [[ ! -d "$LNAV_DIR" ]]; then
+	if [[ ! -d $LNAV_DIR ]]; then
 		echo "Creating lnav directory under tools directory"
 		mkdir -p "$LNAV_DIR"
 		unzip "$LNAV_SRC_NAME" -d "$LNAV_DIR"
@@ -871,7 +871,7 @@ if [[ -z "$(command -v lnav)" ]]; then
 		rm -r "$LNAV_DIR"/lnav-*
 	fi
 
-	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
+	if [[ $ADD_TO_SYSTEM_PATH = true ]] && [[ $USE_BASH_SHELL = true ]]; then
 		echo "export PATH=\"$LNAV_DIR:\$PATH\"" >>"$HOME/.bashrc"
 		export PATH="$LNAV_DIR:$PATH"
 	fi
@@ -883,24 +883,6 @@ fi
 ######################################################################
 #                            Termpix Part                            #
 ######################################################################
-# TERMPIX_DIR=$HOME/tools/termpix
-# TERMPIX_LINK="https://github.com/mmacedoeu/termpix.git"
-# if [[ -z "$(command -v termpix)" ]]; then
-# 	echo "Install termpix"
-
-# 	if [[ ! -d "$TERMPIX_DIR" ]]; then
-# 		echo "Creating termpix directory under tools directory"
-# 		mkdir -p "$TERMPIX_DIR"
-# 		echo "git clone to $HOME/tools/termpix directory"
-# 		git clone --depth=1 "$TERMPIX_LINK" "$TERMPIX_DIR"
-# 		cd "$TERMPIX_DIR"
-# 		cargo build
-# 		cargo install --path .
-# 	fi
-
-# else
-# 	echo "termpix is already installed. Skip installing it."
-# fi
 cargo install --git https://github.com/mmacedoeu/termpix
 
 ######################################################################
@@ -908,10 +890,10 @@ cargo install --git https://github.com/mmacedoeu/termpix
 ######################################################################
 PISTOL_DIR=$HOME/tools/pistol
 PISTOL_LINK="https://github.com/doronbehar/pistol.git"
-if [[ -z "$(command -v pistol)" ]]; then
+if [[ -z $(command -v pistol) ]]; then
 	echo "Install pistol"
 
-	if [[ ! -d "$PISTOL_DIR" ]]; then
+	if [[ ! -d $PISTOL_DIR ]]; then
 		echo "Creating pistol directory under tools directory"
 		mkdir -p "$PISTOL_DIR"
 		echo "git clone to $HOME/tools/pistol directory"
@@ -921,7 +903,7 @@ if [[ -z "$(command -v pistol)" ]]; then
 		make
 	fi
 
-	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
+	if [[ $ADD_TO_SYSTEM_PATH = true ]] && [[ $USE_BASH_SHELL = true ]]; then
 		echo "export PATH=\"$PISTOL_DIR:\$PATH\"" >>"$HOME/.bashrc"
 		export PATH="$PISTOL_DIR:$PATH"
 	fi
@@ -935,10 +917,10 @@ fi
 ######################################################################
 UGREP_DIR=$HOME/tools/ugrep
 UGREP_LINK="https://github.com/Genivia/ugrep.git"
-if [[ -z "$(command -v ugrep)" ]]; then
+if [[ -z $(command -v ugrep) ]]; then
 	echo "Install ugrep"
 
-	if [[ ! -d "$UGREP_DIR" ]]; then
+	if [[ ! -d $UGREP_DIR ]]; then
 		echo "Creating ugrep directory under tools directory"
 		mkdir -p "$UGREP_DIR"
 		echo "git clone to $HOME/tools/ugrep directory"
@@ -949,13 +931,13 @@ if [[ -z "$(command -v ugrep)" ]]; then
 
 	fi
 
-	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
+	if [[ $ADD_TO_SYSTEM_PATH = true ]] && [[ $USE_BASH_SHELL = true ]]; then
 		echo "export PATH=\"$UGREP_DIR/bin:\$PATH\"" >>"$HOME/.bashrc"
 		export PATH="$UGREP_DIR/bin:$PATH"
 	fi
 
 	# set up manpath
-	if [[ -f "$MAN_PATH/ugrep.1" ]]; then
+	if [[ -f $MAN_PATH/ugrep.1 ]]; then
 		rm "$MAN_PATH/ugrep.1"
 		ln -s "$UGREP_DIR/man/ugrep.1" "$MAN_PATH/ugrep.1"
 	else
@@ -972,21 +954,21 @@ fi
 NAVI_DIR=$HOME/tools/navi
 NAVI_SRC_NAME=$HOME/packages/navi.tar.gz
 NAVI_LINK="https://github.com/denisidoro/navi/releases/download/v2.20.1/navi-v2.20.1-x86_64-unknown-linux-musl.tar.gz"
-if [[ -z "$(command -v navi)" ]]; then
+if [[ -z $(command -v navi) ]]; then
 	echo "Install navi"
 	if [[ ! -f $NAVI_SRC_NAME ]]; then
 		echo "Downloading navi and renaming"
 		wget "$NAVI_LINK" -O "$NAVI_SRC_NAME"
 	fi
 
-	if [[ ! -d "$NAVI_DIR" ]]; then
+	if [[ ! -d $NAVI_DIR ]]; then
 		echo "Creating navi directory under tools directory"
 		mkdir -p "$NAVI_DIR"
 		echo "Extracting to $HOME/tools/navi directory"
 		tar zxvf "$NAVI_SRC_NAME" -C "$NAVI_DIR"
 	fi
 
-	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
+	if [[ $ADD_TO_SYSTEM_PATH = true ]] && [[ $USE_BASH_SHELL = true ]]; then
 		echo "export PATH=\"$NAVI_DIR:\$PATH\"" >>"$HOME/.bashrc"
 		export PATH="$NAVI_DIR:$PATH"
 	fi
