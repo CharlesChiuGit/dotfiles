@@ -978,6 +978,26 @@ else
 fi
 
 ######################################################################
-#                              Exa ParT                              #
+#                              Exa Part                              #
 ######################################################################
 cargo install --git https://github.com/ogham/exa
+
+######################################################################
+#                              Qfc Part                              #
+######################################################################
+QFC_DIR=$HOME/tools/qfc
+QFC_LINK="https://github.com/pindexis/qfc"
+
+if [[ ! -d $QFC_DIR ]]; then
+	echo "Install qfc"
+	echo "Creating qfc directory under tools directory"
+	mkdir -p "$QFC_DIR"
+	git clone --depth=1 "$QFC_LINK" "$QFC_DIR"
+
+	if [[ $ADD_TO_SYSTEM_PATH = true ]] && [[ $USE_BASH_SHELL = true ]]; then
+		echo "[[ -s \$HOME/tools/qfc/bin/qfc.sh ]] && source \"\$HOME/tools/qfc/bin/qfc.sh\"" >>"$HOME/.bashrc"
+	fi
+
+else
+	echo "qfc is already installed. Skip installing it."
+fi
