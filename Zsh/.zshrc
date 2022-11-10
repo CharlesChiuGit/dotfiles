@@ -24,7 +24,7 @@ if [ -f ~/.zsh_functions ]; then
     . "$HOME/.zsh_functions"
 fi
 
-## Init zoxide
+# Init zoxide
 if which zoxide >/dev/null; then
     eval "$(zoxide init zsh)"
 fi
@@ -34,13 +34,18 @@ if which zoxide >/dev/null; then
     eval "$(starship init zsh)"
 fi
 
-## Init shelden
+# Init shelden
 if which sheldon >/dev/null; then
     eval "$(sheldon source)"
 fi
 bindkey '^[[a' history-substring-search-up
 bindkey '^[[b' history-substring-search-down
 bindkey ',' autosuggest-accept
+
+# Init qfc
+[[ -s $HOME/tools/qfc/bin/qfc.sh ]] && source "$HOME/tools/qfc/bin/qfc.sh"
+qfc_quick_command 'cd' '\C-b' 'cd $0'
+qfc_quick_command 'nvim' '\C-p' 'nvim $0'
 
 # >>> conda initialize >>>
 if [ -f "$HOME/tools/anaconda/etc/profile.d/conda.sh" ]; then

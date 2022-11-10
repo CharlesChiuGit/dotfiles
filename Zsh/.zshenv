@@ -42,12 +42,13 @@ path=(~/tools/chafa $path)
 path=(~/tools/ctpv $path)
 path=(~/tools/lf $path)
 if [ -f ~/.config/lf/icon.sh ]; then
-	source "$HOME/.config/lf/icon.sh"
+    source "$HOME/.config/lf/icon.sh"
 fi
 path=(~/tools/lnav $path)
 path=(~/tools/pistol $path)
-path=(~/tools/ugrep $path)
+path=(~/tools/ugrep/bin $path)
 path=(~/tools/navi $path)
+path=(~/tools/qfc/bin $path)
 path=(~/tools/nvim/bin $path)
 export EDITOR='nvim'
 
