@@ -187,7 +187,6 @@ export PATH="$PATH:$HOME/tools/pistol"
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/lib"
 export PATH="$PATH:$HOME/tools/ugrep/bin"
 export PATH="$PATH:$HOME/tools/navi"
-export PATH="$PATH:$HOME/tools/sheldon"
 ## neovim support
 export LC_ALL="en_US.UTF-8"
 export LANG="en_US.UTF-8"
@@ -198,10 +197,6 @@ fi
 # Init Starship
 if which starship >/dev/null; then
 	eval "$(starship init bash)"
-fi
-# Init Sheldon
-if which sheldon >/dev/null; then
-	eval "$(sheldon source)"
 fi
 
 # >>> conda initialize >>>

@@ -95,7 +95,7 @@ fi
 ######################################################################
 SHELDON_DIR=$HOME/tools/sheldon
 SHELDON_SRC_NAME=$HOME/packages/sheldon.tar.gz
-SHELDON_LINK=""https://github.com/rossmacarthur/sheldon/releases/download/0.7.0/sheldon-0.7.0-x86_64-unknown-linux-musl.tar.gz
+SHELDON_LINK="https://github.com/rossmacarthur/sheldon/releases/download/0.7.1/sheldon-0.7.1-x86_64-unknown-linux-musl.tar.gz"
 if [[ -z "$(command -v sheldon)" ]]; then
 	echo "Install sheldon"
 	if [[ ! -f $SHELDON_SRC_NAME ]]; then
