@@ -883,24 +883,25 @@ fi
 ######################################################################
 #                            Termpix Part                            #
 ######################################################################
-TERMPIX_DIR=$HOME/tools/termpix
-TERMPIX_LINK="https://github.com/mmacedoeu/termpix.git"
-if [[ -z "$(command -v termpix)" ]]; then
-	echo "Install termpix"
+# TERMPIX_DIR=$HOME/tools/termpix
+# TERMPIX_LINK="https://github.com/mmacedoeu/termpix.git"
+# if [[ -z "$(command -v termpix)" ]]; then
+# 	echo "Install termpix"
 
-	if [[ ! -d "$TERMPIX_DIR" ]]; then
-		echo "Creating termpix directory under tools directory"
-		mkdir -p "$TERMPIX_DIR"
-		echo "git clone to $HOME/tools/termpix directory"
-		git clone --depth=1 "$TERMPIX_LINK" "$TERMPIX_DIR"
-		cd "$TERMPIX_DIR"
-		cargo build
-		cargo install --path .
-	fi
+# 	if [[ ! -d "$TERMPIX_DIR" ]]; then
+# 		echo "Creating termpix directory under tools directory"
+# 		mkdir -p "$TERMPIX_DIR"
+# 		echo "git clone to $HOME/tools/termpix directory"
+# 		git clone --depth=1 "$TERMPIX_LINK" "$TERMPIX_DIR"
+# 		cd "$TERMPIX_DIR"
+# 		cargo build
+# 		cargo install --path .
+# 	fi
 
-else
-	echo "termpix is already installed. Skip installing it."
-fi
+# else
+# 	echo "termpix is already installed. Skip installing it."
+# fi
+cargo install --git https://github.com/mmacedoeu/termpix
 
 ######################################################################
 #                            Pistol Part                             #
