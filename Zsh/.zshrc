@@ -26,14 +26,18 @@ fi
 
 ## Init zoxide
 if which zoxide >/dev/null; then
-	eval "$(zoxide init zsh)"
+    eval "$(zoxide init zsh)"
 fi
 
 # Init Starship
-eval "$(starship init zsh)"
+if which zoxide >/dev/null; then
+    eval "$(starship init zsh)"
+fi
 
 ## Init shelden
-eval "$(sheldon source)"
+if which sheldon >/dev/null; then
+    eval "$(sheldon source)"
+fi
 bindkey '^[[a' history-substring-search-up
 bindkey '^[[b' history-substring-search-down
 bindkey ',' autosuggest-accept
