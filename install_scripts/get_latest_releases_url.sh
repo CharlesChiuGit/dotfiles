@@ -22,48 +22,48 @@ echo "$ARCH"
 FILTER='!gnu !freebsd !sha256 !asc !darwin'
 
 get_latest_release() {
-	REPO="$1"
-	SUFFIX="$2"
-	LIBC="$3"
-	if [[ ! "$SUFFIX" = '' ]] && [[ ! "$LIBC" = '' ]]; then
-		curl -s "https://api.github.com/repos/$REPO/releases/latest" |
-			grep "browser_download_url.*$SUFFIX" |
-			fzf --query="$SUFFIX $PLATFORM $OS $ARCH $LIBC $FILTER" -i --no-multi --select-1 --exit-0 |
-			cut -d '"' -f 4 \
-				>>latest_releases_url.txt
-	elif [[ ! "$SUFFIX" = '' ]] && [[ "$LIBC" = '' ]]; then
-		curl -s "https://api.github.com/repos/$REPO/releases/latest" |
-			grep "browser_download_url.*$SUFFIX" |
-			fzf --query="$SUFFIX $PLATFORM $OS $ARCH $FILTER" -i --no-multi --select-1 --exit-0 |
-			cut -d '"' -f 4 \
-				>>latest_releases_url.txt
-	elif [[ "$SUFFIX" = '' ]] && [[ "$LIBC" = '' ]]; then
-		curl -s "https://api.github.com/repos/$REPO/releases/latest" |
-			grep "browser_download_url" |
-			fzf --query="$PLATFORM $OS $ARCH $FILTER" -i --no-multi --select-1 --exit-0 |
-			cut -d '"' -f 4 \
-				>>latest_releases_url.txt
-	fi
+    REPO="$1"
+    SUFFIX="$2"
+    LIBC="$3"
+    if [[ ! "$SUFFIX" = '' ]] && [[ ! "$LIBC" = '' ]]; then
+        curl -s "https://api.github.com/repos/$REPO/releases/latest" |
+        grep "browser_download_url.*$SUFFIX" |
+        fzf --query="$SUFFIX $PLATFORM $OS $ARCH $LIBC $FILTER" -i --no-multi --select-1 --exit-0 |
+        cut -d '"' -f 4 \
+            >>latest_releases_url.txt
+    elif [[ ! "$SUFFIX" = '' ]] && [[ "$LIBC" = '' ]]; then
+        curl -s "https://api.github.com/repos/$REPO/releases/latest" |
+        grep "browser_download_url.*$SUFFIX" |
+        fzf --query="$SUFFIX $PLATFORM $OS $ARCH $FILTER" -i --no-multi --select-1 --exit-0 |
+        cut -d '"' -f 4 \
+            >>latest_releases_url.txt
+    elif [[ "$SUFFIX" = '' ]] && [[ "$LIBC" = '' ]]; then
+        curl -s "https://api.github.com/repos/$REPO/releases/latest" |
+        grep "browser_download_url" |
+        fzf --query="$PLATFORM $OS $ARCH $FILTER" -i --no-multi --select-1 --exit-0 |
+        cut -d '"' -f 4 \
+            >>latest_releases_url.txt
+    fi
 }
 
 # for repos have strange url after grep browser_download_url
 get_latest_release_custom() {
-	REPO="$1"
-	SUFFIX="$2"
-	PATTERN="$3"
-	if [[ ! "$SUFFIX" = '' ]]; then
-		curl -s "https://api.github.com/repos/$REPO/releases/latest" |
-			grep "browser_download_url.*$SUFFIX" |
-			fzf --query="$SUFFIX $PATTERN $FILTER" -i --no-multi --select-1 --exit-0 |
-			cut -d '"' -f 4 \
-				>>latest_releases_url.txt
-	elif [[ "$SUFFIX" = '' ]]; then
-		curl -s "https://api.github.com/repos/$REPO/releases/latest" |
-			grep "browser_download_url" |
-			fzf --query="$PATTERN $FILTER" -i --no-multi --select-1 --exit-0 |
-			cut -d '"' -f 4 \
-				>>latest_releases_url.txt
-	fi
+    REPO="$1"
+    SUFFIX="$2"
+    PATTERN="$3"
+    if [[ ! "$SUFFIX" = '' ]]; then
+        curl -s "https://api.github.com/repos/$REPO/releases/latest" |
+        grep "browser_download_url.*$SUFFIX" |
+        fzf --query="$SUFFIX $PATTERN $FILTER" -i --no-multi --select-1 --exit-0 |
+        cut -d '"' -f 4 \
+            >>latest_releases_url.txt
+    elif [[ "$SUFFIX" = '' ]]; then
+        curl -s "https://api.github.com/repos/$REPO/releases/latest" |
+        grep "browser_download_url" |
+        fzf --query="$PATTERN $FILTER" -i --no-multi --select-1 --exit-0 |
+        cut -d '"' -f 4 \
+            >>latest_releases_url.txt
+    fi
 }
 
 get_latest_release 'BurntSushi/ripgrep' 'tar.gz' 'musl'

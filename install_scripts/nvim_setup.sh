@@ -13,11 +13,11 @@ USE_BASH_SHELL=true
 USE_WSL=false
 
 if [[ ! -d "$HOME/packages/" ]]; then
-	mkdir -p "$HOME/packages/"
+    mkdir -p "$HOME/packages/"
 fi
 
 if [[ ! -d "$HOME/tools/" ]]; then
-	mkdir -p "$HOME/tools/"
+    mkdir -p "$HOME/tools/"
 fi
 
 ######################################################################
@@ -36,39 +36,39 @@ SYSTEM_PYTHON=false
 INSTALL_ANACONDA=true
 
 if [[ "$INSTALL_ANACONDA" = true ]]; then
-	CONDA_DIR=$HOME/tools/anaconda
-	CONDA_NAME=Anaconda.sh
-	CONDA_LINK="https://repo.anaconda.com/archive/Anaconda3-2022.05-Linux-x86_64.sh"
+    CONDA_DIR=$HOME/tools/anaconda
+    CONDA_NAME=Anaconda.sh
+    CONDA_LINK="https://repo.anaconda.com/archive/Anaconda3-2022.05-Linux-x86_64.sh"
 else
-	CONDA_DIR=$HOME/tools/miniconda
-	CONDA_NAME=Miniconda.sh
-	CONDA_LINK="https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh"
+    CONDA_DIR=$HOME/tools/miniconda
+    CONDA_NAME=Miniconda.sh
+    CONDA_LINK="https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh"
 fi
 
 if [[ ! "$PYTHON_INSTALLED" = true ]]; then
-	echo "Installing Python in user HOME"
+    echo "Installing Python in user HOME"
 
-	SYSTEM_PYTHON=false
+    SYSTEM_PYTHON=false
 
-	echo "Downloading and installing conda"
+    echo "Downloading and installing conda"
 
-	if [[ ! -f "$HOME/packages/$CONDA_NAME" ]]; then
-		curl -Lo "$HOME/packages/$CONDA_NAME" $CONDA_LINK
-	fi
+    if [[ ! -f "$HOME/packages/$CONDA_NAME" ]]; then
+        curl -Lo "$HOME/packages/$CONDA_NAME" $CONDA_LINK
+    fi
 
-	# Install conda silently
-	if [[ -d $CONDA_DIR ]]; then
-		rm -rf "$CONDA_DIR"
-	fi
-	bash "$HOME/packages/$CONDA_NAME" -b -p "$CONDA_DIR"
+    # Install conda silently
+    if [[ -d $CONDA_DIR ]]; then
+        rm -rf "$CONDA_DIR"
+    fi
+    bash "$HOME/packages/$CONDA_NAME" -b -p "$CONDA_DIR"
 
-	# Setting up environment variables
-	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
-		echo "export PATH=\"$CONDA_DIR/bin:\$PATH\"" >>"$HOME/.bashrc"
-		export PATH="$CONDA_DIR/bin:$PATH"
-	fi
+    # Setting up environment variables
+    if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
+        echo "export PATH=\"$CONDA_DIR/bin:\$PATH\"" >>"$HOME/.bashrc"
+        export PATH="$CONDA_DIR/bin:$PATH"
+    fi
 else
-	echo "Python is already installed. Skip installing it."
+    echo "Python is already installed. Skip installing it."
 fi
 
 ######################################################################
@@ -79,19 +79,19 @@ echo "Installing Python packages"
 declare -a py_packages=("pynvim" "klepto" "rich")
 
 if [[ "$SYSTEM_PYTHON" = true ]]; then
-	echo "Using system Python to install $(PY_PACKAGES)"
+    echo "Using system Python to install $(PY_PACKAGES)"
 
-	# If we use system Python, we need to install these Python packages under
-	# user HOME, since we do not have permissions to install them under system
-	# directories.
-	for p in "${py_packages[@]}"; do
-		pip3 install --user "$p"
-	done
+    # If we use system Python, we need to install these Python packages under
+    # user HOME, since we do not have permissions to install them under system
+    # directories.
+    for p in "${py_packages[@]}"; do
+        pip3 install --user "$p"
+    done
 else
-	echo "Using custom Python to install $(PY_PACKAGES)"
-	for p in "${py_packages[@]}"; do
-		"$CONDA_DIR/bin/pip3" install "$p"
-	done
+    echo "Using custom Python to install $(PY_PACKAGES)"
+    for p in "${py_packages[@]}"; do
+        "$CONDA_DIR/bin/pip3" install "$p"
+    done
 fi
 
 ######################################################################
@@ -136,10 +136,6 @@ RUBY_DIR=$HOME/tools/ruby
 ######################################################################
 #                    Install Rust/cargo packages                     #
 ######################################################################
-# RUSTUP_HOME=$HOME/tools/rustup
-CARGO_HOME=$HOME/tools/cargo
-
-"$CARGO_HOME/bin/cargo" install silicon
 
 ######################################################################
 #                       Install Java packages                        #
@@ -177,10 +173,10 @@ LUAROCKS_DIR=$HOME/tools/luarocks/luarocks
 #                    win32yank for Neovim in WSL                     #
 ######################################################################
 if [[ "$USE_WSL" = true ]]; then
-	curl -sLo/tmp/win32yank.zip https://github.com/equalsraf/win32yank/releases/download/v0.0.4/win32yank-x64.zip
-	unzip -p /tmp/win32yank.zip win32yank.exe >/tmp/win32yank.exe
-	chmod +x /tmp/win32yank.exe
-	sudo mv /tmp/win32yank.exe /usr/local/bin/
+    curl -sLo/tmp/win32yank.zip https://github.com/equalsraf/win32yank/releases/download/v0.0.4/win32yank-x64.zip
+    unzip -p /tmp/win32yank.zip win32yank.exe >/tmp/win32yank.exe
+    chmod +x /tmp/win32yank.exe
+    sudo mv /tmp/win32yank.exe /usr/local/bin/
 fi
 # NOTE: don't forget to `set clipboard=unnamedplus`
 
@@ -192,48 +188,48 @@ NVIM_SRC_NAME=$HOME/packages/nvim-linux64.tar.gz
 NVIM_CONFIG_DIR=$HOME/.config/nvim
 NVIM_LINK="https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz"
 if [[ ! -f "$NVIM_DIR/bin/nvim" ]]; then
-	echo "Installing Nvim"
-	echo "Creating nvim directory under tools directory"
+    echo "Installing Nvim"
+    echo "Creating nvim directory under tools directory"
 
-	if [[ ! -d "$NVIM_DIR" ]]; then
-		mkdir -p "$NVIM_DIR"
-	fi
+    if [[ ! -d "$NVIM_DIR" ]]; then
+        mkdir -p "$NVIM_DIR"
+    fi
 
-	if [[ ! -f $NVIM_SRC_NAME ]]; then
-		echo "Downloading Nvim"
-		wget "$NVIM_LINK" -O "$NVIM_SRC_NAME"
-	fi
-	echo "Extracting neovim"
-	tar zxvf "$NVIM_SRC_NAME" --strip-components 1 -C "$NVIM_DIR"
+    if [[ ! -f $NVIM_SRC_NAME ]]; then
+        echo "Downloading Nvim"
+        wget "$NVIM_LINK" -O "$NVIM_SRC_NAME"
+    fi
+    echo "Extracting neovim"
+    tar zxvf "$NVIM_SRC_NAME" --strip-components 1 -C "$NVIM_DIR"
 
-	if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
-		echo "export PATH=\"$NVIM_DIR/bin:\$PATH\"" >>"$HOME/.bashrc"
-		export PATH="$NVIM_DIR/bin:$PATH"
-	fi
+    if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
+        echo "export PATH=\"$NVIM_DIR/bin:\$PATH\"" >>"$HOME/.bashrc"
+        export PATH="$NVIM_DIR/bin:$PATH"
+    fi
 
-	# set up manpath
-	if [[ -f "$HOME/.local/share/man/man1/nvim.1" ]]; then
-		rm "$HOME/.local/share/man/man1/nvim.1"
-		ln -s "$NVIM_DIR/share/man/man1/nvim.1" "$HOME/.local/share/man/man1/nvim.1"
-	else
-		ln -s "$NVIM_DIR/share/man/man1/nvim.1" "$HOME/.local/share/man/man1/nvim.1"
-	fi
+    # set up manpath
+    if [[ -f "$HOME/.local/share/man/man1/nvim.1" ]]; then
+        rm "$HOME/.local/share/man/man1/nvim.1"
+        ln -s "$NVIM_DIR/share/man/man1/nvim.1" "$HOME/.local/share/man/man1/nvim.1"
+    else
+        ln -s "$NVIM_DIR/share/man/man1/nvim.1" "$HOME/.local/share/man/man1/nvim.1"
+    fi
 
 else
-	echo "Nvim is already installed. Skip installing it."
+    echo "Nvim is already installed. Skip installing it."
 fi
 
 echo "Setting up config and installing plugins"
 if [[ -d "$NVIM_CONFIG_DIR" ]]; then
-	mv "$NVIM_CONFIG_DIR" "$NVIM_CONFIG_DIR.backup"
+    mv "$NVIM_CONFIG_DIR" "$NVIM_CONFIG_DIR.backup"
 fi
 
 git clone https://github.com/CharlesChiuGit/nvimdots.lua.git "$NVIM_CONFIG_DIR"
 
 echo "Installing packer.nvim"
 if [[ ! -d ~/.local/share/nvim/site/pack/packer/opt/packer.nvim ]]; then
-	git clone --depth=1 https://github.com/wbthomason/packer.nvim \
-		~/.local/share/nvim/site/pack/packer/opt/packer.nvim
+    git clone --depth=1 https://github.com/wbthomason/packer.nvim \
+        ~/.local/share/nvim/site/pack/packer/opt/packer.nvim
 fi
 
 echo "Installing nvim plugins, please wait"
