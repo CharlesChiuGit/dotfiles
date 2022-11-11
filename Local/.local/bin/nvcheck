@@ -17,12 +17,12 @@ shopt -s nocasematch
 ### CUDA PATH
 CUDA_PATH=/usr/local/cuda
 if [ -d "${CUDA_PATH}" ] && [[ $gpu == *' nvidia '* ]]; then
-	echo "You have nvgpu and cuda installed!"
-	export PATH="${CUDA_PATH}/bin"${PATH:+:${PATH}}
-	export LD_LIBRARY_PATH="${CUDA_PATH}/lib64"${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+    echo "You have nvgpu and cuda installed!"
+    export PATH="${CUDA_PATH}/bin"${PATH:+:${PATH}}
+    export LD_LIBRARY_PATH="${CUDA_PATH}/lib64"${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 elif [ ! -d "${CUDA_PATH}" ] && [[ $gpu == *' nvidia '* ]]; then
-	echo "You have nvgpu, but you don't have cuda installed!"
+    echo "You have nvgpu, but you don't have cuda installed!"
 elif ! [[ $gpu == *' nvidia '* ]]; then
-	# : # return nothing
-	echo "You don't have nvgpu or it's not loaded!"
+    # : # return nothing
+    echo "You don't have nvgpu or it's not loaded!"
 fi

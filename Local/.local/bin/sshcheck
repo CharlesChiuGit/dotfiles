@@ -8,16 +8,16 @@
 # ssh-add [your-git-key]
 # https://stackoverflow.com/a/48509425/9268330
 if [ "$(ps ax | pgrep [s]sh-agent | wc -l)" -gt 0 ]; then
-	: # do nothing
-	echo "ssh-agent is already running"
+    : # do nothing
+    echo "ssh-agent is already running"
 else
-	eval "$(ssh-agent -s)"
-	echo "ssh-agent is now loaded, PID: $SSH_AGENT_PID"
-	if [ "$(ssh-add -l | wc -l)" == "The agent has no identities." ]; then
-		ssh-add ~/.ssh/id_rsa
-		echo "ssh-agent identities loaded."
-	fi
+    eval "$(ssh-agent -s)"
+    echo "ssh-agent is now loaded, PID: $SSH_AGENT_PID"
+    if [ "$(ssh-add -l | wc -l)" == "The agent has no identities." ]; then
+        ssh-add ~/.ssh/id_rsa
+        echo "ssh-agent identities loaded."
+    fi
 
-	# Don't leave extra agents around: kill it on exit. You may not want this part.
-	# trap "ssh-agent -k" exit
+    # Don't leave extra agents around: kill it on exit. You may not want this part.
+    # trap "ssh-agent -k" exit
 fi

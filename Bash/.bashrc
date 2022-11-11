@@ -7,8 +7,8 @@
 
 # If not running interactively, don't do anything
 case $- in
-*i*) ;;
-*) return ;;
+    *i*) ;;
+    *) return ;;
 esac
 
 # don't put duplicate lines or lines starting with space in the history.
@@ -35,12 +35,12 @@ shopt -s checkwinsize
 
 # set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
-	debian_chroot=$(cat /etc/debian_chroot)
+    debian_chroot=$(cat /etc/debian_chroot)
 fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-xterm-color | *-255color) color_prompt=yes ;;
+    xterm-color | *-255color) color_prompt=yes ;;
 esac
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
@@ -49,42 +49,42 @@ esac
 #force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
-	if [ -x /usr/bin/tput ] && tput setaf 2 >&/dev/null; then
-		# We have color support; assume it's compliant with Ecma-47
-		# (ISO/IEC-6428). (Lack of such support is extremely rare, and such
-		# a case would tend to support setf rather than setaf.)
-		color_prompt=yes
-	else
-		color_prompt=
-	fi
+    if [ -x /usr/bin/tput ] && tput setaf 2 >&/dev/null; then
+        # We have color support; assume it's compliant with Ecma-47
+        # (ISO/IEC-6428). (Lack of such support is extremely rare, and such
+        # a case would tend to support setf rather than setaf.)
+        color_prompt=yes
+    else
+        color_prompt=
+    fi
 fi
 
 if [ "$color_prompt" = yes ]; then
-	PS2='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    PS2='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 else
-	PS2='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+    PS2='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
 unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
-xterm* | rxvt*)
-	PS2="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-	;;
-*) ;;
+    xterm* | rxvt*)
+        PS2="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+        ;;
+    *) ;;
 
 esac
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
-	test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-	alias ls='ls --color=auto'
-	#alias dir='dir --color=auto'
-	#alias vdir='vdir --color=auto'
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    #alias dir='dir --color=auto'
+    #alias vdir='vdir --color=auto'
 
-	alias grep='grep --color=auto'
-	alias fgrep='fgrep --color=auto'
-	alias egrep='egrep --color=auto'
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
 fi
 
 # colored GCC warnings and errors
@@ -105,23 +105,23 @@ alias alert='notify-send --urgency=low -i "$([ $? = 1 ] && echo terminal || echo
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
 if [ -f ~/.bash_aliases ]; then
-	. "$HOME/.bash_aliases"
+    . "$HOME/.bash_aliases"
 fi
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
 if ! shopt -oq posix; then
-	if [ -f /usr/share/bash-completion/bash_completion ]; then
-		. /usr/share/bash-completion/bash_completion
-	elif [ -f /etc/bash_completion ]; then
-		. /etc/bash_completion
-	fi
+    if [ -f /usr/share/bash-completion/bash_completion ]; then
+        . /usr/share/bash-completion/bash_completion
+    elif [ -f /etc/bash_completion ]; then
+        . /etc/bash_completion
+    fi
 fi
 
 # Custom bash-completion
 if [ -d ~/.local/share/bash-completion ]; then
-	for f in ~/.local/share/bash-completion/*.bash; do source "$f"; done
+    for f in ~/.local/share/bash-completion/*.bash; do source "$f"; done
 fi
 
 # Program languages PATH
@@ -135,7 +135,7 @@ export PATH="$PATH:$HOME/go/bin"
 export PATH="$PATH:$HOME/tools/jdk/bin"
 export PATH="$PATH:$HOME/tools/julia/bin"
 if [ -f ~/.cargo/env ]; then
-	. "$HOME/.cargo/env"
+    . "$HOME/.cargo/env"
 fi
 export PATH="$PATH:$HOME/tools/lua/src"
 export PATH="$PATH:$HOME/tools/luajit/src"
@@ -180,7 +180,7 @@ export PATH="$PATH:$HOME/tools/chafa/bin"
 export PATH="$PATH:$HOME/tools/ctpv"
 export PATH="$PATH:$HOME/tools/lf"
 if [ -f ~/.config/lf/icon.sh ]; then
-	. "$HOME/.config/lf/icon.sh"
+    . "$HOME/.config/lf/icon.sh"
 fi
 export PATH="$PATH:$HOME/tools/lnav"
 export PATH="$PATH:$HOME/tools/pistol"
@@ -192,18 +192,18 @@ export LC_ALL="en_US.UTF-8"
 export LANG="en_US.UTF-8"
 ## Init zoxide
 if which zoxide >/dev/null; then
-	eval "$(zoxide init bash)"
+    eval "$(zoxide init bash)"
 fi
 # Init Starship
 if which starship >/dev/null; then
-	eval "$(starship init bash)"
+    eval "$(starship init bash)"
 fi
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 if [ -f "$HOME/tools/anaconda/etc/profile.d/conda.sh" ]; then
-	. "$HOME/tools/anaconda/etc/profile.d/conda.sh"
+    . "$HOME/tools/anaconda/etc/profile.d/conda.sh"
 else
-	export PATH="$HOME/tools/anaconda/bin:$PATH"
+    export PATH="$HOME/tools/anaconda/bin:$PATH"
 fi
 # <<< conda initialize <<<

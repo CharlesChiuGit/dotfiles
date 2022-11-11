@@ -5,25 +5,25 @@
 ######################################################################
 # Modified from https://github.com/ThePrimeagen/.dotfiles/blob/master/bin/.local/scripts/tmux-cht.sh
 not_in_tmux() {
-	[ -z "$TMUX" ]
+    [ -z "$TMUX" ]
 }
 
 if not_in_tmux; then
-	selected=$(cat ~/.local/bin/tmux-cht-languages ~/.local/bin/tmux-cht-command | fzf)
+    selected=$(cat ~/.local/bin/tmux-cht-languages ~/.local/bin/tmux-cht-command | fzf)
 else
-	selected=$(cat ~/.local/bin/tmux-cht-languages ~/.local/bin/tmux-cht-command | fzf --height 100%)
+    selected=$(cat ~/.local/bin/tmux-cht-languages ~/.local/bin/tmux-cht-command | fzf --height 100%)
 fi
 if [[ -z $selected ]]; then
-	exit 0
+    exit 0
 fi
 
 read -r -p "Enter Query: " query
 
 if grep -qsw "$selected" ~/.tmux-cht-languages; then
-	query=$(echo "$query" | tr ' ' '+')
-	echo "\"curl cht.sh/$selected\"" &
-	curl "cht.sh/$selected" &
-	while True; do sleep 1; done
+    query=$(echo "$query" | tr ' ' '+')
+    echo "\"curl cht.sh/$selected\"" &
+    curl "cht.sh/$selected" &
+    while True; do sleep 1; done
 else
-	curl -s "cht.sh/$selected~$query" | less -r
+    curl -s "cht.sh/$selected~$query" | less -r
 fi

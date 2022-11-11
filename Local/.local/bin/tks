@@ -4,5 +4,5 @@
 #               Pipe `tmux ls` to fzf to kill session                #
 ######################################################################
 for s in $(tmux ls | awk '{print $1}' | rg ':' -r '' | fzf --header="Kill Sessions >"); do
-	tmux kill-session -t "$s"
+    tmux kill-session -t "$s"
 done
