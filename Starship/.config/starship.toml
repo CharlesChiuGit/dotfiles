@@ -1,7 +1,13 @@
+# Inserts a blank line between shell prompts
+add_newline = true
+
+# Change command timeout from 500 to 1000 ms
+command_timeout = 1000
+
 format = """
 $status\
 $sudo\
-$shell\
+$env_var\
 $shlvl\
 $username\
 $hostname\
@@ -12,17 +18,20 @@ $git_branch\
 $git_commit\
 $git_state\
 $git_status\
-$docker_context\
 $package\
 $c\
 $cmake\
 $nodejs\
+$conda\
 $python\
 $rust\
-$terraform\
-$vagrant\
-$conda\
-$env_var\
+$lua\
+$kubernetes\
+$docker_context\
+$perl\
+$php\
+$ruby\
+$golang\
 $cmd_duration\
 $memory_usage\
 $line_break\
@@ -31,11 +40,24 @@ $character"""
 
 [sudo]
 # symbol = "🧙"
-symbol = ""
+symbol = " "
 disabled = false
 style = "red"
 # format = '[ $symbol ]($style)'
-format = '\[[$symbol ]($style)\]'
+format = '\[[$symbol]($style)\]'
+
+# Shows an icon that should be included by zshrc script based on the distribution or os
+[env_var.STARSHIP_DISTRO]
+format = '\[[$env_value](white) \]'
+variable = "STARSHIP_DISTRO"
+disabled = false
+
+[username]
+disabled = false
+show_always = true
+style_user = "bold dimmed blue"
+style_root = "white"
+format = '\[[$user]($style)\] '
 
 [hostname]
 disabled = false
@@ -45,9 +67,14 @@ format = "<[$hostname]($style)> "
 trim_at = ".com"
 
 [directory]
-truncate_to_repo=false
-truncation_length=5
+truncate_to_repo = false
+truncation_length = 5
+truncation_symbol = "…/"
+# home_symbol = " ~"
+read_only_style = "197"
 read_only = " "
+use_os_path_sep = true
+format = "at [$path]($style)[$read_only]($read_only_style) "
 
 [localip]
 disabled = true
@@ -69,12 +96,6 @@ disabled = false
 time_format = "%T"
 format = '\[[$time]($style)\] '
 
-[username]
-disabled = false
-show_always = true
-style_user = "bold dimmed blue"
-format = '\[[$user]($style)\] '
-
 [c]
 symbol = " "
 format = '\[[$symbol($version(-$name))]($style)\]'
@@ -87,13 +108,35 @@ symbol = " "
 ignore_base = false
 format = '\[[$symbol$environment](dimmed green)\]'
 
+[kubernetes]
+format = '[ﴱ $context\($namespace\)](bold purple) '
+disabled = false
+
 [docker_context]
 symbol = " "
 format = '\[[$symbol$context]($style)\]'
 
 [git_branch]
-symbol = " "
-format = '\[[$symbol$branch]($style)\]'
+symbol = " "
+truncation_symbol = "…/"
+style = "bold purple"
+always_show_remote = false
+format = '\[[$symbol$branch(:$remote_branch)]($style)\]'
+
+[git_status]
+format = '[\($all_status$ahead_behind\)]($style) '
+style = "bold red"
+conflicted = " "
+# up_to_date = " "
+untracked = "U"
+ahead = "⇡${count}"
+diverged = "⇕⇡${ahead_count}⇣${behind_count}"
+behind = "⇣${count}"
+stashed = " "
+modified = " "
+staged = '[+\($count\)](green)'
+renamed = " "
+deleted = " "
 
 [nodejs]
 symbol = " "
@@ -101,24 +144,31 @@ format = '\[[$symbol($version)]($style)\]'
 
 [python]
 symbol = " "
-style = "bold green"
 format = '\[[${symbol}${pyenv_prefix}(${version})(\($virtualenv\))]($style)\]'
 
 [rust]
 symbol = " "
 format = '\[[$symbol($version)]($style)\]'
 
-[shell]
-disabled = false
-bash_indicator = " _"
-fish_indicator = " _"
-zsh_indicator = " _"
-powershell_indicator = " _"
-cmd_indicator = ' _'
-unknown_indicator = "? _"
-style = "cyan"
-format = '\[[$indicator]($style)\]'
+[lua]
+symbol = " "
+format = '\[[$symbol($version)]($style)\]'
 
+[perl]
+symbol = " "
+format = '\[[$symbol($version)]($style)\]'
+
+[php]
+symbol = " "
+format = '\[[$symbol($version)]($style)\]'
+
+[ruby]
+symbol = " "
+format = '\[[$symbol($version)]($style)\]'
+
+[golang]
+symbol = " "
+format = '\[[$symbol($version)]($style)\]'
 
 #### Disabled modules ####
 
@@ -146,10 +196,6 @@ symbol = " "
 format = '\[[$symbol($version)]($style)\]'
 [erlang]
 disabled = true
-[golang]
-disabled = true
-symbol = " "
-format = '\[[$symbol($version)]($style)\]'
 [helm]
 disabled = true
 [haskell]
@@ -184,8 +230,6 @@ disabled = true
 disabled = true
 symbol = " "
 format = '\[[$symbol$version]($style)\]'
-[php]
-disabled = true
 [purescript]
 disabled = true
 [spack]
@@ -201,8 +245,6 @@ disabled = true
 [openstack]
 disabled = true
 [crystal]
-disabled = true
-[lua]
 disabled = true
 [jobs]
 disabled = true
