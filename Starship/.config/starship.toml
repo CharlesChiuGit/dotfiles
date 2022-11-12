@@ -124,7 +124,7 @@ always_show_remote = false
 format = '\[[$symbol$branch(:$remote_branch)]($style)\]'
 
 [git_status]
-format = '[\($all_status$ahead_behind\)]($style) '
+format = '([\($all_status$ahead_behind\)]($style) )'
 style = "bold red"
 conflicted = " "
 # up_to_date = " "
