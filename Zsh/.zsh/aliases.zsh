@@ -17,6 +17,8 @@ alias tks='tmux kill-session -t'
 alias CA='conda activate'
 alias CD='conda deactivate'
 alias tb='tensorboard --logdir'
+alias tat='bash tat'
+alias tks='bash tks'
 
 # upgrep Alias
 alias uq='ug -Q'  # short & quick query TUI (interactive, uses .ugrep config)
