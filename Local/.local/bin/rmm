@@ -3,6 +3,6 @@
 ######################################################################
 #             Select multiple files in fzf and trash it              #
 ######################################################################
-results=$(fzf -m | tr '\n' ' ')
+results=$(fzf -m --border-label="╣ Trash multiple files ╠" --header="Tab to select, Ctrl-C to cancel" | tr '\n' ' ')
 echo "trash ${results::-1}"
 eval "trash $results"

@@ -3,7 +3,7 @@
 ######################################################################
 #         Select multiple files in fzf and move to given dir         #
 ######################################################################
-results=$(fzf -m)
+results=$(fzf -m --border-label="╣ Move multiple files ╠" --header="Tab to select, Ctrl-C to cancel")
 for f in $results; do
     mv "$f" "$1"
 done

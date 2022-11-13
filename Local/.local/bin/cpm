@@ -3,6 +3,6 @@
 ######################################################################
 #         Select multiple files in fzf and copy to given fir         #
 ######################################################################
-results=$(fzf -m | tr '\n' ' ')
+results=$(fzf -m --border-label="╣ Copy multiple files ╠" --header="Tab to select, Ctrl-C to cancel" | tr '\n' ' ')
 echo "cp -r ${results::-1} $1"
 eval "cp -r $results $1"

@@ -3,6 +3,6 @@
 ######################################################################
 #          Select multiple files in fzf and open with nvim           #
 ######################################################################
-results=$(fzf -m | tr '\n' ' ')
+results=$(fzf -m --border-label="╣ Open multiple files with Neovim ╠" --header="Tab to select, Ctrl-C to cancel" | tr '\n' ' ')
 echo "nvim ${results::-1}"
 eval nvim "$results"

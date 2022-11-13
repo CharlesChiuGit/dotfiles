@@ -8,6 +8,7 @@
 result=$(
     fd -H --type d . "$HOME" |
     fzf --query="$1" --no-multi --select-1 --exit-0 \
-        --preview 'tree -C {} | head -100'
+        --preview 'tree -C {} | head -100' \
+        --border-label="╣ cd with fzf ╠" --header="Tab to select, Ctrl-C to cancel"
 )
 eval cd "$result"

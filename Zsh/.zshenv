@@ -23,7 +23,7 @@ path=(~/tools/batcat $path)
 path=(~/tools/cpufetch $path)
 path=(~/tools/fdfind $path)
 path=(~/tools/fzf/bin $path)
-export FZF_DEFAULT_OPTS='--ansi --height 40% --layout=reverse --border'
+export FZF_DEFAULT_OPTS='--ansi --height 40% --layout=reverse --border=double --border-label="╣ FZF ╠" --preview-label="┓ ⟪Preview⟫ ┏" --preview-window=right,border-bold --color=border:#7ba46c,label:#7ba46c'
 export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
 path=(~/tools/fzy $path)
 path=(~/tools/git-delta $path)

@@ -9,8 +9,9 @@ not_in_tmux() {
 
 read -r -p "Enter Query: " query
 
+# --border-label="╣ Navi ╠"
 if not_in_tmux; then
-    navi --cheatsh "$query"
+    navi --fzf-overrides '--border-label-pos=-3,bottom' --cheatsh "$query"
 else
-    navi --fzf-overrides '--height 100%' --cheatsh "$query"
+    navi --fzf-overrides '--height 100% --border-label-pos=-3,bottom' --cheatsh "$query"
 fi
