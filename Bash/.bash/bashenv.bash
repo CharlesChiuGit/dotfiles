@@ -38,7 +38,7 @@ export PATH="$PATH:$HOME/tools/batcat"
 export PATH="$PATH:$HOME/tools/cpufetch"
 export PATH="$PATH:$HOME/tools/fdfind"
 export FZF_DEFAULT_OPTS='--ansi --height 40% --layout=reverse --border=double --border-label="╣ FZF ╠" --preview-label="┓ ⟪Preview⟫ ┏" --preview-window=right,border-bold --color=border:#7ba46c,label:#7ba46c'
-export FZF_DEFAULT_OPTS='--ansi --height 40% --layout=reverse --border --preview='"'pistol {}'"''
+export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_CTRL_T_OPTS="$FZF_DEFAULT_OPTS"
 export FZF_ALT_C_COMMAND='fd -H --type d . --color=never'
