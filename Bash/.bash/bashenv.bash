@@ -1,6 +1,17 @@
 #!/usr/bin/env bash
 # shellcheck disable=SC1091
 
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+PS1='[\u@\h \W]\$ '
+
+# append to the history file, don't overwrite it
+shopt -s histappend
+
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(2)
+HISTSIZE=1001
+HISTFILESIZE=2001
+
 # Program languages PATH
 # export PATH="$PATH:$MY_HOME/tools/anaconda/bin" # commented out by conda initialize
 export PATH="$PATH:$HOME/tools/nodejs/bin"
