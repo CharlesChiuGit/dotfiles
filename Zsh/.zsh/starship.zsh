@@ -5,7 +5,7 @@ if [[ -f $LFILE ]]; then
     _distro=$(awk '/^ID=/' /etc/*-release | awk -F'=' '{ print tolower($2) }')
 elif [[ -f $MFILE ]]; then
     _distro="macos"
-else;
+else
     echo "Unsupported distribution"
 fi
 
