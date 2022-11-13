@@ -1,0 +1,497 @@
+'\" t
+.ds ub \(:Uberzug
+.
+.TH CTPV 1 2022 Linux "User's Reference Manuals"
+.
+.SH NAME
+ctpv \- terminal previewer
+.
+.SH SYNOPSIS
+.
+.SY ctpv
+.I  file
+.RI [ w ]
+.RI [ h ]
+.RI [ x ]
+.RI [ y ]
+.RI [ id ]
+.YS
+.
+.SY ctpv
+.B \-l
+.YS
+.
+.SY ctpv
+.B \-m
+.I file
+\&.\|.\|.\&
+.YS
+.
+.SY ctpv
+.RB { \-s | \-c | \-e }
+.I id
+.YS
+.
+.SH DESCRIPTION
+.
+.B ctpv
+is a previewer utility made for integration into other programs like
+.IR lf .
+.
+.PP
+When
+.B ctpv
+is given a
+.IR file ,
+it determines an appropriate preview for it and runs it.
+Depending on the preview and installed programs, it can print
+some text to standard output or display an image.
+Symbolic links are dereferenced.
+.
+.SS Built-in previews and dependencies
+.
+Previewing each file type requires specific programs.
+If a program is not found on the system,
+.B ctpv
+will try to use another one.
+Only one program is required for each file type.
+For example, you only need either
+.IR elinks ,
+.I lynx
+or
+.I w3m
+installed on your system to view HTML files.
+.
+.PP
+.
+.\" This table is auto generated!
+.
+.\" TABLESTART
+.TS
+allbox;
+lb lb
+l li .
+File type	Programs
+any	T{
+exiftool cat
+T}
+archive	T{
+atool
+T}
+diff	T{
+colordiff delta diff\-so\-fancy
+T}
+directory	T{
+ls
+T}
+font	T{
+fontimage
+T}
+gpg-encrypted	T{
+gpg
+T}
+html	T{
+elinks lynx w3m
+T}
+image	T{
+ueberzug chafa
+T}
+json	T{
+jq
+T}
+markdown	T{
+mdcat
+T}
+office	T{
+libreoffice
+T}
+pdf	T{
+pdftoppm
+T}
+svg	T{
+convert
+T}
+text	T{
+bat cat highlight source\-highlight
+T}
+torrent	T{
+transmission\-show
+T}
+video	T{
+ffmpegthumbnailer
+T}
+.TE
+.\" TABLEEND
+.
+.SS Integration
+.
+.TP
+.IR lf \~\c
+file manager
+Add this snippet to
+.I lf
+configuration file (usually located at
+.IR \(ti/.config/lf/lfrc ).
+.
+.RS
+.IP
+.EX
+set previewer ctpv
+set cleaner ctpvclear
+&ctpv \-s $id
+&ctpvquit $id
+.EE
+.RE
+.
+.SS Image previews
+.
+Image previews are enabled by either installing
+.I \*(ub
+or
+.I Chafa
+(as seen in
+.IR "Built-in previews and dependencies" )
+or using built-in image preview functionality of
+.I Kitty
+terminal.
+.
+.PP
+When possible,
+.B ctpv
+will prefer
+.I \*(ub
+over others image preview methods. You can override this
+behavior by using
+.B forcekitty
+or
+.B forcechafa
+options (see
+.IR "Preview options" ).
+.
+.PP
+Note that
+.I \*(ub
+supports
+.I X11
+only
+.RI ( Wayland
+is not supported).
+.
+.SS How previews are selected
+.
+Initially,
+.B ctpv
+retrieves MIME type and extension from
+.I file
+passed as the first argument (MIME type is extracted using
+.BR libmagic (3)).
+.
+.PP
+Then it creates a list of all previews respecting user
+configuration in a special order, where previews that are
+more specific appear at the top and more generic ones at the bottom.
+The list can be viewed by using
+.B \-l
+option. The order can be changed (see
+.IR "Setting priority" ).
+.
+.PP
+Finally,
+.B ctpv
+goes through the list starting with the first element
+and checks if a preview matches
+.IR file 's
+extension and MIME type.
+If it does, it runs a preview script.
+If the script exits with status 127
+(which usually means that a program that is necessary for generating
+a preview content is not installed on the system),
+.B ctpv
+attempts to run another appropriate preview and so on.
+If the script exists with 0 or a any other status, both standard output
+and standard error are printed.
+.
+.SH OPTIONS
+.
+.TP
+.B \-l
+List all previews.
+.
+.TP
+.BR \-m \~\c
+.IR file \~.\|.\|.\&
+Print extension and MIME type of
+.IR file .
+.
+.TP
+.BR \-s \~\c
+.I id
+Start server with ID
+.IR id .
+.
+.TP
+.BR \-c \~\c
+.I id
+Send
+.B clear
+command to server with ID
+.I id
+(usually, it removes image from terminal).
+.
+.TP
+.BR \-e \~\c
+.I id
+Kill server with ID
+.IR id .
+.
+.SH CONFIGURATION
+.
+.B ctpv
+uses a configuration file usually located at
+.I \(ti/.config/ctpv/config
+(see
+.IR FILES ).
+Its format somewhat resembles one used by
+.IR lf .
+There are several commands that can be used to add
+previews or set different settings.
+Commands are separated by newlines.
+Comments start with number sign
+.RB \(oq # \(cq.
+.
+.PP
+Example:
+.
+.IP
+.EX
+# Set an option
+set forcekitty
+.sp
+# Add a new preview
+preview cow .moo {{
+\&    cowsay < "$f"
+}}
+.sp
+# Remove some previews
+remove w3m
+remove lynx
+remove elinks
+.EE
+.
+.SS Preview options
+.
+An option can be set using
+.B set
+command.
+.
+.TP
+.B forcekitty
+Always use
+.I Kitty
+terminal's built-in method of previewing images.
+.
+.TP
+.B forcekittyanim
+Always use
+.I Kitty
+terminal's built-in method of previewing images for animated
+images.
+.
+.TP
+.B forcechafa
+Always use
+.I Chafa
+for image previews.
+.
+.TP
+.B noimages
+Print only text and do not use any image previewing method.
+.
+.TP
+.B nosymlinkinfo
+Do not print resolved path of symbolic links.
+.
+.TP
+.B showgpg
+Preview
+.BR gpg (1)
+encrypted files.
+Filename must have \(lq.gpg\(rq extension.
+.
+.SS Defining custom previews
+.
+User-defined previews are added with
+.B preview
+command.
+.
+.PP
+An example below defines a new preview with name \(lqmanpage\(rq
+that applies to files with extension \(lq.1\(rq.
+A preview itself is a shell script enclosed within double curly
+braces.
+.
+.IP
+.EX
+preview manpage .1 {{
+\&    groff \-man \-tep \-Tutf8 \-rLL="${w}n" "${f}" | col \-x
+}}
+.EE
+.
+.PP
+Running
+.I "ctpv\~file.1"
+where
+.I file.1
+is a source code for a manpage will run
+.BR groff (1)
+to produce a formatted manpage like the one you are reading.
+.
+.PP
+Manpages filenames may also end with other extensions:
+\(lq.2\(rq, \(lq.3\(rq, \(lq.4\(rq and so on.
+It's possible to make user-defines previews apply to several
+file types at once:
+.
+.IP
+.EX
+preview manpage .1 .2 .3 .4 .5 .6 .7 .8 {{
+\&    # groff command
+}}
+.EE
+.
+.PP
+Variable
+.B $f
+stores
+.I file
+that was passed as a first argument to
+.BR ctpv .
+It's strongly suggested to enclose
+.B $f
+with double quotes
+.RB ( \(dq$f\(dq )
+because otherwise the script will not work as
+expected if
+.B $f
+stores a filename with whitespace.
+.
+.PP
+There are other variables that are exported into preview
+script environment:
+.BR $w ,
+.BR $h ,
+.BR $x ,
+.B $y
+and
+.BR $id .
+There are also
+.B $m
+and
+.B $e
+which store MIME type and extension of
+.IR file .
+.
+.PP
+You can specify MIME type instead of filename extension
+in preview definition:
+.
+.IP
+.EX
+preview json_example application/json {{
+\&    # preview json files
+}}
+.EE
+.
+.PP
+You can omit subtype part of the MIME type
+by replacing it with
+.RB \(oq * \(cq.
+.
+.IP
+.EX
+preview any_text_example text/* {{
+\&    # this one applies to all text files
+}}
+.EE
+.
+.PP
+Setting subtype to
+.RB \(oq * \(cq
+will make the preview above apply to any file which MIME type starts with
+.BR text/ .
+.
+.SS Setting priority
+.
+If there are several previews that apply to the same file type,
+only the top one in the list is chosen (see
+.IR "How previews are selected" ).
+To alter this behavior, you can use
+.B priority
+command to change preview priority:
+.
+.IP
+.EX
+priority cat
+.EE
+.
+.PP
+The snippet above sets priority of a built-in preview named \(lqcat\(rq
+to 1, thus now it's used for all text files.
+It's possible to specify an integer as the second argument
+to set priority other than 1 (may also be negative).
+.
+.SS Removing previews
+.
+.B remove
+command simply removes a preview (also works for built-in ones):
+.
+.IP
+.EX
+remove cat
+.EE
+.
+.PP
+It's useful if you have a program installed on your system but you
+don't want
+.B ctpv
+to use it for generating previews.
+.
+.SH ENVIRONMENT
+.
+.TP
+.I id
+.I id
+of a server to connect to
+(see
+.B \-s
+option).
+.
+.SH FILES
+.
+.TP
+.I $XDG_CONFIG_HOME/ctpv/config
+Configuration file.
+If
+.I $XDG_CONFIG_HOME
+is not set, defaults to
+.IR \(ti/.config .
+.
+.TP
+.I $XDG_CACHE_HOME/ctpv
+Directory to store cached image previews.
+It takes some time to generate an image preview for some file types,
+such as videos or PDF files, this is why the generated images are
+stored in the directory to be shown if the same file is previewed
+again.
+If
+.I $XDG_CACHE_HOME
+is not set, defaults to
+.IR \(ti/.cache .
+.
+.SH SEE ALSO
+.
+.BR lf (1)
+.
+.SH AUTHOR
+.
+Written by Nikita Ivanov.

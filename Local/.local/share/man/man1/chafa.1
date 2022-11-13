@@ -1,0 +1,292 @@
+'\" t
+.\"     Title: chafa
+.\"    Author: Hans Petter Jansson
+.\" Generator: DocBook XSL Stylesheets vsnapshot <http://docbook.sf.net/>
+.\"      Date: 11/13/2022
+.\"    Manual: User Commands
+.\"    Source: chafa
+.\"  Language: English
+.\"
+.TH "CHAFA" "1" "" "chafa" "User Commands"
+.\" -----------------------------------------------------------------
+.\" * Define some portability stuff
+.\" -----------------------------------------------------------------
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.\" http://bugs.debian.org/507673
+.\" http://lists.gnu.org/archive/html/groff/2009-02/msg00013.html
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.ie \n(.g .ds Aq \(aq
+.el       .ds Aq '
+.\" -----------------------------------------------------------------
+.\" * set default formatting
+.\" -----------------------------------------------------------------
+.\" disable hyphenation
+.nh
+.\" disable justification (adjust text to left margin only)
+.ad l
+.\" -----------------------------------------------------------------
+.\" * MAIN CONTENT STARTS HERE *
+.\" -----------------------------------------------------------------
+.SH "NAME"
+chafa \- Character art facsimile generator
+.SH "SYNOPSIS"
+.HP \w'\fBchafa\fR\ 'u
+\fBchafa\fR [OPTION...] [IMAGE...]
+.SH "DESCRIPTION"
+.PP
+\fBchafa\fR
+is a command\-line utility that converts image data, including animated GIFs, into graphics formats or ANSI/Unicode character art suitable for display in a terminal\&. It has broad feature support, allowing it to be used on devices ranging from historical teleprinters to modern terminal emulators and everything in between\&.
+.PP
+You can specify one or more input files, but the default behavior is slightly different with multiple files \-\- for instance, animations will not loop forever when there is more than one input file\&.
+.SH "OPTIONS"
+.PP
+\fB\-\-animate \fR\fB\fIbool\fR\fR
+.RS 4
+Whether to allow animation [on, off]\&. Defaults to on\&. When off, will show a still frame from each animation\&.
+.RE
+.PP
+\fB\-\-bg \fR\fB\fIcolor\fR\fR
+.RS 4
+Background color of display (color name or hex)\&. Partially transparent input will be blended with this color\&. Color names are based on those provided with X\&.Org\&. Defaults to black\&.
+.RE
+.PP
+\fB\-C \fR\fB\fIbool\fR\fR\fB, \-\-center \fR\fB\fIbool\fR\fR
+.RS 4
+Center images [on, off]\&. Defaults to off\&.
+.RE
+.PP
+\fB\-\-clear\fR
+.RS 4
+Clear screen before processing each file\&.
+.RE
+.PP
+\fB\-c \fR\fB\fImode\fR\fR\fB, \-\-colors \fR\fB\fImode\fR\fR
+.RS 4
+Set output color mode; one of [none, 2, 8, 16/8 16, 240, 256, full]\&. The 240\-color mode is recommended over the 256\-color one, since the lower 16 colors are unreliable and tend to differ between terminals\&. 16\-color mode will use aixterm extensions to produce 16 foreground and background colors\&. The 16/8 mode allows for 8 colors plus another "bright" 8 colors in the foreground implemented with the "bold" escape sequence\&. 2\-color mode will only emit the ANSI codes for reverse color and attribute reset, while "none" will emit no escape sequences at all\&.
+.sp
+In sixel mode, "full" will dynamically generate a 256\-color palette for each image or animation frame\&. The other modes refer to built\-in palettes\&. "none" and "2" are interchangeable and will use the specified foreground/background colors (see \-\-fg and \-\-bg)\&.
+.sp
+If left unspecified, an optimal default will be chosen based on the current environment\&.
+.RE
+.PP
+\fB\-\-color\-extractor \fR\fB\fIextractor\fR\fR
+.RS 4
+Method for extracting color from an area; one of [average, median]\&. Median normally produces crisper output, while average may perform better on noisy images\&. Defaults to average\&.
+.RE
+.PP
+\fB\-\-color\-space \fR\fB\fIcs\fR\fR
+.RS 4
+Color space used for quantization; one of [rgb, din99d]\&. Defaults to rgb, which is faster but less accurate\&.
+.RE
+.PP
+\fB\-\-dither \fR\fB\fItype\fR\fR
+.RS 4
+Type of dithering to apply during quantization\&. One of [none, ordered, diffusion]\&. "Bayer" is a synonym for "ordered", and "fs" (Floyd\-Steinberg) is a synonym for "diffusion"\&.
+.RE
+.PP
+\fB\-\-dither\-grain \fR\fB\fIwidth\fR\fR\fBx\fR\fB\fIheight\fR\fR
+.RS 4
+Dimensions of grain used when dithering\&. Specified as width x height, where each can be one of [1, 2, 4, 8] pixels\&. One character cell is by definition 8 pixels across in both dimensions\&. Defaults to 4x4 in symbol mode and 1x1 in sixel mode\&.
+.RE
+.PP
+\fB\-\-dither\-intensity \fR\fB\fIintensity\fR\fR
+.RS 4
+Intensity of dithering pattern\&. Ranges from 0\&.0 to infinity, with 1\&.0 considered neutral\&. Lower values tend to reduce the amount of dithering done, while higher values increase it\&. In practice, values higher than 10\&.0 are unlikely to produce useful results\&.
+.RE
+.PP
+\fB\-d, \-\-duration \fR\fB\fIseconds\fR\fR
+.RS 4
+Time to show each file, in seconds\&. Defaults to zero for still images and for animations when multiple files are specified\&. If a single animation is specified, defaults to infinite\&. Animations will always be played through at least once, even if duration is e\&.g\&. zero\&.
+.RE
+.PP
+\fB\-\-fg \fR\fB\fIcolor\fR\fR
+.RS 4
+Foreground color of display (color name or hex)\&. Together with the background color specified by \-\-bg, this specifies the terminal\*(Aqs palette in color modes 2 and none\&. Color names are based on those provided with X\&.Org\&. Defaults to white\&.
+.RE
+.PP
+\fB\-\-fg\-only\fR
+.RS 4
+Leave the background color untouched\&. This produces character\-cell output using foreground colors only, and will avoid resetting or inverting the colors\&.
+.RE
+.PP
+\fB\-\-fill \fR\fB\fIsymbols\fR\fR
+.RS 4
+Specify character symbols to use for fill/gradients\&. Defaults to none\&. Usage is similar to that of \-\-symbols; see below\&.
+.RE
+.PP
+\fB\-\-font\-ratio \fR\fB\fIwidth\fR\fR\fB/\fR\fB\fIheight\fR\fR
+.RS 4
+Target font\*(Aqs width/height ratio\&. Can be specified as a real number or a fraction\&. Defaults to 1/2\&.
+.RE
+.PP
+\fB\-f, \-\-format \fR\fB\fIformat\fR\fR
+.RS 4
+Set output format; one of [iterm, kitty, sixels, symbols]\&. The default is iterm, kitty or sixels if the connected terminal supports one of these, falling back to symbols ("ANSI art") otherwise\&.
+.RE
+.PP
+\fB\-\-glyph\-file \fR\fB\fIfile\fR\fR
+.RS 4
+Load glyph information from file, which can be any font file supported by FreeType (TTF, PCF, etc)\&. The glyph outlines will replace any existing outlines, including builtins\&. Useful in symbol mode for custom font support or for improving quality with a specific font\&. Note that this only makes sense if the output terminal is using a matching font\&. Can be specified multiple times\&.
+.RE
+.PP
+\fB\-h, \-\-help\fR
+.RS 4
+Show a brief help text\&.
+.RE
+.PP
+\fB\-\-invert\fR
+.RS 4
+Invert video\&. For display with bright backgrounds in color modes 2 and none\&. Swaps \-\-fg and \-\-bg\&.
+.RE
+.PP
+\fB\-\-margin\-bottom \fR\fB\fInum\fR\fR
+.RS 4
+When terminal size is detected, reserve at least this many rows at the bottom as a safety margin\&. Can be used to prevent images from scrolling out\&. Defaults to 1\&.
+.RE
+.PP
+\fB\-\-margin\-right \fR\fB\fInum\fR\fR
+.RS 4
+When terminal size is detected, reserve at least this many columns on the right\-hand side as a safety margin\&. Defaults to 0\&.
+.RE
+.PP
+\fB\-O \fR\fB\fInum\fR\fR\fB, \-\-optimize \fR\fB\fInum\fR\fR
+.RS 4
+Compress the output by using control sequences intelligently [0\-9]\&. 0 disables, 9 enables every available optimization\&. Defaults to 5, except for when used with "\-c none", where it defaults to 0\&.
+.RE
+.PP
+\fB\-\-polite \fR\fB\fIbool\fR\fR
+.RS 4
+Polite mode [on, off]\&. Defaults to on\&. Turning this off may enhance presentation and prevent interference from other programs, but risks leaving the terminal in an altered state (rude)\&.
+.RE
+.PP
+\fB\-p \fR\fB\fIbool\fR\fR\fB, \-\-preprocess \fR\fB\fIbool\fR\fR
+.RS 4
+Image preprocessing [on, off]\&. Defaults to on with 16 colors or lower, off otherwise\&. This enhances colors and contrast prior to conversion, which can be useful in low\-color modes\&.
+.RE
+.PP
+\fB\-\-scale \fR\fB\fINUM\fR\fR
+.RS 4
+Scale image, respecting terminal\*(Aqs maximum dimensions\&. 1\&.0 approximates original pixel dimensions\&. Specify "max" to use all available space\&. Defaults to 1\&.0 for pixel graphics and 4\&.0 for symbols\&.
+.RE
+.PP
+\fB\-s \fR\fB\fIwidth\fR\fR\fBx\fR\fB\fIheight\fR\fR\fB, \-\-size \fR\fB\fIwidth\fR\fR\fBx\fR\fB\fIheight\fR\fR
+.RS 4
+Set maximum output dimensions in columns and rows\&. By default this will be the size of your terminal, or 80x25 if size detection fails\&.
+.RE
+.PP
+\fB\-\-speed \fR\fB\fIspeed\fR\fR
+.RS 4
+Set the speed animations will play at\&. This can be either a unitless multiplier (fractions are allowed), or a real number followed by "fps" to apply a specific framerate\&.
+.RE
+.PP
+\fB\-\-stretch\fR
+.RS 4
+Stretch image to fit output dimensions; ignore aspect\&. Implies \-\-scale max\&.
+.RE
+.PP
+\fB\-\-symbols \fR\fB\fIsymbols\fR\fR
+.RS 4
+Specify character symbols to employ in final output\&. See below for full usage and a list of symbol classes\&.
+.RE
+.PP
+\fB\-\-threads \fR\fB\fInum\fR\fR
+.RS 4
+Maximum number of CPU threads to use\&. If left unspecified or negative, this will equal available CPU cores\&.
+.RE
+.PP
+\fB\-t \fR\fB\fIthreshold\fR\fR\fB, \-\-threshold \fR\fB\fIthreshold\fR\fR
+.RS 4
+Threshold above which full transparency will be used [0\&.0 \- 1\&.0]\&. Setting this to 0\&.0 will render a blank image, while a value of 1\&.0 will replace any transparency with the background color (configurable with \-\-bg)\&.
+.RE
+.PP
+\fB\-\-version\fR
+.RS 4
+Show version, feature and copyright information\&.
+.RE
+.PP
+\fB\-\-watch\fR
+.RS 4
+Watch a single input file, redisplaying it whenever its contents change\&. Will run until manually interrupted or, if \-\-duration is set, until it expires\&.
+.RE
+.PP
+\fB\-w \fR\fB\fInum\fR\fR\fB, \-\-work \fR\fB\fInum\fR\fR
+.RS 4
+How hard to work in terms of CPU and memory [1\-9]\&. 1 is the cheapest, 9 is the most accurate\&. Defaults to 5\&.
+.RE
+.SH "EXIT STATUS"
+.PP
+\fBchafa\fR
+will return 0 on success, 1 on partial failure or 2 on complete failure (including when invoked with no arguments)\&.
+.\" line length increase to cope w/ tbl weirdness
+.ll +(\n(LLu * 62u / 100u)
+.TS
+ll.
+\fIStatus\fR	\fIMeaning\fR
+T{
+0
+T}	T{
+Success
+T}
+T{
+1
+T}	T{
+Some files failed to display
+T}
+T{
+2
+T}	T{
+All files failed to display
+T}
+.TE
+.\" line length decrease back to previous value
+.ll -(\n(LLu * 62u / 100u)
+.sp
+.SH "SYMBOLS"
+.PP
+Accepted classes for \-\-symbols are [all, none, space, solid, stipple, block, border, diagonal, dot, quad, half, hhalf, vhalf, inverted, braille, technical, geometric, ascii, legacy, sextant, wedge, wide, narrow]\&. Some symbols belong to multiple classes, e\&.g\&. diagonals are also borders\&.
+.PP
+You can specify a list of classes separated by commas, or prefix them with + and \- to add or remove symbols relative to the existing set\&. The ordering is significant\&.
+.PP
+The default symbol set is block+border+space\-wide\-inverted for all modes except "none", which uses block+border+space\-wide (including inverse symbols)\&.
+.SH "EXAMPLES"
+.PP
+chafa in\&.gif
+.RS 4
+Show a potentially animated GIF image in the terminal\&. If this is an animation, it will run until the user generates an interrupt (typically ctrl\-c)\&. All parameters will be autodetected based on the current environment\&.
+.RE
+.PP
+chafa \-c full \-s 200 in\&.gif
+.RS 4
+Like the above, but force truecolor output that is 200 characters wide and calculate the height preserving the aspect of the original image\&.
+.RE
+.PP
+chafa \-c 16 \-\-color\-space din99d \-\-symbols \-dot in\&.jpg
+.RS 4
+Generate 16\-color output with perceptual color picking and avoid using dot symbols\&.
+.RE
+.PP
+chafa \-c none \-\-symbols block+border\-solid in\&.png
+.RS 4
+Generate uncolored output using block and border symbols, but avoid the solid block symbol\&.
+.RE
+.SH "FURTHER READING"
+.PP
+See the
+\m[blue]\fBChafa homepage\fR\m[]\&\s-2\u[1]\d\s+2
+for more information\&.
+.SH "AUTHOR"
+.PP
+Written by
+\m[blue]\fBHans Petter Jansson\fR\m[]\&\s-2\u[2]\d\s+2
+<hpj@hpjansson\&.org>\&.
+.SH "NOTES"
+.IP " 1." 4
+Chafa homepage
+.RS 4
+\%https://hpjansson.org/chafa/
+.RE
+.IP " 2." 4
+Hans Petter Jansson
+.RS 4
+\%https://hpjansson.org/
+.RE
