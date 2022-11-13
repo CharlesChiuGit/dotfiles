@@ -20,6 +20,6 @@ HISTFILESIZE=2001
 [[ -f ~/.bash/starship.bash ]] && source "$HOME/.bash/starship.bash"
 
 # Custom bash-completion
-# if [ -d ~/.local/share/bash-completion ]; then
-#     for f in ~/.local/share/bash-completion/*.bash; do source "$f"; done
-# fi
+if [ -d ~/.local/share/bash-completion ]; then
+    for f in ~/.local/share/bash-completion/*.bash; do source "$f"; done
+fi
