@@ -72,7 +72,7 @@ if [ "$DIR" == "--start" ]; then
     session_name=${path_name}
 else
     # ask the user which directory to start in
-    session_name=$(cd "$DIR" && fd -H --type d --max-depth 1 | sed "s|/||g" | sed "s/.//" | fzf --reverse --border-label="╣ Open tmux session with repo name ╠" --header="Select project from $(basename $DIR) >")
+    session_name=$(cd "$DIR" && fd -H --type d --max-depth 1 | sed "s|/||g" | fzf --reverse --border-label="╣ Open tmux session with repo name ╠" --header="Select project from $(basename $DIR) >")
     path_name=$DIR/$session_name
 fi
 
