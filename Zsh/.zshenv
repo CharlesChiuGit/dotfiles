@@ -53,7 +53,7 @@ path=(~/tools/stow/bin $path)
 path=(~/tools/xplr $path)
 path=(~/tools/dua-cli $path)
 path=(~/tools/viu $path)
-path=(~/tools/chafa $path)
+path=(~/tools/chafa/bin $path)
 path=(~/tools/ctpv $path)
 path=(~/tools/lf $path)
 [ -f ~/.config/lf/icon.sh ] && source "$HOME/.config/lf/icon.sh"
