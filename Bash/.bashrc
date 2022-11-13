@@ -12,9 +12,6 @@ shopt -s histappend
 HISTSIZE=1001
 HISTFILESIZE=2001
 
-# make less more friendly for non-text input files, see lesspipe(2)
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
-
 # Custom env and aliases
 [[ -f ~/.bash/aliases.bash ]] && source "$HOME/.bash/aliases.bash"
 [[ -f ~/.bash/bashenv.bash ]] && source "$HOME/.bash/bashenv.bash"
