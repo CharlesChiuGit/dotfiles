@@ -1,7 +1,22 @@
 #!/usr/bin/zsh
 
+# Lines configured by zsh-newuser-install
+HISTFILE=~/.histfile
+HISTSIZE=1000
+SAVEHIST=1000
+setopt extendedglob nomatch notify
+unsetopt autocd beep
+bindkey -v
+# End of lines configured by zsh-newuser-install
+# The following lines were added by compinstall
+zstyle :compinstall filename "$HOME/.zshrc"
+
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
+
 path=(~/.cargo/bin $path)
-. "$HOME/.cargo/env"
+[ -f ~/.cargo/env ] && source "$HOME/.cargo/env"
 path=(~/tools/nodejs/bin $path)
 path=(~/tools/perl/bin $path)
 export PERL_CPANM_HOME="$HOME/tools/cpanm"
@@ -41,9 +56,7 @@ path=(~/tools/viu $path)
 path=(~/tools/chafa $path)
 path=(~/tools/ctpv $path)
 path=(~/tools/lf $path)
-if [ -f ~/.config/lf/icon.sh ]; then
-    source "$HOME/.config/lf/icon.sh"
-fi
+[ -f ~/.config/lf/icon.sh ] && source "$HOME/.config/lf/icon.sh"
 path=(~/tools/lnav $path)
 path=(~/tools/pistol $path)
 path=(~/tools/ugrep/bin $path)
@@ -55,3 +68,28 @@ export EDITOR='nvim'
 ## neovim support
 export LC_ALL="en_US.UTF-8"
 export LANG="en_US.UTF-8"
+
+# Init zoxide
+[ -x ~/tools/zoxide/zoxide ] && eval "$(zoxide init zsh)" || echo "zoxide not found!"
+
+# Init Starship
+[ -x ~/tools/starship/starship ] && eval "$(starship init zsh)" || echo "starship not found!"]
+
+# Init shelden
+[ -x  ~/tools/sheldon/sheldon ] && eval "$(sheldon source)" || echo "sheldon not found!"
+bindkey '^[[a' history-substring-search-up
+bindkey '^[[b' history-substring-search-down
+bindkey ',' autosuggest-accept
+
+# Init qfc
+[[ -s $HOME/tools/qfc/bin/qfc.sh ]] && source "$HOME/tools/qfc/bin/qfc.sh"
+qfc_quick_command 'cd' '\C-b' 'cd $0'
+qfc_quick_command 'nvim' '\C-p' 'nvim $0'
+
+# >>> conda initialize >>>
+if [ -f $HOME/tools/anaconda/etc/profile.d/conda.sh ]; then
+    . "$HOME/tools/anaconda/etc/profile.d/conda.sh"
+else
+    export PATH="$HOME/tools/anaconda/bin:$PATH"
+fi
+# <<< conda initialize <<<
