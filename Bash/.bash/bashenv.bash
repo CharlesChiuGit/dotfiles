@@ -64,3 +64,18 @@ export PATH="$PATH:$HOME/tools/navi"
 ## neovim support
 export LC_ALL="en_US.UTF-8"
 export LANG="en_US.UTF-8"
+
+## Init zoxide
+[[ -z $(command -v zoxide) ]] && eval "$(zoxide init bash)" || echo "zoxide not found!"
+
+# Init Starship
+[[ -z $(command -v starship) ]] && eval "$(starship init bash)" || echo "starship not found!"]
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+if [ -f "$HOME/tools/anaconda/etc/profile.d/conda.sh" ]; then
+	. "$HOME/tools/anaconda/etc/profile.d/conda.sh"
+else
+	export PATH="$HOME/tools/anaconda/bin:$PATH"
+fi
+# <<< conda initialize <<<

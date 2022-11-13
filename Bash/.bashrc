@@ -23,23 +23,3 @@ HISTFILESIZE=2001
 # if [ -d ~/.local/share/bash-completion ]; then
 #     for f in ~/.local/share/bash-completion/*.bash; do source "$f"; done
 # fi
-
-## Init zoxide
-# if which zoxide >/dev/null; then
-#     eval "$(zoxide init bash)"
-# fi
-[[ -z $(command -v zoxide) ]] && eval "$(zoxide init bash)" || echo "zoxide not found!"
-# Init Starship
-# if which starship >/dev/null; then
-#     eval "$(starship init bash)"
-# fi
-[[ -z $(command -v starship) ]] && eval "$(starship init bash)" || echo "starship not found!"]
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-if [ -f "$HOME/tools/anaconda/etc/profile.d/conda.sh" ]; then
-	. "$HOME/tools/anaconda/etc/profile.d/conda.sh"
-else
-	export PATH="$HOME/tools/anaconda/bin:$PATH"
-fi
-# <<< conda initialize <<<
