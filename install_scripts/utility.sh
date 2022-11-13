@@ -4,7 +4,7 @@ set -eu
 set -o pipefail
 
 # Whether to add the path of the installed executables to system PATH
-ADD_TO_SYSTEM_PATH=true
+ADD_TO_SYSTEM_PATH=false
 
 # select which shell we are using
 USE_BASH_SHELL=true
