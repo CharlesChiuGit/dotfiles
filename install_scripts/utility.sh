@@ -210,7 +210,7 @@ fi
 ######################################################################
 FDFIND_DIR=$HOME/tools/fdfind
 FDFIND_SRC_NAME=$HOME/packages/fdfind.tar.gz
-FDFIND_LINK=""https://github.com/sharkdp/fd/releases/download/v8.5.2/fd-v8.5.2-x86_64-unknown-linux-musl.tar.gz
+FDFIND_LINK="https://github.com/sharkdp/fd/releases/download/v8.5.3/fd-v8.5.3-x86_64-unknown-linux-musl.tar.gz"
 if [[ -z $(command -v fd) ]] && [[ ! -f $FDFIND_DIR/fd ]]; then
     echo "Install fdfind"
     if [[ ! -f $FDFIND_SRC_NAME ]]; then
