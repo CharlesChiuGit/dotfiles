@@ -382,7 +382,7 @@ fi
 ######################################################################
 LAZYGIT_DIR=$HOME/tools/lazygit
 LAZYGIT_SRC_NAME=$HOME/packages/lazygit.tar.gz
-LAZYGIT_LINK="https://github.com/jesseduffield/lazygit/releases/download/v0.35/lazygit_0.35_Linux_x86_64.tar.gz"
+LAZYGIT_LINK="https://github.com/jesseduffield/lazygit/releases/download/v0.36.0/lazygit_0.36.0_Linux_x86_64.tar.gz"
 if [[ -z $(command -v lazygit) ]] && [[ ! -f $LAZYGIT_DIR/lazygit ]]; then
     echo "Install lazygit"
     if [[ ! -f $LAZYGIT_SRC_NAME ]]; then
