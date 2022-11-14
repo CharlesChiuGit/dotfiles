@@ -77,10 +77,12 @@ export LC_ALL="en_US.UTF-8"
 export LANG="en_US.UTF-8"
 
 ## Init zoxide
-[ -x ~/tools/zoxide/zoxide ] && eval "$(zoxide init bash)" || echo "zoxide not found!"
+# [ -x ~/tools/zoxide/zoxide ] && eval "$(zoxide init bash)" || echo "zoxide not found!"
+eval "$(zoxide init bash)" || echo "zoxide not found!"
 
 # Init Starship
-[ -x ~/tools/starship/starship ] && eval "$(starship init bash)" || echo "starship not found!"]
+# [ -x ~/tools/starship/starship ] && eval "$(starship init bash)" || echo "starship not found!"]
+eval "$(starship init bash)" || echo "starship not found!"]
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!

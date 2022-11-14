@@ -73,13 +73,16 @@ export LC_ALL="en_US.UTF-8"
 export LANG="en_US.UTF-8"
 
 # Init zoxide
-[ -x ~/tools/zoxide/zoxide ] && eval "$(zoxide init zsh)" || echo "zoxide not found!"
+# [ -x ~/tools/zoxide/zoxide ] && eval "$(zoxide init zsh)" || echo "zoxide not found!"
+eval "$(zoxide init zsh)" || echo "zoxide not found!"
 
 # Init Starship
-[ -x ~/tools/starship/starship ] && eval "$(starship init zsh)" || echo "starship not found!"]
+# [ -x ~/tools/starship/starship ] && eval "$(starship init zsh)" || echo "starship not found!"]
+eval "$(starship init zsh)" || echo "starship not found!"]
 
 # Init shelden
-[ -x  ~/tools/sheldon/sheldon ] && eval "$(sheldon source)" || echo "sheldon not found!"
+# [ -x  ~/tools/sheldon/sheldon ] && eval "$(sheldon source)" || echo "sheldon not found!"
+eval "$(sheldon source)" || echo "sheldon not found!"
 bindkey '^[[a' history-substring-search-up
 bindkey '^[[b' history-substring-search-down
 bindkey ',' autosuggest-accept
