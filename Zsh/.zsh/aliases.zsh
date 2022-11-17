@@ -12,13 +12,10 @@ alias ls='exa -1 -l -T -F --colour always --icons -a -L=1 --group-directories-fi
 alias cat='bat'  # wrapper for bat
 alias rm='trash' # mv to trash-bin
 alias lg='lazygit'
-alias tat='tmux a -t'
-alias tks='tmux kill-session -t'
 alias CA='conda activate'
 alias CD='conda deactivate'
 alias tb='tensorboard --logdir'
-alias tat='bash tat'
-alias tks='bash tks'
+alias tmux="TERM=tmux-256color tmux"
 
 # upgrep Alias
 alias uq='ug -Q'  # short & quick query TUI (interactive, uses .ugrep config)
