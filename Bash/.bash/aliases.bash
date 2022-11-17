@@ -16,7 +16,7 @@ alias lua='~/tools/lua/src/lua'
 alias luajit='~/tools/luajit/src/luajit'
 alias luarocks='~/tools/luarocks/luarocks'
 alias php='~/tools/php/bin/php'
-alias tmux='~/tools/tmux/tmux'
+alias tmux='TERM=tmux-256color ~/tools/tmux/tmux -f ~/.config/tmux/tmux.conf'
 
 # Alias
 alias sudo='sudo '
@@ -40,7 +40,6 @@ alias CA='conda activate'
 alias CD='conda deactivate'
 alias tb='tensorboard --logdir'
 alias fcd='source ~/.local/bin/fcd' # NOTE: https://askubuntu.com/questions/481715/why-doesnt-cd-work-in-a-shell-script
-alias tmux='TERM=tmux-256color tmux'
 
 # upgrep Alias
 export PATH="$PATH:$HOME/tools/ugrep/bin"

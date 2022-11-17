@@ -15,7 +15,7 @@ alias lg='lazygit'
 alias CA='conda activate'
 alias CD='conda deactivate'
 alias tb='tensorboard --logdir'
-alias tmux="TERM=tmux-256color tmux"
+alias tmux="TERM=tmux-256color ~/tools/tmux/tmux -f ~/.config/tmux/tmux.conf"
 
 # upgrep Alias
 alias uq='ug -Q'  # short & quick query TUI (interactive, uses .ugrep config)
