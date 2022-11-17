@@ -48,7 +48,6 @@ path=(~/tools/ripgrep $path)
 path=(~/tools/treesitter $path)
 path=(~/tools/zoxide $path)
 path=(~/tools/tmux $path)
-export TERM='screen-256color'
 path=(~/tools/stow/bin $path)
 path=(~/tools/xplr $path)
 path=(~/tools/dua-cli $path)
