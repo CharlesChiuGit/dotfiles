@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-# shellcheck disable=SC1091
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
@@ -52,7 +51,6 @@ export EDITOR='nvim'
 export PATH="$PATH:$HOME/tools/lazygit"
 export PATH="$PATH:$HOME/tools/ripgrep"
 export PATH="$PATH:$HOME/tools/tmux"
-export TERM='screen-256color'
 export PATH="$PATH:$HOME/tools/treesitter"
 export PATH="$PATH:$HOME/tools/zoxide"
 export PATH="$PATH:$HOME/tools/stow/bin"
