@@ -40,6 +40,7 @@ alias CA='conda activate'
 alias CD='conda deactivate'
 alias tb='tensorboard --logdir'
 alias fcd='source ~/.local/bin/fcd' # NOTE: https://askubuntu.com/questions/481715/why-doesnt-cd-work-in-a-shell-script
+alias tmux='TERM=tmux-256color tmux'
 
 # upgrep Alias
 export PATH="$PATH:$HOME/tools/ugrep/bin"
