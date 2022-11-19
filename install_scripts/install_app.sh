@@ -9,7 +9,6 @@ source ./apps/batcat.sh
 source ./apps/btop.sh
 source ./apps/chafa.sh
 source ./apps/cpufetch.sh
-source ./apps/ctpv.sh
 source ./apps/delta.sh
 source ./apps/dua.sh
 source ./apps/exa.sh

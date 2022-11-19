@@ -32,7 +32,6 @@ export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$HOME/tools/btop/bin"
 export PATH="$PATH:$HOME/tools/chafa/bin"
 export PATH="$PATH:$HOME/tools/cpufetch"
-export PATH="$PATH:$HOME/tools/ctpv"
 export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow'
 export FZF_DEFAULT_OPTS='--ansi --height 40% --layout=reverse --border=double --border-label="╣ FZF ╠" --header="E to edit" --preview="pistol {}" --bind="E:execute(nvim {})" --preview-label="┓ ⟪Preview⟫ ┏" --preview-window=right,border-bold --color=border:#7ba46c,label:#7ba46c'
 export FZF_CTRL_T_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
