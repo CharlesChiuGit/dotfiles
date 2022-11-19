@@ -22,6 +22,7 @@ source ./apps/lf.sh
 source ./apps/lnav.sh
 source ./apps/magick.sh
 source ./apps/navi.sh
+source ./apps/nvim.sh
 source ./apps/pistol.sh
 source ./apps/qfc.sh
 source ./apps/ripgrep.sh
