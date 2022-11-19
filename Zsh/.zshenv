@@ -15,59 +15,48 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
-path=(~/.cargo/bin $path)
-[ -f ~/.cargo/env ] && source "$HOME/.cargo/env"
-path=(~/tools/nodejs/bin $path)
-path=(~/tools/perl/bin $path)
-export PERL_CPANM_HOME="$HOME/tools/cpanm"
-path=(~/tools/ruby/bin $path)
 path=(~/tools/golang/bin $path)
 path=(~/go/bin $path)
-path=(~/tools/jdk/bin $path)
+path=(~/tools/java/bin $path)
 path=(~/tools/julia/bin $path)
 path=(~/tools/lua/src $path)
 path=(~/tools/luajit/src $path)
 path=(~/tools/luarocks $path)
+path=(~/tools/nodejs/bin $path)
+path=(~/tools/perl/bin $path)
+export PERL_CPANM_HOME="$HOME/tools/cpanm"
+path=(~/tools/php/bin $path)
+path=(~/tools/ruby/bin $path)
+[ -f ~/.cargo/env ] && source "$HOME/.cargo/env"
 
 path=(~/.local/bin $path)
-path=(~/tools/starship $path)
-path=(~/tools/sheldon $path)
-path=(~/tools/ripgrep $path)
 path=(~/tools/btop/bin $path)
-path=(~/tools/batcat $path)
+path=(~/tools/chafa/bin $path)
 path=(~/tools/cpufetch $path)
-path=(~/tools/fdfind $path)
+path=(~/tools/ctpv $path)
+export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow'
+export FZF_DEFAULT_OPTS='--ansi --height 40% --layout=reverse --border=double --border-label="╣ FZF ╠" --header="E to edit" --preview="pistol {}" --bind="E:execute(nvim {})" --preview-label="┓ ⟪Preview⟫ ┏" --preview-window=right,border-bold --color=border:#7ba46c,label:#7ba46c'
+export FZF_CTRL_T_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
+export FZF_CTRL_T_OPTS="$FZF_DEFAULT_OPTS"
+export FZF_ALT_C_COMMAND='fd -H --type d . --color=never'
+export FZF_ALT_T_OPTS="$FZF_DEFAULT_OPTS"
 path=(~/tools/fzf/bin $path)
-export FZF_DEFAULT_OPTS='--ansi --height 40% --layout=reverse --border=double --border-label="╣ FZF ╠" --preview-label="┓ ⟪Preview⟫ ┏" --preview-window=right,border-bold --color=border:#7ba46c,label:#7ba46c'
-export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
 path=(~/tools/fzy $path)
-path=(~/tools/git-delta $path)
-path=(~/tools/glow $path)
-path=(~/tools/lazygit $path)
-path=(~/tools/ripgrep $path)
-path=(~/tools/treesitter $path)
-path=(~/tools/zoxide $path)
-path=(~/tools/tmux $path)
-path=(~/tools/stow/bin $path)
-path=(~/tools/xplr $path)
-path=(~/tools/dua-cli $path)
-path=(~/tools/viu $path)
+path=(~/tools/lnav $path)
 path=(~/tools/magick/bin $path)
 export MAGICK_HOME="$HOME/tools/magick"
 export LD_LIBRARY_PATH="${LD_LIBRARY_PATH:+$LD_LIBRARY_PATH:}$MAGICK_HOME/lib"
-path=(~/tools/chafa/bin $path)
-path=(~/tools/ctpv $path)
-path=(~/tools/lf $path)
-[ -f ~/.config/lf/icon.sh ] && source "$HOME/.config/lf/icon.sh"
-path=(~/tools/lnav $path)
-path=(~/tools/pistol $path)
-path=(~/tools/ugrep/bin $path)
-path=(~/tools/navi $path)
-path=(~/tools/qfc/bin $path)
 path=(~/tools/nvim/bin $path)
-export EDITOR='nvim'
+path=(~/tools/stow/bin $path)
+path=(~/tools/tmux $path)
+path=(~/tools/treesitter $path)
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/lib"
+path=(~/tools/ugrep/bin $path)
+path=(~/tools/qfc/bin $path)
+[ -f ~/.config/lf/icon.sh ] && source "$HOME/.config/lf/icon.sh"
 
 ## neovim support
+export EDITOR='nvim'
 export LC_ALL="en_US.UTF-8"
 export LANG="en_US.UTF-8"
 
@@ -88,13 +77,13 @@ bindkey ',' autosuggest-accept
 
 # Init qfc
 [[ -s $HOME/tools/qfc/bin/qfc.sh ]] && source "$HOME/tools/qfc/bin/qfc.sh"
-qfc_quick_command 'cd' '\C-b' 'cd $0'
-qfc_quick_command 'nvim' '\C-p' 'nvim $0'
+qfc_quick_command 'cd' '\C-b' "cd $0"
+qfc_quick_command 'nvim' '\C-p' "nvim $0"
 
 # >>> conda initialize >>>
 if [ -f $HOME/tools/anaconda/etc/profile.d/conda.sh ]; then
-    . "$HOME/tools/anaconda/etc/profile.d/conda.sh"
+    source "$HOME/tools/anaconda/etc/profile.d/conda.sh"
 else
-    export PATH="$HOME/tools/anaconda/bin:$PATH"
+    path=(~/tools/anaconda/bin $path)
 fi
 # <<< conda initialize <<<
