@@ -35,7 +35,7 @@ path=(~/tools/ruby/bin $path)
 # Utility tools PATH
 path=(~/.local/bin $path)
 path=(~/tools/btop/bin $path)
-path=(~/tools/chafa/bin $path)
+# path=(~/tools/chafa/bin $path)
 path=(~/tools/cpufetch $path)
 export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow'
 export FZF_DEFAULT_OPTS='--ansi --height 40% --layout=reverse --border=double --border-label="╣ FZF ╠" --header="E to edit" --preview="pistol {}" --bind="E:execute(nvim {})" --preview-label="┓ ⟪Preview⟫ ┏" --preview-window=right,border-bold --color=border:#7ba46c,label:#7ba46c'
@@ -46,9 +46,9 @@ export FZF_ALT_T_OPTS="$FZF_DEFAULT_OPTS"
 path=(~/tools/fzf/bin $path)
 path=(~/tools/fzy $path)
 path=(~/tools/lnav $path)
-path=(~/tools/magick/bin $path)
-export MAGICK_HOME="$HOME/tools/magick"
-export LD_LIBRARY_PATH="${LD_LIBRARY_PATH:+$LD_LIBRARY_PATH:}$MAGICK_HOME/lib"
+# path=(~/tools/magick/bin $path)
+# export MAGICK_HOME="$HOME/tools/magick"
+# export LD_LIBRARY_PATH="${LD_LIBRARY_PATH:+$LD_LIBRARY_PATH:}$MAGICK_HOME/lib"
 path=(~/tools/nvim/bin $path)
 path=(~/tools/stow/bin $path)
 path=(~/tools/tmux $path)
