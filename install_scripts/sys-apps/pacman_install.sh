@@ -6,3 +6,4 @@ sudo pacman -S cmake
 sudo pacman -S ImageMagick
 sudo pacman -S python-pip python-setuptools
 sudo pacman -S sshfs
+sudo pacman -S pre2 zlib libbz2 lz4 ztsd
