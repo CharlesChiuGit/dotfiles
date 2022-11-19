@@ -15,12 +15,14 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
+# Program languages PATH
 path=(~/tools/golang/bin $path)
 path=(~/go/bin $path)
 path=(~/tools/java/bin $path)
 path=(~/tools/julia/bin $path)
 path=(~/tools/lua/src $path)
 path=(~/tools/luajit/src $path)
+export LUA_LIBRARY="$HOME/tools/luajit/src/libluajit.so"
 path=(~/tools/luarocks $path)
 path=(~/tools/nodejs/bin $path)
 path=(~/tools/perl/bin $path)
@@ -29,13 +31,19 @@ path=(~/tools/php/bin $path)
 path=(~/tools/ruby/bin $path)
 [ -f ~/.cargo/env ] && source "$HOME/.cargo/env"
 
+# Utility tools PATH
 path=(~/.local/bin $path)
 path=(~/tools/btop/bin $path)
 path=(~/tools/chafa/bin $path)
 path=(~/tools/cpufetch $path)
 path=(~/tools/ctpv $path)
 export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow'
-export FZF_DEFAULT_OPTS='--ansi --height 40% --layout=reverse --border=double --border-label="╣ FZF ╠" --header="E to edit" --preview="pistol {}" --bind="E:execute(nvim {})" --preview-label="┓ ⟪Preview⟫ ┏" --preview-window=right,border-bold --color=border:#7ba46c,label:#7ba46c'
+export FZF_DEFAULT_OPTS='--ansi --height 40% --layout=reverse \
+    --border=double --border-label="╣ FZF ╠" \
+    --header="E to edit" \
+    --preview="pistol {}" --bind="E:execute(nvim {})" \
+    --preview-label="┓ ⟪Preview⟫ ┏" --preview-window=right,border-bold \
+    --color=border:#7ba46c,label:#7ba46c'
 export FZF_CTRL_T_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
 export FZF_CTRL_T_OPTS="$FZF_DEFAULT_OPTS"
 export FZF_ALT_C_COMMAND='fd -H --type d . --color=never'
