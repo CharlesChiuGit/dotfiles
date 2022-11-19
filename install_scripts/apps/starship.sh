@@ -8,7 +8,7 @@ set -o pipefail
 ######################################################################
 if [[ -z $(command -v starship) ]]; then
     echo "Install starship"
-    cargo install starship
+    cargo install starship --loacked
 else
     printf "${tty_blue}Starship${tty_reset} is already installed, skip it.\n"
 fi
