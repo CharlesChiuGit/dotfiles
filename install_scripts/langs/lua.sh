@@ -62,7 +62,7 @@ export LUA_LIBRARY="$HOME/tools/luajit/src/libluajit.so"
 EOT
     fi
 else
-    printf "    ${tty_blue}LuaJIT${tty_reset} is already installed, skip it.\n"
+    printf "\t${tty_blue}LuaJIT${tty_reset} is already installed, skip it.\n"
 fi
 
 LUAROCKS_DIR=$HOME/tools/luarocks
@@ -92,5 +92,5 @@ export PATH="$PATH:$HOME/tools/luarocks"
 EOT
     fi
 else
-    printf "    ${tty_blue}Luarocks${tty_reset} is already installed, skip it.\n"
+    printf "\t${tty_blue}Luarocks${tty_reset} is already installed, skip it.\n"
 fi

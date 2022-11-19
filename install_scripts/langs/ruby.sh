@@ -39,5 +39,5 @@ EOT
     fi
 else
     printf "${tty_blue}Ruby${tty_reset} is already installed, skip it.\n"
-    printf "    ${tty_blue}Gem${tty_reset} is already installed, skip it.\n"
+    printf "\t${tty_blue}Gem${tty_reset} is already installed, skip it.\n"
 fi

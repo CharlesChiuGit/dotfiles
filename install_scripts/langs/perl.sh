@@ -46,6 +46,6 @@ EOT
     fi
 else
     printf "${tty_blue}Perl${tty_reset} is already installed, skip it.\n"
-    printf "    ${tty_blue}Cpan${tty_reset} is already installed, skip it.\n"
-    printf "    ${tty_blue}Cpanm${tty_reset} is already installed, skip it.\n"
+    printf "\t${tty_blue}Cpan${tty_reset} is already installed, skip it.\n"
+    printf "\t${tty_blue}Cpanm${tty_reset} is already installed, skip it.\n"
 fi

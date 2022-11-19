@@ -17,5 +17,5 @@ EOT
     fi
 else
     printf "${tty_blue}Rust${tty_reset} is already installed, skip it.\n"
-    printf "    ${tty_blue}Cargo${tty_reset} is already installed, skip it.\n"
+    printf "\t${tty_blue}Cargo${tty_reset} is already installed, skip it.\n"
 fi
