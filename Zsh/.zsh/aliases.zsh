@@ -1,21 +1,21 @@
 #!/usr/bin/zsh
 
 # Alias
-alias sozsh='source ~/.zshrc'
+alias sozsh='source ~/.zshenv && source ~/.zshrc'
 alias nvzsh='nvim ~/.zshrc'
 alias nv='nvim'
-alias bat='bat --theme=gruvbox-dark --color=always --style=numbers,changes,header,grid --line-range :500' # bat option
+alias cat='bat'  # wrapper for bat
 alias py='python'
 alias nvf='nvim `fzf`'
 alias ls='exa -1 -l -T -F --colour always --icons -a -L=1 \
     --group-directories-first -b -h --git --time-style long-iso --no-permissions --octal-permissions'
-alias cat='bat'  # wrapper for bat
 alias rm='trash' # mv to trash bin
 alias lg='lazygit'
 alias CA='conda activate'
 alias CD='conda deactivate'
 alias tb='tensorboard --logdir'
-alias tmux="TERM=tmux-256color ~/tools/tmux/tmux -f ~/.config/tmux/tmux.conf"
+[[ $TMUX != "" ]] && export TERM="tmux-256color"
+alias tmux="~/tools/tmux/tmux -f ~/.config/tmux/tmux.conf"
 
 # upgrep Alias
 alias uq='ug -Q'  # short & quick query TUI (interactive, uses .ugrep config)

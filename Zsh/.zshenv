@@ -57,11 +57,25 @@ export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/lib"
 path=(~/tools/ugrep/bin $path)
 path=(~/tools/qfc/bin $path)
 [ -f ~/.config/lf/icon.sh ] && source "$HOME/.config/lf/icon.sh"
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export PISTOL_CHROMA_FORMATTER=terminal16m
+export PISTOL_CHROMA_STYLE=monokai
 
 ## neovim support
 export EDITOR='nvim'
 export LC_ALL="en_US.UTF-8"
 export LANG="en_US.UTF-8"
+
+## Truecolor support
+# NOTE: https://github.com/termstandard/colors
+# Don't change $TERM in your zshrc/bashrc!
+# Setting $TERM in zshrc/bashrc add confusions when your terminal emulators cannot actually supoorts it.
+case $TERM in screen-256color | tmux-256color | xterm-256color)
+        # COLORTERM opts:no|yes|truecolor
+        export COLORTERM=truecolor
+        ;;
+    vte*) ;;
+esac
 
 # Init zoxide
 # [ -x ~/tools/zoxide/zoxide ] && eval "$(zoxide init zsh)" || echo "zoxide not found!"
