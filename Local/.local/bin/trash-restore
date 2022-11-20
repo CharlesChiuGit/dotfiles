@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+######################################################################
+#                Trash restore using Trashy with fzf                 #
+######################################################################
+trash list | fzf --multi --border-label="╣ Trashy restore ╠" --header="Tab to select, Ctrl-C to cancel" | awk '{$1=$1;print}' | rev | cut -d ' ' -f1 | rev | xargs trash restore --match=exact --force
