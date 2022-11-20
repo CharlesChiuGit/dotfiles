@@ -41,6 +41,10 @@ Use QUERY as the initial search query.
 Non-interactive mode. Print the matches in sorted order for QUERY to stdout.
 .
 .TP
+.BR \-0 ", " \-\-read-null
+Read input delimited by ASCII NUL characters.
+.
+.TP
 .BR \-h ", " \-\-help
 Usage help.
 .
@@ -54,13 +58,13 @@ Usage help.
 .BR "ENTER"
 Print the selected item to stdout and exit
 .TP
-.BR "Ctrl+c, Esc"
+.BR "Ctrl+c, Ctrl+g, Esc"
 Exit with status 1, without making a selection.
 .TP
-.BR "Up Arrow, Ctrl+p"
+.BR "Up Arrow, Ctrl+p, Ctrl+k"
 Select the previous item
 .TP
-.BR "Down Arrow, Ctrl+n"
+.BR "Down Arrow, Ctrl+n, Ctrl+j"
 Select the next item
 .TP
 Tab
