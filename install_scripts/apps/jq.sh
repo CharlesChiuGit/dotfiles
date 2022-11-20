@@ -16,7 +16,7 @@ if [[ -z $(command -v jq) ]]; then
         mkdir -p "$JQ_DIR"
         echo "git clone to $HOME/tools/jq directory"
         cd "$HOME/tools"
-        git clone "$JQ_LINK"
+        git clone "$JQ_LINK" --depth=1
         cd "$JQ_DIR"
         git submodule update --init # if building from git to get oniguruma
         autoreconf -fi              # if building from git

@@ -16,7 +16,7 @@ if [[ -z $(command -v fzf) ]]; then
         mkdir -p "$FZF_DIR"
         echo "git clone to $HOME/tools/fzf directory"
         cd "$HOME/tools"
-        git clone "$FZF_LINK"
+        git clone "$FZF_LINK" --depth=1
         cd "$FZF_DIR"
         make
         make install
