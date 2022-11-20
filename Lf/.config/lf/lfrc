@@ -10,6 +10,8 @@ set hidden true
 set drawbox true
 set icons true
 set ignorecase true
+set mouse
+set timefmt '2006-01-02 15:04:05 -0700'
 
 # # ctpv preview
 # set previewer ctpv
@@ -67,7 +69,7 @@ cmd delete ${{
   printf "delete?[y/n]"
   read ans
   [ "$ans" = "y" ] && rm -rf $fx
-  [ "$ans" = "y" ] && trash $fx
+  # [ "$ans" = "y" ] && trash $fx
 }}
 
 cmd moveto ${{
@@ -112,10 +114,6 @@ cmd broot_jump ${{
     cmd="cd"
   fi
   lf -remote "send $id $cmd \"$res\""
-}}
-
-cmd restore_trash ${{
-  trash-restore
 }}
 
 # compress current file or selected files with tar and gunzip
