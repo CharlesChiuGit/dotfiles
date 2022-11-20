@@ -16,6 +16,7 @@ source ./apps/fdfind.sh
 source ./apps/fzf.sh
 source ./apps/fzy.sh
 source ./apps/glow.sh
+source ./apps/jq.sh
 source ./apps/lazygit.sh
 source ./apps/lf.sh
 source ./apps/lnav.sh
