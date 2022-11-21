@@ -83,3 +83,55 @@ wait_for_user() {
         exit 1
     fi
 }
+
+######################################################################
+#                          Git repo update                           #
+######################################################################
+# HACK: https://stackoverflow.com/a/3278427/9268330
+check_git_update() {
+    UPSTREAM=${1:-'@{u}'} # optionally to pass an upstream branch explicitly. if none, use origin/main
+    LOCAL=$(git rev-parse @)
+    REMOTE=$(git rev-parse "$UPSTREAM")
+    BASE=$(git merge-base @ "$UPSTREAM")
+
+    if [ "$LOCAL" = "$REMOTE" ]; then
+        # printf "Up-to-date\n"
+        echo false
+    elif [ "$LOCAL" = "$BASE" ]; then
+        # printf "Need to pull\n"
+        echo true
+    elif [ "$REMOTE" = "$BASE" ]; then
+        # printf "Need to push\n"
+        echo false
+    else
+        # printf "Diverged\n"
+        echo false
+    fi
+}
+
+######################################################################
+#                       Github release update                        #
+######################################################################
+# HACK: https://gist.github.com/lukechilds/a83e1d7127b78fef38c2914c4ececc3c
+get_latest_release() {
+    curl --silent "https://api.github.com/repos/$1/releases/latest" | # Get latest release from GitHub api
+    grep '"tag_name":' |                                             # Get tag line
+    sed -E 's/.*"([^"]+)".*/\1/'                                     # Pluck JSON value
+}
+
+# HACK: https://stackoverflow.com/a/37939589/9268330
+cat_ver() {
+    echo "$@" | awk -F. '{ printf("%d%03d%03d%03d\n", $1,$2,$3,$4); }'
+}
+
+is_latest() {
+    if [ "$(cat_ver "${1}")" -eq "$(cat_ver "${2}")" ]; then
+        # printf "${tty_green}Up to date${tty_reset}.\n"
+        echo true
+    elif [ "$(cat_ver "${1}")" -gt "$(cat_ver "${2}")" ]; then
+        # printf "${tty_cyan}Outdated${tty_reset}.\n"
+        echo false
+    else
+        abort "${tty_red}Something is wrong. Please check the scripts or the original repo.${tty_reset}"
+    fi
+}
