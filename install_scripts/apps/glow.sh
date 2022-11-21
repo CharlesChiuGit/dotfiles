@@ -7,6 +7,7 @@ set -o pipefail
 #                             Glow Part                              #
 ######################################################################
 if [[ -z $(command -v glow) ]]; then
+    echo "Installing glow"
     go install github.com/charmbracelet/glow@latest
 
 else

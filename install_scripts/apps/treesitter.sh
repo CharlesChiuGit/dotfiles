@@ -13,7 +13,7 @@ if [[ -z $(command -v tree-sitter) ]] && [[ ! -f $TS_DIR/tree-sitter ]]; then
     echo "Install treesitter"
     if [[ ! -f $TS_SRC_NAME ]]; then
         echo "Downloading treesitter and renaming"
-        wget $TS_LINK -P "$HOME/packages"
+        wget "$TS_LINK" -P "$HOME/packages"
     fi
 
     if [[ ! -d $TS_DIR ]]; then

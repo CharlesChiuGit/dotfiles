@@ -10,7 +10,7 @@ set -o pipefail
 CHAFA_DIR=$HOME/tools/chafa
 CHAFA_LINK="https://github.com/hpjansson/chafa.git"
 if [[ -z $(command -v chafa) ]]; then
-    echo "Install Chafa"
+    echo "Install chafa"
 
     if [[ ! -d $CHAFA_DIR ]]; then
         echo "Creating chafa directory under tools directory"

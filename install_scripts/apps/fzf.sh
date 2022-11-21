@@ -34,17 +34,6 @@ export FZF_ALT_C_OPTS="$FZF_DEFAULT_OPTS"
 export PATH="$PATH:$HOME/tools/fzf/bin"
 EOT
     fi
-
-    # # set up manpath
-    # if [[ -f $MAN_PATH/fzf.1 ]]; then
-    #     rm "$MAN_PATH/fzf.1"
-    #     rm "$MAN_PATH/fzf-tmux.1"
-    #     cp "$HOME/tools/fzf/man/man1/fzf.1" "$MAN_PATH"
-    #     cp "$HOME/tools/fzf/man/man1/fzf-tmux.1" "$MAN_PATH"
-    # else
-    #     cp "$HOME/tools/fzf/man/man1/fzf.1" "$MAN_PATH"
-    #     cp "$HOME/tools/fzf/man/man1/fzf-tmux.1" "$MAN_PATH"
-    # fi
 else
     printf "${tty_blue}Fzf${tty_reset} is already installed, skip it.\n"
 fi

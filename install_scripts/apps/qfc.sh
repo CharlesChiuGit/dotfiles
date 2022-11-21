@@ -7,7 +7,7 @@ set -o pipefail
 #                              Qfc Part                              #
 ######################################################################
 QFC_DIR=$HOME/tools/qfc
-QFC_LINK="https://github.com/pindexis/qfc"
+QFC_LINK="https://github.com/pindexis/qfc.git"
 
 if [[ ! -d $QFC_DIR ]]; then
     echo "Install qfc"
@@ -15,9 +15,6 @@ if [[ ! -d $QFC_DIR ]]; then
     mkdir -p "$QFC_DIR"
     git clone --depth=1 "$QFC_LINK" "$QFC_DIR"
 
-    if [[ $ADD_TO_SYSTEM_PATH = true ]] && [[ $USE_BASH_SHELL = true ]]; then
-        echo "[[ -s \$HOME/tools/qfc/bin/qfc.sh ]] && source \"\$HOME/tools/qfc/bin/qfc.sh\"" >>"$HOME/.bashrc"
-    fi
     if [[ "$ADD_TO_SYSTEM_PATH" = true ]]; then
         cat <<EOT >>"$RC_FILE"
 # Init qfc

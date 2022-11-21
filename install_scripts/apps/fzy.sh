@@ -30,15 +30,6 @@ if [[ -z $(command -v fzy) ]] && [[ ! -f $FZY_DIR/fzy ]]; then
 export PATH="$PATH:$HOME/tools/fzy"
 EOT
     fi
-
-    # # set up manpath
-    # if [[ -f $MAN_PATH/fzy.1 ]]; then
-    #     rm "$MAN_PATH/fzy.1"
-    #     cp "$HOME/tools/fzy/fzy.1" "$MAN_PATH"
-    # else
-    #     cp "$HOME/tools/fzy/fzy.1" "$MAN_PATH"
-    # fi
-
 else
     printf "${tty_blue}Fzy${tty_reset} is already installed, skip it.\n"
 fi

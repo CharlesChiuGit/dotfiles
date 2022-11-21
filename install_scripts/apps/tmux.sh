@@ -14,7 +14,7 @@ if [[ ! -f $TMUX_DIR/tmux ]]; then
     echo "Install tmux"
     if [[ ! -f $TMUX_SRC_NAME ]]; then
         echo "Downloading tmux and renaming"
-        wget $TMUX_LINK -O "$TMUX_SRC_NAME"
+        wget "$TMUX_LINK" -O "$TMUX_SRC_NAME"
     fi
 
     if [[ ! -d $TMUX_DIR ]]; then
@@ -35,14 +35,6 @@ alias tmux='TERM=tmux-256color ~/tools/tmux/tmux -f ~/.config/tmux/tmux.conf'
 export PATH="$PATH:$HOME/tools/tmux"
 EOT
     fi
-
-    # # set up manpath
-    # if [[ -f $MAN_PATH/tmux.1 ]]; then
-    #     rm "$MAN_PATH/tmux.1"
-    #     cp "$TMUX_DIR/share/man/man1/tmux.1" "$MAN_PATH"
-    # else
-    #     cp "$TMUX_DIR/share/man/man1/tmux.1" "$MAN_PATH"
-    # fi
 
     echo "Installing tpm"
     if [[ ! -d ~/.tmux/plugins/tpm ]]; then

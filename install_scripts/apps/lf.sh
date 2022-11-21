@@ -7,6 +7,7 @@ set -o pipefail
 #                              Lf Part                               #
 ######################################################################
 if [[ -z $(command -v lf) ]]; then
+    echo "Install lf"
     env CGO_ENABLED=0 go install -ldflags="-s -w" github.com/gokcehan/lf@latest
 
     if [[ "$ADD_TO_SYSTEM_PATH" = true ]]; then

@@ -31,17 +31,6 @@ export MAGICK_HOME="$HOME/tools/magick"
 export LD_LIBRARY_PATH="${LD_LIBRARY_PATH:+$LD_LIBRARY_PATH:}$MAGICK_HOME/lib"
 EOT
     fi
-
-    # # set up manpath
-    # if [[ -d $MAGICK_MAN ]]; then
-    #     rm "$MAGICK_MAN/*"
-    #     cp "$MAGICK_DIR/share/man/man1/*" "$MAGICK_MAN"
-    # else
-    #     mkdir "$MAGICK_MAN"
-    #     cp "$MAGICK_DIR/share/man/man1/*" "$MAGICK_MAN"
-    # fi
-    # for f in "$HOME"/tools/magick/share/man/man1/*; do cp "$f" "$MAGICK_MAN"; done
-
 else
     printf "${tty_blue}ImageMagick${tty_reset} is already installed, skip it.\n"
 fi

@@ -27,15 +27,6 @@ if [[ -z $(command -v ugrep) ]]; then
 export PATH="$PATH:$HOME/tools/ugrep/bin"
 EOT
     fi
-
-    # # set up manpath
-    # if [[ -f $MAN_PATH/ugrep.1 ]]; then
-    #     rm "$MAN_PATH/ugrep.1"
-    #     cp "$UGREP_DIR/man/ugrep.1" "$MAN_PATH"
-    # else
-    #     cp "$UGREP_DIR/man/ugrep.1" "$MAN_PATH"
-    # fi
-
 else
     printf "${tty_blue}Ugrep${tty_reset} is already installed, skip it.\n"
 fi

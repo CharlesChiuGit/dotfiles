@@ -29,15 +29,6 @@ if [[ ! -f "$NVIM_DIR/bin/nvim" ]]; then
 export PATH="$PATH:$HOME/tools/nvim/bin"
 EOT
     fi
-
-    # # set up manpath
-    # if [[ -f "$HOME/.local/share/man/man1/nvim.1" ]]; then
-    #     rm "$HOME/.local/share/man/man1/nvim.1"
-    #     ln -s "$NVIM_DIR/share/man/man1/nvim.1" "$HOME/.local/share/man/man1/nvim.1"
-    # else
-    #     ln -s "$NVIM_DIR/share/man/man1/nvim.1" "$HOME/.local/share/man/man1/nvim.1"
-    # fi
-
 else
     printf "${tty_blue}Neovim${tty_reset} is already installed, skip it.\n"
 fi

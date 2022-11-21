@@ -6,8 +6,9 @@ set -o pipefail
 ######################################################################
 #                            Pistol Part                             #
 ######################################################################
-PISTOL_LINK="https://github.com/junegunn/fzf.git"
+PISTOL_LINK="https://github.com/doronbehar/pistol.git"
 if [[ -z $(command -v pistol) ]]; then
+    echo "Install Pistol"
     cd ~/tools
     git clone "$PISTOL_LINK" --depth=1
     cd ~/tools/pistol
