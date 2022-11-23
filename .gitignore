@@ -8,6 +8,11 @@ Tmux/.config/tmux/plugins/*
 install_scripts/node_modules/
 package-lock.json
 package.json
+Local/.local/bin/cmark
+Local/.local/bin/get_objgraph
+Local/.local/bin/pox
+Local/.local/bin/pygmentize
+Local/.local/bin/undill
 
 # C extensions
 *.so
