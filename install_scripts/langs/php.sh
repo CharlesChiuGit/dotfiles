@@ -50,3 +50,5 @@ else
     printf "${tty_blue}Php${tty_reset} is already installed, skip it.\n"
     printf "    ${tty_blue}Composer${tty_reset} is already installed, skip it.\n"
 fi
+
+cd ~/dotfiles/install_scripts/

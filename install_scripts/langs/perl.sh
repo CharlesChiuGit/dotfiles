@@ -49,3 +49,5 @@ else
     printf "\t${tty_blue}Cpan${tty_reset} is already installed, skip it.\n"
     printf "\t${tty_blue}Cpanm${tty_reset} is already installed, skip it.\n"
 fi
+
+cd ~/dotfiles/install_scripts/
