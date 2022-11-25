@@ -95,3 +95,5 @@ EOT
 else
     printf "\t${tty_blue}Luarocks${tty_reset} is already installed, skip it.\n"
 fi
+
+cd ~/dotfiles/install_scripts/
