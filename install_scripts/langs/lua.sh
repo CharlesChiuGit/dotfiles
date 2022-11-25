@@ -81,6 +81,7 @@ if [[ ! -f "$LUAROCKS_DIR/luarocks" ]]; then
         echo "Extracting to $HOME/tools/luarocks directory"
         tar xvf "$LUAROCKS_SRC_NAME" -C "$LUAROCKS_DIR" --strip-components 1
         cd "$LUAROCKS_DIR"
+        export PATH="$PATH:$HOME/tools/lua/src"
         ./configure --prefix="$LUAROCKS_DIR" --lua-version=5.4 --with-lua-include="$LUA_DIR/src"
         make
     fi
