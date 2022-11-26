@@ -13,6 +13,7 @@ Local/.local/bin/get_objgraph
 Local/.local/bin/pox
 Local/.local/bin/pygmentize
 Local/.local/bin/undill
+Local/.local/bin/wheel
 
 # C extensions
 *.so
