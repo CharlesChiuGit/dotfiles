@@ -13,6 +13,7 @@ if [[ -z $(command -v pistol) ]]; then
     cd ~/tools
     git clone "$PISTOL_LINK" --depth=1
     cd ~/tools/pistol
+    go mod tidy
     make
     make install
     cd ~/dotfiles/install_scripts/
