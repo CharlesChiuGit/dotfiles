@@ -101,3 +101,10 @@ else
     path=(~/tools/anaconda/bin $path)
 fi
 # <<< conda initialize <<<
+
+# Fcitx5 env
+export GTK_IM_MODULE='fcitx'
+export QT_IM_MODULE='fcitx'
+export SDL_IM_MODULE='fcitx'
+export XMODIFIERS='@im=fcitx'
+fcitx5 -d &
