@@ -9,6 +9,6 @@ export MOZ_ENABLE_WAYLAND=1        # Firefox wayland backend
 ## XWayland
 # NOTE: For void linux: xbps-install -S xorg-server-xwayland
 
-# xdg_runtime=/run/user/$(id -u)
-# export XDG_RUNTIME_DIR=${xdg_runtime}
+xdg_runtime=/run/user/$(id -u)
+export XDG_RUNTIME_DIR=${xdg_runtime}
 export XDG_SESSION_TYPE=wayland
