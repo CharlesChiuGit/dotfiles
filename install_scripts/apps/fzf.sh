@@ -18,7 +18,7 @@ if [[ -z $(command -v fzf) ]]; then
         cd "$HOME/tools"
         git clone "$FZF_LINK" --depth=1
         cd "$FZF_DIR"
-        ./install -y
+        ./install --bin --xdg --no-key-bindings --no-completion --no-update-rc --no-bash --no-zsh --no-fish
         cd ~/dotfiles/install_scripts/
     fi
 
