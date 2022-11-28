@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 
-wpaper() {
-    DIR="$HOME/.config/herbstluftwm/wallpaper/teal"
-    wpaper="$(ls $DIR/*.jpg | shuf -n1)"
-    cat $wpaper > $HOME/.config/herbstluftwm/HLWM_themes/wallpaper.jpg
-    xwallpaper --zoom $HOME/.config/herbstluftwm/HLWM_themes/wallpaper.jpg
-}
-wpaper
+# wpaper() {
+#     DIR="$HOME/.config/herbstluftwm/wallpaper/teal"
+#     wpaper="$(ls $DIR/*.jpg | shuf -n1)"
+#     cat $wpaper > $HOME/.config/herbstluftwm/HLWM_themes/wallpaper.jpg
+#     xwallpaper --zoom $HOME/.config/herbstluftwm/HLWM_themes/wallpaper.jpg
+# }
+# wpaper
 
-# xsetroot -solid '#5A8E3A'
+xsetroot -solid '#5A8E3A'
 
 # theme
 hc attr theme.tiling.reset 1
