@@ -52,13 +52,20 @@ export PATH="$PATH:$HOME/tools/qfc/bin"
 export PISTOL_CHROMA_FORMATTER=terminal16m
 export PISTOL_CHROMA_STYLE=monokai
 
-## Batcat for man
+## Batcat for man & help
 _distro=$(awk '/^ID=/' /etc/*-release | awk -F'=' '{ print tolower($2) }' | tr -d '"')
 if [ "$_distro" = "void" ]; then
     export MANPAGER="batman"
 else
     export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 fi
+
+# usage: `help git`, `help git commit`, `help bat -h`
+alias bathelp='bat --plain --language=cmd-help'
+help() (
+    set -o pipefail
+    "$@" --help 2>&1 | bathelp
+)
 
 ## neovim support
 export EDITOR='nvim'
