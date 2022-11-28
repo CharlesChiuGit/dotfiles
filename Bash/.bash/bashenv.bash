@@ -49,7 +49,7 @@ export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/lib"
 export PATH="$PATH:$HOME/tools/ugrep/bin"
 export PATH="$PATH:$HOME/tools/qfc/bin"
 [ -f ~/.config/lf/icon.sh ] && source "$HOME/.config/lf/icon.sh"
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export MANPAGER="batman"
 export PISTOL_CHROMA_FORMATTER=terminal16m
 export PISTOL_CHROMA_STYLE=monokai
 
