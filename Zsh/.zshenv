@@ -58,7 +58,7 @@ export PISTOL_CHROMA_FORMATTER=terminal16m
 export PISTOL_CHROMA_STYLE=monokai
 
 ## Batcat for man
-_distro=$(awk '/^ID=/' /etc/*-release | awk -F'=' '{ print tolower($2) }')
+_distro=$(awk '/^ID=/' /etc/*-release | awk -F'=' '{ print tolower($2) }' | tr -d '"')
 if [ "$_distro" = "void" ]; then
     export MANPAGER="batman"
 else
