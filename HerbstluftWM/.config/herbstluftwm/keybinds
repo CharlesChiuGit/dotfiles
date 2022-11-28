@@ -5,13 +5,29 @@ hc keyunbind --all
 
 # keybindings
 # if you have a super key you will be much happier with Mod set to Mod4
-# Mod=Mod1    # Use alt as the main modifier
+# Mod=Mod1 # Use alt as the main modifier
 Mod=Mod4 # Use the super key as the main modifier
 
+######################################################################
+#                          System controls                           #
+######################################################################
 hc keybind $Mod-Shift-q quit
 hc keybind $Mod-Shift-r reload
 hc keybind $Mod-Shift-c close
-hc keybind $Mod-Return spawn "${TERMINAL:-xterm}" # use your $TERMINAL with xterm as fallback
+hc keybind $Mod-Return spawn "${TERMINAL:-alacritty}" # use your $TERMINAL with xterm as fallback
+
+######################################################################
+#                              Programs                              #
+######################################################################
+hc keybind $Mod-a spawn alacritty
+hc keybind $Mod-Shift-f spawn firefox
+hc keybind Shift-Mod4-s spawn flameshot gui
+
+######################################################################
+#                             Launchers                              #
+######################################################################
+hc keybind $Mod-Shift-r spawn rofi -show drun
+hc keybind $Mod-Control-e spawn rofi -show emoji
 
 # basic movement in tiling and floating mode
 # focusing clients
@@ -59,6 +75,8 @@ tag_keys=({1..9} 0)
 hc rename default "${tag_names[0]}" || true
 for i in "${!tag_names[@]}"; do
     hc add "${tag_names[$i]}"
+    hc set_layout horizontal
+    hc set default_frame_layout 1
     key="${tag_keys[$i]}"
     if [ -n "$key" ]; then
         hc keybind "$Mod-$key" use_index "$i"
