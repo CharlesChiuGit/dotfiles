@@ -1,12 +1,5 @@
 #!/bin/sh
 
-######################################################################
-#                              Daemons                               #
-######################################################################
-udiskie &   # Mounts USB drives
-nm-applet & # Network Manager
-picom --experimental-backends &
-
 userresources=$HOME/.Xresources
 usermodmap=$HOME/.Xmodmap
 sysresources=/etc/X11/xinit/.Xresources
