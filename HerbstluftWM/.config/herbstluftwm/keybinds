@@ -26,7 +26,7 @@ hc keybind Shift-Mod4-s spawn flameshot gui
 ######################################################################
 #                             Launchers                              #
 ######################################################################
-hc keybind $Mod-Shift-r spawn rofi -show drun
+hc keybind $Mod1-space spawn rofi -show drun
 hc keybind $Mod-Control-e spawn rofi -show emoji
 
 # basic movement in tiling and floating mode
