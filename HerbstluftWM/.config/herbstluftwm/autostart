@@ -11,30 +11,7 @@ hc emit_hook reload
 ######################################################################
 #                              Daemons                               #
 ######################################################################
-udiskie &                       # Mounts USB drives
-nm-applet &                     # Network Manager
-picom --experimental-backends & # UI modifier
-./panel.sh
-batticon() {
-    batt="$(pidof cbatticon)"
-    if [[ "$batt" < 1 ]]; then
-        cbatticon -i notification /sys/class/power_supply/BAT0 &
-    else
-        pkill cbatticon
-        cbatticon -i notification /sys/class/power_supply/BAT0 &
-    fi
-}
-volicon() {
-    vol="$(pidof pa-applet)"
-    if [[ "$vol" < 1 ]]; then
-        pa-applet &
-    else
-        pkill pa-applet
-        pa-applet &
-    fi
-}
-volicon
-batticon
+source "$HOME/.config/herbstluftwm/autostart.d/daemons"
 
 ######################################################################
 #                              Keybinds                              #
