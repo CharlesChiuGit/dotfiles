@@ -24,7 +24,7 @@ hc set frame_transparent_width 5
 hc set frame_gap 4
 
 hc attr theme.title_height 15
-hc attr theme.title_when always
+hc attr theme.title_when never
 hc attr theme.title_font 'Dejavu Sans:pixelsize=12' # example using Xft
 # hc attr theme.title_font '-*-fixed-medium-r-*-*-13-*-*-*-*-*-*-*'
 hc attr theme.title_depth 3 # space below the title's baseline
@@ -54,8 +54,8 @@ done
 hc attr theme.tiling.outer_width 1
 hc attr theme.background_color '#141414'
 
-hc set window_gap 0
-hc set frame_padding 0
+hc set window_gap 4
+hc set frame_padding 2
 hc set smart_window_surroundings off
 hc set smart_frame_surroundings on
 hc set mouse_recenter_gap 0
