@@ -41,9 +41,6 @@
 # [ -f /etc/xprofile ] && . /etc/xprofile
 # [ -f ~/.xprofile ] && . "$HOME/.xprofile"
 
-# disable buildin monitor when using external monitor
-bash ~/.local/bin/toVGAMonitor
-
 # start herbstluftwm in locked mode (it will be unlocked at the end of your
 # autostart)
 exec /usr/bin/herbstluftwm --locked
