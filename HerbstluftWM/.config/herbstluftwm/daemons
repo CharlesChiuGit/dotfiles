@@ -4,7 +4,6 @@ udiskie &                        # Mounts USB drives
 nm-applet &                      # Network Manager
 picom &                          # UI modifier
 fcitx -d &                       # multi-lang input
-~/.config/polybar/launch.sh &    # Polybar
 # ./panel.sh
 batticon() {
     batt="$(pidof cbatticon)"
