@@ -11,7 +11,7 @@ hc emit_hook reload
 ######################################################################
 #                              Daemons                               #
 ######################################################################
-source "$HOME/.config/herbstluftwm/autostart.d/daemons"
+source "$HOME/.config/herbstluftwm/daemons"
 
 ######################################################################
 #                              Keybinds                              #
