@@ -22,10 +22,11 @@ killall -q polybar
 # Wait until the processes have been shut down
 while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 # Launch bars
-#polybar bottom &
-#polybar main &
-polybar top &
-# polybar bar2 &
+# polybar top &
+(
+    sleep 2
+    polybar --config=$HOME/.config/polybar/config.ini mainbar
+) &
 
 echo "Bars launched..."
 #this line of code will pad EACH monitor 32 pixels
