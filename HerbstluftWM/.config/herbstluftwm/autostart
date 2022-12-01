@@ -31,11 +31,11 @@ source "$HOME/.config/herbstluftwm/winRules"
 ######################################################################
 #                           Find the panel                           #
 ######################################################################
-panel=~/.config/herbstluftwm/panel.sh
-[ -x "$panel" ] || panel=/etc/xdg/herbstluftwm/panel.sh
-for monitor in $(hc list_monitors | cut -d: -f1); do
-    # start it on each monitor
-    "$panel" "$monitor" &
-done
+# panel=~/.config/herbstluftwm/panel.sh
+# [ -x "$panel" ] || panel=/etc/xdg/herbstluftwm/panel.sh
+# for monitor in $(hc list_monitors | cut -d: -f1); do
+#     # start it on each monitor
+#     "$panel" "$monitor" &
+# done
 # hc split vertical 0.6
 # hc remove

@@ -5,7 +5,7 @@ nm-applet &                      # Network Manager
 picom &                          # UI modifier
 fcitx -d &                       # multi-lang input
 ~/.config/polybar/launch.sh &    # Polybar
-./panel.sh
+# ./panel.sh
 batticon() {
     batt="$(pidof cbatticon)"
     if [[ "$batt" < 1 ]]; then
