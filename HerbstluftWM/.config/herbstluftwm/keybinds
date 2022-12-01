@@ -69,8 +69,8 @@ hc keybind $Mod-Control-Up resize up +$resizestep
 hc keybind $Mod-Control-Right resize right +$resizestep
 
 # tags
-tag_names=({1..9})
-tag_keys=({1..9} 0)
+tag_names=({1..3})
+tag_keys=({1..3} 0)
 
 hc rename default "${tag_names[0]}" || true
 for i in "${!tag_names[@]}"; do
