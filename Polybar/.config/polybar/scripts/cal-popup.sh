@@ -1,10 +1,10 @@
-#! /bin/bash
+#!/bin/bash
 
 send_notification() {
     TODAY=$(date '+%-d')
     HEAD=$(cal "$1" | head -n1)
     BODY=$(cal "$1" | tail -n7 | sed -z "s|$TODAY|<u><b>$TODAY</b></u>|1")
-    FOOT="\n<i>       ~ calendar</i> 󰸗 "
+    FOOT="\n<i>       ~ calendar</i>  "
     dunstify -h string:x-canonical-private-synchronous:calendar \
         "$HEAD" "$BODY$FOOT" -u NORMAL
 }

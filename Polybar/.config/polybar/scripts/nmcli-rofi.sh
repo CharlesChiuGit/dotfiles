@@ -129,13 +129,13 @@ function cleanup_networks () {
 }
 
 function main () {
-    if [ -r "$DIR/nmcli-rofi/config" ]; then
-        source "$DIR/config"
-    elif [ -r "$HOME/.config/rofi/wifi" ]; then
-        source "$HOME/.config/rofi/wifi"
-    else
-        echo "WARNING: config file not found! Using default values."
-    fi
+    # if [ -r "$DIR/config" ]; then
+    #     source "$DIR/config"
+    # elif [ -r "$HOME/.config/rofi/wifi" ]; then
+    #     source "$HOME/.config/rofi/wifi"
+    # else
+    #     echo "WARNING: config file not found! Using default values."
+    # fi
 
     OPS=$(rofi_menu)
     CHSSID=$(get_ssid "$OPS")
