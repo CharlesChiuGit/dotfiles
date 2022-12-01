@@ -3,28 +3,8 @@
 # disable buildin monitor when using external monitor
 bash ~/.local/bin/toVGAMonitor
 
-udiskie &                        # Mounts USB drives
+udiskie &                          # Mounts USB drives
 # nm-applet &                      # Network Manager
-picom &                          # UI modifier
-fcitx5 -d &                       # multi-lang input
-# ./panel.sh
-# batticon() {
-#     batt="$(pidof cbatticon)"
-#     if [[ "$batt" < 1 ]]; then
-#         cbatticon -i notification /sys/class/power_supply/BAT0 &
-#     else
-#         pkill cbatticon
-#         cbatticon -i notification /sys/class/power_supply/BAT0 &
-#     fi
-# }
-# volicon() {
-#     vol="$(pidof pa-applet)"
-#     if [[ "$vol" < 1 ]]; then
-#         pa-applet &
-#     else
-#         pkill pa-applet
-#         pa-applet &
-#     fi
-# }
-# volicon
-# batticon
+dunst &                            # Notification Daemon
+picom &                            # UI Modifier
+fcitx5 -d &                        # Multi-lang Input
