@@ -39,8 +39,6 @@ fi
 # [ -f /etc/xprofile ] && . /etc/xprofile
 # [ -f ~/.xprofile ] && . "$HOME/.xprofile"
 
-fcitx5 -d &
-
 # start herbstluftwm in locked mode (it will be unlocked at the end of your
 # autostart)
-exec /usr/bin/herbstluftwm --locked
+exec dbus-launch /usr/bin/herbstluftwm --locked
