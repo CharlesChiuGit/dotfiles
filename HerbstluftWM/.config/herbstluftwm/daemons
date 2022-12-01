@@ -4,9 +4,9 @@
 bash ~/.local/bin/toVGAMonitor
 
 udiskie &                        # Mounts USB drives
-nm-applet &                      # Network Manager
+# nm-applet &                      # Network Manager
 picom &                          # UI modifier
-fcitx -d &                       # multi-lang input
+fcitx5 -d &                       # multi-lang input
 # ./panel.sh
 # batticon() {
 #     batt="$(pidof cbatticon)"
