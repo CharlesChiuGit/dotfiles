@@ -41,4 +41,5 @@ fi
 
 # start herbstluftwm in locked mode (it will be unlocked at the end of your
 # autostart)
+# `dbus-launch` is needed for the fcitx5 to work properly
 exec dbus-launch /usr/bin/herbstluftwm --locked
