@@ -1,6 +1,6 @@
 #!/bin/sh
 
-IN=$(xrandr | grep "LVDS" | grep " connected" | sed -e "s/\([A-Z0-9]\+\) connected.*/\1/")
+IN=$(xrandr | grep "LVDS1" | grep " connected" | sed -e "s/\([A-Z0-9]\+\) connected.*/\1/")
 EXT=$(xrandr | grep "VGA2" | grep " connected" | sed -e "s/\([A-Z0-9]\+\) connected.*/\1/")
 
 if (xrandr | grep "$EXT disconnected"); then

@@ -23,8 +23,3 @@ hc unlock
 # or simply:
 # hc detect_monitors
 # hc set_monitors 1366x748+0+0 1920x1060+1366+0 # cut 20 on height for polybar
-
-# disable buildin monitor when using external monitor
-# bash ~/.local/bin/toVGAMonitor
-
-# hc reload

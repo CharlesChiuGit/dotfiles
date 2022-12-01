@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# disable buildin monitor when using external monitor
+bash ~/.local/bin/toVGAMonitor
+
 udiskie &                        # Mounts USB drives
 nm-applet &                      # Network Manager
 picom &                          # UI modifier
