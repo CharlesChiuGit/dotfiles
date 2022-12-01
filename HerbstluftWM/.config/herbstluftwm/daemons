@@ -3,8 +3,9 @@
 # disable buildin monitor when using external monitor
 bash ~/.local/bin/toVGAMonitor
 
-udiskie &                          # Mounts USB drives
-# nm-applet &                      # Network Manager
-dunst &                            # Notification Daemon
-picom &                            # UI Modifier
-fcitx5 -d &                        # Multi-lang Input
+hsetroot -cover ~/.config/herbstluftwm/wallpaper.jpg &
+udiskie &                             # Mounts USB drives
+# nm-applet &                         # Network Manager
+dunst &                               # Notification Daemon
+picom &                               # UI Modifier
+fcitx5 -d &                           # Multi-lang Input
