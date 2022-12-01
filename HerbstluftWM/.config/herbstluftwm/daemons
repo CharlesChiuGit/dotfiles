@@ -5,7 +5,7 @@ bash ~/.local/bin/toVGAMonitor
 
 hsetroot -cover ~/.config/herbstluftwm/wallpaper.jpg &
 udiskie &                             # Mounts USB drives
-# nm-applet &                         # Network Manager
+nm-applet &                           # Network Manager
 dunst &                               # Notification Daemon
 picom &                               # UI Modifier
 fcitx5 -d &                           # Multi-lang Input
