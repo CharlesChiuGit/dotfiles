@@ -2,7 +2,7 @@
 
 udiskie &                       # Mounts USB drives
 nm-applet &                     # Network Manager
-picom --experimental-backends & # UI modifier
+picom &                         # UI modifier
 fcitx -d &                      # multi-lang input
 ./panel.sh
 batticon() {
