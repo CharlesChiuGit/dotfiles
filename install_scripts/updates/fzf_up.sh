@@ -17,8 +17,7 @@ status=$(check_git_update "")
 if [[ $status = true ]]; then
     printf "Update ${tty_blue}Fzf${tty_reset}.\n"
     git pull
-    make
-    make install
+    ./install --bin --xdg --no-key-bindings --no-completion --no-update-rc --no-bash --no-zsh --no-fish
 elif [[ $status = false ]]; then
     printf "${tty_blue}Fzf${tty_reset} is up-to-date!\n"
 fi
