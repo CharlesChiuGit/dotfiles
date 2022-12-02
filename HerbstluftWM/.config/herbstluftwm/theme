@@ -14,10 +14,10 @@ hc set frame_border_active_color '#a89984'
 hc set frame_border_normal_color '#282828'
 hc set frame_bg_active_color '#a89984'
 hc set frame_bg_normal_color '#282828'
-hc set frame_border_width 0 ##1
+hc set frame_border_width 1
 hc set show_frame_decorations 'focused_if_multiple'
 hc set frame_bg_transparent on
-hc set frame_transparent_width 0 ##5
+hc set frame_transparent_width 5
 hc set frame_gap 4
 hc set frame_active_opactiy 1
 hc set frame_normal_opacity 0

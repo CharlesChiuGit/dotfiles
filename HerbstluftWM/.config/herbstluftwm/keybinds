@@ -13,7 +13,7 @@ Mod=Mod4 # Use the super key as the main modifier
 ######################################################################
 hc keybind $Mod-Shift-q quit
 hc keybind $Mod-Shift-r reload
-hc keybind $Mod-Shift-c close
+hc keybind $Mod-Shift-z close
 hc keybind $Mod-Return spawn "${TERMINAL:-alacritty}" # use your $TERMINAL with xterm as fallback
 
 ######################################################################
@@ -27,19 +27,12 @@ hc keybind Shift-Mod4-s spawn flameshot gui
 #                             Launchers                              #
 ######################################################################
 hc keybind Mod1-space spawn rofi -show run
-hc keybind $Mod-Control-e spawn rofi -show emoji
+hc keybind Mod1-space-w spawn rofi -show window -show-icons
+hc keybind Mod1-space-d spawn rofi -show drun -show-icons
 
-# basic movement in tiling and floating mode
-# focusing clients
-hc keybind $Mod-Left focus left
-hc keybind $Mod-Down focus down
-hc keybind $Mod-Up focus up
-hc keybind $Mod-Right focus right
-hc keybind $Mod-h focus left
-hc keybind $Mod-j focus down
-hc keybind $Mod-k focus up
-hc keybind $Mod-l focus right
-
+######################################################################
+#                         Windows Management                         #
+######################################################################
 # moving clients in tiling and floating mode
 hc keybind $Mod-Shift-Left shift left
 hc keybind $Mod-Shift-Down shift down
@@ -50,12 +43,16 @@ hc keybind $Mod-Shift-j shift down
 hc keybind $Mod-Shift-k shift up
 hc keybind $Mod-Shift-l shift right
 
+######################################################################
+#                          Frame Management                          #
+######################################################################
 # splitting frames
 # create an empty frame at the specified direction
 hc keybind $Mod-u split bottom 0.5
 hc keybind $Mod-o split right 0.5
 # let the current frame explode into subframes
 hc keybind $Mod-Control-space split explode
+hc keybind $Mod-r remove
 
 # resizing frames and floating clients
 resizestep=0.02
@@ -68,6 +65,9 @@ hc keybind $Mod-Control-Down resize down +$resizestep
 hc keybind $Mod-Control-Up resize up +$resizestep
 hc keybind $Mod-Control-Right resize right +$resizestep
 
+######################################################################
+#                           Tag Management                           #
+######################################################################
 # tags
 tag_names=({1..3})
 tag_keys=({1..3} 0)
@@ -89,7 +89,6 @@ hc keybind $Mod-period use_index +1 --skip-visible
 hc keybind $Mod-comma use_index -1 --skip-visible
 
 # layouting
-hc keybind $Mod-r remove
 hc keybind $Mod-s floating toggle
 hc keybind $Mod-f fullscreen toggle
 hc keybind $Mod-Shift-f set_attr clients.focus.floating toggle
@@ -105,15 +104,31 @@ hc keybind $Mod-space \
     . cycle_layout +1 vertical horizontal max vertical grid \
     , cycle_layout +1
 
+######################################################################
+#                               Mouse                                #
+######################################################################
 # mouse
 hc mouseunbind --all
 hc mousebind $Mod-Button1 move
 hc mousebind $Mod-Button2 zoom
 hc mousebind $Mod-Button3 resize
 
+######################################################################
+#                               Focus                                #
+######################################################################
 # focus
 hc keybind $Mod-BackSpace cycle_monitor
 hc keybind $Mod-Tab cycle_all +1
 hc keybind $Mod-Shift-Tab cycle_all -1
 hc keybind $Mod-c cycle
 hc keybind $Mod-i jumpto urgent
+
+# focusing clients
+hc keybind $Mod-Left focus left
+hc keybind $Mod-Down focus down
+hc keybind $Mod-Up focus up
+hc keybind $Mod-Right focus right
+hc keybind $Mod-h focus left
+hc keybind $Mod-j focus down
+hc keybind $Mod-k focus up
+hc keybind $Mod-l focus right
