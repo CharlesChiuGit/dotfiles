@@ -21,7 +21,7 @@ source "$HOME/.config/herbstluftwm/keybinds"
 ######################################################################
 #                               Themes                               #
 ######################################################################
-source "$HOME/.config/herbstluftwm/HLWM_themes/theme"
+source "$HOME/.config/herbstluftwm/theme"
 
 ######################################################################
 #                              winRules                              #
