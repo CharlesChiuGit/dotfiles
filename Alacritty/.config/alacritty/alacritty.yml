@@ -341,8 +341,7 @@ cursor:
     #   - _ Underline
     #   - | Beam
     shape: Beam
-
-    # Cursor blinking state
+# Cursor blinking state
     #
     # Values for `blinking`:
     #   - Never: Prevent the cursor from ever blinking
@@ -781,8 +780,8 @@ key_bindings:
   #- { key: Return, mods: Shift,   mode: Search|~Vi, action: SearchFocusPrevious   }
 
   # (Windows, Linux, and BSD only)
-  #- { key: V,              mods: Control|Shift, mode: ~Vi,        action: Paste            }
-  #- { key: C,              mods: Control|Shift,                   action: Copy             }
+  - { key: V,              mods: Control|Shift, mode: ~Vi,        action: Paste            }
+  - { key: C,              mods: Control|Shift,                   action: Copy             }
   #- { key: F,              mods: Control|Shift, mode: ~Search,    action: SearchForward    }
   #- { key: B,              mods: Control|Shift, mode: ~Search,    action: SearchBackward   }
   #- { key: C,              mods: Control|Shift, mode: Vi|~Search, action: ClearSelection   }
@@ -793,8 +792,8 @@ key_bindings:
   #- { key: NumpadAdd,      mods: Control,                         action: IncreaseFontSize }
   #- { key: Minus,          mods: Control,                         action: DecreaseFontSize }
   #- { key: NumpadSubtract, mods: Control,                         action: DecreaseFontSize }
-  - { key: V, mods: Control, mode: ~Vi, action: Paste }
-  - { key: C, mods: Control, action: Copy }
+  # - { key: V, mods: Control, mode: ~Vi, action: Paste }
+  # - { key: C, mods: Control, action: Copy }
 
   # (Windows only)
   #- { key: Return,   mods: Alt,           action: ToggleFullscreen }
@@ -808,8 +807,8 @@ key_bindings:
   #- { key: NumpadAdd,      mods: Command,                    action: IncreaseFontSize      }
   #- { key: Minus,          mods: Command,                    action: DecreaseFontSize      }
   #- { key: NumpadSubtract, mods: Command,                    action: DecreaseFontSize      }
-  - { key: V, mods: Command, action: Paste }
-  - { key: C, mods: Command, action: Copy }
+  # - { key: V, mods: Command, action: Paste }
+  # - { key: C, mods: Command, action: Copy }
   #- { key: C,              mods: Command, mode: Vi|~Search,  action: ClearSelection        }
   #- { key: H,              mods: Command,                    action: Hide                  }
   #- { key: H,              mods: Command|Alt,                action: HideOtherApplications }
