@@ -4,8 +4,18 @@
 bash ~/.local/bin/toVGAMonitor
 
 hsetroot -cover ~/.config/herbstluftwm/wallpaper.jpg &
-udiskie &                             # Mounts USB drives
-nm-applet &                           # Network Manager
-dunst &                               # Notification Daemon
-picom &                               # UI Modifier
-fcitx5 -d &                           # Multi-lang Input
+udiskie &   # Mounts USB drives
+nm-applet & # Network Manager
+dunst &     # Notification Daemon
+picom &     # UI Modifier
+fcitx5 -d & # Multi-lang Input
+volicon() {
+    vol="$(pidof pa-applet)"
+    if [[ "$vol" -lt 1 ]]; then
+        pa-applet &
+    else
+        pkill pa-applet
+        pa-applet &
+    fi
+}
+volicon
