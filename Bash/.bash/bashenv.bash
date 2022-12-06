@@ -111,3 +111,7 @@ export QT_IM_MODULE=fcitx
 export QT5_IM_MODULE=fcitx
 export SDL_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
+
+# Cuda env
+export PATH=/usr/local/cuda-11/bin${PATH:+:${PATH}}
+export LD_LIBRARY_PATH=/usr/local/cuda-11/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
