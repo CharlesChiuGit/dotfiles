@@ -5,6 +5,7 @@ set -o pipefail
 
 source ./config.sh
 
+source ./updates/ascii-image-converter.sh
 source ./updates/batcat_up.sh
 source ./updates/btop_up.sh
 source ./updates/cpufetch_up.sh

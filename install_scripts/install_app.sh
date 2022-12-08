@@ -5,6 +5,7 @@ set -o pipefail
 
 source ./config.sh
 
+source ./apps/ascii-image-converter.sh
 source ./apps/batcat.sh
 source ./apps/btop.sh
 # source ./apps/chafa.sh
