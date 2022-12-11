@@ -2,9 +2,6 @@
 zstyle ':fzf-tab:complete:*:*' fzf-preview 'pistol ${(Q)realpath}'
 zstyle ':fzf-tab:complete:*:*' fzf-flags --height=60%
 
-# show exa file tree
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 -T -F --color=always --icons -a -b -h $realpath'
-
 # give a preview of commandline arguments when completing `kill`
 zstyle ':completion:*:*:*:*:processes' command "ps -u $USER -o pid,user,comm -w -w"
 zstyle ':fzf-tab:complete:(kill|ps):argument-rest' fzf-preview \
