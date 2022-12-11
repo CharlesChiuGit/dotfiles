@@ -21,6 +21,9 @@ zstyle ':fzf-tab:complete:sv:*' fzf-preview 'sudo sv status $word'
 zstyle ':fzf-tab:complete:(-command-|-parameter-|-brace-parameter-|export|unset|expand):*' \
     fzf-preview 'echo ${(P)word}'
 
+# show alias
+zstyle ':fzf-tab:complete:alias:*' fzf-preview 'alias $word'
+
 # show tldr
 zstyle ':fzf-tab:complete:tldr:argument-1' fzf-preview 'tldr --color always $word'
 

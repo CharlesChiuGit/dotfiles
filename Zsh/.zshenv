@@ -122,3 +122,11 @@ export QT_IM_MODULE=fcitx
 export QT5_IM_MODULE=fcitx
 export SDL_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
+
+# Custom env and aliases
+[[ -f ~/.zsh/aliases.zsh ]] && source ~/.zsh/aliases.zsh
+[[ -f ~/.zsh/keybind.zsh ]] && source ~/.zsh/keybind.zsh
+[[ -f ~/.zsh/starship.zsh ]] && source ~/.zsh/starship.zsh
+[[ -f ~/.zsh/fzf-tab.zsh ]] && source ~/.zsh/fzf-tab.zsh
+[[ -f ~/.zsh/wsl2fix.zsh ]] && source ~/.zsh/wsl2fix.zsh
+# [[ -f ~/.bash/wayland.zsh ]] && source ~/.zsh/wayland.zsh
