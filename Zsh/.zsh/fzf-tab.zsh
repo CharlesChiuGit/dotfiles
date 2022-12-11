@@ -15,7 +15,7 @@ zstyle ':fzf-tab:complete:(kill|ps):argument-rest' fzf-flags --header="[process 
 zstyle ':fzf-tab:complete:systemctl-*:*' fzf-preview 'SYSTEMD_COLORS=1 systemctl status $word'
 
 # show runit unit status
-zstyle ':fzf-tab:complete:sv-*:*' fzf-preview 'sv status $word'
+zstyle ':fzf-tab:complete:sv:*' fzf-preview 'sudo sv status $word'
 
 # show environment variable
 zstyle ':fzf-tab:complete:(-command-|-parameter-|-brace-parameter-|export|unset|expand):*' \
