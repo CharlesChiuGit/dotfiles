@@ -9,9 +9,9 @@ not_in_tmux() {
 }
 
 if not_in_tmux; then
-    selected=$(cat ~/.local/bin/tmux-cht-languages ~/.local/bin/tmux-cht-command | fzf --border-label="╣ lang/core-util chtsh ╠" --header="Enter to select, Ctrl-C to cancel")
+    selected=$(cat ~/.local/bin/tmux-cht-languages ~/.local/bin/tmux-cht-command | fzf --border-label="╣ lang/core-util chtsh ╠" --header="Enter to select, Ctrl-C to cancel" --preview="")
 else
-    selected=$(cat ~/.local/bin/tmux-cht-languages ~/.local/bin/tmux-cht-command | fzf --height 100%)
+    selected=$(cat ~/.local/bin/tmux-cht-languages ~/.local/bin/tmux-cht-command | fzf --height 100% --preview="")
 fi
 if [[ -z $selected ]]; then
     exit 0
