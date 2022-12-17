@@ -11,6 +11,9 @@ shopt -s histappend
 HISTSIZE=1001
 HISTFILESIZE=2001
 
+# XDG PATH
+export XDG_CONFIG_HOME="$HOME/.config"
+
 # Program languages PATH
 export PATH="$PATH:$HOME/tools/golang/bin"
 export PATH="$PATH:$HOME/go/bin"

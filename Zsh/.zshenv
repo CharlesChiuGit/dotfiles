@@ -16,6 +16,9 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
+# XDG PATH
+export XDG_CONFIG_HOME="$HOME/.config"
+
 # Program languages PATH
 path=(~/tools/golang/bin $path)
 path=(~/go/bin $path)
