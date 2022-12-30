@@ -722,7 +722,8 @@ e.g. \fBfzf --multi | fzf --sync\fR
 .RE
 .TP
 .B "--listen=HTTP_PORT"
-Start HTTP server on the given port to receive actions via POST requests.
+Start HTTP server on the given port. It allows external processes to send
+actions to perform via POST method.
 
 e.g.
      \fB# Start HTTP server on port 6266
@@ -731,8 +732,6 @@ e.g.
      # Send action to the server
      curl -XPOST localhost:6266 -d 'reload(seq 100)+change-prompt(hundred> )'
      \fR
-
-The port number is exported as \fB$FZF_LISTEN_PORT\fR on the child processes.
 .TP
 .B "--version"
 Display version information and exit
@@ -928,6 +927,15 @@ e.g.
      \fB# Move cursor to the last item and select all items
      seq 1000 | fzf --multi --sync --bind start:last+select-all\fR
 .RE
+\fIload\fR
+.RS
+Triggered when the input stream is complete and the initial processing of the
+list is complete.
+
+e.g.
+     \fB# Change the prompt to "loaded" when the input stream is complete
+     (seq 10; sleep 1; seq 11 20) | fzf --prompt 'Loading> ' --bind 'load:change-prompt:Loaded> '\fR
+.RE
 \fIchange\fR
 .RS
 Triggered whenever the query string is changed
@@ -978,7 +986,7 @@ A key or an event can be bound to one or more of the following actions.
     \fBend-of-line\fR                \fIctrl-e  end\fR
     \fBexecute(...)\fR               (see below for the details)
     \fBexecute-silent(...)\fR        (see below for the details)
-    \fBfirst\fR                      (move to the first match)
+    \fBfirst\fR                      (move to the first match; same as \fBpos(1)\fR)
     \fBforward-char\fR               \fIctrl-f  right\fR
     \fBforward-word\fR               \fIalt-f   shift-right\fR
     \fBignore\fR
@@ -986,13 +994,14 @@ A key or an event can be bound to one or more of the following actions.
     \fBjump-accept\fR                (jump and accept)
     \fBkill-line\fR
     \fBkill-word\fR                  \fIalt-d\fR
-    \fBlast\fR                       (move to the last match)
+    \fBlast\fR                       (move to the last match; same as \fBpos(-1)\fR)
     \fBnext-history\fR               (\fIctrl-n\fR on \fB--history\fR)
     \fBnext-selected\fR              (move to the next selected item)
     \fBpage-down\fR                  \fIpgdn\fR
     \fBpage-up\fR                    \fIpgup\fR
     \fBhalf-page-down\fR
     \fBhalf-page-up\fR
+    \fBpos(...)\fR                   (move cursor to the numeric position; negative number to count from the end)
     \fBprev-history\fR               (\fIctrl-p\fR on \fB--history\fR)
     \fBprev-selected\fR              (move to the previous selected item)
     \fBpreview(...)\fR               (see below for the details)
@@ -1006,9 +1015,11 @@ A key or an event can be bound to one or more of the following actions.
     \fBpreview-top\fR
     \fBprint-query\fR                (print query and exit)
     \fBput\fR                        (put the character to the prompt)
+    \fBput(...)\fR                   (put the given string to the prompt)
     \fBrefresh-preview\fR
     \fBrebind(...)\fR                (rebind bindings after \fBunbind\fR)
     \fBreload(...)\fR                (see below for the details)
+    \fBreload-sync(...)\fR           (see below for the details)
     \fBreplace-query\fR              (replace query string with the current selection)
     \fBselect\fR
     \fBselect-all\fR                 (select all matches)
@@ -1022,6 +1033,7 @@ A key or an event can be bound to one or more of the following actions.
     \fBtoggle-search\fR              (toggle search functionality)
     \fBtoggle-sort\fR
     \fBtoggle+up\fR                  \fIbtab    (shift-tab)\fR
+    \fBtransform-query(...)\fR       (transform query string using an external command)
     \fBunbind(...)\fR                (unbind bindings)
     \fBunix-line-discard\fR          \fIctrl-u\fR
     \fBunix-word-rubout\fR           \fIctrl-w\fR
@@ -1110,6 +1122,16 @@ e.g.
      FZF_DEFAULT_COMMAND="$RG_PREFIX '$INITIAL_QUERY'" \\
        fzf --bind "change:reload:$RG_PREFIX {q} || true" \\
            --ansi --disabled --query "$INITIAL_QUERY"\fR
+
+\fBreload-sync(...)\fR is a synchronous version of \fBreload\fR that replaces
+the list only when the command is complete. This is useful when the command
+takes a while to produce the initial output and you don't want fzf to run
+against an empty list while the command is running.
+
+
+e.g.
+     \fB# You can still filter and select entries from the initial list for 3 seconds
+     seq 100 | fzf --bind 'load:reload-sync(sleep 3; seq 1000)+unbind(load)'\fR
 
 .SS PREVIEW BINDING
 
