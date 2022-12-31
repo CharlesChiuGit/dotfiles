@@ -536,7 +536,8 @@ e.g.
 Note that you can escape a placeholder pattern by prepending a backslash.
 
 Preview window will be updated even when there is no match for the current
-query if any of the placeholder expressions evaluates to a non-empty string.
+query if any of the placeholder expressions evaluates to a non-empty string
+or \fB{q}\fR is in the command template.
 
 Since 0.24.0, fzf can render partial preview content before the preview command
 completes. ANSI escape sequence for clearing the display (\fBCSI 2 J\fR) is
@@ -1033,6 +1034,7 @@ A key or an event can be bound to one or more of the following actions.
     \fBtoggle-search\fR              (toggle search functionality)
     \fBtoggle-sort\fR
     \fBtoggle+up\fR                  \fIbtab    (shift-tab)\fR
+    \fBtransform-prompt(...)\fR      (transform prompt string using an external command)
     \fBtransform-query(...)\fR       (transform query string using an external command)
     \fBunbind(...)\fR                (unbind bindings)
     \fBunix-line-discard\fR          \fIctrl-u\fR
