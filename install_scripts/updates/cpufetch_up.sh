@@ -6,8 +6,8 @@ set -o pipefail
 #                          Update Cpufetch                           #
 ######################################################################
 printf "Fetch ${tty_blue}Cpufetch${tty_reset} latest release...\n"
-# remote_version=$(get_latest_release "Dr-Noob/cpufetch")
-remote_version="v1.02"
+remote_version=$(get_latest_release "Dr-Noob/cpufetch")
+# remote_version="v1.03"
 remote_version_c=$(echo "$remote_version" | sed -E 's/v([0-9]+.[0-9]+)/\1/')
 echo "Remote version: ${remote_version_c}"
 

@@ -7,7 +7,7 @@ set -o pipefail
 #                           Cpufetch Part                            #
 ######################################################################
 CPUFETCH_DIR=$HOME/tools/cpufetch
-CPUFETCH_LINK="https://github.com/Dr-Noob/cpufetch/releases/download/v1.02/cpufetch_x86-64_linux"
+CPUFETCH_LINK="https://github.com/Dr-Noob/cpufetch/releases/download/v1.03/cpufetch_x86-64_linux"
 if [[ -z $(command -v cpufetch) ]]; then
     echo "Install cpufetch"
 
