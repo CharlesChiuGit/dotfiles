@@ -94,5 +94,3 @@ GNU stow will not handle any conflict files, it will stop all operation once it 
   width = "85%"
   />
 </p>
-
-test pwsh
