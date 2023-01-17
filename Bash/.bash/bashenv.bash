@@ -44,13 +44,15 @@ export PATH="$PATH:$HOME/tools/fzf/bin"
 export PATH="$PATH:$HOME/tools/fzy"
 export PATH="$PATH:$HOME/tools/jq"
 export PATH="$PATH:$HOME/tools/lnav"
+export PATH="$PATH:$HOME/tools/Logseq-linux-x64"
 export PATH="$PATH:$HOME/tools/nvim/bin"
+export PATH="$PATH:$HOME/tools/qfc/bin"
 export PATH="$PATH:$HOME/tools/stow/bin"
 export PATH="$PATH:$HOME/tools/tmux"
 export PATH="$PATH:$HOME/tools/treesitter"
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/lib"
 export PATH="$PATH:$HOME/tools/ugrep/bin"
-export PATH="$PATH:$HOME/tools/qfc/bin"
+export PATH="$PATH:$HOME/tools/wezterm/usr/bin"
 [ -f ~/.config/lf/icon.sh ] && source "$HOME/.config/lf/icon.sh"
 export PISTOL_CHROMA_FORMATTER=terminal16m
 export PISTOL_CHROMA_STYLE=monokai
@@ -116,5 +118,5 @@ export SDL_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
 
 # Cuda env
-export PATH=/usr/local/cuda-11/bin${PATH:+:${PATH}}
-export LD_LIBRARY_PATH=/usr/local/cuda-11/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+export PATH=/usr/local/cuda-12/bin${PATH:+:${PATH}}
+export LD_LIBRARY_PATH=/usr/local/cuda-12/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}

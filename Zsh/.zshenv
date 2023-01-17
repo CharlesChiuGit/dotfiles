@@ -49,13 +49,15 @@ path=(~/tools/fzf/bin $path)
 path=(~/tools/fzy $path)
 path=(~/tools/jq $path)
 path=(~/tools/lnav $path)
+path=(~/tools/Logseq-linux-x64 $path)
 path=(~/tools/nvim/bin $path)
+path=(~/tools/qfc/bin $path)
 path=(~/tools/stow/bin $path)
 path=(~/tools/tmux $path)
 path=(~/tools/treesitter $path)
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/lib"
 path=(~/tools/ugrep/bin $path)
-path=(~/tools/qfc/bin $path)
+path=(~/tools/wezterm/usr/bin $path)
 [ -f ~/.config/lf/icon.sh ] && source "$HOME/.config/lf/icon.sh"
 export PISTOL_CHROMA_FORMATTER=terminal16m
 export PISTOL_CHROMA_STYLE=monokai

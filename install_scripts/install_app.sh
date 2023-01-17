@@ -20,6 +20,7 @@ source ./apps/glow.sh
 source ./apps/jq.sh
 source ./apps/lazygit.sh
 source ./apps/lf.sh
+source ./apps/logseq.sh
 source ./apps/lnav.sh
 # source ./apps/magick.sh
 source ./apps/navi.sh
@@ -37,6 +38,7 @@ source ./apps/trashy.sh
 source ./apps/treesitter.sh
 source ./apps/ugrep.sh
 source ./apps/viu.sh
+source ./apps/wezterm.sh
 # source ./apps/xplr.sh
 source ./apps/zoxide.sh
 
