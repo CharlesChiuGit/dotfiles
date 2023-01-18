@@ -116,6 +116,7 @@ export QT_IM_MODULE=fcitx
 export QT5_IM_MODULE=fcitx
 export SDL_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
+export GLFW_IM_MODULE=ibus
 
 # Cuda env
 export PATH=/usr/local/cuda-12/bin${PATH:+:${PATH}}
