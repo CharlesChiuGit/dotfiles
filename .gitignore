@@ -14,6 +14,7 @@ Local/.local/bin/pox
 Local/.local/bin/pygmentize
 Local/.local/bin/undill
 Local/.local/bin/wheel
+*.uuid
 
 # C extensions
 *.so
