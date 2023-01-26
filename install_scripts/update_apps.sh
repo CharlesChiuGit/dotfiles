@@ -33,6 +33,7 @@ source ./updates/trashy_up.sh
 source ./updates/treesitter_up.sh
 source ./updates/ugrep_up.sh
 source ./updates/viu_up.sh
+source ./updates/xh_up.sh
 source ./updates/zoxide_up.sh
 
 printf "\n${tty_yellow}====================Script ends====================${tty_reset}\n\n"

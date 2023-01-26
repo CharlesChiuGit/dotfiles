@@ -39,6 +39,7 @@ source ./apps/treesitter.sh
 source ./apps/ugrep.sh
 source ./apps/viu.sh
 source ./apps/wezterm.sh
+source ./apps/xh.sh
 # source ./apps/xplr.sh
 source ./apps/zoxide.sh
 
