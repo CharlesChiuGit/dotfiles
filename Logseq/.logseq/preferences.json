@@ -1,0 +1,32 @@
+{
+  "theme": null,
+  "themes": {
+    "mode": "dark",
+    "light": null,
+    "dark": {
+      "name": "Awesome Styler Dark",
+      "url": "lsp://logseq.io/logseq-awesome-styler/dist/assets/awesomeStyler.css",
+      "description": "Dark customizable theme theme with extra stuff",
+      "mode": "dark",
+      "pid": "logseq-awesome-styler",
+      "selected": false
+    }
+  },
+  "externals": [],
+  "pinnedToolbarItems": [
+    "logseq-quick-capture:logseq-quick-capture",
+    "logseq-global-custom-css:global-custom-css",
+    "logseq-tidy-blocks-plugin:logseq-tidy-blocks",
+    "logseq-find-and-replace:open-find-and-replace",
+    "logseq-heatmap:heatmap-plugin-open",
+    "logseq-agenda:logseq-plugin-agenda",
+    "logseq-file-manager:logseq-plugin-file-manager",
+    "logseq-bionic-speedreader:Bionic",
+    "logseq-powertags-plugin:logseq-powertags-plugin",
+    "logseq-todo-plugin:logseq-plugin-todo",
+    "logseq-writegood-plugin:logseq-writegood-plugin",
+    "logseq-tags:tags-plugin-open",
+    "logseq-focus-mode:logseq-focus-toolbar",
+    "logseq-git:git"
+  ]
+}

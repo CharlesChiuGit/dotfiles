@@ -1,0 +1,8 @@
+{
+  "KeyboardShortcut_LineBreak": "alt+t",
+  "KeyboardShortcut_RemoveAll": "alt+r",
+  "ToggleBlockProperties": "none",
+  "KeyboardShortcut_ToggleBlockProperties": "",
+  "disabled": false,
+  "keyboardShortcut": "alt+t"
+}

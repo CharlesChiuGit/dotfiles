@@ -1,0 +1,13 @@
+{
+  "hotkey": "",
+  "whereToPlaceNewTask": "",
+  "showNextNDaysTask": false,
+  "numberOfNextNDays": 14,
+  "openInRightSidebar": true,
+  "sectionTitleColor": "#fe8022",
+  "lightPrimaryBackgroundColor": "#282828",
+  "lightSecondaryBackgroundColor": "#504945",
+  "darkPrimaryBackgroundColor": "#282828",
+  "darkSecondaryBackgroundColor": "#4f4844",
+  "disabled": false
+}

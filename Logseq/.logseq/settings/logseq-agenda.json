@@ -1,0 +1,68 @@
+{
+  "disabled": false,
+  "theme": "dark",
+  "defaultView": "month",
+  "weekStartDay": 1,
+  "journalDateFormatter": "YYYY-MM-DD ddd",
+  "defaultDuration": {
+    "value": 0.5,
+    "unit": "h"
+  },
+  "calendarList": [
+    {
+      "id": "journal",
+      "bgColor": "#047857",
+      "textColor": "#000000",
+      "borderColor": "#417505",
+      "enabled": true,
+      "query": [
+        {
+          "script": "\n[:find (pull ?block [*])\n  :where\n  [?block :block/marker ?marker]\n  [(missing? $ ?block :block/deadline)]\n  (not [(missing? $ ?block :block/scheduled)])\n  [(contains? #{\"TODO\" \"DOING\" \"NOW\" \"LATER\" \"WAITING\" \"DONE\"} ?marker)]]\n          ",
+          "scheduleStart": "scheduled",
+          "dateFormatter": "yyyyMMdd",
+          "queryType": "advanced",
+          "isMilestone": false
+        },
+        {
+          "script": "\n[:find (pull ?block [*])\n  :where\n  [?block :block/marker ?marker]\n  [(missing? $ ?block :block/scheduled)]\n  (not [(missing? $ ?block :block/deadline)])\n  [(contains? #{\"TODO\" \"DOING\" \"NOW\" \"LATER\" \"WAITING\" \"DONE\"} ?marker)]]\n          ",
+          "scheduleStart": "deadline",
+          "dateFormatter": "yyyyMMdd",
+          "queryType": "advanced",
+          "isMilestone": false
+        },
+        {
+          "script": "\n[:find (pull\n  ?block\n  [:block/uuid\n    :block/parent\n    :block/left\n    :block/collapsed?\n    :block/format\n    :block/_refs\n    :block/path-refs\n    :block/tags\n    :block/content\n    :block/marker\n    :block/priority\n    :block/properties\n    :block/pre-block?\n    :block/scheduled\n    :block/deadline\n    :block/repeated?\n    :block/created-at\n    :block/updated-at\n    :block/file\n    :block/heading-level\n    {:block/page\n    [:db/id :block/name :block/original-name :block/journal-day :block/journal?]}])\n  :where\n  [?block :block/page ?page]\n  [?page :block/journal? true]\n  [?block :block/marker ?marker]\n  [(contains? #{\"TODO\" \"DOING\" \"NOW\" \"LATER\" \"WAITING\" \"DONE\"} ?marker)]\n  [(missing? $ ?block :block/scheduled)]\n  [(missing? $ ?block :block/deadline)]]\n          ",
+          "scheduleStart": "page.journal-day",
+          "dateFormatter": "yyyyMMdd",
+          "isMilestone": false,
+          "queryType": "advanced"
+        },
+        {
+          "script": "\n[:find (pull ?block [*])\n  :where\n  [?rp :block/name \"milestone\"]\n  [?block :block/refs ?rp]]\n          ",
+          "scheduleStart": "scheduled",
+          "dateFormatter": "yyyyMMdd",
+          "isMilestone": true,
+          "queryType": "advanced"
+        }
+      ]
+    }
+  ],
+  "initialized": true,
+  "subscriptionList": [
+    {
+      "url": "https://calendar.google.com/calendar/ical/charleschiu2012%40gmail.com/private-2731ec1071ad4f2cc1747b83aa307383/basic.ics",
+      "id": "Charles",
+      "enabled": true,
+      "bgColor": "#50e3c2",
+      "textColor": "#4a4a4a",
+      "borderColor": "#4a90e2"
+    }
+  ],
+  "logKey": {
+    "id": "Daily Log",
+    "bgColor": "#50e3c2",
+    "textColor": "#4a4a4a",
+    "borderColor": "#417505",
+    "enabled": true
+  }
+}

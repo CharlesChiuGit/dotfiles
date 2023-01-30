@@ -1,0 +1,23 @@
+{
+  "promoAwesomeStyler": false,
+  "featureHeading": null,
+  "featureCalendarEnabled": true,
+  "pageHeading": null,
+  "featureHideDotProps": true,
+  "featureHideSetOfProps": "propToHide,propAnother,color,hidetitle,banner",
+  "featureAwesomeProps": true,
+  "contentHeading": null,
+  "featureTasksEnabled": true,
+  "featureColumnsEnabled": true,
+  "featureQuoteEnabled": true,
+  "contentFlashcard": "Default",
+  "featureHeadersLabelsEnabled": true,
+  "appUIHeading": null,
+  "featureHomeButtonEnabled": true,
+  "featureSidebarNewPageEnabled": false,
+  "featureSidebarPageIconEnabled": false,
+  "featureNewBlockBulletEnabled": true,
+  "otherHeading": null,
+  "featureUpdaterEnabled": true,
+  "disabled": false
+}

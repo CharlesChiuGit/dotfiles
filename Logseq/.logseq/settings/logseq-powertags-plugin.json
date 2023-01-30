@@ -1,0 +1,12 @@
+{
+  "addTypeProperty": false,
+  "autoParse": false,
+  "disabled": false,
+  "savedTags": {
+    "#movie": [
+      "year",
+      "director",
+      "IMDb"
+    ]
+  }
+}

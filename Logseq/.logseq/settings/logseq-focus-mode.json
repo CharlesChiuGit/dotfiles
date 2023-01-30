@@ -1,0 +1,28 @@
+{
+  "keyboard": "f f",
+  "disabled": false,
+  "fullscreen": true,
+  "init": true,
+  "go_fullscreen": true,
+  "hide_properties": true,
+  "line_highlight": false,
+  "hide_topbar": true,
+  "focus_on_startup": false,
+  "hide_sidebar": false,
+  "hide_right_sidebar": false,
+  "open_left_sidebar_on_unfocus": true,
+  "open_right_sidebar_on_unfocus": true,
+  "on_toggle": [
+    "Toggle Top Bar"
+  ],
+  "on_focus": [
+    "Hide Left Sidebar",
+    "Hide Right Sidebar",
+    "Hide Help"
+  ],
+  "on_unfocus": [
+    "Show Left Sidebar",
+    "Show Right Sidebar",
+    "Show Help"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "auto": false,
+  "semiAuto": true,
+  "lang": "en",
+  "notifications": false,
+  "defaultSnooze": 5,
+  "useBlockAsAlarmTitle": true,
+  "disabled": false,
+  "preferredDateFormat": "yyyy-MM-dd"
+}
