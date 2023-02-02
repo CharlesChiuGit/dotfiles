@@ -2,7 +2,7 @@
 [user]
 # Please adapt and uncomment the following lines:
 	name = CharlesChiuGit
-	email = charleschiu2012@gmail.comn
+	email = charleschiu2012@gmail.com
 [alias]
 	st = status
 	cm = commit -m
@@ -15,6 +15,8 @@
 
 [core]
     pager = delta
+    # fix git not working in pwsh on windows
+    # sshCommand = 'C:\\Windows\\System32\\OpenSSH\\ssh.exe'
 
 [interactive]
     diffFilter = delta --color-only
