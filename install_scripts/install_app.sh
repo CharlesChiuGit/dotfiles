@@ -20,8 +20,8 @@ source ./apps/glow.sh
 source ./apps/jq.sh
 source ./apps/lazygit.sh
 source ./apps/lf.sh
-source ./apps/logseq.sh
 source ./apps/lnav.sh
+source ./apps/logseq.sh
 # source ./apps/magick.sh
 source ./apps/navi.sh
 source ./apps/nvim.sh
