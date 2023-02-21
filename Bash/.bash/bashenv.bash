@@ -60,16 +60,16 @@ export PISTOL_CHROMA_STYLE=monokai
 ## Batcat for man & help
 _distro=$(awk '/^ID=/' /etc/*-release | awk -F'=' '{ print tolower($2) }' | tr -d '"')
 if [ "$_distro" = "void" ]; then
-    export MANPAGER="batman"
+	export MANPAGER="batman"
 else
-    export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+	export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 fi
 
 # usage: `help git`, `help git commit`, `help bat -h`
 alias bathelp='bat --plain --language=cmd-help'
 help() (
-    set -o pipefail
-    "$@" --help 2>&1 | bathelp
+	set -o pipefail
+	"$@" --help 2>&1 | bathelp
 )
 
 ## neovim support
@@ -82,10 +82,10 @@ export LANG="en_US.UTF-8"
 # Don't change $TERM in your zshrc/bashrc!
 # Setting $TERM in zshrc/bashrc add confusions when your terminal emulators cannot actually supoorts it.
 case $TERM in screen-256color | tmux-256color | xterm-256color)
-        # COLORTERM opts:no|yes|truecolor
-        export COLORTERM=truecolor
-        ;;
-    vte*) ;;
+	# COLORTERM opts:no|yes|truecolor
+	export COLORTERM=truecolor
+	;;
+vte*) ;;
 esac
 
 ## Init zoxide
@@ -100,6 +100,9 @@ eval "$(starship init bash)" || echo "starship not found!"]
 [[ -s $HOME/tools/qfc/bin/qfc.sh ]] && source "$HOME/tools/qfc/bin/qfc.sh"
 qfc_quick_command 'cd' '\C-b' "cd $0"
 qfc_quick_command 'nvim' '\C-p' "nvim $0"
+
+# Init copilot-cli
+eval "$(github-copilot-cli alias -- "$0")"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
