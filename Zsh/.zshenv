@@ -113,6 +113,9 @@ bindkey ',' autosuggest-accept
 qfc_quick_command 'cd' '\C-b' "cd $0"
 qfc_quick_command 'nvim' '\C-p' "nvim $0"
 
+# Init copilot-cli
+eval "$(github-copilot-cli alias -- "$0")"
+
 # >>> conda initialize >>>
 if [ -f $HOME/tools/anaconda/etc/profile.d/conda.sh ]; then
     source "$HOME/tools/anaconda/etc/profile.d/conda.sh"

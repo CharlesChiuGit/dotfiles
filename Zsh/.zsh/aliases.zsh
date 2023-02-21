@@ -9,7 +9,7 @@ alias py='python'
 alias nvf='nvim `fzf`'
 alias ls='exa -1 -l -T -F --colour always --icons -a -L=1 \
     --group-directories-first -b -h --git --time-style long-iso --no-permissions --octal-permissions'
-alias rm='trash' # mv to trash bin
+# alias rm='trash' # mv to trash bin
 alias lg='lazygit'
 alias CA='conda activate'
 alias CD='conda deactivate'
