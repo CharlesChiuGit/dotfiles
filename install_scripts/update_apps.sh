@@ -18,6 +18,7 @@ source ./updates/fzy_up.sh
 source ./updates/glow_up.sh
 source ./updates/jq_up.sh
 source ./updates/lazygit_up.sh
+source ./updates/lazydocker_up.sh
 source ./updates/lf_up.sh
 source ./updates/lnav_up.sh
 source ./updates/navi_up.sh
