@@ -1,8 +1,0 @@
-{
-  "openAIKey": "",
-  "openAICompletionEngine": "text-davinci-002",
-  "openAITemperature": 1,
-  "openAIMaxTokens": 1000,
-  "dalleImageSize": 1024,
-  "disabled": false
-}

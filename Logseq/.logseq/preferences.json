@@ -2,15 +2,16 @@
   "theme": null,
   "themes": {
     "mode": "dark",
-    "light": null,
-    "dark": {
-      "name": "Awesome Styler Dark",
-      "url": "lsp://logseq.io/logseq-awesome-styler/dist/assets/awesomeStyler.css",
-      "description": "Dark customizable theme theme with extra stuff",
-      "mode": "dark",
-      "pid": "logseq-awesome-styler",
-      "selected": false
-    }
+    "light": {
+      "name": "Default Light Theme",
+      "url": null,
+      "description": "Logseq default light theme.",
+      "mode": "light",
+      "selected": false,
+      "group-first": true,
+      "group-desc": "light themes"
+    },
+    "dark": null
   },
   "externals": [],
   "pinnedToolbarItems": [
@@ -21,6 +22,7 @@
     "logseq-heatmap:heatmap-plugin-open",
     "logseq-agenda:logseq-plugin-agenda",
     "logseq-file-manager:logseq-plugin-file-manager",
+    "template-gallery:TemplateGallery",
     "logseq-bionic-speedreader:Bionic",
     "logseq-powertags-plugin:logseq-powertags-plugin",
     "logseq-todo-plugin:logseq-plugin-todo",

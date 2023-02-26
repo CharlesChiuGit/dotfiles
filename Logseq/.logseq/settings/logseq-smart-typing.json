@@ -1,4 +1,6 @@
 {
+  "enableColon": true,
+  "enableBrackets": true,
   "trigger1": "",
   "replacement1": "",
   "trigger2": "",

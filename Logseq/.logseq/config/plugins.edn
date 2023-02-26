@@ -1,116 +1,41 @@
-{:log-stats
- {:version "0.1.4",
-  :repo "QWxleA/log-stats",
-  :effect false,
-  :theme false},
- :logseq-split-block
- {:version "v1.2.0",
-  :repo "hyrijk/logseq-plugin-split-block",
-  :effect false,
-  :theme false},
- :logseq-wrap
- {:version "v0.6.0", :repo "sethyuan/logseq-plugin-wrap", :effect true, :theme false},
+{:logseq-wrap
+ {:version "v0.7.0", :repo "sethyuan/logseq-plugin-wrap", :effect true, :theme false},
  :logseq-paste-more
  {:version "v1.5.5", :repo "usoonees/logseq-plugin-paste-more", :effect true, :theme false},
- :logseq-web-parser
- {:version "1.0.4",
-  :repo "sawhney17/logseq-web-parser",
-  :effect true,
-  :theme false},
- :logseq-move-block
- {:version "v0.0.13",
-  :repo "vipzhicheng/logseq-plugin-move-block",
-  :effect true,
-  :theme false},
- :logseq-plugin-github-get
- {:version "v1.0.2",
-  :repo "mandpd/logseq-plugin-github-get",
-  :effect false,
-  :theme false},
  :logseq-todo-plugin
- {:version "v1.14.1", :repo "ahonn/logseq-plugin-todo", :effect true, :theme false},
+ {:version "v1.16.1", :repo "ahonn/logseq-plugin-todo", :effect true, :theme false},
  :logseq-copy-code-plugin
  {:version "v.1.2.0", :repo "vyleung/logseq-copy-code-plugin", :effect true, :theme false},
- :logseq-heatmap
- {:version "v2.4.3", :repo "pengx17/logseq-plugin-heatmap", :effect true, :theme false},
  :logseq-osmmaps-plugin
  {:version "2.0.3", :repo "hkgnp/logseq-osmmaps-plugin", :effect true, :theme false},
- :logseq-tidy-blocks-plugin
- {:version "v.1.2.0",
-  :repo "vyleung/logseq-tidy-blocks-plugin",
-  :effect true,
-  :theme false},
- :logseq-citation-manager
- {:version "v2.0.3", :repo "sawhney17/logseq-citation-manager", :effect true, :theme false},
  :logseq-ol
- {:version "v0.3.0", :repo "sethyuan/logseq-plugin-ol", :effect false, :theme false},
+ {:version "v0.4.1", :repo "sethyuan/logseq-plugin-ol", :effect false, :theme false},
  :logseq-schrodinger
  {:version "1.5.5",
   :repo "sawhney17/logseq-schrodinger",
   :effect true,
   :theme false},
- :logseq-plugin-gpt3-openai
- {:version "v1.3.1", :repo "briansunter/logseq-plugin-gpt3-openai", :effect true, :theme false},
- :logseq-tabs
- {:version "v1.18.1", :repo "pengx17/logseq-plugin-tabs", :effect true, :theme false},
- :logseq-agenda
- {:version "v2.9.1", :repo "haydenull/logseq-plugin-agenda", :effect true, :theme false},
  :logseq-link-preview
  {:version "v2.2.9",
   :repo "pengx17/logseq-plugin-link-preview",
   :effect true,
   :theme false},
- :logseq-focus-mode
- {:version "v1.0.3",
-  :repo "sethfair/logseq-focus-mode",
-  :effect false,
-  :theme false},
- :logseq-tags
- {:version "v0.1.2",
-  :repo "gidongkwon/logseq-plugin-tags",
-  :effect false,
-  :theme false},
  :logseq-git
- {:version "v1.4.0",
-  :repo "haydenull/logseq-plugin-git",
-  :effect true,
-  :theme false},
- :logseq-graph-analysis
- {:version "0.6.1",
-  :repo "trashhalo/logseq-graph-analysis",
-  :effect false,
-  :theme false},
+ {:version "v1.5.0", :repo "haydenull/logseq-plugin-git", :effect true, :theme false},
  :logseq-mark-map
- {:version "v0.2.8",
-  :repo "vipzhicheng/logseq-plugin-mark-map",
-  :effect false, 
-  :theme false}
- :logseq-days {:version "v0.5.2", :repo "sethyuan/logseq-plugin-days", :effect true, :theme false}
- :logseq-link-unlinked {:version "v1.4.4", :repo "usoonees/logseq-plugin-link-unlink", :effect true, :theme false}
- :logseq-smartsearch {:version "v0.11.1", :repo "sethyuan/logseq-plugin-smartsearch", :effect true, :theme false}
- :logseq-reminder {:version "v0.2.5", :repo "sethyuan/logseq-plugin-reminder", :effect true, :theme false}
+ {:version "v0.3.14", :repo "vipzhicheng/logseq-plugin-mark-map", :effect false, :theme false}
+ :logseq-smartsearch {:version "v0.16.5", :repo "sethyuan/logseq-plugin-smartsearch", :effect true, :theme false}
+ :logseq-reminder {:version "v0.2.7", :repo "sethyuan/logseq-plugin-reminder", :effect true, :theme false}
  :logseq-readwise-official-plugin {:version "v1.3.8", :repo "readwiseio/logseq-readwise-official-plugin", :effect true, :theme false}
  :logseq-readwise-reader-export {:version "0.2.0", :repo "pstuifzand/logseq-readwise-reader-export", :effect true, :theme false}
- :logseq-plugin-panel-coloring {:version "v1.0.8", :repo "YU000jp/logseq-plugin-panel-coloring", :effect false, :theme false}
  :logseq-admonition-panels {:version "0.1.1", :repo "nmartin84/admonition-panels", :effect false, :theme false}
  :logseq-quick-capture {:version "0.0.5", :repo "tankcool/logseq-quick-capture", :effect false, :theme false}
  :logseq-datenlp-plugin {:version "3.13.6", :repo "hkgnp/logseq-datenlp-plugin", :effect true, :theme false}
- :logseq-awesome-links {:version "v1.14.3", :repo "yoyurec/logseq-awesome-links", :effect true, :theme false}
- :samepage {:version "2.3.7", :repo "samepage-network/logseq-samepage", :effect true, :theme false}
- :logseq-awesome-ui {:version "v1.4.12", :repo "yoyurec/logseq-awesome-ui", :effect true, :theme false}
- :logseq-todo-master {:version "v1.10.3", :repo "pengx17/logseq-plugin-todo-master", :effect false, :theme false}
- :logseq-powertags-plugin {:version "0.1.0", :repo "hkgnp/logseq-powertags-plugin", :effect true, :theme false}
- :logseq-bullet-threading {:version "v1.1.1", :repo "pengx17/logseq-plugin-bullet-threading", :effect false, :theme false}
- :logseq-sticky-headers {:version "v1.4.3", :repo "yoyurec/logseq-sticky-headers", :effect true, :theme false}
- :logseq-writegood-plugin {:version "v1.1.2", :repo "hkgnp/logseq-writegood-plugin", :effect false, :theme false}
- :logseq-url-plus {:version "0.0.16", :repo "rlhk/logseq-url-plus", :effect true, :theme false}
- :logseq-file-manager {:version "v1.3.0", :repo "haydenull/logseq-plugin-file-manager", :effect true, :theme false}
- :logseq-smart-typing {:version "v0.5.3", :repo "sethyuan/logseq-plugin-smart-typing", :effect true, :theme false}
- :logseq-plugin-areas {:version "v1.0.1", :repo "bsongOT/logseq-plugin-areas", :effect false, :theme false}
+ :logseq-awesome-links {:version "v1.14.11", :repo "yoyurec/logseq-awesome-links", :effect true, :theme false}
+ :logseq-smart-typing {:version "v0.10.0", :repo "sethyuan/logseq-plugin-smart-typing", :effect true, :theme false}
  :logseq-localassets-plugin {:version "1.6.5", :repo "hkgnp/logseq-localassets-plugin", :effect true, :theme false}
- :logseq-pen {:version "v0.0.3", :repo "vipzhicheng/logseq-plugin-pen", :effect false, :theme false}
- :logseq-plugin-leetcode {:version "v0.0.1", :repo "alucpro/logseq-plugin-leetcode", :effect true, :theme false}
- :logseq-find-and-replace {:version "v1.1.1", :repo "sawhney17/logseq-find-replace", :effect false, :theme false}
  :logseq-plugin-query-chart {:version "v0.5.3", :repo "0w0miki/logseq-plugin-query-chart", :effect true, :theme false}
- :logseq-task-automation {:version "v0.2.0", :repo "aiirobyte/logseq-task-automation", :effect true, :theme false}
- :logseq-awesome-styler {:version "v3.2.5", :repo "yoyurec/logseq-awesome-styler", :effect true, :theme false}}
+ :logseq-catppuccin {:version "v0.2.1", :repo "catppuccin/logseq", :effect false, :theme true}
+ :logseq-awesome-props {:version "v1.8.5", :repo "yoyurec/logseq-awesome-props", :effect true, :theme false}
+ :template-gallery {:version "0.9", :repo "dangermccann/logseq-template-gallery", :effect true, :theme false}
+ :logseq-query-builder-plugin {:version "0.7", :repo "adxsoft/logseq-query-builder-plugin", :effect false, :theme false}}

@@ -1,5 +1,7 @@
 {
   "hotkey": "",
+  "defaultMarker": "",
+  "defaultPriority": "",
   "whereToPlaceNewTask": "",
   "showNextNDaysTask": false,
   "numberOfNextNDays": 14,

@@ -1,4 +1,5 @@
 {
   "shortcut": "ctrl+space",
+  "enableSearchProvider": false,
   "disabled": false
 }

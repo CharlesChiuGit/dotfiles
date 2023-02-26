@@ -1,9 +1,15 @@
 {
   "theme": "auto",
+  "nodeAnchorEnabled": false,
+  "nodeAnchorIcon": "🟢",
+  "autofitEnabled": true,
+  "replaceLatexMathExpressionEnabled": false,
+  "syncCollapsedState": false,
+  "colorFreezeLevel": "0",
   "disabled": false,
   "keyBindings": {
     "openMarkmap": "ctrl+m ctrl+m",
-    "openMarkmapFull": "ctrl+shift+m ctrl+shift+m"
+    "openMarkmapFull": "ctrl+alt+shift+m ctrl+alt+shift+m"
   },
-  "settingsVersion": "v2"
+  "settingsVersion": "v3"
 }
