@@ -310,7 +310,7 @@ complete -o default -F _fzf_opts_completion fzf-tmux
 d_cmds="${FZF_COMPLETION_DIR_COMMANDS:-cd pushd rmdir}"
 a_cmds="
   awk cat diff diff3
-  emacs emacsclient ex file ftp g++ gcc gvim head hg java
+  emacs emacsclient ex file ftp g++ gcc gvim head hg hx java
   javac ld less more mvim nvim patch perl python ruby
   sed sftp sort source tail tee uniq vi view vim wc xdg-open
   basename bunzip2 bzip2 chmod chown curl cp dirname du
@@ -373,7 +373,7 @@ _fzf_setup_completion() {
 }
 
 # Environment variables / Aliases / Hosts / Process
-_fzf_setup_completion 'var'   export unset
+_fzf_setup_completion 'var'   export unset printenv
 _fzf_setup_completion 'alias' unalias
 _fzf_setup_completion 'host'  ssh telnet
 _fzf_setup_completion 'proc'  kill
