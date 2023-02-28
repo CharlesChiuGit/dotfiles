@@ -1,6 +1,6 @@
 {
   "indentHeaders": true,
-  "newLineBlock": false,
+  "newLineBlock": true,
   "KeyboardShortcut_paste": "mod+ctrl+shift+v",
   "enablePasteMore": true,
   "disabled": false

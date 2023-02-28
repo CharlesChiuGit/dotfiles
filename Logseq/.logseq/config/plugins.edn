@@ -3,7 +3,7 @@
  :logseq-paste-more
  {:version "v1.5.5", :repo "usoonees/logseq-plugin-paste-more", :effect true, :theme false},
  :logseq-todo-plugin
- {:version "v1.16.1", :repo "ahonn/logseq-plugin-todo", :effect true, :theme false},
+ {:version "v1.16.2", :repo "ahonn/logseq-plugin-todo", :effect true, :theme false},
  :logseq-copy-code-plugin
  {:version "v.1.2.0", :repo "vyleung/logseq-copy-code-plugin", :effect true, :theme false},
  :logseq-osmmaps-plugin
@@ -16,15 +16,12 @@
   :effect true,
   :theme false},
  :logseq-link-preview
- {:version "v2.2.9",
-  :repo "pengx17/logseq-plugin-link-preview",
-  :effect true,
-  :theme false},
+ {:version "v2.2.10", :repo "pengx17/logseq-plugin-link-preview", :effect true, :theme false},
  :logseq-git
  {:version "v1.5.0", :repo "haydenull/logseq-plugin-git", :effect true, :theme false},
  :logseq-mark-map
  {:version "v0.3.14", :repo "vipzhicheng/logseq-plugin-mark-map", :effect false, :theme false}
- :logseq-smartsearch {:version "v0.16.5", :repo "sethyuan/logseq-plugin-smartsearch", :effect true, :theme false}
+ :logseq-smartsearch {:version "v0.17.2", :repo "sethyuan/logseq-plugin-smartsearch", :effect true, :theme false}
  :logseq-reminder {:version "v0.2.7", :repo "sethyuan/logseq-plugin-reminder", :effect true, :theme false}
  :logseq-readwise-official-plugin {:version "v1.3.8", :repo "readwiseio/logseq-readwise-official-plugin", :effect true, :theme false}
  :logseq-readwise-reader-export {:version "0.2.0", :repo "pstuifzand/logseq-readwise-reader-export", :effect true, :theme false}
@@ -32,10 +29,9 @@
  :logseq-quick-capture {:version "0.0.5", :repo "tankcool/logseq-quick-capture", :effect false, :theme false}
  :logseq-datenlp-plugin {:version "3.13.6", :repo "hkgnp/logseq-datenlp-plugin", :effect true, :theme false}
  :logseq-awesome-links {:version "v1.14.11", :repo "yoyurec/logseq-awesome-links", :effect true, :theme false}
- :logseq-smart-typing {:version "v0.10.0", :repo "sethyuan/logseq-plugin-smart-typing", :effect true, :theme false}
+ :logseq-smart-typing {:version "v0.10.1", :repo "sethyuan/logseq-plugin-smart-typing", :effect true, :theme false}
  :logseq-localassets-plugin {:version "1.6.5", :repo "hkgnp/logseq-localassets-plugin", :effect true, :theme false}
- :logseq-plugin-query-chart {:version "v0.5.3", :repo "0w0miki/logseq-plugin-query-chart", :effect true, :theme false}
+ :logseq-plugin-query-chart {:version "v0.5.4", :repo "0w0miki/logseq-plugin-query-chart", :effect true, :theme false}
  :logseq-catppuccin {:version "v0.2.1", :repo "catppuccin/logseq", :effect false, :theme true}
- :logseq-awesome-props {:version "v1.8.5", :repo "yoyurec/logseq-awesome-props", :effect true, :theme false}
- :template-gallery {:version "0.9", :repo "dangermccann/logseq-template-gallery", :effect true, :theme false}
+ :template-gallery {:version "0.10", :repo "dangermccann/logseq-template-gallery", :effect true, :theme false}
  :logseq-query-builder-plugin {:version "0.7", :repo "adxsoft/logseq-query-builder-plugin", :effect false, :theme false}}
