@@ -6,6 +6,7 @@ set -o pipefail
 ######################################################################
 #                            Sheldon Part                            #
 ######################################################################
+# Ubuntu: sudo apt install pkg-config -y
 if [[ -z $(command -v sheldon) ]]; then
     echo "Install Sheldon"
     cargo install sheldon --locked
