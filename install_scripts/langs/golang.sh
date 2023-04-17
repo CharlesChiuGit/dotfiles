@@ -8,7 +8,7 @@ set -o pipefail
 ######################################################################
 GO_DIR=$HOME/tools/golang
 GO_SRC_NAME=$HOME/packages/golang.tar.gz
-GO_LINK="https://go.dev/dl/go1.19.3.linux-amd64.tar.gz"
+GO_LINK="https://go.dev/dl/go1.20.3.linux-amd64.tar.gz"
 # if [[ -z "$(command -v go)" ]] && [[ ! -f "$GO_DIR/bin/go" ]]; then
 if [[ ! -f "$GO_DIR/bin/go" ]]; then
     echo "Install Golang"
