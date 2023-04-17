@@ -6,7 +6,7 @@ set -o pipefail
 ######################################################################
 #                             Tmux Part                              #
 ######################################################################
-# NOTE: sudo apt install libevent-dev
+# Ubuntu: sudo apt install cmake libevent-dev -y
 TMUX_DIR=$HOME/tools/tmux
 TMUX_SRC_NAME=$HOME/packages/tmux.tar.gz
 TMUX_LINK="https://github.com/tmux/tmux/releases/download/3.3a/tmux-3.3a.tar.gz"
