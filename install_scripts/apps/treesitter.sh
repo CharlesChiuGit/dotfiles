@@ -8,7 +8,7 @@ set -o pipefail
 ######################################################################
 TS_DIR=$HOME/tools/treesitter
 TS_SRC_NAME=$HOME/packages/tree-sitter-linux-x64.gz
-TS_LINK="https://github.com/tree-sitter/tree-sitter/releases/download/v0.20.7/tree-sitter-linux-x64.gz"
+TS_LINK="https://github.com/tree-sitter/tree-sitter/releases/download/v0.20.8/tree-sitter-linux-x64.gz"
 if [[ -z $(command -v tree-sitter) ]] && [[ ! -f $TS_DIR/tree-sitter ]]; then
     echo "Install treesitter"
     if [[ ! -f $TS_SRC_NAME ]]; then
