@@ -3,8 +3,6 @@
 	email = charleschiu@hey.com
 [core]
     pager = delta
-    # fix git not working in pwsh on windows
-    # sshCommand = 'C:\\Windows\\System32\\OpenSSH\\ssh.exe'
 [alias]
 	st = status
 	cm = commit -m
