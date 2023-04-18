@@ -1,0 +1,3234 @@
+.TH DUPLICITY 1 "January 26, 2023" "Version 1.2.2" "User Manuals" \"  -*- nroff -*-
+.\" disable justification (adjust text to left margin only)
+.\" command line examples stay readable through that
+.ad l
+.\" disable hyphenation
+.nh
+
+.SH NAME
+duplicity \- Encrypted incremental backup to local or remote storage.
+
+.SH SYNOPSIS
+For detailed descriptions for each command see chapter
+.BR ACTIONS .
+
+.B duplicity [full|incremental]
+.I [options]
+source_directory target_url
+
+.B duplicity verify
+.I [options] [--compare-data] [--file-to-restore <relpath>] [--time time]
+source_url target_directory
+
+.B duplicity collection-status
+.I [options] [--file-changed <relpath>] [--show-changes-in-set <index>]
+target_url
+
+.B duplicity list-current-files
+.I [options] [--time time]
+target_url
+
+.B duplicity [restore]
+.I [options] [--file-to-restore <relpath>] [--time time]
+source_url target_directory
+
+.B duplicity remove-older-than <time>
+.I [options] [--force]
+target_url
+
+.B duplicity remove-all-but-n-full  <count>
+.I [options] [--force]
+target_url
+
+.B duplicity remove-all-inc-of-but-n-full <count>
+.I [options] [--force]
+target_url
+
+.B duplicity cleanup
+.I [options] [--force]
+target_url
+
+.B duplicity replicate
+.I [options] [--time time]
+source_url target_url
+
+.SH DESCRIPTION
+Duplicity incrementally backs up files and folders into
+tar-format volumes encrypted with GnuPG and places them to a
+remote (or local) storage backend.  See chapter
+.B URL FORMAT
+for a list of all supported backends and how to address them.
+Because duplicity uses librsync, incremental backups are space efficient
+and only record the parts of files that have changed since the last backup.
+Currently duplicity supports deleted files, full Unix permissions, uid/gid,
+directories, symbolic links, fifos, etc., but not hard links.
+
+If you are backing up the root directory /, remember to --exclude
+/proc, or else duplicity will probably crash on the weird stuff in
+there.
+
+.SH EXAMPLES
+Here is an example of a backup, using sftp to back up /home/me to
+some_dir on the other.host machine:
+.PP
+.RS
+duplicity /home/me sftp://uid@other.host/some_dir
+.PP
+.RE
+If the above is run repeatedly, the first will be a full backup, and
+subsequent ones will be incremental. To force a full backup, use the
+.I full
+action:
+.PP
+.RS
+duplicity full /home/me sftp://uid@other.host/some_dir
+.PP
+.RE
+or enforcing a full every other time via
+.I --full-if-older-than <time>
+, e.g. a full every month:
+.PP
+.RS
+duplicity --full-if-older-than 1M /home/me sftp://uid@other.host/some_dir
+.PP
+.RE
+Now suppose we accidentally delete /home/me and want to restore it
+the way it was at the time of last backup:
+.PP
+.RS
+duplicity sftp://uid@other.host/some_dir /home/me
+.PP
+.RE
+Duplicity enters restore mode because the URL comes before the local
+directory.  If we wanted to restore just the file "Mail/article" in
+/home/me as it was three days ago into /home/me/restored_file:
+.PP
+.RS
+duplicity -t 3D --file-to-restore Mail/article sftp://uid@other.host/some_dir /home/me/restored_file
+.PP
+.RE
+The following command compares the latest backup with the current files:
+.PP
+.RS
+duplicity verify sftp://uid@other.host/some_dir /home/me
+.PP
+.RE
+Finally, duplicity recognizes several include/exclude options.  For
+instance, the following will backup the root directory, but exclude
+/mnt, /tmp, and /proc:
+.PP
+.RS
+duplicity --exclude /mnt --exclude /tmp --exclude /proc /
+file:///usr/local/backup
+.PP
+.RE
+Note that in this case the destination is the local directory
+/usr/local/backup.  The following will backup only the /home and /etc
+directories under root:
+.PP
+.RS
+duplicity --include /home --include /etc --exclude '**' /
+file:///usr/local/backup
+.PP
+.RE
+Duplicity can also access a repository via ftp.  If a user name is
+given, the environment variable FTP_PASSWORD is read to determine the
+password:
+.PP
+.RS
+FTP_PASSWORD=mypassword duplicity /local/dir ftp://user@other.host/some_dir
+
+.SH ACTIONS
+Duplicity knows action commands, which can be finetuned with options.
+.br
+The actions for backup (full,incr) and restoration (restore) can as well be
+left out as duplicity detects in what mode it should switch to by the order
+of target URL and local folder. If the target URL comes before the local folder
+a restore is in order, is the local folder before target URL then this folder
+is about to be backed up to the target URL.
+.br
+If a backup is in order and old signatures can be found duplicity automatically
+performs an incremental backup.
+.PP
+.B NOTE:
+The following explanations explain some but
+.B not
+all options that can be used in connection with that action command.
+Consult the OPTIONS section for more detailed informations.
+
+.TP
+.BI "full " "<folder> <url>"
+Perform a full backup. A new backup chain is started even if
+signatures are available for an incremental backup.
+
+.TP
+.BI "incr " "<folder> <url>"
+If this is requested an incremental backup will be performed.
+Duplicity will abort if no old signatures can be found.
+
+.TP
+.BI "verify " "[--compare-data] [--time <time>] [--file-to-restore <rel_path>] <url> <local_path>"
+Verify tests the integrity of the backup archives at the remote location by downloading each file
+and checking both that it can restore the archive and that the restored file matches the signature
+of that file stored in the backup, i.e. compares the archived file with its hash value from archival
+time. Verify does not actually restore and will not overwrite any local files. Duplicity
+will exit with a non-zero error level if any files do not match the signature stored in the archive
+for that file. On verbosity level 4 or higher, it will log a message for each file that differs
+from the stored signature. Files must be downloaded to the local machine in order to compare them.
+Verify does not compare the backed-up version of the file to the current local copy of the files
+unless the --compare-data option is used (see below).
+.br
+The
+.I --file-to-restore
+option restricts verify to that file or folder.
+The
+.I --time
+option allows to select a backup to verify.
+The
+.I --compare-data
+option enables data comparison (see below).
+
+.TP
+.BI "collection-status " "[--file-changed <relpath>] [--show-changes-in-set <index>] <url>"
+Summarize the status of the backup repository by printing the chains
+and sets found, and the number of volumes in each.
+.br
+The
+.I --file-changed
+option summarizes the changes to the file (in the most recent backup chain).
+The
+.I --show-changes-in-set
+option summarizes all the file changes in the index:th backup set (where index 0 means the latest set, 1 means the next to latest, etc.).
+
+.TP
+.BI "list-current-files " "[--time <time>] <url>"
+Lists the files contained in the most current backup or backup at time.
+The information will be extracted from the signature files, not the archive data
+itself. Thus the whole archive does not have to be downloaded, but on
+the other hand if the archive has been deleted or corrupted, this
+command will not detect it.
+
+.TP
+.BI "restore " "[--file-to-restore <relpath>] [--time <time>] <url> <target_folder>"
+You can restore the full monty or selected folders/files from a specific time.
+Use the relative path as it is printed by
+.BR list-current-files .
+Usually not needed as duplicity enters restore mode when it detects that the URL
+comes before the local folder.
+
+.TP
+.BI "remove-older-than " "<time> [--force] <url>"
+Delete all backup sets older than the given time.  Old backup sets
+will not be deleted if backup sets newer than
+.I time
+depend on them.  See the
+.B TIME FORMATS
+section for more information.  Note, this action cannot be combined
+with backup or other actions, such as cleanup.  Note also that
+.I --force
+will be needed to delete the files instead of just listing them.
+
+.TP
+.BI "remove-all-but-n-full " "<count> [--force] <url>"
+Delete all backups sets that are older than the count:th last full
+backup (in other words, keep the last
+.I count
+full backups and associated incremental sets).
+.I count
+must be larger than zero. A value of 1 means that only the single most
+recent backup chain will be kept.  Note that
+.I --force
+will be needed to delete the files instead of just listing them.
+
+.TP
+.BI "remove-all-inc-of-but-n-full " "<count> [--force] <url>"
+Delete incremental sets of all backups sets that are older than the count:th last full
+backup (in other words, keep only old full backups and not their increments).
+.I count
+must be larger than zero. A value of 1 means that only the single most
+recent backup chain will be kept intact.  Note that
+.I --force
+will be needed to delete the files instead of just listing them.
+
+.TP
+.BI "cleanup " "[--force] <url>"
+Delete the extraneous duplicity files on the given backend.
+Non-duplicity files, or files in complete data sets will not be
+deleted.  This should only be necessary after a duplicity session
+fails or is aborted prematurely.  Note that
+.I --force
+will be needed to delete the files instead of just listing them.
+
+.TP
+.BI "replicate " "[--time time] <source_url> <target_url>"
+Replicate backup sets from source to target backend. Files will be
+(re)-encrypted and (re)-compressed depending on normal backend
+options. Signatures and volumes will not get recomputed, thus options like
+.BI --volsize
+or
+.BI --max-blocksize
+have no effect.
+When
+.I --time time
+is given, only backup sets older than time will be replicated.
+
+.SH OPTIONS
+
+.TP
+.BI --allow-source-mismatch
+Do not abort on attempts to use the same archive dir or remote backend
+to back up different directories. duplicity will tell you if you need
+this switch.
+
+.TP
+.BI "--archive-dir " path
+.RS
+The archive directory.
+
+.B NOTE:
+This option changed in 0.6.0.  The archive directory is now necessary
+in order to manage persistence for current and future enhancements.
+As such, this option is now used only to change the location of the
+archive directory.  The archive directory should
+.B not
+be deleted, or duplicity will have to recreate it from
+the remote repository (which may require decrypting the backup contents).
+
+When backing up or restoring, this option specifies that the local
+archive directory is to be created in
+.IR path .
+If the archive directory is not specified, the default will be to
+create the archive directory in
+.IR ~/.cache/duplicity/ .
+
+The archive directory can be shared between backups to multiple targets,
+because a subdirectory of the archive dir is used for individual backups (see
+.BI --name
+).
+
+The combination of archive directory and backup name must be unique
+in order to separate the data of different backups.
+
+The interaction between the
+.BI --archive-dir
+and the
+.BI --name
+options allows for four possible combinations for the location of the archive dir:
+
+.RS
+.IP 1.
+neither specified (default)
+ ~/.cache/duplicity/\c
+.IR hash-of-url
+.IP 2.
+--archive-dir=/arch, no --name
+ /arch/\c
+.IR hash-of-url
+.IP 3.
+no --archive-dir, --name=foo
+ ~/.cache/duplicity/foo
+.IP 4.
+--archive-dir=/arch, --name=foo
+ /arch/foo
+.RE
+.RE
+
+.TP
+.BI "--asynchronous-upload "
+(EXPERIMENTAL) Perform file uploads asynchronously in the background,
+with respect to volume creation. This means that duplicity can upload
+a volume while, at the same time, preparing the next volume for
+upload. The intended end-result is a faster backup, because the local
+CPU and your bandwidth can be more consistently utilized. Use of this
+option implies additional need for disk space in the temporary storage
+location; rather than needing to store only one volume at a time,
+enough storage space is required to store two volumes.
+
+.TP
+.BI "--azure-blob-tier"
+Standard storage tier used for backup files (Hot|Cool|Archive).
+
+.TP
+.BI "--azure-max-single-put-size"
+Specify the number of the largest supported upload size where the Azure
+library makes only one put call. If the content size is known and below this
+value the Azure library will only perform one put request to upload one block.
+The number is expected to be in bytes.
+
+.TP
+.BI "--azure-max-block-size"
+Specify the number for the block size used by the Azure library to upload
+blobs if it is split into multiple blocks.
+The maximum block size the service supports is 104857600 (100MiB) and the
+default is 4194304 (4MiB)
+
+.TP
+.BI "--azure-max-connections"
+Specify the number of maximum connections to transfer one blob to Azure
+blob size exceeds 64MB. The default values is 2.
+
+.TP
+.BI "--backend-retry-delay " number
+Specifies the number of seconds that duplicity waits after an error has
+occured before attempting to repeat the operation.
+
+.TP
+.BI "--cf-backend " backend
+Allows the explicit selection of a cloudfiles backend. Defaults to
+.BR pyrax .
+Alternatively you might choose
+.BR cloudfiles .
+
+.TP
+.BI --b2-hide-files
+Causes Duplicity to hide files in B2 instead of deleting them. Useful in
+combination with B2's lifecycle rules.
+
+.TP
+.BI --compare-data
+Enable data comparison of regular files on action verify. This conducts a
+verify as described above to verify the integrity of the backup archives,
+but additionally compares restored files to those in target_directory.
+Duplicity will not replace any files in target_directory. Duplicity will
+exit with a non-zero error level if the files do not correctly verify or
+if any files from the archive differ from those in target_directory. On
+verbosity level 4 or higher, it will log a message for each file that
+differs from its equivalent in target_directory.
+
+.TP
+.BI --copy-links
+Resolve symlinks during backup.
+Enabling this will resolve & back up the symlink's file/folder data instead of
+the symlink itself, potentially increasing the size of the backup.
+
+.TP
+.BI "--dry-run "
+Calculate what would be done, but do not perform any backend actions
+
+.TP
+.BI "--encrypt-key " key-id
+When backing up, encrypt to the given public key, instead of using
+symmetric (traditional) encryption.  Can be specified multiple times.
+The key-id can be given in any of the formats supported by GnuPG; see
+.BR gpg (1),
+section "HOW TO SPECIFY A USER ID" for details.
+
+.TP
+.BI "--encrypt-secret-keyring " filename
+This option can only be used with
+.BR --encrypt-key ,
+and changes the path to the secret keyring for the encrypt key to
+.I filename
+This keyring is not used when creating a backup. If not specified, the
+default secret keyring is used which is usually located at .gnupg/secring.gpg
+
+.TP
+.BI "--encrypt-sign-key " key-id
+Convenience parameter. Same as
+.BR --encrypt-key
+.IR key-id
+.BR --sign-key
+.IR "key-id" .
+
+.TP
+.BI "--exclude " shell_pattern
+Exclude the file or files matched by
+.IR shell_pattern .
+If a directory is matched, then files under that directory will also
+be matched.  See the
+.B FILE SELECTION
+section for more information.
+
+.TP
+.B "--exclude-device-files"
+Exclude all device files.  This can be useful for security/permissions
+reasons or if duplicity is not handling device files correctly.
+
+.TP
+.BI "--exclude-filelist " filename
+Excludes the files listed in
+.IR filename,
+with each line of the filelist interpreted according to the
+same rules as
+.BI --include
+and
+.BI --exclude.
+See the
+.B FILE SELECTION
+section for more information.
+
+.TP
+.BR "--exclude-if-present " filename
+Exclude directories if filename is present. Allows the user to specify folders
+that they do not wish to backup by adding a specified file (e.g. ".nobackup")
+instead of maintaining a comprehensive exclude/include list.
+
+.TP
+.BR "--exclude-older-than " time
+Exclude any files whose modification date is earlier than the specified
+.IR time .
+This can be used to produce a partial backup that contains only
+recently changed files. See the
+.B TIME FORMATS
+section for more information.
+
+.TP
+.BI --exclude-other-filesystems
+Exclude files on file systems (identified by device number) other than
+the file system the root of the source directory is on.
+
+.TP
+.BI "--exclude-regexp " regexp
+Exclude files matching the given regexp.  Unlike the
+.BI --exclude
+option, this option does not match files in a directory it matches.
+See the
+.B FILE SELECTION
+section for more information.
+
+.TP
+.BI "--files-from " filename
+Read a list of files to backup from filename rather than searching the entire
+backup source directory. Operation is otherwise normal, just on the specified
+subset of the backup source directory.
+
+Files must be specified one per line and relative to the backup source
+directory. Any absolute paths will raise an error. All characters per line are
+significant and treated as part of the path, including leading and trailing
+whitespace. Lines are separated by newlines or nulls, depending on whether the
+.B "--null-separator"
+switch was given.
+
+It is not necessary to include the parent directory of listed files, their
+inclusion is implied. However, the content of any explicitly listed directories
+is not implied. All required files must be listed when this option is used.
+
+.TP
+.BI "--file-prefix " prefix
+.PD 0
+.TP
+.BI "--file-prefix-manifest " prefix
+.PD 0
+.TP
+.BI "--file-prefix-archive " prefix
+.PD 0
+.TP
+.BI "--file-prefix-signature " prefix
+.RS
+Adds a prefix to either all files or only manifest, archive, signature files.
+
+The same set of prefixes must be passed in on backup and restore.
+
+If both global and type-specific prefixes are set, global prefix will go before
+type-specific prefixes.
+
+See also
+.B "A NOTE ON FILENAME PREFIXES"
+.RE
+
+.TP
+.BI "--file-to-restore " path
+This option may be given in restore mode, causing only
+.I path
+to be restored instead of the entire contents of the backup archive.
+.I path
+should be given relative to the root of the directory backed up.
+
+.TP
+.BI --filter-globbing
+.PD 0
+.TP
+.BI --filter-ignorecase
+.PD 0
+.TP
+.BI --filter-literal
+.PD 0
+.TP
+.BI --filter-regexp
+.PD 0
+.TP
+.BI --filter-strictcase
+.RS
+Change the interpretation of patterns passed to the file selection condition
+option arguments
+.BI --exclude
+and
+.BI --include
+(and variations thereof, including file lists). These options can appear multiple
+times to switch between shell globbing (default), literal strings, and regular
+expressions, case sensitive (default) or not. The specified interpretation applies
+for all subsequent selection conditions up until the next
+.BI --filter
+option.
+
+See the
+.B FILE SELECTION
+section for more information.
+.RE
+
+.TP
+.BI "--full-if-older-than " time
+Perform a full backup if an incremental backup is requested, but the
+latest full backup in the collection is older than the given
+.IR time .
+See the
+.B TIME FORMATS
+section for more information.
+
+.TP
+.BI --force
+Proceed even if data loss might result.  Duplicity will let the user
+know when this option is required.
+
+.TP
+.BI --ftp-passive
+Use passive (PASV) data connections.  The default is to use passive,
+but to fallback to regular if the passive connection fails or times
+out.
+
+.TP
+.BI --ftp-regular
+Use regular (PORT) data connections.
+
+.TP
+.BI --gio
+Use the GIO backend and interpret any URLs as GIO would.
+
+.TP
+.BI "--hidden-encrypt-key " key-id
+Same as
+.BR --encrypt-key ,
+but it hides user's key id from encrypted file. It uses the gpg's
+.BI --hidden-recipient
+command to obfuscate the owner of the backup. On restore, gpg will
+automatically try all available secret keys in order to decrypt the
+backup. See gpg(1) for more details.
+
+.TP
+.BI --ignore-errors
+.RS
+Try to ignore certain errors if they happen. This option is only
+intended to allow the restoration of a backup in the face of certain
+problems that would otherwise cause the backup to fail. It is not ever
+recommended to use this option unless you have a situation where you
+are trying to restore from backup and it is failing because of an
+issue which you want duplicity to ignore. Even then, depending on the
+issue, this option may not have an effect.
+
+Please note that while ignored errors will be logged, there will be no
+summary at the end of the operation to tell you what was ignored, if
+anything. If this is used for emergency restoration of data, it is
+recommended that you run the backup in such a way that you can revisit
+the backup log (look for lines containing the string IGNORED_ERROR).
+
+If you ever have to use this option for reasons that are not
+understood or understood but not your own responsibility, please
+contact duplicity maintainers. The need to use this option under
+production circumstances would normally be considered a bug.
+.RE
+
+.TP
+.BI "--imap-full-address " email_address
+The full email address of the user name when logging into an imap server.
+If not supplied just the user name part of the email address is used.
+
+.TP
+.BI "--imap-mailbox " option
+Allows you to specify a different mailbox.  The default is
+"INBOX".
+Other languages may require a different mailbox than the default.
+
+.TP
+.BI "--gpg-binary " file_path
+Allows you to force duplicity to use
+.I file_path
+as gpg command line binary. Can be an absolute or relative file path or a file name.
+Default value is 'gpg'. The binary will be localized via the PATH environment variable.
+
+.TP
+.BI "--gpg-options " options
+Allows you to pass options to gpg encryption.  The
+.I options
+list should be of the form "--opt1 --opt2=parm" where the string is
+quoted and the only spaces allowed are between options.
+
+.TP
+.BI "--include " shell_pattern
+Similar to
+.BI --exclude
+but include matched files instead.  Unlike
+.BR --exclude ,
+this option will also match parent directories of matched files
+(although not necessarily their contents).  See the
+.B FILE SELECTION
+section for more information.
+
+.TP
+.BI "--include-filelist " filename
+Like
+.BR --exclude-filelist ,
+but include the listed files instead.  See the
+.B FILE SELECTION
+section for more information.
+
+.TP
+.BI "--include-regexp " regexp
+Include files matching the regular expression
+.IR regexp .
+Only files explicitly matched by
+.I regexp
+will be included by this option.  See the
+.B FILE SELECTION
+section for more information.
+
+.TP
+.BI "--log-fd " number
+Write specially-formatted versions of output messages to the specified file
+descriptor.  The format used is designed to be easily consumable by other
+programs.
+
+.TP
+.BI "--log-file " filename
+Write specially-formatted versions of output messages to the specified file.
+The format used is designed to be easily consumable by other programs.
+
+.TP
+.BI "--max-blocksize " number
+.RS
+determines the number of the blocks examined for changes during the diff process.
+For files < 1MB the blocksize is a constant of 512.
+For files over 1MB the size is given by:
+
+file_blocksize = int((file_len / (2000 * 512)) * 512)
+.br
+return min(file_blocksize, config.max_blocksize)
+
+where config.max_blocksize defaults to 2048.
+If you specify a larger max_blocksize, your difftar files will be larger, but your sigtar files will be smaller.
+If you specify a smaller max_blocksize, the reverse occurs.
+The --max-blocksize option should be in multiples of 512.
+.RE
+
+.TP
+.BI "--name " symbolicname
+.RS
+Set the symbolic name of the backup being operated on. The intent is
+to use a separate name for each logically distinct backup. For
+example, someone may use "home_daily_s3" for the daily backup of a
+home directory to Amazon S3. The structure of the name is up to the
+user, it is only important that the names be distinct. The symbolic
+name is currently only used to affect the expansion of
+.BI --archive-dir
+, but may be used for additional features in the future. Users running
+more than one distinct backup are encouraged to use this option.
+
+If not specified, the default value is a hash of the backend URL.
+.RE
+
+.TP
+.BI --no-compression
+Do not use GZip to compress files on remote system.
+
+.TP
+.BI --no-encryption
+Do not use GnuPG to encrypt files on remote system.
+
+.TP
+.BI --no-print-statistics
+By default duplicity will print statistics about the current session
+after a successful backup.  This switch disables that behavior.
+
+.TP
+.BI --no-files-changed
+By default duplicity will collect file names and change action in
+memory (add, del, chg) during backup.  This can be quite expensive
+in memory use, especially with millions of small files.
+This flag turns off that collection.  This means that the
+--file-changed option for collection-status will return nothing.
+
+.TP
+.BI --null-separator
+Use nulls (\\0) instead of newlines (\\n) as line separators, which
+may help when dealing with filenames containing newlines.  This
+affects the expected format of the files specified by the
+--{include|exclude}-filelist switches and the --{files-from} option,
+as well as the format of the directory statistics file.
+
+.TP
+.BI --numeric-owner
+On restore always use the numeric uid/gid from the archive and not the
+archived user/group names, which is the default behaviour.
+Recommended for restoring from live cds which might have the users with
+identical names but different uids/gids.
+
+.TP
+.BI --do-not-restore-ownership
+Ignores the uid/gid from the archive and keeps the current user's one.
+Recommended for restoring data to mounted filesystem which do not
+support Unix ownership or when root privileges are not available.
+
+.TP
+.BI "--num-retries " number
+Number of retries to make on errors before giving up.
+
+.TP
+.BI --old-filenames
+Use the old filename format (incompatible with Windows/Samba) rather than
+the new filename format.
+
+.TP
+.BI "--par2-options " options
+Verbatim options to pass to par2.
+
+.TP
+.BI "--par2-redundancy " percent
+Adjust the level of redundancy in
+.I percent
+for Par2 recovery files (default 10%).
+
+.TP
+.BI "--par2-volumes " number
+Number of Par2 volumes to create (default 1).
+
+.TP
+.BI --progress
+When selected, duplicity will output the current upload progress and estimated
+upload time. To annotate changes, it will perform a first dry-run before a full
+or incremental, and then runs the real operation estimating the real upload
+progress.
+
+.TP
+.BI "--progress-rate " number
+Sets the update rate at which duplicity will output the upload progress
+messages (requires
+.BI --progress
+option). Default is to print the status each 3 seconds.
+
+.TP
+.BI "--rename " "<original path> <new path>"
+.RS
+Treats the path
+.I orig
+in the backup as if it were the path
+.I new.
+Can be passed multiple times. An example:
+
+duplicity restore --rename Documents/metal Music/metal sftp://uid@other.host/some_dir /home/me
+.RE
+
+.TP
+.BI "--rsync-options " options
+.RS
+Allows you to pass options to the rsync backend.  The
+.I options
+list should be of the form "opt1=parm1 opt2=parm2" where the option string is
+quoted and the only spaces allowed are between options. The option string
+will be passed verbatim to rsync, after any internally generated option
+designating the remote port to use. Here is a possibly useful example:
+
+duplicity --rsync-options="--partial-dir=.rsync-partial" /home/me rsync://uid@other.host/some_dir
+.RE
+
+.TP
+.BI "--s3-endpoint-url " url
+.RS
+Specifies the endpoint URL of the S3 storage.
+
+.B NOTE:
+Due to API restrictions the legacy backend
+.B boto
+will use only the values
+.I scheme (protocol)
+and
+.I hostname
+from the given
+.IR url .
+Choosing
+.B 'http://'
+will disable SSL encryption, just as if
+.B --s3-unencrypted-connection
+were set.
+.RE
+
+.TP
+.BI "--s3-european-buckets"
+.RS
+When using the Amazon S3 backend, create buckets in Europe instead of
+the default (requires
+.B --s3-use-new-style
+). Also see the
+.B EUROPEAN S3 BUCKETS
+section.
+
+.B NOTE:
+This option does not apply when using the
+.B boto3
+backend, which does not create buckets.
+
+See also
+.B "A NOTE ON AMAZON S3"
+below.
+.RE
+
+.TP
+.BI "--s3-multipart-chunk-size"
+.RS
+Chunk size (in MB, default is 20MB) used for S3 multipart uploads. Adjust this
+to maximize bandwidth usage. For example, a chunk size of 10MB and a
+volsize of 100MB would result in 10 chunks per volume upload.
+
+.B NOTE:
+This value should optimally be an even multiple of your
+.B --volsize
+for optimal performance.
+
+See also
+.B "A NOTE ON AMAZON S3"
+below.
+.RE
+
+.TP
+.BI "--s3-multipart-max-procs"
+.RS
+Maximum number of concurrent uploads when performing a multipart upload.
+The default is 4. You can adjust this number to maximizing bandwidth
+and CPU utilization.
+
+.B NOTE:
+Too many concurrent uploads may have diminishing returns.
+
+See also
+.B "A NOTE ON AMAZON S3"
+below.
+.RE
+
+.TP
+.BI "--s3-multipart-max-timeout"
+.RS
+You can control the maximum time (in seconds) a multipart upload can spend on
+uploading a single chunk to S3. This may be useful if you find your system
+hanging on multipart uploads or if you'd like to control the time variance
+when uploading to S3 to ensure you kill connections to slow S3 endpoints.
+
+.B NOTE:
+This has no effect when using
+.B boto3
+backend.
+
+See also
+.B "A NOTE ON AMAZON S3"
+below.
+.RE
+
+.TP
+.BI "--s3-region-name"
+.RS
+Specifies the region of the S3 storage. Usually mandatory if the bucket is created in a specific region.
+
+.B NOTE:
+Only in
+.B boto3
+backend.
+.RE
+
+.TP
+.BI "--s3-unencrypted-connection"
+.RS
+Disable SSL for connections to S3. This may be much faster, at some cost to confidentiality.
+
+With this option set, anyone between your computer and S3 can observe the traffic
+and will be able to tell: that you are using Duplicity, the name of the bucket,
+your AWS Access Key ID, the increment dates and the amount of data in each increment.
+
+This option affects only the connection, not the GPG encryption of the backup
+increment files. Unless that is disabled, an observer will not be able to see
+the file names or contents.
+
+See also
+.B "A NOTE ON AMAZON S3"
+below.
+.RE
+
+.TP
+.BI "--s3-use-deep-archive"
+.RS
+Store volumes using Glacier Deep Archive S3 when uploading to Amazon S3. This storage class
+has a lower cost of storage but a higher per-request cost along with delays
+of up to 48 hours from the time of retrieval request. This storage cost is
+calculated against a 180-day storage minimum. According to Amazon this storage is
+ideal for data archiving and long-term backup offering 99.999999999% durability.
+To restore a backup you will have to manually migrate all data stored on AWS
+Glacier Deep Archive back to Standard S3 and wait for AWS to complete the migration.
+
+.B NOTE:
+Duplicity will store the manifest.gpg files from full and incremental backups on
+AWS S3 standard storage to allow quick retrieval for later incremental backups,
+all other data is stored in S3 Glacier Deep Archive.
+.RE
+
+.TP
+.BI "--s3-use-glacier"
+.RS
+Store volumes using Glacier Flexible Storage when uploading to Amazon S3. This storage class
+has a lower cost of storage but a higher per-request cost along with delays
+of up to 12 hours from the time of retrieval request. This storage cost is
+calculated against a 90-day storage minimum. According to Amazon this storage is
+ideal for data archiving and long-term backup offering 99.999999999% durability.
+To restore a backup you will have to manually migrate all data stored on AWS
+Glacier back to Standard S3 and wait for AWS to complete the migration.
+
+.B NOTE:
+Duplicity will store the manifest.gpg files from full and incremental backups on
+AWS S3 standard storage to allow quick retrieval for later incremental backups,
+all other data is stored in S3 Glacier.
+.RE
+
+.TP
+.BI "--s3-use-glacier-ir"
+.RS
+Store volumes using Glacier Instant Retrieval when uploading to Amazon S3. This storage class
+is similar to Glacier Flexible Storage but offers instant retrieval at standard speeds.
+
+.B NOTE:
+Duplicity will store the manifest.gpg files from full and incremental backups on
+AWS S3 standard storage to allow quick retrieval for later incremental backups,
+all other data is stored in S3 Glacier.
+.RE
+
+.TP
+.BI "--s3-use-ia"
+Store volumes using Standard - Infrequent Access when uploading to Amazon S3.
+This storage class has a lower storage cost but a higher per-request cost, and
+the storage cost is calculated against a 30-day storage minimum. According to
+Amazon, this storage is ideal for long-term file storage, backups, and disaster
+recovery.
+
+.TP
+.BI "--s3-use-multiprocessing"
+.RS
+Allow multipart volumne uploads to S3 through multiprocessing. This option
+requires Python 2.6 and can be used to make uploads to S3 more efficient.
+If enabled, files duplicity uploads to S3 will be split into chunks and
+uploaded in parallel. Useful if you want to saturate your bandwidth
+or if large files are failing during upload.
+
+.B NOTE:
+This has no effect when using the
+.B boto3
+backend. Boto3 always attempts to use multiprocessing.
+
+See also
+.B "A NOTE ON AMAZON S3"
+below.
+.RE
+
+.TP
+.BI "--s3-use-new-style"
+.RS
+When operating on Amazon S3 buckets, use new-style subdomain bucket
+addressing. This is now the preferred method to access Amazon S3, but
+is not backwards compatible if your bucket name contains upper-case
+characters or other characters that are not valid in a hostname.
+
+.B NOTE:
+This option has no effect when using the
+.B boto3
+backend, which will always use new style subdomain bucket naming.
+
+See also
+.B "A NOTE ON AMAZON S3"
+below.
+.RE
+
+.TP
+.BI "--s3-use-onezone-ia"
+Store volumes using One Zone - Infrequent Access when uploading to Amazon S3.
+This storage is similar to Standard - Infrequent Access, but only stores object
+data in one Availability Zone.
+
+.TP
+.BI "--s3-use-rrs"
+Store volumes using Reduced Redundancy Storage when uploading to Amazon S3.
+This will lower the cost of storage but also lower the durability of stored
+volumes to 99.99% instead the 99.999999999% durability offered by Standard
+Storage on S3.
+
+.TP
+.BI "--s3-use-server-side-encryption"
+Allow use of server side encryption in S3
+
+.TP
+.B --s3-use-server-side-kms-encryption
+.PD 0
+.TP
+.BI "--s3-kms-key-id " key_id
+.PD 0
+.TP
+.BI "--s3-kms-grant " grant
+Enable server-side encryption using key management service.
+
+.TP
+.BI "--scp-command " command
+.B (only ssh pexpect backend with --use-scp enabled)
+The
+.I command
+will be used instead of "scp" to send or receive files.
+To list and delete existing files, the sftp command is used.
+.br
+See also
+.B "A NOTE ON SSH BACKENDS"
+section
+.BR "SSH pexpect backend" .
+
+.TP
+.BI "--sftp-command " command
+.B (only ssh pexpect backend)
+The
+.I command
+will be used instead of "sftp".
+.br
+See also
+.B "A NOTE ON SSH BACKENDS"
+section
+.BR "SSH pexpect backend" .
+
+.TP
+.BI --short-filenames
+If this option is specified, the names of the files duplicity writes
+will be shorter (about 30 chars) but less understandable.  This may be
+useful when backing up to MacOS or another OS or FS that doesn't
+support long filenames.
+
+.TP
+.BI "--sign-key " key-id
+This option can be used when backing up, restoring or verifying.
+When backing up, all backup files will be signed with keyid
+.IR key .
+When restoring, duplicity will signal an error if any remote file is
+not signed with the given key-id. The key-id can be given in any of
+the formats supported by GnuPG; see
+.BR gpg (1),
+section "HOW TO SPECIFY A USER ID" for details.
+Should be specified only once because currently only
+.B one
+signing key is supported. Last entry overrides all other entries.
+.br
+See also
+.BI "A NOTE ON SYMMETRIC ENCRYPTION AND SIGNING"
+
+.TP
+.BI --ssh-askpass
+Tells the ssh backend to prompt the user for the remote system password,
+if it was not defined in target url and no FTP_PASSWORD env var is set.
+This password is also used for passphrase-protected ssh keys.
+
+.TP
+.BI "--ssh-options " options
+.RS
+Allows you to pass options to the ssh backend.
+Can be specified multiple times or as a space separated options list.
+The
+.I options
+list should be of the form "-oOpt1='parm1' -oOpt2='parm2'" where the option string is
+quoted and the only spaces allowed are between options. The option string
+will be passed verbatim to both scp and sftp, whose command line syntax
+differs slightly hence the options should therefore be given in the long option format described in
+.BR ssh_config(5).
+
+example of a list:
+
+duplicity --ssh-options="-oProtocol=2 -oIdentityFile='/my/backup/id'" /home/me scp://user@host/some_dir
+
+example with multiple parameters:
+
+duplicity --ssh-options="-oProtocol=2" --ssh-options="-oIdentityFile='/my/backup/id'" /home/me scp://user@host/some_dir
+
+.B NOTE:
+The
+.B "ssh paramiko backend"
+currently supports only the
+.B -i
+or
+.B -oIdentityFile
+or
+.B -oUserKnownHostsFile
+or
+.B -oGlobalKnownHostsFile
+settings. If needed provide more host specific options via ssh_config file.
+.RE
+.RE
+
+.TP
+.BI "--ssl-cacert-file " file
+.RS
+.B (only webdav & lftp backend)
+Provide a cacert file for ssl certificate verification.
+
+See also
+.BR "A NOTE ON SSL CERTIFICATE VERIFICATION" .
+.RE
+
+.TP
+.BI "--ssl-cacert-path " path/to/certs/
+.RS
+.B (only webdav backend and python 2.7.9+ OR lftp+webdavs and a recent lftp)
+Provide a path to a folder containing cacert files for ssl certificate verification.
+
+See also
+.BR "A NOTE ON SSL CERTIFICATE VERIFICATION" .
+.RE
+
+.TP
+.BI --ssl-no-check-certificate
+.RS
+.B (only webdav & lftp backend)
+Disable ssl certificate verification.
+
+See also
+.BR "A NOTE ON SSL CERTIFICATE VERIFICATION" .
+.RE
+
+.TP
+.BI --swift-storage-policy
+.RS
+Use this storage policy when operating on Swift containers.
+
+See also
+.BR "A NOTE ON SWIFT (OPENSTACK OBJECT STORAGE) ACCESS" .
+.RE
+
+.TP
+.BI "--metadata-sync-mode " mode
+.RS
+This option defaults to 'partial', but you can set it to 'full'
+
+Use 'partial' to avoid syncing metadata for backup chains that you are not going to use.
+This saves time when restoring for the first time, and lets you restore an
+old backup that was encrypted with a different passphrase by supplying only
+the target passphrase.
+
+Use 'full' to sync metadata for all backup chains on the remote.
+.RE
+
+.TP
+.BI "--tempdir " directory
+.RS
+Use this existing directory for duplicity temporary files instead of
+the system default, which is usually the /tmp directory. This option
+supersedes any environment variable.
+
+See also
+.BR "ENVIRONMENT VARIABLES" .
+.RE
+
+.TP
+.BI -t time ", --time " time ", --restore-time " time
+Specify the time from which to restore or list files.
+
+.TP
+.BI "--time-separator " char
+Use
+.IR char
+as the time separator in filenames instead of colon (":").
+
+.TP
+.BI "--timeout " seconds
+Use
+.IR seconds
+as the socket timeout value if duplicity begins to timeout during
+network operations.  The default is 30 seconds.
+
+.TP
+.BI --use-agent
+.RS
+If this option is specified, then
+.I --use-agent
+is passed to the GnuPG encryption process and it will try to connect to
+.B gpg-agent
+before it asks for a passphrase for
+.I --encrypt-key
+or
+.I --sign-key
+if needed.
+
+.B NOTE:
+Contrary to previous versions of duplicity, this option will also be honored
+by GnuPG 2 and newer versions. If GnuPG 2 is in use, duplicity passes the option
+.I --pinentry-mode=loopback
+to the the gpg process unless
+.I --use-agent
+is specified on the duplicity command line. This has the effect that GnuPG 2
+uses the agent only if
+.I --use-agent
+is given, just like GnuPG 1.
+.RE
+
+.TP
+.BI "--verbosity " level ", -v" level
+.RS
+Specify output verbosity level (log level).
+Named levels and corresponding values are
+0 Error, 2 Warning, 4 Notice (default), 8 Info, 9 Debug (noisiest).
+.br
+.I level
+may also be
+.RS
+.B a character:
+e, w, n, i, d
+.br
+.B a word:
+error, warning, notice, info, debug
+.RE
+
+The options -v4, -vn and -vnotice are functionally equivalent, as are the mixed/\
+upper-case versions -vN, -vNotice and -vNOTICE.
+.RE
+
+.TP
+.BI --version
+Print duplicity's version and quit.
+
+.TP
+.BI "--volsize " number
+Change the volume size to
+.IR number
+MB. Default is 200MB.
+
+.TP
+.BI "--webdav-headers " "csv formatted key,value pairs"
+.RS
+The input format is comma separated list of key,value pairs. Standard
+CSV encoding may be used.
+
+For example to set a Cookie use 'Cookie,name=value', or '"Cookie","name=value"'.
+
+You can set multiple headers, e.g. '"Cookie","name=value","Authorization","xxx"'.
+.RE
+
+.SH ENVIRONMENT VARIABLES
+
+.TP
+.B TMPDIR, TEMP, TMP
+In decreasing order of importance, specifies the directory to use for
+temporary files (inherited from Python's tempfile module).
+Eventually the option
+.BI --tempdir
+supercedes any of these.
+.TP
+.B FTP_PASSWORD
+Supported by most backends which are password capable. More secure than
+setting it in the backend url (which might be readable in the operating
+systems process listing to other users on the same machine).
+.TP
+.B PASSPHRASE
+This passphrase is passed to GnuPG. If this is not set, the user will be
+prompted for the passphrase.
+.TP
+.B SIGN_PASSPHRASE
+The passphrase to be used for
+.BR --sign-key .
+If ommitted
+.B and
+sign key is also one of the keys to encrypt against
+.B PASSPHRASE
+will be reused instead.
+Otherwise, if passphrase is needed but not set the user will be prompted for it.
+
+Other environment variables may be used to configure specific backends.
+See the notes for the particular backend.
+
+.SH URL FORMAT
+Duplicity uses the URL format (as standard as possible) to define data locations.
+Major difference is that the whole host section is optional for some backends.
+.br
+.B NOTE:
+If path starts with an extra '/' it usually denotes an absolute path on the backend.
+
+The generic format for a URL is:
+
+.RS
+scheme://[[user[:password]@]host[:port]/][/]path
+.RE
+
+or
+
+.RS
+scheme://[/]path
+.RE
+
+It is not recommended to expose the password on the command line since
+it could be revealed to anyone with permissions to do process listings,
+it is permitted however.
+Consider setting the environment variable
+.B FTP_PASSWORD
+instead, which is used by most, if not all backends, regardless of it's name.
+
+In protocols that support it, the path may be preceded by a single
+slash, '/path', to represent a relative path to the target home directory,
+or preceded by a double slash, '//path', to represent an absolute
+filesystem path.
+
+.B NOTE:
+Scheme (protocol) access may be provided by more than one backend.
+In case the default backend is buggy or simply not working in a specific case
+it might be worth trying an alternative implementation. Alternative backends
+can be selected by prefixing the scheme with the name of the alternative
+.RB "backend e.g. " ncftp+ftp://
+and are mentioned below the scheme's syntax summary.
+
+Formats of each of the URL schemes follow:
+
+.TP
+.B "Amazon Drive Backend"
+.RS
+ad://some_dir
+
+See also
+.B "A NOTE ON AMAZON DRIVE"
+.RE
+
+.TP
+.BR "Azure"
+.RS
+azure://container-name
+
+See also
+.B "A NOTE ON AZURE ACCESS"
+.RE
+
+.TP
+.BR "B2"
+.RS
+b2://account_id[:application_key]@bucket_name/[folder/]
+.RE
+
+.TP
+.BR "Box"
+.RS
+box:///some_dir[?config=path_to_config]
+
+See also
+.B "A NOTE ON BOX ACCESS"
+.RE
+
+.TP
+.BR "Cloud Files" " (Rackspace)"
+.RS
+cf+http://container_name
+
+See also
+.B "A NOTE ON CLOUD FILES ACCESS"
+.RE
+
+.TP
+.B Dropbox
+.RS
+dpbx:///some_dir
+
+Make sure to read
+.BR "A NOTE ON DROPBOX ACCESS" " first!"
+.RE
+
+.TP
+.BR File " (local file system)"
+.RS
+file://[relative|/absolute]/local/path
+.RE
+
+.TP
+.BR "FISH" " (Files transferred over Shell protocol) over ssh"
+.RS
+fish://user[:password]@other.host[:port]/[relative|/absolute]_path
+.RE
+
+.TP
+.B "FTP"
+.RS
+ftp[s]://user[:password]@other.host[:port]/some_dir
+
+.B NOTE:
+use lftp+, ncftp+ prefixes to enforce a specific backend, default is lftp+ftp://...
+.RE
+
+.TP
+.BR "Google Cloud Storage" " (GCS via Interoperable Access)"
+.RS
+s3://bucket[/path]
+
+.B NOTE:
+use boto+gs://bucket[/path] or boto+s3://bucket[/path] to use legacy
+.B boto
+backend. default is boto3+s3://
+
+See
+.B "A NOTE ON GOOGLE CLOUD STORAGE"
+about
+.B needed
+endpoint option and env vars for authentification.
+.RE
+
+.TP
+.B "Google Docs"
+.RS
+gdocs://user[:password]@other.host/some_dir
+
+.B NOTE:
+use pydrive+, gdata+ prefixes to enforce a specific backend, default is pydrive+gdocs://...
+.RE
+
+.TP
+.B "Google Drive"
+
+.RS
+gdrive://<service account' email address>@developer.gserviceaccount.com/some_dir
+
+See also
+.B "A NOTE ON GDRIVE BACKEND"
+below.
+.RE
+
+.TP
+.B "HSI"
+.RS
+hsi://user[:password]@other.host/some_dir
+.RE
+
+.TP
+.B "hubiC"
+.RS
+cf+hubic://container_name
+
+See also
+.B "A NOTE ON HUBIC"
+.RE
+
+.TP
+.B "IMAP email storage"
+.RS
+imap[s]://user[:password]@host.com[/from_address_prefix]
+
+See also
+.B "A NOTE ON IMAP"
+.RE
+
+.TP
+.BR "MediaFire"
+.RS
+mf://user[:password]@mediafire.com/some_dir
+
+See also
+.B "A NOTE ON MEDIAFIRE BACKEND"
+below.
+.RE
+
+.TP
+.BR "MEGA.nz cloud storage" " (only works for accounts created prior to November 2018, uses ""megatools"")"
+.RS
+mega://user[:password]@mega.nz/some_dir
+
+.B NOTE:
+if not given in the URL, relies on password being stored within $HOME/.megarc (as used by the "megatools" utilities)
+.RE
+
+.TP
+.BR "MEGA.nz cloud storage" " (works for all MEGA accounts, uses ""MEGAcmd"" tools)"
+.RS
+megav2://user[:password]@mega.nz/some_dir
+megav3://user[:password]@mega.nz/some_dir[?no_logout=1] (For latest MEGAcmd)
+
+.B NOTE:
+despite "MEGAcmd" no longer uses a configuration file, for convenience storing the user password this backend searches it in the $HOME/.megav2rc file (same syntax as the old $HOME/.megarc)
+    [Login]
+    Username = MEGA_USERNAME
+    Password = MEGA_PASSWORD
+.RE
+
+.TP
+.BR "multi"
+.RS
+multi:///path/to/config.json
+
+See also
+.B "A NOTE ON MULTI BACKEND"
+below.
+.RE
+
+.TP
+.B "OneDrive Backend"
+.RS
+onedrive://some_dir
+.RE
+
+.TP
+.B "Par2 Wrapper Backend"
+.RS
+par2+scheme://[user[:password]@]host[:port]/[/]path
+
+See also
+.B "A NOTE ON PAR2 WRAPPER BACKEND"
+.RE
+
+.TP
+.BR "Public Cloud Archive" " (OVH)"
+.RS
+pca://container_name[/prefix]
+
+See also
+.B "A NOTE ON PCA ACCESS"
+.RE
+
+.TP
+.BR "pydrive"
+.RS
+pydrive://<service account' email address>@developer.gserviceaccount.com/some_dir
+
+See also
+.B "A NOTE ON PYDRIVE BACKEND"
+below.
+.RE
+
+.TP
+.B "Rclone Backend"
+.RS
+rclone://remote:/some_dir
+.RE
+
+See also
+.B "A NOTE ON RCLONE BACKEND"
+.RE
+
+.TP
+.B "Rsync via daemon"
+.RS
+rsync://user[:password]@host.com[:port]::[/]module/some_dir
+.RE
+
+.TP
+.BR "Rsync over ssh" " (only key auth)"
+.RS
+rsync://user@host.com[:port]/[relative|/absolute]_path
+.RE
+
+.TP
+.BR "S3 storage" " (Amazon)"
+.RS
+s3:///bucket_name[/path]
+
+.BR "defaults" " to the"
+.BR boto3 " backend boto3+s3://"
+.br
+.BR "alternatively" " try the legacy"
+.BR boto " backend boto+s3://host[:port]/bucket_name[/path]"
+
+For details see
+.B "A NOTE ON AMAZON S3"
+below.
+.RE
+
+.TP
+.BR "SCP/SFTP" " Secure Copy Protocol/SSH File Transfer Protocol"
+.RS
+scp://.. or
+.br
+sftp://user[:password]@other.host[:port]/[relative|/absolute]_path
+
+.BR "defaults" " are paramiko+scp:// and paramiko+sftp://"
+.br
+.BR "alternatively" " try pexpect+scp://, pexpect+sftp://, lftp+sftp://"
+.br
+See also
+.BR --ssh-askpass ,
+.B  --ssh-options
+and
+.BR "A NOTE ON SSH BACKENDS" .
+.RE
+
+.TP
+.BR "slate"
+.RS
+slate://[slate-id]
+
+See also
+.B "A NOTE ON SLATE BACKEND"
+.RE
+
+.TP
+.BR "Swift" " (Openstack)"
+.RS
+swift://container_name[/prefix]
+
+See also
+.B "A NOTE ON SWIFT (OPENSTACK OBJECT STORAGE) ACCESS"
+.RE
+
+.TP
+.B "Tahoe-LAFS"
+.RS
+tahoe://alias/directory
+.RE
+
+.TP
+.B "WebDAV"
+.RS
+webdav[s]://user[:password]@other.host[:port]/some_dir
+
+.B alternatively
+try lftp+webdav[s]://
+.RE
+
+.SH TIME FORMATS
+duplicity uses time strings in two places.  Firstly, many of the files
+duplicity creates will have the time in their filenames in the w3
+datetime format as described in a w3 note at
+http://www.w3.org/TR/NOTE-datetime.  Basically they look like
+"2001-07-15T04:09:38-07:00", which means what it looks like.  The
+"-07:00" section means the time zone is 7 hours behind UTC.
+.PP
+Secondly, the
+.BR -t ", " --time ", and " --restore-time
+options take a time string, which can be given in any of several
+formats:
+.IP 1.
+the string "now" (refers to the current time)
+.IP 2.
+a sequences of digits, like "123456890" (indicating the time in
+seconds after the epoch)
+.IP 3.
+A string like "2002-01-25T07:00:00+02:00" in datetime format
+.IP 4.
+An interval, which is a number followed by one of the characters s, m,
+h, D, W, M, or Y (indicating seconds, minutes, hours, days, weeks,
+months, or years respectively), or a series of such pairs.  In this
+case the string refers to the time that preceded the current time by
+the length of the interval.  For instance, "1h78m" indicates the time
+that was one hour and 78 minutes ago.  The calendar here is
+unsophisticated: a month is always 30 days, a year is always 365 days,
+and a day is always 86400 seconds.
+.IP 5.
+A date format of the form YYYY/MM/DD, YYYY-MM-DD, MM/DD/YYYY, or
+MM-DD-YYYY, which indicates midnight on the day in question, relative
+to the current time zone settings.  For instance, "2002/3/5",
+"03-05-2002", and "2002-3-05" all mean March 5th, 2002.
+
+.SH FILE SELECTION
+When duplicity is run, it searches through the given source
+directory and backs up all the files specified by the file selection
+system, unless
+.B "--files-from"
+has been specified in which case the passed list of individual files
+is used instead.
+
+The file selection system comprises a number of file
+selection conditions, which are set using one of the following command
+line options:
+
+.RS
+--exclude
+.br
+--exclude-device-files
+.br
+--exclude-if-present
+.br
+--exclude-filelist
+.br
+--exclude-regexp
+.br
+--include
+.br
+--include-filelist
+.br
+--include-regexp
+.RE
+
+For each individual file found in the source directory, the file selection
+conditions are checked in the order they are specified on the command line. 
+Should a selection condition match, the file will be included or excluded
+accordingly and the file selection system will proceed to the next file
+without checking the remaining conditions.
+
+Earlier arguments therefore take precedence where multiple conditions
+match any given file, and are thus usually given in order of decreasing
+specificity.  If no selection conditions match a given file, then the file
+is implicitly included.
+
+For example,
+
+.RS
+duplicity --include /usr --exclude /usr /usr scp://user@host/backup
+.RE
+
+is exactly the same as
+
+.RS
+duplicity /usr scp://user@host/backup
+.RE
+
+because the
+.BI --include
+directive matches all files in the backup source directory, and takes
+precedence over the contradicting
+.BI --exclude
+option as it comes first.
+
+As a more meaningful example,
+
+.RS
+duplicity --include /usr/local/bin --exclude /usr/local /usr
+scp://user@host/backup
+.RE
+
+would backup the /usr/local/bin directory (and its contents), but not
+/usr/local/doc. Note that this is not the same as simply specifying
+/usr/local/bin as the backup source, as other files and folders under
+/usr will also be (implicitly) included.
+
+The order of the
+.BI --include
+and
+.BI --exclude
+arguments is important. In the previous example, if the less specific
+.BI --exclude
+directive had precedence it would prevent the more specific
+.BI --include
+from matching any files.
+
+The patterns passed to the
+.BR --include ,
+.BR --exclude ,
+.BR --include-filelist ,
+and
+.BR --exclude-filelist
+options are interpretted as
+.IR "extended shell globbing patterns"
+by default. This behaviour can be changed with the following filter
+mode arguments:
+
+.RS
+.br
+--filter-globbing
+.br
+--filter-literal
+.br
+--filter-regexp
+.RE
+
+These arguments change the interpretation of the patterns used in selection
+conditions, affecting all subsequent file selection options passed on the
+command line. They may be specified multiple times in order to switch pattern
+interpretations as needed.
+
+Literal strings differ from globs in that the pattern must match the filename
+exactly. This can be useful where filenames contain characters which have
+special meaning in shell globs or regular expressions. If passing dynamically
+generated file lists to duplicity using the
+.BR --include-filelist
+or
+.BR --exclude-filelist
+options, then the use of
+.BR --filter-literal
+is recommended unless regular expression or globbing is specifically
+required.
+
+The regular expression language used for selection conditions specified with
+.B "--include-regexp"
+,
+.B "--exclude-regexp"
+,
+or when
+.B --filter-regexp
+is in effect is as implemented by the Python standard library.
+
+Extended shell globbing pattenrs may contain:
+.BR * ,
+.BR ** ,
+.BR ? ,
+and
+.B [...]
+(character ranges). As in a normal shell,
+.B *
+can be expanded to any string of characters not containing "/",
+.B ?
+expands to any single character except "/", and
+.B [...]
+expands to a single character of those characters specified (ranges
+are acceptable).  The pattern
+.BR **
+expands to any string of characters whether or not it contains "/".
+
+In addition to the above filter mode arguments, the following can be used
+in the same fashion to enable (default) or disable case sensitivity in the
+evaluation of file sslection conditions:
+
+.RS
+.br
+--filter-ignorecase
+.br
+--filter-strictcase
+.RE
+
+An example of filter mode switching including case insensitivity is
+
+.RS
+.BI --filter-ignorecase
+.BI --include
+/usr/bin/*.PY
+.BI --filter-literal
+.BI --filter-include
+/usr/bin/special?file*name
+.BI --filter-strictcase
+.BI --exclude
+/usr/bin
+.RE
+
+which would backup *.py, *.pY, *.Py, and *.PY files under /usr/bin and also the
+single literally specified file with globbing characters in the name. The use
+of
+.B --filter-strictcase
+is not technically necessary here, but is included as an example which may
+(depending on the backup source path) cause unexpected interactions between
+.B --include
+and
+.B --exclude
+options, should the directory portion of the path (/usr/bin) contain any
+uppercase characters.
+
+If the pattern starts with "ignorecase:" (case insensitive), then
+this prefix will be removed and any character in the string can be
+replaced with an upper- or lowercase version of itself. This prefix is a
+legacy feature supported for shell globbing selection conditions only,
+but for backward compatability reasons is otherwise considered part of
+the pattern itself (use
+.B --filter-ignorecase
+instead).
+
+Remember that you may need to quote patterns when typing them
+into a shell, so the shell does not interpret the globbing patterns
+or whitespace characters before duplicity sees them.
+
+Selection patterns should generally be thought of
+.I as filesystem paths
+rather than arbitrary strings. For selection conditions using extended shell
+globbing patterns, the
+.BI --exclude
+.I pattern
+option matches a file if:
+
+.B 1.
+.I pattern
+can be expanded into the file's filename, or
+.br
+.B 2.
+the file is inside a directory matched by the option.
+
+Conversely, the
+.B "--include "
+.I pattern
+option matches a file if:
+
+.B 1.
+.I pattern
+can be expanded into the file's filename, or
+.br
+.B 2.
+the file is inside a directory matched by the option, or
+.br
+.B 3.
+the file is a directory which contains a file matched by the option.
+
+For example,
+
+.RS
+.BI --exclude
+/usr/local
+.RE
+
+matches e.g. /usr/local, /usr/local/lib, and /usr/local/lib/netscape.  It
+is the same as --exclude /usr/local --exclude '/usr/local/**'.
+.PP
+On the other hand
+
+.RS
+.BI --include
+/usr/local
+.RE
+
+specifies that /usr, /usr/local, /usr/local/lib, and
+/usr/local/lib/netscape (but not /usr/doc) all be backed up. Thus you
+don't have to worry about including parent directories to make sure
+that included subdirectories have somewhere to go.
+
+Finally,
+
+.RS
+.BI --include
+ignorecase:'/usr/[a-z0-9]foo/*/**.py'
+.RE
+
+would match a file like /usR/5fOO/hello/there/world.py.  If it did
+match anything, it would also match /usr.  If there is no existing
+file that the given pattern can be expanded into, the option will not
+match /usr alone.
+
+This treatment of patterns in globbing and literal selection conditions as
+filesystem paths reduces the number of explicit conditions required.
+However, it does require that the paths described by all variants of the
+.B "--include "
+or
+.B "--include "
+option are fully specified relative to the backup source directory.
+
+For selection conditions using literal strings, the same logic applies except
+that scenario
+.B 1
+is for an exact match of the pattern.
+
+For selection conditions using regular expressions the pattern is evaluated
+as a regular expression rather than a filesystem path. Scenario
+.B 3
+in the above therefore does not apply, the implications of which are
+discussed at the end of this section.
+
+The
+.BR --include-filelist ,
+and
+.BR --exclude-filelist ,
+options also introduce file selection conditions.  They direct
+duplicity to read in a text file (either ASCII or UTF-8), each line
+of which is a file specification, and to include or exclude the
+matching files.  Lines are separated by newlines or nulls, depending
+on whether the --null-separator switch was given.
+
+Each line in the filelist will be interpreted as a selection pattern
+in the same way
+.BI --include
+and
+.BI --exclude
+options are interpreted, except that lines starting with "+ " are interpreted
+as include directives, even if found in a filelist referenced by
+.BR --exclude-filelist .
+Similarly, lines starting with "- " exclude files even if they are
+found within an include filelist.
+
+For example, if file "list.txt" contains the lines:
+
+.RS
+/usr/local
+.br
+- /usr/local/doc
+.br
+/usr/local/bin
+.br
++ /var
+.br
+- /var
+.RE
+
+then
+.B "--include-filelist list.txt"
+would include /usr, /usr/local, and
+/usr/local/bin.  It would exclude /usr/local/doc, /usr/local/doc/python,
+etc.  It would also include /usr/local/man, as this is included within
+/usr/local.  Finally, it is undefined what happens with /var.  A single
+file list should not contain conflicting file specifications.
+
+Each line in the filelist will be interpreted as per the current filter
+mode in the same way
+.BI --include
+and
+.BI --exclude
+options are interpreted. For instance, if the file "list.txt" contains the lines:
+
+.RS
+dir/foo
+.br
++ dir/bar
+.br
+- **
+.RE
+
+Then
+.B "--include-filelist list.txt"
+would be exactly the same as specifying
+.B "--include dir/foo --include dir/bar --exclude **"
+on the command line.
+
+Note that specifying very large numbers numbers of selection rules as filelists
+can incur a substantial performance penalty as these rules will (potentially)
+be checked for every file in the backup source directory. If you need to backup
+arbitrary lists of specific files (i.e. not described by regexp patterns or
+shell globs) then
+.B "--files-from"
+is likely to be more performant.
+
+Finally, the
+.BI --include-regexp
+and
+.BI --exclude-regexp
+options allow files to be included and excluded if their filenames match a
+regular expression.  Regular expression syntax is too complicated to explain
+here, but is covered in Python's library reference.  Unlike the
+.BI --include
+and
+.BI --exclude
+options, the regular expression options don't match files containing
+or contained in matched files.  So for instance
+
+.RS
+--include-regexp '[0-9]{7}(?!foo)'
+
+.RE
+matches any files whose full pathnames contain 7 consecutive digits
+which aren't followed by 'foo'.  However, it wouldn't match /home even
+if /home/ben/1234567 existed.
+
+.SH A NOTE ON AMAZON DRIVE
+.IP 1.
+The API Keys used for Amazon Drive have not been granted production limits.
+Amazon do not say what the development limits are and are not replying to
+to requests to whitelist duplicity. A related tool, acd_cli, was demoted to
+development limits, but continues to work fine except for cases of excessive
+usage. If you experience throttling and similar issues with Amazon Drive using
+this backend, please report them to the mailing list.
+.IR
+.IP 2.
+If you previously used the
+.BI acd+acdcli
+backend, it is strongly recommended to update to the
+.BI ad
+backend instead, since it interfaces directly with Amazon Drive. You will need
+to setup the OAuth once again, but can otherwise keep your backups and config.
+.IR
+.RE
+
+.SH A NOTE ON AMAZON S3
+When backing up to Amazon S3, two backend implementations are available.
+The older
+.B boto
+library, which is deprecated and is no longer maintained.
+And the recent
+.B boto3
+backend based on the newer boto3 library. The new backend fixes several known
+limitations in the older backend, which developed as Amazon S3 evolved.
+
+The
+.B boto3
+backend should behave largely the same as the older backend,
+but there are some differences in the supported "--s3-..." options.
+Additionally, there are some compatibility differences.
+.br
+See the documentation of each option above regarding differences related to
+each backend.
+
+The
+.BR boto3 " backend does not support bucket creation."
+This deliberate choice simplifies the code, and side steps
+problems related to region selection.  Additionally, it is probably
+not a good practice to give your backup role bucket creation rights.
+In most cases the role used for backups should probably be
+limited to specific buckets.
+
+The
+.B boto3
+backend only supports newer domain style buckets. Amazon is moving
+to deprecate the older bucket style, so migration is recommended.
+Use the
+.B boto
+backend for compatibility with buckets using older naming conventions.
+
+The
+.B boto3
+backend does not currently support initiating restores
+from the glacier storage class.  When restoring a backup from
+glacier or glacier deep archive, the backup files must first be
+restored out of band.  There are multiple options when restoring
+backups from cold storage, which vary in both cost and speed.
+See Amazon's documentation for details.
+
+Both backends use environment variables for authentification:
+.br
+.RS
+.BR AWS_ACCESS_KEY_ID " (required),"
+.br
+.BR AWS_SECRET_ACCESS_KEY " (required)"
+.br
+or
+.br
+.BR BOTO_CONFIG " (required) pointing to a boto config file."
+.RE
+For simplicity's sake we will document the use of the AWS_* vars only.
+Research boto documentation available in the web if you want to use  the config file.
+
+.BR "boto3 backend" " example backup command line:"
+
+.RS
+AWS_ACCESS_KEY_ID=<key_id> AWS_SECRET_ACCESS_KEY=<access_key> duplicity /some/path s3:///bucket/subfolder
+.RE
+
+.RB "you may add " "--s3-endpoint-url"
+(to access non Amazon S3 services or regional endpoints)
+.RB "and may need " "--s3-region-name"
+(for buckets created in specific regions)
+and other
+.B "--s3-..."
+options documented above.
+
+legacy
+.BR "boto backend" " example backup command line:"
+
+.RS
+AWS_ACCESS_KEY_ID=<key_id> AWS_SECRET_ACCESS_KEY=<access_key> duplicity /some/path boto+s3://[host:port]/bucket/subfolder
+.RE
+
+.RB "The url host setting is optional and allows to define a custom endpoint host. you may add " "--s3-european-buckets"
+and other s3 options documented above if needed.
+
+
+.SH A NOTE ON AZURE ACCESS
+The Azure backend requires the Microsoft Azure Storage Blobs client library
+for Python to be installed on the system.
+See
+.BR REQUIREMENTS .
+
+It uses the environment variable
+.BR AZURE_CONNECTION_STRING " (required)."
+This string contains all necessary information such as Storage Account name
+and the key for authentication.
+You can find it under Access Keys for the storage account.
+
+Duplicity will take care to create the container when performing the backup.
+Do not create it manually before.
+
+A container name (as given as the backup url) must be a valid DNS name,
+conforming to the following naming rules:
+
+.RS
+.IP 1.
+Container names must start with a letter or number, and can contain only
+letters, numbers, and the dash (-) character.
+.IR
+.IP 2.
+Every dash (-) character must be immediately preceded and followed by a letter
+or number; consecutive dashes are not permitted in container names.
+.IR
+.IP 3.
+All letters in a container name must be lowercase.
+.IR
+.IP 4.
+Container names must be from 3 through 63 characters long.
+.IR
+.RE
+
+These rules come from Azure; see
+https://docs.microsoft.com/en-us/rest/api/storageservices/naming-and-referencing-containers--blobs--and-metadata
+
+.SH A NOTE ON BOX ACCESS
+The box backend requires boxsdk with jwt support to be installed on the system.
+See
+.BR REQUIREMENTS .
+
+It uses the environment variable
+.BR BOX_CONFIG_PATH " (optional)."
+This string contains the path to box custom app's config.json. Either this environment variable or
+the
+.BR config
+query parameter in the url need to be specified, if both are specified, query paramter takes precedence.
+
+.SS Create a Box custom app
+In order to use box backend, user need to create a box custom app in the box developer console (https://app.box.com/developers/console).
+
+After create a new custom app, please make sure it is configured as follow:
+
+.RS
+.IP 1.
+Choose "App Access Only" for "App Access Level"
+.IR
+.IP 2.
+Check "Write all files and folders stored in Box"
+.IR
+.IP 3.
+Generate a Public/Private Keypair
+.IR
+.RE
+
+The user also need to grant the created custom app permission in the
+admin console (https://app.box.com/master/custom-apps) by clicking
+the "+" button and enter the client_id which can be found on the custom
+app's configuration page.
+
+.SH A NOTE ON CLOUD FILES ACCESS
+Pyrax is Rackspace's next-generation Cloud management API, including
+Cloud Files access.  The cfpyrax backend requires the pyrax library to
+be installed on the system.
+See
+.BR REQUIREMENTS .
+
+Cloudfiles is Rackspace's now deprecated implementation of OpenStack
+Object Storage protocol.  Users wishing to use Duplicity with Rackspace
+Cloud Files should migrate to the new Pyrax plugin to ensure support.
+
+The backend requires python-cloudfiles to be installed on the system.
+See
+.BR REQUIREMENTS .
+
+It uses three environment variables for authentification:
+.BR CLOUDFILES_USERNAME " (required),"
+.BR CLOUDFILES_APIKEY " (required),"
+.BR CLOUDFILES_AUTHURL " (optional)"
+
+If
+.B CLOUDFILES_AUTHURL
+is unspecified it will default to the value
+provided by python-cloudfiles, which points to rackspace, hence this value
+.I must
+be set in order to use other cloud files providers.
+
+.SH A NOTE ON DROPBOX ACCESS
+.IP 1.
+First of all Dropbox backend requires valid authentication token. It
+should be passed via
+. B DPBX_ACCESS_TOKEN
+environment variable.
+.br
+To obtain it please create 'Dropbox API' application at:
+https://www.dropbox.com/developers/apps/create
+.br
+Then visit app settings and just use 'Generated access token' under
+OAuth2 section.
+.br
+Alternatively you can let duplicity generate access token itself. In such
+case temporary export
+.B DPBX_APP_KEY ","
+.B DPBX_APP_SECRET
+using values from app settings page and run duplicity interactively.
+.br
+It will print the URL that you need to open in the browser to obtain
+OAuth2 token for the application. Just follow on-screen instructions and
+then put generated token to
+. B DPBX_ACCESS_TOKEN
+variable. Once done, feel free to unset
+.B DPBX_APP_KEY "and"
+.B DPBX_APP_SECRET
+
+.IP 2.
+"some_dir" must already exist in the Dropbox folder. Depending on access
+token kind it may be:
+.RS
+.RS
+. B Full Dropbox:
+path is absolute and starts from 'Dropbox' root folder.
+.br
+. B App Folder:
+path is related to application folder. Dropbox client will show it in
+. B ~/Dropbox/Apps/<app-name>
+.RE
+.RE
+
+.IP 3.
+When using Dropbox for storage, be aware that all files, including the
+ones in the Apps folder, will be synced to all connected computers.  You
+may prefer to use a separate Dropbox account specially for the backups,
+and not connect any computers to that account. Alternatively you can
+configure selective sync on all computers to avoid syncing of backup files
+
+.SH A NOTE ON EUROPEAN S3 BUCKETS
+Amazon S3 provides the ability to choose the location of a bucket upon
+its creation. The purpose is to enable the user to choose a location
+which is better located network topologically relative to the user,
+because it may allow for faster data transfers.
+.PP
+duplicity will create a new bucket the first time a bucket access is
+attempted. At this point, the bucket will be created in Europe if
+.BI --s3-european-buckets
+was given. For reasons having to do with how the Amazon S3 service
+works, this also requires the use of the
+.BI --s3-use-new-style
+option. This option turns on subdomain based bucket addressing in
+S3. The details are beyond the scope of this man page, but it is
+important to know that your bucket must not contain upper case letters
+or any other characters that are not valid parts of a
+hostname. Consequently, for reasons of backwards compatibility, use of
+subdomain based bucket addressing is not enabled by default.
+.PP
+Note that you will need to use
+.BI --s3-use-new-style
+for all operations on European buckets; not just upon initial
+creation.
+.PP
+You only need to use
+.BI --s3-european-buckets
+upon initial creation, but you may may use it at all times for
+consistency.
+.PP
+Further note that when creating a new European bucket, it can take a
+while before the bucket is fully accessible. At the time of this
+writing it is unclear to what extent this is an expected feature of
+Amazon S3, but in practice you may experience timeouts, socket errors
+or HTTP errors when trying to upload files to your newly created
+bucket. Give it a few minutes and the bucket should function normally.
+
+.SH A NOTE ON FILENAME PREFIXES
+
+Filename prefixes can be used in
+.B "multi backend "
+with
+.B "mirror "
+mode to define affinity rules. They can also be used in conjunction with
+S3 lifecycle rules to transition archive files to Glacier, while keeping
+metadata (signature and manifest files) on S3.
+
+Duplicity does not require access to archive files except when restoring from backup.
+
+.SH A NOTE ON GOOGLE CLOUD STORAGE (GCS via Interoperable Access)
+.SS Overview
+Duplicity access to GCS currently relies on it's Interoperability API (basically S3 for GCS).
+This needs to actively be enabled before access is possible. For details read the next section
+.B Preparations
+below.
+.PP
+Two backends are available to access S3 namely
+.B boto3
+which is used via
+.I s3://
+(alias for
+.I boto3+s3://
+) and the legacy
+.B boto
+backend, usable via
+.IR boto+s3:// .
+
+.SS Preparations
+.IP 1.
+login on https://console.cloud.google.com/
+.IP 2.
+go to
+.B Cloud Storage->Settings->Interoperability
+.IP 3.
+create a
+.BR "Service account" " (if needed)"
+.IP 4.
+create
+.B Service account HMAC
+access key and secret
+.RB ( "!!instantly copy!!"
+the secret, it can NOT be recovered later)
+.IP 5.
+go to
+.B Cloud Storage->Browser
+.IP 6.
+create a bucket
+.IP 7.
+add permissions for
+.B Service account
+that was used to set up Interoperability access above
+
+.PP
+Once set up you can use the generated Interoperable Storage Access key and secret and pass them to duplicity as described in the next section.
+
+.SS Usage
+The following examples show accessing GCS via S3 for a collection-status action.
+The shown env vars, options and url format can be applied for all other actions as well of course.
+
+using
+.B boto3
+supplying the
+.B --s3-endpoint-url
+manually.
+
+.RS
+ AWS_ACCESS_KEY_ID=<keyid> AWS_SECRET_ACCESS_KEY=<secret> duplicity collection-status s3://<bucket>/<folder> --s3-endpoint-url=https://storage.googleapis.com
+.RE
+
+.RB "or alternatively with legacy " boto
+using either
+.IR boto+gs:// .
+
+.RS
+GS_ACCESS_KEY_ID=<keyid> GS_SECRET_ACCESS_KEY=<secret> duplicity collection-status boto+gs://<bucket>/<folder>
+
+.BR NOTE: " The auth env vars are prefixed"
+.B GS_
+in this case!
+.RE
+
+or
+.I boto+s3://
+supplying the
+.B --s3-endpoint-url
+manually.
+
+.RS
+ AWS_ACCESS_KEY_ID=<keyid> AWS_SECRET_ACCESS_KEY=<secret> duplicity collection-status s3://<bucket>/<folder> --s3-endpoint-url=https://storage.googleapis.com
+.RE
+
+Alternatively, you can run
+.B "gsutil config -a"
+to have the Google Cloud Storage utility populate the
+.B ~/.boto
+configuration file.
+
+.B NOTE:
+Also see section
+.B URL FORMAT
+for a brief overview about the url format expected.
+
+.SH A NOTE ON GDRIVE BACKEND
+GDrive: is a rewritten PyDrive: backend with less dependencies, and a
+simpler setup - it uses the JSON keys downloaded directly from Google
+Cloud Console.
+
+Note Google has 2 drive methods, `Shared(previously Team) Drives` and `My Drive`,
+both can be shared but require different addressing
+
+.B For a Google Shared Drives folder
+
+Share Drive ID specified as a query parameter, driveID,  in the backend URL.
+Example:
+      gdrive://developer.gserviceaccount.com/target-folder/?driveID=<SHARED DRIVE ID>
+
+.B For a Google My Drive based shared folder
+
+MyDrive folder ID specified as a query parameter, myDriveFolderID, in the backend URL
+Example
+      export GOOGLE_SERVICE_ACCOUNT_URL=<serviceaccount-name>@<serviceaccount-name>.iam.gserviceaccount.com
+      gdrive://${GOOGLE_SERVICE_ACCOUNT_URL}/<target-folder-name-in-myDriveFolder>?myDriveFolderID=root
+
+
+There are also two ways to authenticate to use GDrive: with a regular account or with a
+"service account". With a service account, a separate account is
+created, that is only accessible with Google APIs and not a web login.
+With a regular account, you can store backups in your normal Google
+Drive.
+
+To use a service account, go to the Google developers console at
+https://console.developers.google.com. Create a project, and make sure
+Drive API is enabled for the project. In the "Credentials" section,
+click "Create credentials", then select Service Account with JSON key.
+
+The GOOGLE_SERVICE_JSON_FILE environment variable needs to contain the
+path to the JSON file on duplicity invocation.
+
+export GOOGLE_SERVICE_JSON_FILE=<path-to-serviceaccount-credentials.json>
+
+
+The alternative is to use a regular account. To do this, start as
+above, but when creating a new Client ID, select "Create OAuth client
+ID", with application type of "Desktop app". Download the
+client_secret.json file for the new client, and set the
+GOOGLE_CLIENT_SECRET_JSON_FILE environment variable to the path to
+this file, and GOOGLE_CREDENTIALS_FILE to a path to a file where
+duplicity will keep the authentication token - this location must be
+writable.
+
+.B NOTE:
+As a sanity check, GDrive checks the host and username from the URL
+against the JSON key, and refuses to proceed if the addresses do not
+match. Either the email (for the service accounts) or Client ID (for
+regular OAuth accounts) must be present in the URL. See
+.B URL FORMAT
+above.
+
+.SS First run / OAuth 2.0 authorization
+
+During the first run, you will be prompted to visit an URL in your
+browser to grant access to your Google Drive. A temporary HTTP-service will be
+started on a 
+.B local network interface
+for this purpose (by default on http://localhost:8080/).
+Ip-address/host and port can be adjusted if need be by providing the environment variables
+GOOGLE_OAUTH_LOCAL_SERVER_HOST, GOOGLE_OAUTH_LOCAL_SERVER_PORT respectively.
+
+If you are running duplicity in a remote location, you will 
+need to make sure that you will be able to access the above 
+HTTP-service with a browser utilizing e.g. port forwarding 
+or temporary firewall permission.
+
+The access credentials will be saved in the JSON file mentioned 
+above for future use after a successful authorization.
+
+.SH A NOTE ON HUBIC
+The hubic backend requires the pyrax library to be installed on the system. See
+.BR REQUIREMENTS .
+You will need to set your credentials for hubiC in a file called ~/.hubic_credentials, following this
+pattern:
+.PP
+.RS
+[hubic]
+.br
+email = your_email
+.br
+password = your_password
+.br
+client_id = api_client_id
+.br
+client_secret = api_secret_key
+.br
+redirect_uri = http://localhost/
+.RE
+
+.SH A NOTE ON IMAP
+An IMAP account can be used as a target for the upload.  The userid may
+be specified and the password will be requested.
+.PP
+The
+.B from_address_prefix
+may be specified (and probably should be). The text will be used as
+the "From" address in the IMAP server.  Then on a restore (or list) command
+the
+.B from_address_prefix
+will distinguish between different backups.
+
+.SH A NOTE ON MEDIAFIRE BACKEND
+This backend requires
+.B mediafire
+python library to be installed on the system. See
+.BR REQUIREMENTS .
+
+Use URL escaping for username (and password, if provided via command line):
+
+.PP
+.RS
+mf://duplicity%40example.com@mediafire.com/some_folder
+.PP
+.RE
+
+The destination folder will be created for you if it does not exist.
+
+.SH A NOTE ON MULTI BACKEND
+The multi backend allows duplicity to combine the storage available in
+more than one backend store (e.g., you can store across a google drive
+account and a onedrive account to get effectively the combined storage
+available in both).  The URL path specifies a JSON formated config
+file containing a list of the backends it will use. The URL may also
+specify "query" parameters to configure overall behavior.
+Each element of the list must have a "url" element, and may also contain
+an optional "description" and an optional "env" list of environment
+variables used to configure that backend.
+.SS Query Parameters
+Query parameters come after the file URL in standard HTTP format
+for example:
+.RS
+.nf
+multi:///path/to/config.json?mode=mirror&onfail=abort
+multi:///path/to/config.json?mode=stripe&onfail=continue
+multi:///path/to/config.json?onfail=abort&mode=stripe
+multi:///path/to/config.json?onfail=abort
+.fi
+.RE
+Order does not matter, however unrecognized parameters are considered
+an error.
+.TP
+.BI "mode=" stripe
+This mode (the default) performs round-robin access to the list of
+backends. In this mode, all backends must be reliable as a loss of one
+means a loss of one of the archive files.
+.TP
+.BI "mode=" mirror
+This mode accesses backends as a RAID1-store, storing every file in
+every backend and reading files from the first-successful backend.
+A loss of any backend should result in no failure. Note that backends
+added later will only get new files and may require a manual sync
+with one of the other operating ones.
+.TP
+.BI "onfail=" continue
+This setting (the default) continues all write operations in as
+best-effort. Any failure results in the next backend tried. Failure
+is reported only when all backends fail a given operation with the
+error result from the last failure.
+.TP
+.BI "onfail=" abort
+This setting considers any backend write failure as a terminating
+condition and reports the error.
+Data reading and listing operations are independent of this and
+will try with the next backend on failure.
+.SS JSON File Example
+.RS
+.nf
+[
+ {
+  "description": "a comment about the backend"
+  "url": "abackend://myuser@domain.com/backup",
+  "env": [
+    {
+     "name" : "MYENV",
+     "value" : "xyz"
+    },
+    {
+     "name" : "FOO",
+     "value" : "bar"
+    }
+   ],
+   "prefixes": ["prefix1_", "prefix2_"]
+ },
+ {
+  "url": "file:///path/to/dir"
+ }
+]
+.fi
+.RE
+
+.SH A NOTE ON PAR2 WRAPPER BACKEND
+Par2 Wrapper Backend can be used in combination with all other backends to
+create recovery files. Just add
+.BR par2+
+before a regular scheme (e.g.
+.IR par2+ftp://user@host/dir " or"
+.I par2+s3+http://bucket_name
+). This will create par2 recovery files for each archive and upload them all to
+the wrapped backend.
+.PP
+Before restoring, archives will be verified. Corrupt archives will be repaired
+on the fly if there are enough recovery blocks available.
+.PP
+Use
+.BI "--par2-redundancy " percent
+to adjust the size (and redundancy) of recovery files in
+.I percent.
+
+.SH A NOTE ON PCA ACCESS
+PCA is a long-term data archival solution by OVH. It runs a slightly modified
+version of Openstack Swift introducing latency in the data retrieval process.
+It is a good pick for a
+.BR "multi backend "
+configuration where receiving volumes while an other backend is used to store
+manifests and signatures.
+
+.br
+The backend requires python-switclient to be installed on the system.
+python-keystoneclient is also needed to interact with OpenStack's Keystone
+Identity service.
+See
+.BR REQUIREMENTS .
+
+It uses following environment variables for authentification:
+.BR PCA_USERNAME " (required),"
+.BR PCA_PASSWORD " (required),"
+.BR PCA_AUTHURL " (required),"
+.BR PCA_USERID " (optional),"
+.BR PCA_TENANTID " (optional, but either the tenant name or tenant id must be supplied)"
+.BR PCA_REGIONNAME " (optional),"
+.BR PCA_TENANTNAME " (optional, but either the tenant name or tenant id must be supplied)"
+
+If the user was previously authenticated, the following environment
+variables can be used instead:
+.BR PCA_PREAUTHURL " (required),"
+.BR PCA_PREAUTHTOKEN " (required)"
+
+If
+.B PCA_AUTHVERSION
+is unspecified, it will default to version 2.
+
+.SH A NOTE ON PYDRIVE BACKEND
+The pydrive backend requires Python PyDrive package to be installed on the system. See
+.BR REQUIREMENTS .
+
+There are two ways to use PyDrive: with a regular account or with a
+"service account". With a service account, a separate account is
+created, that is only accessible with Google APIs and not a web login.
+With a regular account, you can store backups in your normal Google
+Drive.
+
+To use a service account, go to the Google developers
+console at https://console.developers.google.com. Create a project,
+and make sure Drive API is enabled for the project. Under "APIs and
+auth", click Create New Client ID, then select Service Account with P12
+key.
+
+Download the .p12 key file of the account and convert it to the .pem format:
+.br
+openssl pkcs12 -in XXX.p12  -nodes -nocerts > pydriveprivatekey.pem
+
+The content of .pem file should be passed to
+.BR GOOGLE_DRIVE_ACCOUNT_KEY
+environment variable for authentification.
+
+The email address of the account will be used as part of URL. See
+.B URL FORMAT
+above.
+
+The alternative is to use a regular account. To do this, start as above,
+but when creating a new Client ID, select "Installed application" of
+type "Other". Create a file with the following content, and pass its
+filename in the
+.BR GOOGLE_DRIVE_SETTINGS
+environment variable:
+.PP
+.nf
+.RS
+client_config_backend: settings
+client_config:
+    client_id: <Client ID from developers' console>
+    client_secret: <Client secret from developers' console>
+save_credentials: True
+save_credentials_backend: file
+save_credentials_file: <filename to cache credentials>
+get_refresh_token: True
+.RE
+.fi
+
+In this scenario, the username and host parts of the URL play no role;
+only the path matters. During the first run, you will be prompted to
+visit an URL in your browser to grant access to your drive. Once
+granted, you will receive a verification code to paste back into
+Duplicity. The credentials are then cached in the file references above
+for future use.
+
+.SH A NOTE ON RCLONE BACKEND
+Rclone is a powerful command line program to sync files and directories to and from various cloud storage providers.
+
+.SS Usage
+Once you have configured an rclone remote via
+
+.RS
+rclone config
+.RE
+
+and successfully set up a remote (e.g. gdrive for Google Drive), assuming you can
+list your remote files with
+
+.RS
+rclone ls gdrive:mydocuments
+.RE
+
+you can start your backup with
+
+.RS
+duplicity /mydocuments rclone://gdrive:/mydocuments
+.RE
+
+Please note the slash after the second colon. Some storage provider will work with or without slash
+after colon, but some other will not. Since duplicity will complain about malformed URL if a slash
+is not present, always put it after the colon, and the backend will handle it for you.
+
+.SS Options
+Note that all rclone options can be set by env vars as well. This is properly documented here
+
+.RS
+https://rclone.org/docs/
+.RE
+
+but in a nutshell you need to take the long option name, strip the leading --, change - to _, make upper case and prepend RCLONE_. for example
+
+.RS
+the equivalent of '--stats 5s' would be the env var RCLONE_STATS=5s
+.RE
+
+.SH A NOTE ON SLATE BACKEND
+Three environment variables are used with the slate backend:
+  1.
+.BR `SLATE_API_KEY`
+- Your slate API key
+  2.
+.BR `SLATE_SSL_VERIFY`
+- either '1'(True) or '0'(False) for ssl verification (optional - True by default)
+  3.
+.BR `PASSPHRASE`
+- your gpg passhprase for encryption (optional - will be prompted if not set or not used at all if using the `--no-encryption` parameter)
+
+To use the slate backend, use the following scheme:
+.RS
+slate://[slate-id]
+.RE
+
+e.g. Full backup of current directory to slate:
+.RS
+duplicity full . "slate://6920df43-5c3w-2x7i-69aw-2390567uav75"
+.RE
+
+Here's a demo:
+https://gitlab.com/Shr1ftyy/duplicity/uploads/675664ef0eb431d14c8e20045e3fafb6/slate_demo.mp4
+
+.SH A NOTE ON SSH BACKENDS
+The
+.I ssh backends
+support
+.I sftp
+and
+.I scp/ssh
+transport protocols.
+This is a known user-confusing issue as these are fundamentally different.
+If you plan to access your backend via one of those please inform yourself
+about the requirements for a server to support
+.IR sftp " or"
+.I scp/ssh
+access.
+To make it even more confusing the user can choose between several ssh backends via a scheme prefix:
+paramiko+ (default), pexpect+, lftp+... .
+.br
+paramiko & pexpect support
+.BR --use-scp ,
+.BR --ssh-askpass " and"
+.BR --ssh-options "."
+Only the
+.B pexpect
+backend allows to define
+.BR --scp-command " and"
+.BR --sftp-command .
+.PP
+.BR "SSH paramiko backend " "(default)"
+is a complete reimplementation of ssh protocols natively in python. Advantages
+are speed and maintainability. Minor disadvantage is that extra packages are
+needed as listed in
+.BR REQUIREMENTS .
+In
+.I sftp
+(default) mode all operations are done via the according sftp commands. In
+.I scp
+mode (
+.I --use-scp
+) though scp access is used for put/get operations but listing is done via ssh remote shell.
+.PP
+.B SSH pexpect backend
+is the legacy ssh backend using the command line ssh binaries via pexpect.
+Older versions used
+.I scp
+for get and put operations and
+.I sftp
+for list and
+delete operations.  The current version uses
+.I sftp
+for all four supported
+operations, unless the
+.I --use-scp
+option is used to revert to old behavior.
+.PP
+.B SSH lftp backend
+is simply there because lftp can interact with the ssh cmd line binaries.
+It is meant as a last resort in case the above options fail for some reason.
+
+.SS Why use sftp instead of scp?
+The change to sftp was made in order to allow the remote system to chroot the backup,
+thus providing better security and because it does not suffer from shell quoting issues like scp.
+Scp also does not support any kind of file listing, so sftp or ssh access will always be needed
+in addition for this backend mode to work properly. Sftp does not have these limitations but needs
+an sftp service running on the backend server, which is sometimes not an option.
+
+.SH A NOTE ON SSL CERTIFICATE VERIFICATION
+Certificate verification as implemented right now [02.2016] only in the webdav
+and lftp backends. older pythons 2.7.8- and older lftp binaries need a file
+based database of certification authority certificates (cacert file).
+.br
+Newer python 2.7.9+ and recent lftp versions however support the system default
+certificates (usually in /etc/ssl/certs) and also giving an alternative ca cert
+folder via
+.BR --ssl-cacert-path .
+.PP
+The cacert file has to be a
+.B PEM
+formatted text file as currently provided by the
+.B CURL
+project. See
+.PP
+.RS
+http://curl.haxx.se/docs/caextract.html
+.PP
+.RE
+After creating/retrieving a valid cacert file you should copy it to either
+.PP
+.RS
+~/.duplicity/cacert.pem
+.br
+~/duplicity_cacert.pem
+.br
+/etc/duplicity/cacert.pem
+.PP
+.RE
+Duplicity searches it there in the same order and will fail if it can't find it.
+You can however specify the option
+.BI --ssl-cacert-file " <file>"
+to point duplicity to a copy in a different location.
+.PP
+Finally there is the
+.BI --ssl-no-check-certificate
+option to disable certificate verification alltogether, in case some ssl library
+is missing or verification is not wanted. Use it with care, as even with self signed
+servers manually providing the private ca certificate is definitely the safer option.
+
+.SH A NOTE ON SWIFT (OPENSTACK OBJECT STORAGE) ACCESS
+Swift is the OpenStack Object Storage service.
+.br
+The backend requires python-switclient to be installed on the system.
+python-keystoneclient is also needed to use OpenStack's Keystone Identity service.
+See
+.BR REQUIREMENTS .
+
+It uses following environment variables for authentification:
+
+.RS
+.BR SWIFT_USERNAME " (required),"
+.br
+.BR SWIFT_PASSWORD " (required),"
+.br
+.BR SWIFT_AUTHURL " (required),"
+.br
+.BR SWIFT_TENANTID " or"
+.B SWIFT_TENANTNAME
+(required with SWIFT_AUTHVERSION=2, can alternatively be defined in SWIFT_USERNAME like e.g. SWIFT_USERNAME="tenantname:user"),
+.br
+.BR SWIFT_PROJECT_ID " or"
+.BR SWIFT_PROJECT_NAME " (required with SWIFT_AUTHVERSION=3),"
+.br
+.BR SWIFT_USERID " (optional, required only for IBM Bluemix ObjectStorage),"
+.br
+.BR SWIFT_REGIONNAME " (optional)."
+.RE
+
+If the user was previously authenticated, the following environment
+variables can be used instead:
+.BR SWIFT_PREAUTHURL " (required),"
+.BR SWIFT_PREAUTHTOKEN " (required)"
+
+If
+.B SWIFT_AUTHVERSION
+is unspecified, it will default to version 1.
+
+.SH A NOTE ON SYMMETRIC ENCRYPTION AND SIGNING
+Signing and symmetrically encrypt at the same time with the gpg binary on the
+command line, as used within duplicity, is a specifically challenging issue.
+Tests showed that the following combinations proved working.
+.PP
+1. Setup gpg-agent properly. Use the option
+.BI --use-agent
+and enter both passphrases (symmetric and sign key) in the gpg-agent's dialog.
+.PP
+2. Use a
+.BI PASSPHRASE
+for symmetric encryption of your choice but the signing key has an
+.B empty
+passphrase.
+.PP
+3. The used
+.BI PASSPHRASE
+for symmetric encryption and the passphrase of the signing key are identical.
+
+.SH KNOWN ISSUES / BUGS
+Hard links currently unsupported (they will be treated as non-linked
+regular files).
+
+Bad signatures will be treated as empty instead of logging appropriate
+error message.
+
+.SH OPERATION AND DATA FORMATS
+This section describes duplicity's basic operation and the format of
+its data files.  It should not necessary to read this section to use
+duplicity.
+
+The files used by duplicity to store backup data are tarfiles in GNU
+tar format.  They can be produced independently by
+.BR rdiffdir (1).
+For incremental backups, new files are saved normally in the tarfile.
+But when a file changes, instead of storing a complete copy of the
+file, only a diff is stored, as generated by
+.BR rdiff (1).
+If a file is deleted, a 0 length file is stored in the tar.  It is
+possible to restore a duplicity archive "manually" by using
+.B tar
+and then
+.BR cp ,
+.BR rdiff ,
+and
+.B rm
+as necessary.  These duplicity archives have the extension
+.BR difftar .
+
+Both full and incremental backup sets have the same format.  In
+effect, a full backup set is an incremental one generated from an
+empty signature (see below).  The files in full backup sets will start
+with
+.B duplicity-full
+while the incremental sets start with
+.BR duplicity-inc .
+When restoring, duplicity applies patches in order, so deleting, for
+instance, a full backup set may make related incremental backup sets
+unusable.
+
+In order to determine which files have been deleted, and to calculate
+diffs for changed files, duplicity needs to process information about
+previous sessions.  It stores this information in the form of tarfiles
+where each entry's data contains the signature (as produced by
+.BR rdiff )
+of the file instead of the file's contents.  These signature sets have
+the extension
+.BR sigtar .
+
+Signature files are not required to restore a backup set, but without
+an up-to-date signature, duplicity cannot append an incremental backup
+to an existing archive.
+
+To save bandwidth, duplicity generates full signature sets and
+incremental signature sets.  A full signature set is generated for
+each full backup, and an incremental one for each incremental backup.
+These start with
+.B duplicity-full-signatures
+and
+.B duplicity-new-signatures
+respectively. These signatures will be stored both locally and remotely.
+The remote signatures will be encrypted if encryption is enabled.
+The local signatures will not be encrypted and stored in the archive dir (see
+.B "--archive-dir"
+).
+
+.SH REQUIREMENTS
+Duplicity requires a POSIX-like operating system with a
+.B python
+interpreter version 2.6+ installed.
+It is best used under GNU/Linux.
+
+Some backends also require additional components (probably available as packages for your specific platform):
+.TP
+.BR "Amazon Drive backend"
+.B python-requests
+- http://python-requests.org
+.br
+.B python-requests-oauthlib
+- https://github.com/requests/requests-oauthlib
+.TP
+.BR "azure backend" " (Azure Storage Blob Service)"
+.B Microsoft Azure Storage Blobs client library for Python
+- https://pypi.org/project/azure-storage-blob/
+.TP
+.BR "boto backend" " (S3 Amazon Web Services, Google Cloud Storage) (legacy)"
+.B boto version 2.49 (2018/07/11)
+- http://github.com/boto/boto
+.TP
+.BR "boto3 backend" " (S3 Amazon Web Services, Google Cloud Storage) (default)"
+.B boto3 version 1.x
+- https://github.com/boto/boto3
+.TP
+.BR "box backend" " (box.com)"
+.B boxsdk
+- https://github.com/box/box-python-sdk
+.TP
+.BR "cfpyrax backend" " (Rackspace Cloud) and " "hubic backend" " (hubic.com)"
+.B Rackspace CloudFiles Pyrax API
+- http://docs.rackspace.com/sdks/guide/content/python.html
+.TP
+.BR "dpbx backend" " (Dropbox)"
+.B Dropbox Python SDK
+- https://www.dropbox.com/developers/reference/sdk
+.TP
+.BR "gdocs gdata backend" " (legacy)"
+.B Google Data APIs Python Client Library
+- http://code.google.com/p/gdata-python-client/
+.TP
+.BR "gdocs pydrive backend" "(default)"
+see pydrive backend
+.TP
+.BR "gio backend" " (Gnome VFS API)"
+.B PyGObject
+- http://live.gnome.org/PyGObject
+.br
+.B D-Bus
+(dbus)- http://www.freedesktop.org/wiki/Software/dbus
+.TP
+.BR "lftp backend" " (needed for ftp, ftps, fish [over ssh] - also supports sftp, webdav[s])"
+.B LFTP Client
+- http://lftp.yar.ru/
+.TP
+.BR "MEGA backend (only works for accounts created prior to November 2018)" " (mega.nz)"
+.B megatools client
+- https://github.com/megous/megatools
+.TP
+.BR "MEGA v2 and v3 backend (works for all MEGA accounts)" " (mega.nz)"
+.B MEGAcmd client
+- https://mega.nz/cmd
+.TP
+.BR "multi backend"
+.B Multi -- store to more than one backend
+.br
+(also see
+.BR "A NOTE ON MULTI BACKEND"
+) below.
+.TP
+.BR "ncftp backend" " (ftp, select via ncftp+ftp://)"
+.B NcFTP
+- http://www.ncftp.com/
+.TP
+.BR "OneDrive backend" " (Microsoft OneDrive)"
+.B python-requests-oauthlib
+- https://github.com/requests/requests-oauthlib
+.TP
+.B "Par2 Wrapper Backend"
+.B par2cmdline
+- http://parchive.sourceforge.net/
+.TP
+.BR "pydrive backend"
+.B PyDrive -- a wrapper library of google-api-python-client
+- https://pypi.python.org/pypi/PyDrive
+.br
+(also see
+.BR "A NOTE ON PYDRIVE BACKEND"
+) below.
+.TP
+.B "rclone backend"
+.B rclone
+- https://rclone.org/
+.TP
+.B "rsync backend"
+.B rsync client binary
+- http://rsync.samba.org/
+.TP
+.BR "ssh paramiko backend" " (default)"
+.B paramiko
+(SSH2 for python)
+- http://pypi.python.org/pypi/paramiko (downloads); http://github.com/paramiko/paramiko (project page)
+.br
+.B pycrypto
+(Python Cryptography Toolkit)
+- http://www.dlitz.net/software/pycrypto/
+.TP
+.BR "ssh pexpect backend" "(legacy)"
+.B sftp/scp client binaries
+OpenSSH - http://www.openssh.com/
+.br
+.B Python pexpect module
+- http://pexpect.sourceforge.net/pexpect.html
+.TP
+.BR "swift backend (OpenStack Object Storage)"
+.B Python swiftclient module
+- https://github.com/openstack/python-swiftclient/
+.br
+.B Python keystoneclient module
+- https://github.com/openstack/python-keystoneclient/
+.TP
+.B "webdav backend"
+.B certificate authority database file
+for ssl certificate verification of HTTPS connections
+- http://curl.haxx.se/docs/caextract.html
+.br
+(also see
+.BR "A NOTE ON SSL CERTIFICATE VERIFICATION" ).
+.br
+.B Python kerberos module
+for kerberos authentication
+- https://github.com/02strich/pykerberos
+.TP
+.BR "MediaFire backend"
+.B MediaFire Python Open SDK
+- https://pypi.python.org/pypi/mediafire/
+
+.SH AUTHOR
+.TP
+.BR "Original Author" " - Ben Escoto <bescoto@stanford.edu>"
+.TP
+.BR "Current Maintainer" " - Kenneth Loafman <kenneth@loafman.com>"
+.TP
+.B "Continuous Contributors"
+Edgar Soldin, Mike Terry
+.PP
+Most backends were contributed individually.
+Information about their authorship may be found in the according file's header.
+.PP
+Also we'd like to thank everybody posting issues to the mailing list or on
+launchpad, sending in patches or contributing otherwise. Duplicity wouldn't
+be as stable and useful if it weren't for you.
+.PP
+A special thanks goes to rsync.net, a Cloud Storage provider with explicit
+support for duplicity, for several monetary donations and for providing a
+special "duplicity friends" rate for their offsite backup service.  Email
+info@rsync.net for details.
+
+.SH SEE ALSO
+.BR rdiffdir (1),
+.BR python (1),
+.BR rdiff (1),
+.BR rdiff-backup (1).

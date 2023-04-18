@@ -1,4 +1,4 @@
-.TH UGREP "1" "December 29, 2022" "ugrep 3.9.3" "User Commands"
+.TH UGREP "1" "April 07, 2023" "ugrep 3.11.2" "User Commands"
 .SH NAME
 \fBugrep\fR, \fBug\fR -- file pattern searcher
 .SH SYNOPSIS
@@ -58,7 +58,7 @@ The following options are available:
 Output NUM lines of trailing context after matching lines.  Places
 a \fB\-\-group\-separator\fR between contiguous groups of matches.  If \fB\-o\fR is
 specified, output the match with context to fit NUM columns after
-the match or shortening the match.  See also options \fB\-B\fR, \fB\-C\fR and \fB\-y\fR.
+the match or shortens the match.  See also options \fB\-B\fR, \fB\-C\fR and \fB\-y\fR.
 .TP
 \fB\-a\fR, \fB\-\-text\fR
 Process a binary file as if it were text.  This is equivalent to
@@ -83,7 +83,7 @@ Combines \fB\-\-and\fR \fB\-\-not\fR.  See also options \fB\-\-and\fR, \fB\-\-no
 Output NUM lines of leading context before matching lines.  Places
 a \fB\-\-group\-separator\fR between contiguous groups of matches.  If \fB\-o\fR is
 specified, output the match with context to fit NUM columns before
-the match or shortening the match.  See also options \fB\-A\fR, \fB\-C\fR and \fB\-y\fR.
+the match or shortens the match.  See also options \fB\-A\fR, \fB\-C\fR and \fB\-y\fR.
 .TP
 \fB\-b\fR, \fB\-\-byte\-offset\fR
 The offset in bytes of a matched line is displayed in front of the
@@ -128,19 +128,22 @@ displays the search patterns applied.  See also options \fB\-\-and\fR,
 \fB\-\-andnot\fR, \fB\-\-not\fR, \fB\-\-files\fR and \fB\-\-lines\fR.
 .TP
 \fB\-\-break\fR
-Adds a line break between results from different files.
+Adds a line break between results from different files.  This
+option is enabled by \fB\-\-pretty\fR when the output is sent to a
+terminal.
 .TP
 \fB\-C\fR \fINUM\fR, \fB\-\-context\fR=\fINUM\fR
 Output NUM lines of leading and trailing context surrounding each
 matching line.  Places a \fB\-\-group\-separator\fR between contiguous
 groups of matches.  If \fB\-o\fR is specified, output the match with
-context to fit NUM columns before and after the match or shortening
+context to fit NUM columns before and after the match or shortens
 the match.  See also options \fB\-A\fR, \fB\-B\fR and \fB\-y\fR.
 .TP
 \fB\-c\fR, \fB\-\-count\fR
 Only a count of selected lines is written to standard output.
 If \fB\-o\fR or \fB\-u\fR is specified, counts the number of patterns matched.
-If \fB\-v\fR is specified, counts the number of non\-matching lines.
+If \fB\-v\fR is specified, counts the number of non\-matching lines.  If
+\fB\-\-tree\fR is specified, outputs directories in a tree\-like format.
 .TP
 \fB\-\-color\fR[=\fIWHEN\fR], \fB\-\-colour\fR[=\fIWHEN\fR]
 Mark up the matching text with the expression stored in the
@@ -161,7 +164,7 @@ bright.  A foreground and a background color may be combined with
 font properties `n' (normal), `f' (faint), `h' (highlight), `i'
 (invert), `u' (underline).  Parameter `hl' enables file name
 hyperlinks.  Parameter `rv' reverses the `sl=' and `cx=' parameters
-with option \fB\-v\fR.  Selectively overrides GREP_COLORS.
+when option \fB\-v\fR is specified.  Selectively overrides GREP_COLORS.
 .TP
 \fB\-\-config\fR[=\fIFILE\fR], \fB\-\-\-\fR[\fIFILE\fR]
 Use configuration FILE.  The default FILE is `.ugrep'.  The working
@@ -312,8 +315,8 @@ outputs matching lines `%O' with filename `%f` and line number `%n'
 followed by a newline `%~'.  If \fB\-P\fR is specified, FORMAT may include
 `%1' to `%9', `%[\fINUM\fR]#' and `%[\fINAME\fR]#' to output group captures.  A
 `%%' outputs `%'.  See `ugrep \fB\-\-help\fR format' and `man ugrep'
-section FORMAT for details.  Context options \fB\-A\fR, \fB\-B\fR, \fB\-C\fR and \fB\-y\fR are
-ignored.
+section FORMAT for details.  When option \fB\-o\fR is specified, option \fB\-u\fR
+is also enabled.  Context options \fB\-A\fR, \fB\-B\fR, \fB\-C\fR and \fB\-y\fR are ignored.
 .TP
 \fB\-\-free\-space\fR
 Spacing (blanks and tabs) in regular expressions are ignored.
@@ -348,7 +351,8 @@ when there is only one file (or only standard input) to search.
 .TP
 \fB\-\-heading\fR, \fB\-+\fR
 Group matches per file.  Adds a heading and a line break between
-results from different files.
+results from different files.  This option is enabled by \fB\-\-pretty\fR
+when the output is sent to a terminal.
 .TP
 \fB\-\-help\fR [\fIWHAT\fR], \fB\-?\fR [\fIWHAT\fR]
 Display a help message, specifically on WHAT when specified.
@@ -369,9 +373,11 @@ line is included in the output.  See also options \fB\-U\fR, \fB\-W\fR and \fB\-
 \fB\-\-hidden\fR, \fB\-.\fR
 Search hidden files and directories.
 .TP
-\fB\-\-hyperlink\fR
+\fB\-\-hyperlink\fR[=[\fIPREFIX\fR][+]]
 Hyperlinks are enabled for file names when colors are enabled.
-Same as \fB\-\-colors\fR=hl.
+Same as \fB\-\-colors\fR=hl.  When PREFIX is specified, replaces file://
+with PREFIX:// in the hyperlink.  A `+' includes the line number in
+the hyperlink and when option \fB\-k\fR is specified, the column number.
 .TP
 \fB\-I\fR, \fB\-\-ignore\-binary\fR
 Ignore matches in binary files.  This option is equivalent to the
@@ -461,14 +467,16 @@ when columns are counted, see also option \fB\-\-tabs\fR.
 Only the names of files not containing selected lines are written
 to standard output.  Pathnames are listed once per file searched.
 If the standard input is searched, the string ``(standard input)''
-is written.
+is written.  If \fB\-\-tree\fR is specified, outputs directories in a
+tree\-like format.
 .TP
 \fB\-l\fR, \fB\-\-files\-with\-matches\fR
 Only the names of files containing selected lines are written to
 standard output.  ugrep will only search a file until a match has
 been found, making searches potentially less expensive.  Pathnames
 are listed once per file searched.  If the standard input is
-searched, the string ``(standard input)'' is written.
+searched, the string ``(standard input)'' is written.  If \fB\-\-tree\fR is
+specified, outputs directories in a tree\-like format.
 .TP
 \fB\-\-label\fR=\fILABEL\fR
 Displays the LABEL value when input is read from standard input
@@ -543,8 +551,8 @@ each `ext' in EXTENSIONS.  When an `ext' is preceded by a `!' or a
 with options \fB\-g\fR, \fB\-M\fR and \fB\-t\fR to expand the recursive search.
 .TP
 \fB\-o\fR, \fB\-\-only\-matching\fR
-Output only the matching part of lines.  If \fB\-b\fR, \fB\-k\fR or \fB\-u\fR is
-specified, output each match on a separate line.  When multiple
+Output only the matching part of lines.  Output additional matches
+on the same line with `+' as the field separator.  When multiple
 lines match a pattern, output the matching lines with `|' as the
 field separator.  If \fB\-A\fR, \fB\-B\fR or \fB\-C\fR is specified, fits the match and
 its context on a line within the specified number of columns.
@@ -580,7 +588,7 @@ and \fB\-\-line\-buffered\fR.
 .TP
 \fB\-\-pretty\fR
 When output is sent to a terminal, enables \fB\-\-color\fR, \fB\-\-heading\fR, \fB\-n\fR,
-\fB\-\-sort\fR and \fB\-T\fR when not explicitly disabled.
+\fB\-\-sort\fR, \fB\-\-tree\fR and \fB\-T\fR when not explicitly disabled.
 .TP
 \fB\-Q\fR[\fIDELAY\fR], \fB\-\-query\fR[=\fIDELAY\fR]
 Query mode: user interface to perform interactive searches.  This
@@ -637,7 +645,8 @@ a `\-', write the configuration to standard output.
 \fB\-\-separator\fR[=\fISEP\fR]
 Use SEP as field separator between file name, line number, column
 number, byte offset and the matched line.  The default is a colon
-(`:').
+(`:'), a plus (`+') for additional matches on the same line, and a
+bar (`|') for multi\-line pattern matches.
 .TP
 \fB\-\-sort\fR[=\fIKEY\fR]
 Displays matching files in the order specified by KEY in recursive
@@ -694,6 +703,11 @@ NUM may be 1, 2, 4, or 8.  The default tab size is 8.
 Disables colors to mark up matches with TAG.  END marks the end of
 a match if specified, otherwise TAG.  The default is `___'.
 .TP
+\fB\-\-tree\fR, \-^
+Output directories with matching files in a tree\-like format when
+options \fB\-c\fR, \fB\-l\fR or \fB\-L\fR are used.  This option is enabled by \fB\-\-pretty\fR
+when the output is sent to a terminal.
+.TP
 \fB\-U\fR, \fB\-\-binary\fR
 Disables Unicode matching for binary file matching, forcing PATTERN
 to match bytes, not Unicode characters.  For example, \fB\-U\fR '\\xa3'
@@ -734,7 +748,7 @@ patterns to narrow or widen the scope of the PATTERN search.
 \fB\-\-width\fR[=\fINUM\fR]
 Truncate the output to NUM visible characters per line.  The width
 of the terminal window is used if NUM is not specified.  Note that
-double wide characters in the input may result in wider lines.
+double wide characters in the output may result in wider lines.
 .TP
 \fB\-X\fR, \fB\-\-hex\fR
 Output matches in hexadecimal.  This option is equivalent to the
@@ -1049,8 +1063,10 @@ if not the first match: \fIARG\fR and separator, see also \fB%[\fR\fISEP\fR\fB]$
 the separator, see also \fB%[\fR\fIARG\fR\fB]S\fR and \fB%[\fR\fISEP\fR\fB]$.
 .IP \fB%~\fR
 a newline character.
+.IP \fB%M\fR
+the number of matching lines
 .IP \fB%m\fR
-the number of matches or matched files.
+the number of matches
 .IP \fB%O\fR
 the matching line is output as a raw string of bytes.
 .IP \fB%o\fR
