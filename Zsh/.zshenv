@@ -57,10 +57,10 @@ path=(~/tools/tmux $path)
 path=(~/tools/treesitter $path)
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/lib"
 path=(~/tools/ugrep/bin $path)
-path=(~/tools/wezterm/usr/bin $path)
 [ -f ~/.config/lf/icon.sh ] && source "$HOME/.config/lf/icon.sh"
 export PISTOL_CHROMA_FORMATTER=terminal16m
 export PISTOL_CHROMA_STYLE=monokai
+path=(~/tools/wezterm/target/release $path)
 
 ## Batcat for man & help
 _distro=$(awk '/^ID=/' /etc/*-release | awk -F'=' '{ print tolower($2) }' | tr -d '"')
