@@ -5,7 +5,7 @@ set -o pipefail
 
 source ./config.sh
 
-source ./langs/conda.sh
+# source ./langs/conda.sh
 source ./langs/golang.sh
 source ./langs/java.sh
 source ./langs/julia.sh
