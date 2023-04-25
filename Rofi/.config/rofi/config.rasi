@@ -1,10 +1,15 @@
-/** Basic config file **/
-
 configuration {
-  show-icons: true;
-  icon-theme: "Papirus";
-  display-drun: "";
-  display-window: "﩯 ";
-  display-combi: "  ";
+  show-icons:         true;
+  icon-theme:         "Papirus";
+  
 }
-@theme "themes/sidetab-nord.rasi"
+  timeout {
+      action: "kb-cancel";
+      delay:  0;
+  }
+  filebrowser {
+      directories-first: true;
+      sorting-method:    "name";
+  }
+//@theme "/usr/share/rofi/themes/Arc-Dark.rasi"
+@theme "/home/charles/.config/rofi/themes/simple-tokyonight.rasi"
