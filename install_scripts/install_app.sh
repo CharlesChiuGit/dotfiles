@@ -27,7 +27,7 @@ source ./apps/logseq.sh
 source ./apps/navi.sh
 source ./apps/nvim.sh
 source ./apps/pistol.sh
-source ./apps/qfc.sh
+# source ./apps/qfc.sh
 source ./apps/ripgrep.sh
 source ./apps/sheldon.sh
 source ./apps/silicon.sh

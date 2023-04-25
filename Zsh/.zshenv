@@ -108,10 +108,10 @@ bindkey '^[[a' history-substring-search-up
 bindkey '^[[b' history-substring-search-down
 bindkey ',' autosuggest-accept
 
-# Init qfc
-[[ -s $HOME/tools/qfc/bin/qfc.sh ]] && source "$HOME/tools/qfc/bin/qfc.sh"
-qfc_quick_command 'cd' '\C-b' "cd $0"
-qfc_quick_command 'nvim' '\C-p' "nvim $0"
+# # Init qfc
+# [[ -s $HOME/tools/qfc/bin/qfc.sh ]] && source "$HOME/tools/qfc/bin/qfc.sh"
+# qfc_quick_command 'cd' '\C-b' "cd $0"
+# qfc_quick_command 'nvim' '\C-p' "nvim $0"
 
 # Init copilot-cli
 eval "$(github-copilot-cli alias -- "$0")"
