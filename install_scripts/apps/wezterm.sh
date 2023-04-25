@@ -6,25 +6,28 @@ set -o pipefail
 ######################################################################
 #                            Wexterm Part                            #
 ######################################################################
-WEZ_DIR=$HOME/tools
-WEZ_SRC_NAME=$HOME/packages/wezterm_ubuntu2204.tar.xz
-WEZ_LINK="https://github.com/wez/wezterm/releases/download/20221119-145034-49b9839f/wezterm-20221119-145034-49b9839f.Ubuntu22.04.tar.xz"
+WEZ_DIR=$HOME/tools/wezterm
 if [[ -z $(command -v wezterm) ]]; then
-    echo "Install wezterm"
-    if [[ ! -f $WEZ_SRC_NAME ]]; then
-        echo "Downloading Wezterm"
-        wget "$WEZ_LINK" -O "$WEZ_SRC_NAME"
-    fi
+	echo "Install wezterm"
+	echo "git clone Wezterm repo"
+	if [[ ! -d "$HOME/tools/wezterm" ]]; then
+		cd "$HOME/tools"
+		git clone --depth=1 --branch=main --recursive https://github.com/wez/wezterm.git
+	fi
 
-    echo "Extracting Wezterm"
-    tar Jxvf "$WEZ_SRC_NAME" -C "$WEZ_DIR"
-    cd ~/dotfiles/install_scripts/
+	cd "$WEZ_DIR"
+	git submodule update --init --recursive
+	./get-deps
+	cargo build --release
+	cargo run --release --bin wezterm -- start
 
-    if [[ "$ADD_TO_SYSTEM_PATH" = true ]]; then
-        cat <<EOT >>"$RC_FILE"
+	cd ~/dotfiles/install_scripts/
+
+	if [[ "$ADD_TO_SYSTEM_PATH" = true ]]; then
+		cat <<EOT >>"$RC_FILE"
 export PATH="$PATH:$HOME/tools/wezterm/usr/bin"
 EOT
-    fi
+	fi
 else
-    printf "${tty_blue}Wezterm${tty_reset} is already installed, skip it.\n"
+	printf "${tty_blue}Wezterm${tty_reset} is already installed, skip it.\n"
 fi
