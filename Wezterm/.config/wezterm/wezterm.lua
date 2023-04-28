@@ -6,7 +6,7 @@ local global = require("global")
 local keymap = require("config.keymap")
 local launch_menu = require("config.launch_menu")
 local shell = require("config.shell")
-require("config.notify").setup()
+-- require("config.notify").setup()
 require("config.tab").setup()
 
 local config = {}
