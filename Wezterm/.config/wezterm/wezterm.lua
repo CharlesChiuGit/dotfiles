@@ -135,14 +135,16 @@ for _, rule in ipairs(hyprlink_rules) do
 end
 
 for _, gpu in ipairs(wezterm.gui.enumerate_gpus()) do
-	if gpu.backend == "Vulkan" and gpu.device_type == "DiscreteGpu" then
+	if gpu.backend == "Dx12" and gpu.device_type == "DiscreteGpu" then
 		config.webgpu_preferred_adapter = gpu
 		config.front_end = "WebGpu"
 		break
-	elseif gpu.backend == "OpenGL" and gpu.device_type == "IntegratedGpu" then
+	elseif gpu.backend == "Vulkan" and gpu.device_type == "DiscreteGpu" then
 		config.webgpu_preferred_adapter = gpu
 		config.front_end = "WebGpu"
 		break
+	else
+		config.front_end = "OpenGL"
 	end
 end
 
