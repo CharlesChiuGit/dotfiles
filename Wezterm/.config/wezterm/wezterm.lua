@@ -1,8 +1,13 @@
 local wezterm = require("wezterm")
-local Tab = require("tab")
-local Theme = require("theme")
-local Keys = require("keymap")
-local Windows = require("Windows")
+local theme = require("theme")
+local global = require("global")
+
+-- load configs
+local keymap = require("config.keymap")
+local launch_menu = require("config.launch_menu")
+local shell = require("config.shell")
+require("config.notify").setup()
+require("config.tab").setup()
 
 local config = {}
 
@@ -11,19 +16,11 @@ if wezterm.config_builder then
 	config = wezterm.config_builder()
 end
 
--- Setup Tab
-Tab.setup()
-
--- Set lauch menu on Windows_NT
-if wezterm.target_triple == "x86_64-pc-windows-msvc" then
-	Windows.setup()
-end
-
 -- selene: allow(unused_variable)
 ---@diagnostic disable-next-line: unused-function, unused-local
 local function enable_wayland()
-	local wayland = os.getenv("XDG_SESSION_TYPE")
-	if wayland == "wayland" then
+	local session = os.getenv("XDG_SESSION_TYPE")
+	if session == "wayland" then
 		return true
 	end
 	return false
@@ -34,7 +31,7 @@ local function font_with_fallback(name, params)
 	return wezterm.font_with_fallback(names, params)
 end
 
-local FONT_NAME = "JetBrainsMono Nerd Font"
+local FONT_NAME = global.is_windows and "JetBrainsMono NFM" or "JetBrainsMono Nerd Font"
 
 config = {
 	font = font_with_fallback(FONT_NAME),
@@ -65,7 +62,7 @@ config = {
 	check_for_updates = false,
 	line_height = 1,
 	adjust_window_size_when_changing_font_size = false,
-	window_decorations = "NONE",
+	window_decorations = "INTEGRATED_BUTTONS | RESIZE",
 	window_close_confirmation = "NeverPrompt",
 	window_padding = {
 		left = 10,
@@ -82,21 +79,24 @@ config = {
 	enable_scroll_bar = false,
 	tab_bar_at_bottom = true,
 	use_fancy_tab_bar = false,
-	show_new_tab_button_in_tab_bar = false,
+	show_new_tab_button_in_tab_bar = true,
 	tab_max_width = 50,
 	hide_tab_bar_if_only_one_tab = false,
 	disable_default_key_bindings = false,
+	use_ime = true,
+	xim_im_name = "fcitx5",
 	-- front_end = "OpenGL",
 	-- https://github.com/wez/wezterm/issues/2756
-	webgpu_preferred_adapter = wezterm.gui.enumerate_gpus()[1],
-	front_end = "WebGpu",
+	webgpu_power_preference = "HighPerformance",
 	-- term = "wezterm",
 	-- set term to wezterm will break the nvim titlestring option, see https://github.com/wez/wezterm/issues/2112
 	term = "xterm-256color",
 	bold_brightens_ansi_colors = true,
-	colors = Theme.colors,
-	keys = Keys.keymap,
+	colors = theme.colors,
+	keys = keymap.keymap,
 	hyperlink_rules = wezterm.default_hyperlink_rules(),
+	default_prog = shell,
+	launch_menu = launch_menu,
 }
 
 local hyprlink_rules = {
@@ -132,6 +132,18 @@ local hyprlink_rules = {
 
 for _, rule in ipairs(hyprlink_rules) do
 	table.insert(config.hyperlink_rules, rule)
+end
+
+for _, gpu in ipairs(wezterm.gui.enumerate_gpus()) do
+	if gpu.backend == "Vulkan" and gpu.device_type == "DiscreteGpu" then
+		config.webgpu_preferred_adapter = gpu
+		config.front_end = "WebGpu"
+		break
+	elseif gpu.backend == "OpenGL" and gpu.device_type == "IntegratedGpu" then
+		config.webgpu_preferred_adapter = gpu
+		config.front_end = "WebGpu"
+		break
+	end
 end
 
 return config

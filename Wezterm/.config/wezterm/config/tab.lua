@@ -1,5 +1,6 @@
 local wezterm = require("wezterm")
 local palette = require("theme").palette
+local global = require("global")
 
 local Tab = {}
 
@@ -93,6 +94,18 @@ local function get_process(tab)
 			{ Foreground = { Color = palette.sapphire } },
 			{ Text = wezterm.nerdfonts.cod_remote },
 		},
+		["cmd.exe"] = {
+			{ Foreground = { Color = palette.overlay2 } },
+			{ Text = wezterm.nerdfonts.cod_terminal_cmd },
+		},
+		["pwsh.exe"] = {
+			{ Foreground = { Color = palette.overlay0 } },
+			{ Text = wezterm.nerdfonts.cod_terminal_powershell },
+		},
+		["powershell.exe"] = {
+			{ Foreground = { Color = palette.mantle } },
+			{ Text = wezterm.nerdfonts.cod_terminal_powershell },
+		},
 	}
 
 	local process_name = string.gsub(tab.active_pane.foreground_process_name, "(.*[/\\])(.*)", "%2")
@@ -109,13 +122,11 @@ end
 
 local function get_current_working_folder_name(tab)
 	local cwd_uri = tab.active_pane.current_working_dir
-	cwd_uri = cwd_uri:sub(8)
+	cwd_uri = global.is_linux and cwd_uri:sub(8) or cwd_uri:sub(9)
 
-	local slash = cwd_uri:find("/")
-	local cwd = cwd_uri:sub(slash)
+	local cwd = cwd_uri:sub(1, -2)
 
-	local HOME_DIR = os.getenv("HOME")
-	if cwd == HOME_DIR then
+	if cwd == global.home then
 		return "  ~"
 	end
 
