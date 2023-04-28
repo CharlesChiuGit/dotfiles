@@ -124,7 +124,13 @@ local function get_current_working_folder_name(tab)
 	local cwd_uri = tab.active_pane.current_working_dir
 	cwd_uri = global.is_linux and cwd_uri:sub(8) or cwd_uri:sub(9)
 
-	local cwd = cwd_uri:sub(1, -2)
+	local cwd = cwd_uri
+	if global.is_linux then
+		local slash_index = cwd_uri:find("/")
+		cwd = cwd_uri:sub(slash_index)
+	elseif global.is_windows then
+		cwd = cwd_uri:sub(1, -2)
+	end
 
 	if cwd == global.home then
 		return "  ~"
