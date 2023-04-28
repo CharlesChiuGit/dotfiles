@@ -3,7 +3,7 @@ local M = {}
 
 M.setup = function()
 	wezterm.on("window-config-reloaded", function(window, pane)
-		window:toast_notification("wezterm", "config reloaded!", nil, 8000)
+		window:toast_notification("wezterm", "config reloaded!", nil, 4000)
 	end)
 end
 
