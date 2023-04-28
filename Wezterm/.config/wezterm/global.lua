@@ -1,5 +1,6 @@
 local M = {}
 local wezterm = require("wezterm")
+local os_name = os.getenv("OS")
 
 local function getOS()
 	local osname = ""
@@ -8,10 +9,10 @@ local function getOS()
 	if fh then
 		osname = fh:read()
 	end
-	return osname or os.getenv("OS")
+	return osname
 end
 
-local os_name = getOS()
+os_name = os_name or getOS()
 
 function M:load_variables()
 	self.is_windows = os_name == "Windows_NT"
