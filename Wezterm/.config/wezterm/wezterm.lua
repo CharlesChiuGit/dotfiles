@@ -31,7 +31,7 @@ local function font_with_fallback(name, params)
 	return wezterm.font_with_fallback(names, params)
 end
 
-local FONT_NAME = global.is_windows and "JetBrainsMono NFM" or "JetBrainsMono Nerd Font"
+local FONT_NAME = "JetBrainsMono Nerd Font"
 
 config = {
 	font = font_with_fallback(FONT_NAME),
