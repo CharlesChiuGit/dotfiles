@@ -30,6 +30,7 @@ if __name__ == "__main__":
         ["ajeetdsouza/zoxide", "main", "^contrib/completions/(.*)(_zoxide|bash)$"],
         ["sharkdp/fd", "master", "^contrib/completion/_fd"],
         ["BurntSushi/ripgrep", "master", "^complete/_rg"],
+        ["gokcehan/lf", "master", "^etc/lf.(bash|zsh)"],
     ]
     out_dir = os.path.expanduser("~") + "/dotfiles/Zsh/.zsh/completion/"
     print(out_dir + "\n")
