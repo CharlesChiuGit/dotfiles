@@ -74,8 +74,8 @@ help() (
 
 ## neovim support
 export EDITOR='nvim'
-export LC_ALL="en_US.UTF-8"
-export LANG="en_US.UTF-8"
+# export LC_ALL="en_US.UTF-8"
+# export LANG="en_US.UTF-8"
 
 ## Truecolor support
 # NOTE: https://github.com/termstandard/colors
@@ -95,11 +95,6 @@ eval "$(zoxide init bash)" || echo "zoxide not found!"
 # Init Starship
 # [ -x ~/tools/starship/starship ] && eval "$(starship init bash)" || echo "starship not found!"]
 eval "$(starship init bash)" || echo "starship not found!"]
-
-# Init qfc
-[[ -s $HOME/tools/qfc/bin/qfc.sh ]] && source "$HOME/tools/qfc/bin/qfc.sh"
-qfc_quick_command 'cd' '\C-b' "cd $0"
-qfc_quick_command 'nvim' '\C-p' "nvim $0"
 
 # Init copilot-cli
 eval "$(github-copilot-cli alias -- "$0")"
