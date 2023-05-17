@@ -19,7 +19,6 @@ if [[ -z $(command -v wezterm) ]]; then
 	git submodule update --init --recursive
 	./get-deps
 	cargo build --release
-	cargo run --release --bin wezterm -- start
 
 	cd ~/dotfiles/install_scripts/
 
