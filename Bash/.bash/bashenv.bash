@@ -63,10 +63,11 @@ if [ "$_distro" = "void" ]; then
 	export MANPAGER="batman"
 else
 	export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+	man 2 select
 fi
 
 # usage: `help git`, `help git commit`, `help bat -h`
-alias bathelp='bat --plain --language=cmd-help'
+alias bathelp='bat --plain --language=help'
 help() (
 	set -o pipefail
 	"$@" --help 2>&1 | bathelp
