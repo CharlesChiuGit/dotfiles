@@ -19,10 +19,9 @@ status=$(is_latest "$remote_version_c" "$local_version")
 if [ "$status" = false ]; then
 	printf "Update ${tty_blue}Batcat...${tty_reset}\n"
 	cargo install bat --locked
+	# Rebuild bat's cache
+	bat cache --build
 	printf "${tty_blue}Batcat${tty_reset} updated to ${tty_green}${remote_version}${tty_reset}.\n"
 else
 	printf "${tty_blue}Batcat${tty_reset} is up-to-date.\n"
 fi
-
-# Rebuild bat's cache
-bat cache --build

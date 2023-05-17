@@ -6,22 +6,7 @@ set -o pipefail
 ######################################################################
 #                           Update pistol                            #
 ######################################################################
-PISTOL_DIR=$HOME/tools/pistol/
-
-printf "Fetch ${tty_blue}Pistol${tty_reset} commits...\n"
-
-cd "$PISTOL_DIR"
-git fetch
-status=$(check_git_update "")
-
-if [[ $status = true ]]; then
-	printf "Update ${tty_blue}Pistol${tty_reset}.\n"
-	cd ~/tools/pistol
-	git reset –hard
-	git pull
-	go install github.com/doronbehar/pistol/cmd/pistol@latest
-elif [[ $status = false ]]; then
-	printf "${tty_blue}Pistol${tty_reset} is up-to-date!\n"
-fi
-
-cd ~/dotfiles/install_scripts/
+printf "Update ${tty_blue}Pistol...${tty_reset}\n"
+rm -rf ~/go/bin/pistol
+go install github.com/doronbehar/pistol/cmd/pistol@latest
+printf "${tty_blue}pistol${tty_reset} updated to ${tty_green}latest${tty_reset}.\n"

@@ -22,7 +22,7 @@ source ./apps/lazygit.sh
 source ./apps/lazydocker.sh
 source ./apps/lf.sh
 source ./apps/lnav.sh
-source ./apps/logseq.sh
+# source ./apps/logseq.sh
 # source ./apps/magick.sh
 source ./apps/navi.sh
 source ./apps/nvim.sh
@@ -39,7 +39,7 @@ source ./apps/trashy.sh
 source ./apps/treesitter.sh
 source ./apps/ugrep.sh
 source ./apps/viu.sh
-source ./apps/wezterm.sh
+# source ./apps/wezterm.sh
 source ./apps/xh.sh
 # source ./apps/xplr.sh
 source ./apps/zoxide.sh
