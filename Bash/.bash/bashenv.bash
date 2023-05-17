@@ -92,6 +92,7 @@ esac
 ## Init zoxide
 # [ -x ~/tools/zoxide/zoxide ] && eval "$(zoxide init bash)" || echo "zoxide not found!"
 eval "$(zoxide init bash)" || echo "zoxide not found!"
+export _ZO_EXCLUDE_DIRS="$HOME/.local"
 
 # Init Starship
 # [ -x ~/tools/starship/starship ] && eval "$(starship init bash)" || echo "starship not found!"]

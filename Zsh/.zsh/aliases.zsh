@@ -18,6 +18,7 @@ alias tb='tensorboard --logdir'
 [[ $TMUX != "" ]] && export TERM="tmux-256color"
 alias tmux="~/tools/tmux/tmux -f ~/.config/tmux/tmux.conf"
 alias cider="flatpak run sh.cider.Cider"
+alias zzf='zoxide query | fzf'
 
 # upgrep Alias
 alias uq='ug -Q'  # short & quick query TUI (interactive, uses .ugrep config)
