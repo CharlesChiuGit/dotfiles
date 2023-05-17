@@ -1,5 +1,5 @@
 _zoxide() {
-    local i cur prev opts cmds
+    local i cur prev opts cmd
     COMPREPLY=()
     cur="${COMP_WORDS[COMP_CWORD]}"
     prev="${COMP_WORDS[COMP_CWORD-1]}"
@@ -187,7 +187,7 @@ _zoxide() {
             return 0
             ;;
         zoxide__query)
-            opts="-i -l -s -h -V --all --interactive --list --score --exclude --help --version [KEYWORDS]..."
+            opts="-a -i -l -s -h -V --all --interactive --list --score --exclude --help --version [KEYWORDS]..."
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
