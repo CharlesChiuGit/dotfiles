@@ -18,7 +18,7 @@ echo "Local version: ${local_version}"
 status=$(is_latest "$remote_version_c" "$local_version")
 if [ "$status" = false ]; then
 	printf "Update ${tty_blue}Navi...${tty_reset}\n"
-	cargo install navi --force
+	cargo install navi --locked
 	printf "${tty_blue}Navi${tty_reset} updated to ${tty_green}${remote_version}${tty_reset}.\n"
 else
 	printf "${tty_blue}Navi${tty_reset} is up-to-date.\n"
