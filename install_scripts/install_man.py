@@ -23,15 +23,16 @@ def get_raw_url(reponame, branch, man_path):
 if __name__ == "__main__":
     # author/repo and pattern
     repos = [
-        ["ajeetdsouza/zoxide", "main", "^man/man1/"],
-        ["junegunn/fzf", "master", "^man/man1/"],
-        ["sharkdp/bat", "master", "^assets/manual/bat.1"],
-        ["ogham/exa", "master", "^man/exa.1.md"],
-        ["sharkdp/fd", "master", "^doc/fd.1"],
-        ["jhawthorn/fzy", "master", "^fzy.1"],
-        ["neovim/neovim", "master", "^src/man/nvim.1"],
         ["BurntSushi/ripgrep", "master", "^doc/rg.1.txt.tpl"],
         ["Genivia/ugrep", "master", "^man/ugrep.1"],
+        ["ajeetdsouza/zoxide", "main", "^man/man1/"],
+        ["gokcehan/lf", "master", "^lf.1"],
+        ["jhawthorn/fzy", "master", "^fzy.1"],
+        ["junegunn/fzf", "master", "^man/man1/"],
+        ["neovim/neovim", "master", "^src/man/nvim.1"],
+        ["ogham/exa", "master", "^man/exa.1.md"],
+        ["sharkdp/bat", "master", "^assets/manual/bat.1"],
+        ["sharkdp/fd", "master", "^doc/fd.1"],
     ]
     out_dir = os.path.expanduser("~") + "/dotfiles/Local/.local/share/man/man1/"
     print(out_dir + "\n")
