@@ -5,7 +5,7 @@ alias sozsh='source ~/.zshenv && source ~/.zshrc'
 alias nvzsh='nvim ~/.zshrc'
 alias nv='nvim'
 alias cat='bat'  # wrapper for bat
-alias py='python'
+alias py='python3'
 alias nvf='nvim `fzf`'
 alias ls='exa -1 -l -T -F --colour always --icons -a -L=1 \
     --group-directories-first -b -h --git --time-style long-iso --no-permissions --octal-permissions'
