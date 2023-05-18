@@ -11,7 +11,8 @@ set drawbox true
 set icons true
 set ignorecase true
 set mouse
-set timefmt '2006-01-02 15:04:05 -0700'
+set timefmt '2006-01-02 15:04:05'
+set cursorpreviewfmt "\033[7;2m"
 
 # # ctpv preview
 # set previewer ctpv
