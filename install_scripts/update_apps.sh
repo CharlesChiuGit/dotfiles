@@ -24,7 +24,7 @@ source ./updates/lnav_up.sh
 source ./updates/navi_up.sh
 # source ./updates/nvim_up.sh
 source ./updates/pistol_up.sh
-source ./updates/qfc_up.sh
+# source ./updates/qfc_up.sh
 source ./updates/ripgrep_up.sh
 source ./updates/sheldon_up.sh
 source ./updates/silicon_up.sh
