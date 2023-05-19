@@ -22,6 +22,7 @@ source ./apps/lazygit.sh
 source ./apps/lazydocker.sh
 source ./apps/lf.sh
 source ./apps/lnav.sh
+source ./apps/logiops.sh
 # source ./apps/logseq.sh
 # source ./apps/magick.sh
 source ./apps/navi.sh

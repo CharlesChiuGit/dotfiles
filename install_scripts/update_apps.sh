@@ -21,6 +21,7 @@ source ./updates/lazygit_up.sh
 source ./updates/lazydocker_up.sh
 source ./updates/lf_up.sh
 source ./updates/lnav_up.sh
+source ./updates/logiops_up.sh
 source ./updates/navi_up.sh
 # source ./updates/nvim_up.sh
 source ./updates/pistol_up.sh

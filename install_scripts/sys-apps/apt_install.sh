@@ -51,3 +51,6 @@ sudo nala install fcitx5-config-qt fcitx5-frontend-qt5 -y
 sudo nala install fcitx5-chinese-addons fcitx5-chewing
 ## fcitx5-mcbopomofo is a better one if fcitx5-chewing is having issues.
 ## https://github.com/openvanilla/fcitx5-mcbopomofo
+
+# logiops
+sudo nala install build-essential cmake pkg-config libevdev-dev libudev-dev libconfig++-dev libglib2.0-dev -y
