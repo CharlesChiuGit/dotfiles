@@ -1,15 +1,15 @@
 {:logseq-wrap
- {:version "v0.7.0", :repo "sethyuan/logseq-plugin-wrap", :effect true, :theme false},
+ {:version "v0.7.1", :repo "sethyuan/logseq-plugin-wrap", :effect true, :theme false},
  :logseq-paste-more
  {:version "v1.5.6", :repo "usoonees/logseq-plugin-paste-more", :effect true, :theme false},
  :logseq-todo-plugin
- {:version "v1.17.0", :repo "ahonn/logseq-plugin-todo", :effect true, :theme false},
+ {:version "v1.19.0", :repo "ahonn/logseq-plugin-todo", :effect true, :theme false},
  :logseq-copy-code-plugin
  {:version "v.1.2.0", :repo "vyleung/logseq-copy-code-plugin", :effect true, :theme false},
  :logseq-osmmaps-plugin
- {:version "2.0.3", :repo "hkgnp/logseq-osmmaps-plugin", :effect true, :theme false},
+ {:version "2.2.2", :repo "hkgnp/logseq-osmmaps-plugin", :effect true, :theme false},
  :logseq-ol
- {:version "v0.4.2", :repo "sethyuan/logseq-plugin-ol", :effect false, :theme false},
+ {:version "v0.4.4", :repo "sethyuan/logseq-plugin-ol", :effect false, :theme false},
  :logseq-schrodinger
  {:version "1.5.5",
   :repo "sawhney17/logseq-schrodinger",
@@ -18,21 +18,25 @@
  :logseq-link-preview
  {:version "v2.2.10", :repo "pengx17/logseq-plugin-link-preview", :effect true, :theme false},
  :logseq-git
- {:version "v1.5.0", :repo "haydenull/logseq-plugin-git", :effect true, :theme false},
+ {:version "v1.5.2", :repo "haydenull/logseq-plugin-git", :effect true, :theme false},
  :logseq-mark-map
  {:version "v0.3.17", :repo "vipzhicheng/logseq-plugin-mark-map", :effect false, :theme false}
- :logseq-smartsearch {:version "v0.19.2", :repo "sethyuan/logseq-plugin-smartsearch", :effect true, :theme false}
+ :logseq-smartsearch {:version "v0.21.1", :repo "sethyuan/logseq-plugin-smartsearch", :effect true, :theme false}
  :logseq-reminder {:version "v0.2.7", :repo "sethyuan/logseq-plugin-reminder", :effect true, :theme false}
  :logseq-readwise-official-plugin {:version "v1.3.8", :repo "readwiseio/logseq-readwise-official-plugin", :effect true, :theme false}
  :logseq-quick-capture {:version "0.0.7", :repo "tankcool/logseq-quick-capture", :effect false, :theme false}
- :logseq-datenlp-plugin {:version "3.13.6", :repo "hkgnp/logseq-datenlp-plugin", :effect true, :theme false}
+ :logseq-datenlp-plugin {:version "3.13.8", :repo "hkgnp/logseq-datenlp-plugin", :effect true, :theme false}
  :logseq-awesome-links {:version "v1.15.16", :repo "yoyurec/logseq-awesome-links", :effect true, :theme false}
- :logseq-smart-typing {:version "v0.10.3", :repo "sethyuan/logseq-plugin-smart-typing", :effect true, :theme false}
+ :logseq-smart-typing {:version "v0.10.6", :repo "sethyuan/logseq-plugin-smart-typing", :effect true, :theme false}
  :logseq-localassets-plugin {:version "1.6.5", :repo "hkgnp/logseq-localassets-plugin", :effect true, :theme false}
  :logseq-plugin-query-chart {:version "v0.5.4", :repo "0w0miki/logseq-plugin-query-chart", :effect true, :theme false}
  :logseq-catppuccin {:version "v0.2.2", :repo "catppuccin/logseq", :effect false, :theme true}
  :template-gallery {:version "0.10", :repo "dangermccann/logseq-template-gallery", :effect true, :theme false}
  :logseq-query-builder-plugin {:version "0.7", :repo "adxsoft/logseq-query-builder-plugin", :effect false, :theme false}
- :logseq-fenced-code-plus {:version "0.0.5", :repo "xyhp915/logseq-fenced-code-plus", :effect true, :theme false}
- :logseq-kanban-board {:version "v1.3.1", :repo "sethyuan/logseq-plugin-kanban-board", :effect true, :theme false}
- :logseq-plugin-jump-to-block {:version "v1.3.0", :repo "freder/logseq-plugin-jump-to-block", :effect true, :theme false}}
+ :logseq-fenced-code-plus {:version "0.0.6", :repo "xyhp915/logseq-fenced-code-plus", :effect true, :theme false}
+ :logseq-kanban-board {:version "v1.8.0", :repo "sethyuan/logseq-plugin-kanban-board", :effect true, :theme false}
+ :logseq-plugin-jump-to-block {:version "v1.6.0", :repo "freder/logseq-plugin-jump-to-block", :effect true, :theme false}
+ :logseq-plugin-insert-above {:version "v1.1.3", :repo "freder/logseq-plugin-insert-above", :effect false, :theme false}
+ :logseq-excalidraw {:version "v1.2.0", :repo "haydenull/logseq-plugin-excalidraw", :effect true, :theme false}
+ :logseq-ocr {:version "v0.0.1", :repo "xxchan/logseq-ocr", :effect true, :theme false}
+ :logseq-drawio-plugin {:version "v1.0.1", :repo "lee88688/logseq-drawio-plugin", :effect false, :theme false}}

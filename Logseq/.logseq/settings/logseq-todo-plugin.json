@@ -1,6 +1,7 @@
 {
   "hotkey": "",
   "defaultMarker": "",
+  "customMarkers": "WAITING",
   "defaultPriority": "",
   "whereToPlaceNewTask": "",
   "showNextNDaysTask": false,

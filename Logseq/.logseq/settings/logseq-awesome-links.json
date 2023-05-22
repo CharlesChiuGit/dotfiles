@@ -11,9 +11,11 @@
   "dafaultPropsHeading": null,
   "defaultPageProps": "icon::\ncolor::",
   "defaultJournalProps": "icon::\ncolor::",
-  "nerdFontEnabled": true,
+  "iconsFontHeading": null,
+  "iconFont": "nerd",
   "otherHeading": null,
   "fixLowContrast": false,
   "featureUpdaterEnabled": true,
-  "disabled": false
+  "disabled": false,
+  "nerdFontEnabled": true
 }

@@ -6,6 +6,7 @@
   "replaceLatexMathExpressionEnabled": false,
   "syncCollapsedState": false,
   "colorFreezeLevel": "0",
+  "disableShortcuts": false,
   "disabled": false,
   "keyBindings": {
     "openMarkmap": "ctrl+m ctrl+m",
