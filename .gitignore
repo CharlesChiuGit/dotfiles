@@ -15,7 +15,8 @@ Local/.local/bin/pygmentize
 Local/.local/bin/undill
 Local/.local/bin/wheel
 *.uuid
-Logseq/.logseq/settings/logseq-plugin-github-get.json
+Logseq/.logseq/plugins
+Logseq/.logseq/graphs
 
 # C extensions
 *.so
