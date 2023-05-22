@@ -69,7 +69,7 @@ if __name__ == "__main__":
     print(res)
     bash_cmp_dir = (
         os.path.expanduser("~")
-        + "/dotfiles/Local/.local/share/bash-completion/completions/"
+        + "/dotfiles/Bash/.local/share/bash-completion/completions/"
     )
     shutil.rmtree(bash_cmp_dir)
     os.makedirs(bash_cmp_dir, exist_ok=True)

@@ -34,7 +34,7 @@ if __name__ == "__main__":
         ["sharkdp/bat", "master", "^assets/manual/bat.1"],
         ["sharkdp/fd", "master", "^doc/fd.1"],
     ]
-    out_dir = os.path.expanduser("~") + "/dotfiles/Local/.local/share/man/man1/"
+    out_dir = os.path.expanduser("~") + "/dotfiles/Manual/.local/share/man/man1/"
     print(out_dir + "\n")
     shutil.rmtree(out_dir)
 
