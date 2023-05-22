@@ -48,6 +48,7 @@ export FZF_ALT_T_OPTS="$FZF_DEFAULT_OPTS"
 path=(~/tools/fzf/bin $path)
 path=(~/tools/fzy $path)
 path=(~/tools/jq $path)
+path=(~/tools/lf $path)
 path=(~/tools/lnav $path)
 path=(~/tools/Logseq-linux-x64 $path)
 path=(~/tools/nvim/bin $path)
@@ -61,7 +62,7 @@ path=(~/tools/ugrep/bin $path)
 export PISTOL_CHROMA_FORMATTER=terminal16m
 export PISTOL_CHROMA_STYLE=monokai
 path=(~/tools/wezterm/target/release $path)
-path=(~/tools/logiops/build/logid $path)
+path=(~/tools/logiops/build $path)
 
 ## Batcat for man & help
 _distro=$(awk '/^ID=/' /etc/*-release | awk -F'=' '{ print tolower($2) }' | tr -d '"')

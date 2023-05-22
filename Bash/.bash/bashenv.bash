@@ -43,6 +43,7 @@ export FZF_ALT_C_OPTS="$FZF_DEFAULT_OPTS"
 export PATH="$PATH:$HOME/tools/fzf/bin"
 export PATH="$PATH:$HOME/tools/fzy"
 export PATH="$PATH:$HOME/tools/jq"
+export PATH="$PATH:$HOME/tools/lf"
 export PATH="$PATH:$HOME/tools/lnav"
 export PATH="$PATH:$HOME/tools/Logseq-linux-x64"
 export PATH="$PATH:$HOME/tools/nvim/bin"
@@ -56,7 +57,7 @@ export PATH="$PATH:$HOME/tools/wezterm/usr/bin"
 [ -f ~/.config/lf/icon.sh ] && source "$HOME/.config/lf/icon.sh"
 export PISTOL_CHROMA_FORMATTER=terminal16m
 export PISTOL_CHROMA_STYLE=monokai
-export PATH="$PATH:$HOME/tools/logiops/build/logid"
+export PATH="$PATH:$HOME/tools/logiops/build"
 
 ## Batcat for man & help
 _distro=$(awk '/^ID=/' /etc/*-release | awk -F'=' '{ print tolower($2) }' | tr -d '"')
