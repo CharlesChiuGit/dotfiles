@@ -39,12 +39,6 @@ path=(~/tools/ruby/bin $path)
 path=(~/.local/bin $path)
 path=(~/tools/btop/bin $path)
 path=(~/tools/cpufetch $path)
-export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow'
-export FZF_DEFAULT_OPTS='--ansi --height 40% --layout=reverse --border=double --border-label="╣ FZF ╠" --header="E to edit" --preview="pistol {}" --bind="E:execute(nvim {})" --preview-label="┓ ⟪Preview⟫ ┏" --preview-window=right,border-bold --color=border:#7ba46c,label:#7ba46c'
-export FZF_CTRL_T_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
-export FZF_CTRL_T_OPTS="$FZF_DEFAULT_OPTS"
-export FZF_ALT_C_COMMAND='fd -H --type d . --color=never'
-export FZF_ALT_T_OPTS="$FZF_DEFAULT_OPTS"
 path=(~/tools/fzf/bin $path)
 path=(~/tools/fzy $path)
 path=(~/tools/jq $path)
@@ -139,6 +133,7 @@ export GLFW_IM_MODULE=ibus
 [[ -f ~/.zsh/aliases.zsh ]] && source ~/.zsh/aliases.zsh
 [[ -f ~/.zsh/keybind.zsh ]] && source ~/.zsh/keybind.zsh
 [[ -f ~/.zsh/starship.zsh ]] && source ~/.zsh/starship.zsh
+[[ -f ~/.zsh/fzf.zsh ]] && source ~/.zsh/fzf.zsh
 [[ -f ~/.zsh/fzf-tab.zsh ]] && source ~/.zsh/fzf-tab.zsh
 [[ -f ~/.zsh/wsl2fix.zsh ]] && source ~/.zsh/wsl2fix.zsh
 # [[ -f ~/.bash/wayland.zsh ]] && source ~/.zsh/wayland.zsh
