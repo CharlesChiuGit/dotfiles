@@ -124,9 +124,9 @@ format = '\[[󰔟 $duration]($style)\]'
 
 [memory_usage]
 disabled = false
-symbol = "󰍛"
+symbol = "󰍛 "
 threshold = 70
-format = '\[$symbol[$ram( | $swap)]($style)\]'
+format = '\[$symbol[$ram]($style)\]'
 
 [time]
 disabled = true
