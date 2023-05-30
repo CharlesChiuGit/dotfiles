@@ -14,14 +14,6 @@ export FZF_DEFAULT_OPTS="\
 export FZF_ALT_C_COMMAND='fd -H --type d . --color=never'
 export FZF_ALT_T_OPTS="$FZF_DEFAULT_OPTS"
 
-
-
-# Use ~~ as the trigger sequence instead of the default **
-# export FZF_COMPLETION_TRIGGER='~~'
-
-# Options to fzf command
-# export FZF_COMPLETION_OPTS='--border --info=inline'
-
 # Use fd instead of the default find
 # command for listing path candidates.
 # - The first argument to the function ($1) is the base path to start traversal
@@ -35,17 +27,6 @@ _fzf_compgen_dir() {
   fd --type d --hidden --follow --exclude ".git" . "$1"
 }
 
-_fzf_complete_ssh() {
-    _fzf_complete '+m' "$@" < <(
-    cat ~/.ssh/config ~/.ssh/config.d/* 2> /dev/null | grep -i -e '^host ' -e 'hostname' | grep -v '[*?]' | \
-        awk '/^Host/{if (NR!=1)print ""; printf $2} /Hostname/{printf "  [%s]",$2} /{printf "  [%s]",$2}' | sort -u
-  )
-}
-
-_fzf_complete_ssh_post() {
-  awk '{printf $1}'
-}
-
 # Advanced customization of fzf options via _fzf_comprun function
 # - The first argument to the function is the name of the command.
 # - You should make sure to pass the rest of the arguments to fzf.
@@ -56,7 +37,6 @@ _fzf_comprun() {
   case "$command" in
     cd)           fzf --preview 'tree -C {} | head -200'   "$@" ;;
     export|unset) fzf --preview "eval 'echo \$'{}"         "$@" ;;
-    ssh)          fzf --preview 'dig {}'                   "$@" ;;
     *)            fzf --preview 'bat -n --color=always {}' "$@" ;;
   esac
 }

@@ -31,3 +31,18 @@ zstyle ':fzf-tab:complete:-command-:*' fzf-preview \
 # man or help
 zstyle ':fzf-tab:complete:(\\|)run-help:*' fzf-preview 'run-help $word'
 zstyle ':fzf-tab:complete:(\\|*/|)man:*' fzf-preview 'man $word'
+
+# ssh
+## remove all previous ssh hosts
+compdef -d ssh
+## define new ssh hosts
+function _ssh_hosts() {
+    compadd $(command cat <(command tail -n +1 ~/.ssh/config 2> /dev/null ) | \
+                command grep -i '^\s*host\(name\)\? ' | \
+                awk '{for (i=2;i<=NF;i++) print $1 " " $i}' | \
+                command grep -v '[*?%]' | \
+                awk '/^Host/ {print $2}' | awk 'NR % 2 == 1' | sort -u
+            )
+}
+compdef _ssh_hosts ssh
+zstyle ':fzf-tab:complete:ssh:*' fzf-preview 'dig $word'
