@@ -58,7 +58,7 @@ export PATH="$PATH:$HOME/tools/wezterm/usr/bin"
 export PISTOL_CHROMA_FORMATTER=terminal16m
 export PISTOL_CHROMA_STYLE=monokai
 export PATH="$PATH:$HOME/tools/logiops/build"
-export PATH="$PATH:$HOME/tools/cider2/opt"
+export PATH="$PATH:$HOME/tools/cider2/opt/cider2"
 
 ## Batcat for man & help
 _distro=$(awk '/^ID=/' /etc/*-release | awk -F'=' '{ print tolower($2) }' | tr -d '"')
