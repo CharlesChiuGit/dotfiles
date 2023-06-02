@@ -45,4 +45,7 @@ function _ssh_hosts() {
             )
 }
 compdef _ssh_hosts ssh
-zstyle ':fzf-tab:complete:ssh:*' fzf-preview 'dig $word'
+function get_ssh_hostname() {
+    ssh -Gtt $1 | awk '$1 == "hostname" { print $2 }'
+}
+zstyle ':fzf-tab:complete:ssh:*' fzf-preview 'get_ssh_hostname $word'
