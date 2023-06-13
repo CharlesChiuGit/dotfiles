@@ -2,7 +2,7 @@
 add_newline = true
 
 # Change command timeout from 500 to 1000 ms
-command_timeout = 1000
+command_timeout = 5000
 
 # Sets user-defined palette
 palette = "catppuccin_macchiato"
@@ -36,243 +36,210 @@ mantle = "#1e2030"
 crust = "#181926"
 
 format = """
-$status\
-$sudo\
-$env_var\
-$shlvl\
-$username\
-$hostname\
-$localip\
-$kubernetes\
-$directory\
-$git_branch\
-$git_commit\
-$git_state\
-$git_status\
+$username$directory\
+$git_branch$git_metrics$git_status\
 $package\
-$c\
-$cmake\
-$nodejs\
-$conda\
-$python\
-$rust\
-$lua\
-$kubernetes\
 $docker_context\
-$perl\
-$php\
-$ruby\
-$golang\
 $cmd_duration\
-$memory_usage\
 $line_break\
-$character"""
-
-[sudo]
-# symbol = "🧙"
-symbol = " "
-disabled = false
-style = "red"
-# format = '[ $symbol ]($style)'
-format = '\[[$symbol]($style)\]'
-
-[character]
-# Note the use of Catppuccin color 'maroon'
-success_symbol = "[[♥](lavender) ❯](green)"
-error_symbol = "[❯](red)"
-vicmd_symbol = "[❮](green)"
-
-# Shows an icon that should be included by zshrc script based on the distribution or os
-[env_var.STARSHIP_DISTRO]
-format = '\[[$env_value](white) \]'
-variable = "STARSHIP_DISTRO"
-disabled = false
+$os$shell$character\
+"""
 
 [username]
 disabled = false
 show_always = true
-style_user = "bold dimmed blue"
-style_root = "white"
-format = '\[[$user]($style)\] '
+style_user = "green"
+style_root = "red"
+format = '[$user ]($style)'
 
 [hostname]
 disabled = false
 ssh_only = true
-style = "white"
-format = "<[$hostname]($style)> "
-trim_at = ".com"
+ssh_symbol = '🌐 '
+style = "sky"
+format = "@[$hostname]($style) "
+# trim_at = ".com"
 
 [directory]
 truncate_to_repo = false
-truncation_length = 5
+truncation_length = 3
 truncation_symbol = "…/"
-# home_symbol = "󰋞 ~"
-read_only_style = "197"
+read_only_style = "red"
 read_only = ""
+style = "lavender"
+format = "[$path]($style)[$read_only]($read_only_style) "
+before_repo_root_style = "lavender"
+repo_root_style = "mauve"
+repo_root_format = "[$before_root_path]($before_repo_root_style)[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style)"
 use_os_path_sep = true
-style = "bold lavender"
-format = "at [$path]($style)[$read_only]($read_only_style) "
-
-[localip]
-disabled = true
-ssh_only = true
-format = "[IP:$localipv4]($style) "
 
 [cmd_duration]
-min_time = 500
+min_time = 10
+style = "yellow"
 format = '\[[󰔟 $duration]($style)\]'
-
-[memory_usage]
-disabled = false
-symbol = "󰍛 "
-threshold = 70
-format = '\[$symbol[$ram]($style)\]'
-
-[time]
-disabled = true
-time_format = "%T"
-format = '\[[$time]($style)\] '
-
-[c]
-symbol = " "
-format = '\[[$symbol($version(-$name))]($style)\]'
-
-[cmake]
-format = '\[[$symbol($version)]($style)\]'
-
-[conda]
-symbol = " "
-ignore_base = false
-format = '\[[$symbol$environment](dimmed green)\]'
-
-[kubernetes]
-format = '[󰠳 $context\($namespace\)](bold purple) '
-disabled = false
-
-[docker_context]
-symbol = " "
-format = '\[[$symbol$context]($style)\]'
 
 [git_branch]
 symbol = "󰊢 "
-truncation_symbol = "…/"
-style = "bold purple"
+truncation_symbol = "…"
+style = "mauve"
 always_show_remote = false
-format = '\[[$symbol$branch(:$remote_branch)]($style)\]'
+format = ' [$symbol$branch(:$remote_branch)]($style)'
 
 [git_status]
-format = '([\($all_status$ahead_behind\)]($style) )'
-style = "bold red"
+format = ' [$all_status$ahead_behind]($style) '
+style = "red"
 conflicted = " "
 # up_to_date = " "
-untracked = "U"
+untracked = ""
 ahead = "⇡${count}"
-diverged = "⇕⇡${ahead_count}⇣${behind_count}"
 behind = "⇣${count}"
+diverged = "⇕⇡${ahead_count}⇣${behind_count}"
 stashed = "󱧕 "
 modified = " "
 staged = '[+\($count\)](green)'
 renamed = " "
 deleted = "󰆳 "
+ignore_submodules = true
 
-[nodejs]
-symbol = " "
-format = '\[[$symbol($version)]($style)\]'
+[git_metrics]
+disabled = false
+added_style = 'green'
+deleted_style = 'red'
+format = ' [+$added]($added_style)/[-$deleted]($deleted_style)'
 
-[python]
-symbol = " "
-format = '\[[${symbol}${pyenv_prefix}(${version})(\($virtualenv\))]($style)\]'
+[package]
+disabled = false
+style = "text"
+symbol = "󰏗 "
+format = '\[[$symbol$version]($style)\]'
 
-[rust]
-symbol = " "
-format = '\[[$symbol($version)]($style)\]'
+[docker_context]
+symbol = " "
+format = '\[[$symbol$context]($style)\]'
 
-[lua]
-symbol = " "
-format = '\[[$symbol($version)]($style)\]'
+[character]
+success_symbol = "[❯](green)"
+error_symbol = "[❯](red)"
+vicmd_symbol = "[❮](green)"
 
-[perl]
-symbol = " "
-format = '\[[$symbol($version)]($style)\]'
+# Shows an icon that should be included by zshrc script based on the distribution or os
+[os]
+disabled = false
+style = 'teal'
+format = "[$symbol ]($style)"
 
-[php]
-symbol = " "
-format = '\[[$symbol($version)]($style)\]'
+[os.symbols]
+Alpine = ""
+Amazon = ""
+Android = ""
+Arch = ""
+Artix = ""
+CentOS = ""
+Debian = ""
+Fedora = ""
+FreeBSD = ""
+Gentoo = ""
+Illumos = ""
+Linux = ""
+Macos = ""
+Manjaro = ""
+Mint = "󰣭"
+NixOS = "" 
+OpenBSD = ""
+Pop = ""
+Raspbian = ""
+RedHatEnterprise = "󱄛"
+Redhat = "󱄛"
+Solus = ""
+Ubuntu = ""
+Unknown = "?"
+# Void = ""
+Windows = ""
+openSUSE = "" 
 
-[ruby]
-symbol = " "
-format = '\[[$symbol($version)]($style)\]'
+[shell]
+disabled = false
+fish_indicator = '󰈺 '
+powershell_indicator = ' '
+cmd_indicator = ' '
+zsh_indicator = '󰰸'
+bash_indicator = ' '
+unknown_indicator = '? '
+style = 'teal'
 
-[golang]
-symbol = " "
-format = '\[[$symbol($version)]($style)\]'
+
 
 #### Disabled modules ####
+[localip]
+disabled = true
+[memory_usage]
+disabled = true
+[time]
+disabled = true
+[jobs]
+disabled = true
+[battery]
+disabled = true
 
 # add these back to format if you want them:
+[c]
+disabled = true
+[conda]
+disabled = true
+[nodejs]
+disabled = true
+[python]
+disabled = true
+[rust]
+disabled = true
+[lua]
+disabled = true
+[perl]
+disabled = true
+[php]
+disabled = true
+[ruby]
+disabled = true
+[golang]
+disabled = true
+[kubernetes]
+disabled = true
 [aws]
 disabled = true
-symbol = "  "
-format = '\[[$symbol($profile)(\($region\))(\[$duration\])]($style)\]'
 [buf]
 disabled = true
-symbol = " "
 [dart]
 disabled = true
-symbol = " "
-format = '\[[$symbol($version)]($style)\]'
 [dotnet]
 disabled = true
 [elixir]
 disabled = true
-symbol = " "
-format = '\[[$symbol($version \(OTP $otp_version\))]($style)\]'
 [elm]
 disabled = true
-symbol = " "
-format = '\[[$symbol($version)]($style)\]'
 [erlang]
 disabled = true
 [helm]
 disabled = true
 [haskell]
 disabled = true
-symbol = " "
-format = '\[[$symbol($version)]($style)\]'
 [hg_branch]
 disabled = true
-symbol = " "
-format = '\[[$symbol$branch]($style)\]'
 [java]
 disabled = true
-symbol = " "
-format = '\[[$symbol($version)]($style)\]'
 [julia]
 disabled = true
-symbol = " "
-format = '\[[$symbol($version)]($style)\]'
 [kotlin]
 disabled = true
 [nim]
 disabled = true
-symbol = "󰆥 "
-format = '\[[$symbol($version)]($style)\]'
 [nix_shell]
 disabled = true
-symbol = " "
-format = '\[[$symbol$state( \($name\))]($style)\]'
 [ocaml]
 disabled = true
-[package]
-disabled = true
-symbol = "󰏗 "
-format = '\[[$symbol$version]($style)\]'
 [purescript]
 disabled = true
 [spack]
 disabled = true
-symbol = "🅢 "
-format = '\[[$symbol$environment]($style)\]'
 [swift]
 disabled = true
 [zig]
@@ -283,7 +250,4 @@ disabled = true
 disabled = true
 [crystal]
 disabled = true
-[jobs]
-disabled = true
-[battery]
-disabled = true
+
