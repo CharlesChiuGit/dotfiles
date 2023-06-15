@@ -159,12 +159,12 @@ openSUSE = ""
 
 [shell]
 disabled = false
-fish_indicator = '󰈺 '
-powershell_indicator = ' '
-cmd_indicator = ' '
+fish_indicator = '󰈺'
+powershell_indicator = ''
+cmd_indicator = ''
 zsh_indicator = '󰰸'
-bash_indicator = ' '
-unknown_indicator = '? '
+bash_indicator = ''
+unknown_indicator = '?'
 style = 'teal'
 
 
