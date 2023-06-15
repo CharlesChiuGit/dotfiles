@@ -16,7 +16,7 @@ source ./updates/fdfind_up.sh
 source ./updates/fzf_up.sh
 source ./updates/fzy_up.sh
 source ./updates/glow_up.sh
-source ./updates/jq_up.sh
+# source ./updates/jq_up.sh
 source ./updates/lazygit_up.sh
 source ./updates/lazydocker_up.sh
 source ./updates/lf_up.sh
@@ -36,6 +36,7 @@ source ./updates/treesitter_up.sh
 source ./updates/ugrep_up.sh
 source ./updates/viu_up.sh
 source ./updates/xh_up.sh
+source ./updates/xq_up.sh
 source ./updates/zoxide_up.sh
 
 printf "\n${tty_yellow}====================Script ends====================${tty_reset}\n\n"

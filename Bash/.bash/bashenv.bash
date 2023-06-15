@@ -42,7 +42,6 @@ export FZF_ALT_C_COMMAND='fd -H --type d . --color=never'
 export FZF_ALT_C_OPTS="$FZF_DEFAULT_OPTS"
 export PATH="$PATH:$HOME/tools/fzf/bin"
 export PATH="$PATH:$HOME/tools/fzy"
-export PATH="$PATH:$HOME/tools/jq"
 export PATH="$PATH:$HOME/tools/lf"
 export PATH="$PATH:$HOME/tools/lnav"
 export PATH="$PATH:$HOME/tools/Logseq-linux-x64"

@@ -17,7 +17,7 @@ source ./apps/fdfind.sh
 source ./apps/fzf.sh
 source ./apps/fzy.sh
 source ./apps/glow.sh
-source ./apps/jq.sh
+# source ./apps/jq.sh
 source ./apps/lazygit.sh
 source ./apps/lazydocker.sh
 source ./apps/lf.sh
@@ -39,10 +39,11 @@ source ./apps/tmux.sh
 source ./apps/trashy.sh
 source ./apps/treesitter.sh
 source ./apps/ugrep.sh
-source ./apps/viu.sh
 # source ./apps/wezterm.sh
-source ./apps/xh.sh
 # source ./apps/xplr.sh
+source ./apps/viu.sh
+source ./apps/xh.sh
+source ./apps/xq.sh
 source ./apps/zoxide.sh
 
 printf "\n${tty_yellow}====================Script ends====================${tty_reset}\n\n"
