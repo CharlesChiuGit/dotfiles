@@ -9,7 +9,7 @@ set -o pipefail
 printf "Fetch ${tty_blue}Gping${tty_reset} latest release...\n"
 remote_version=$(get_latest_release "orf/gping")
 # remote_version="v0.22.3"
-remote_version_c=$(echo "$remote_version" | sed -E 's/v([0-9]+.[0-9]+.[0-9]+)/\1/')
+remote_version_c=$(echo "$remote_version" | cut -dv -f2-)
 echo "Remote version: ${remote_version_c}"
 
 local_version=$(gping --version | awk '{print $2}' | tr '\n' ' ' | awk '{print $1}')
