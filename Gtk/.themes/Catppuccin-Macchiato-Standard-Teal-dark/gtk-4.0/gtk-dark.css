@@ -1856,7 +1856,7 @@ button.combo:only-child:disabled {
 }
 
 .app-notification:backdrop, .toolbar.osd:backdrop {
-  box-shadow: 0 3px 2px -3px rgba(0, 0, 0, 0.2), 0 2px 2px -1px rgba(0, 0, 0, 0.24), 0 1px 3px 0 rgba(0, 0, 0, 0.12), inset 0 1px rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 3px -3px rgba(0, 0, 0, 0.2), 0 2px 2px -1px rgba(0, 0, 0, 0.24), 0 1px 3px 0 rgba(0, 0, 0, 0.12), inset 0 1px rgba(255, 255, 255, 0.1);
 }
 
 .left.app-notification, .right.app-notification, .top.app-notification, .bottom.app-notification, .toolbar.osd.left, .toolbar.osd.right, .toolbar.osd.top, .toolbar.osd.bottom {
@@ -3234,7 +3234,7 @@ switch > slider {
   margin: 3px;
   border-radius: 9999px;
   outline: none;
-  box-shadow: 0 3px 2px -2px rgba(0, 0, 0, 0.05), 0 2px 3px -1px rgba(0, 0, 0, 0.06), 0 1px 4px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: 0 3px 3px -2px rgba(0, 0, 0, 0.05), 0 2px 3px -1px rgba(0, 0, 0, 0.06), 0 1px 4px 0 rgba(0, 0, 0, 0.05);
   background-color: white;
   border: none;
 }
@@ -5131,7 +5131,7 @@ tooltip {
 tooltip.background {
   background-color: rgba(18, 19, 29, 0.9);
   color: #FFFFFF;
-  box-shadow: 0 3px 2px -2px rgba(0, 0, 0, 0.05), 0 2px 3px -1px rgba(0, 0, 0, 0.06), 0 1px 4px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 3px -1px rgba(0, 0, 0, 0.05), 0 4px 6px 0 rgba(0, 0, 0, 0.06), 0 1px 10px 0 rgba(0, 0, 0, 0.05);
   border-radius: 6px;
   margin: 2px 6px 8px 6px;
 }
@@ -5246,7 +5246,7 @@ colorchooser .popover.osd {
 }
 
 colorchooser .popover.osd:backdrop {
-  box-shadow: 0 3px 2px -3px rgba(0, 0, 0, 0.2), 0 2px 2px -1px rgba(0, 0, 0, 0.24), 0 1px 3px 0 rgba(0, 0, 0, 0.12), inset 0 1px rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 3px -3px rgba(0, 0, 0, 0.2), 0 2px 2px -1px rgba(0, 0, 0, 0.24), 0 1px 3px 0 rgba(0, 0, 0, 0.12), inset 0 1px rgba(255, 255, 255, 0.1);
 }
 
 /********
@@ -5586,7 +5586,7 @@ popover.entry-completion > contents {
   border-radius: 6px;
   background-color: #8bd5ca;
   color: rgba(0, 0, 0, 0.87);
-  box-shadow: 0 3px 2px -2px rgba(0, 0, 0, 0.05), 0 2px 3px -1px rgba(0, 0, 0, 0.06), 0 1px 4px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: 0 3px 3px -2px rgba(0, 0, 0, 0.05), 0 2px 3px -1px rgba(0, 0, 0, 0.06), 0 1px 4px 0 rgba(0, 0, 0, 0.05);
 }
 
 .nautilus-window .floating-bar button {
@@ -6117,6 +6117,13 @@ screenshot-carousel button,
   padding: 3px 9px;
 }
 
+flowboxchild.card {
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  background: none;
+}
+
 button.card.category-tile {
   padding: 21px;
   border: none;
@@ -6124,6 +6131,7 @@ button.card.category-tile {
   min-width: 140px;
   font-weight: 900;
   font-size: larger;
+  box-shadow: 0 3px 3px -2px rgba(0, 0, 0, 0.05), 0 2px 3px -1px rgba(0, 0, 0, 0.06), 0 1px 4px 0 rgba(0, 0, 0, 0.05);
 }
 
 button.card.category-tile.category-tile-iconless {
@@ -6131,6 +6139,7 @@ button.card.category-tile.category-tile-iconless {
   min-width: 130px;
   font-size: 105%;
   font-weight: normal;
+  box-shadow: none;
 }
 
 button.card.category-tile.category-create {
@@ -6234,7 +6243,6 @@ clamp.large .category-tile:not(.category-tile-iconless) {
 }
 
 .featured-tile {
-  all: unset;
   padding: 0;
   box-shadow: none;
   color: #FFFFFF;
