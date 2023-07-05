@@ -9,13 +9,12 @@
   "inheritFromProp": "page-type",
   "inheritFromHierarchy": true,
   "dafaultPropsHeading": null,
-  "defaultPageProps": "icon::\ncolor::",
-  "defaultJournalProps": "icon::\ncolor::",
+  "defaultPageProps": "icon::\ncolor::",
+  "defaultJournalProps": "icon::\ncolor::",
   "iconsFontHeading": null,
-  "iconFont": "nerd",
+  "iconFont": "tabler-icons",
   "otherHeading": null,
   "fixLowContrast": false,
   "featureUpdaterEnabled": true,
-  "disabled": false,
-  "nerdFontEnabled": true
+  "disabled": false
 }

@@ -1,6 +1,5 @@
 {
   "enableColon": true,
-  "enableBrackets": true,
   "trigger1": "",
   "replacement1": "",
   "trigger2": "",
@@ -101,5 +100,6 @@
   "replacement49": "",
   "trigger50": "",
   "replacement50": "",
-  "disabled": false
+  "disabled": false,
+  "enableBrackets": true
 }

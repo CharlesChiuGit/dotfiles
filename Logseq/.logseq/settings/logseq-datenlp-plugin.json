@@ -1,7 +1,7 @@
 {
   "auto": false,
   "semiAuto": true,
-  "lang": "en",
+  "lang": "",
   "notifications": false,
   "defaultSnooze": 5,
   "useBlockAsAlarmTitle": true,

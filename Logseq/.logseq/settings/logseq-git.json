@@ -2,11 +2,10 @@
   "buttons": [
     "Check Status",
     "Show Log",
-    "Pull",
-    "Commit & Push",
-    "Push"
+    "Pull Rebase",
+    "Commit & Push"
   ],
-  "checkWhenDBChanged": false,
+  "checkWhenDBChanged": true,
   "autoCheckSynced": false,
   "autoPush": false,
   "disabled": false

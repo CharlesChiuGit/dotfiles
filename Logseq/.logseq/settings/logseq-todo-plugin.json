@@ -1,16 +1,16 @@
 {
-  "hotkey": "",
+  "hotkey": "mod+shift+t",
   "defaultMarker": "",
   "customMarkers": "WAITING",
   "defaultPriority": "",
   "whereToPlaceNewTask": "",
   "showNextNDaysTask": false,
   "numberOfNextNDays": 14,
-  "openInRightSidebar": true,
-  "sectionTitleColor": "#91d7e3",
-  "lightPrimaryBackgroundColor": "#1e2030",
-  "lightSecondaryBackgroundColor": "#363a4f",
-  "darkPrimaryBackgroundColor": "#1e2030",
-  "darkSecondaryBackgroundColor": "#363a4f",
+  "openInRightSidebar": false,
+  "sectionTitleColor": "#106ba3",
+  "lightPrimaryBackgroundColor": "#ffffff",
+  "lightSecondaryBackgroundColor": "#f7f7f7",
+  "darkPrimaryBackgroundColor": "#023643",
+  "darkSecondaryBackgroundColor": "#002B37",
   "disabled": false
 }

@@ -3,25 +3,6 @@
   "isResyncDeleted": false,
   "frequency": "60",
   "disabled": false,
-  "lastSyncFailed": false,
-  "currentSyncStatusID": 0,
-  "readwiseAccessToken": "jSC0RP4xt4hokfi1UERitaRgjYhDpX3PxfU5EaZuF7NTX0POnx",
-  "currentGraph": {
-    "url": "logseq_local_D:/Logseq_db",
-    "name": "Logseq_db",
-    "path": "D:/Logseq_db"
-  },
-  "booksIDsMap": {
-    "[長文] 當每件事都很重要但卻一事無成（圖文好讀版）": 21886263,
-    "咨询师可以治愈自己的恋人吗？": 22181581,
-    "参加在线视频面试时，面试官都在关注些什么?": 22201850,
-    "廚房將蕪胡不歸──詹宏志讀莊祖宜《餐桌上的人間田野》": 22246587,
-    "169 期「b2b 獲客術與消費者醫療」一文的勘誤": 22258568,
-    "何以氣味重啟愛情：讀《氣味、記憶與愛欲──艾克曼的大腦詩篇》": 22318687,
-    "Empty Pointers and Constellations of AI": 22351028,
-    "把自己當成永遠的 Beta 版來經營，才有不斷進步的空間──LinkedIn 創辦人教你職涯還可以這樣規劃": 22451406,
-    "Beyond Git: The Other Version Control Systems Developers Use": 23402265,
-    "2023 試試看開始這樣寫防彈日記，小改變讓你的日記聚焦出目標": 23627728
-  },
-  "lastSavedStatusID": 7524814
+  "lastSyncFailed": true,
+  "currentSyncStatusID": 0
 }
