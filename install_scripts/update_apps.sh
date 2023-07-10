@@ -39,7 +39,7 @@ source ./updates/tealdeer_up.sh
 source ./updates/tmux_up.sh
 source ./updates/trashy_up.sh
 source ./updates/treesitter_up.sh
-source ./updates/ugrep_up.sh
+# source ./updates/ugrep_up.sh
 source ./updates/viu_up.sh
 source ./updates/xh_up.sh
 source ./updates/xq_up.sh

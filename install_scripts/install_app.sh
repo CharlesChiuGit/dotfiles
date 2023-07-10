@@ -44,7 +44,7 @@ source ./apps/termpix.sh
 source ./apps/tmux.sh
 source ./apps/trashy.sh
 source ./apps/treesitter.sh
-source ./apps/ugrep.sh
+# source ./apps/ugrep.sh
 source ./apps/viu.sh
 # source ./apps/wezterm.sh
 source ./apps/xh.sh
