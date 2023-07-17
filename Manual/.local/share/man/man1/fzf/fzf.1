@@ -21,7 +21,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ..
-.TH fzf 1 "May 2023" "fzf 0.40.0" "fzf - a command-line fuzzy finder"
+.TH fzf 1 "Jun 2023" "fzf 0.42.0" "fzf - a command-line fuzzy finder"
 
 .SH NAME
 fzf - a command-line fuzzy finder
@@ -228,6 +228,10 @@ Draw border around the finder
 .br
 .BR double "        Border with double lines"
 .br
+.BR block "         Border using block elements; suitable when using different background colors"
+.br
+.BR thinblock "     Border using legacy computing symbols; may not be displayed on some terminals"
+.br
 .BR horizontal "    Horizontal lines above and below the finder"
 .br
 .BR vertical "      Vertical lines on each side of the finder"
@@ -353,9 +357,13 @@ Determines the display style of finder info (match counters).
 .br
 .BR default "          Display on the next line to the prompt"
 .br
+.BR right "            Display on the right end of the next line to the prompt"
+.br
 .BR inline "           Display on the same line with the default separator ' < '"
 .br
 .BR inline:SEPARATOR " Display on the same line with a non-default separator"
+.br
+.BR inline-right "     Display on the right end of the same line
 .br
 .BR hidden "           Do not display finder info"
 .br
@@ -598,6 +606,10 @@ Should be used with one of the following \fB--preview-window\fR options.
 .B * border-bold
 .br
 .B * border-double
+.br
+.B * border-block
+.br
+.B * border-thinblock
 .br
 .B * border-horizontal
 .br
