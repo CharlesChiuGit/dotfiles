@@ -24,7 +24,7 @@ if __name__ == "__main__":
     # author/repo and pattern
     repos = [
         ["BurntSushi/ripgrep", "master", "^doc/rg.1.txt.tpl"],
-        ["Genivia/ugrep", "master", "^man/ugrep.1"],
+        # ["Genivia/ugrep", "master", "^man/ugrep.1"],
         ["ajeetdsouza/zoxide", "main", "^man/man1/"],
         ["gokcehan/lf", "master", "^lf.1"],
         ["jhawthorn/fzy", "master", "^fzy.1"],
