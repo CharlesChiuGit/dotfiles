@@ -12,27 +12,15 @@ bindkey -v
 zstyle :compinstall filename "$HOME/.zshrc"
 
 fpath[1,0]=~/.zsh/completion/ # local comp files
-autoload -Uz compinit
-compinit
+autoload -Uz compinit && compinit
 # End of lines added by compinstall
 
 # XDG PATH
 export XDG_CONFIG_HOME="$HOME/.config"
 
 # Program languages PATH
-path=(~/tools/golang/bin $path)
-path=(~/go/bin $path)
-path=(~/tools/java/bin $path)
-path=(~/tools/julia/bin $path)
-path=(~/tools/lua/src $path)
-path=(~/tools/luajit/src $path)
-export LUA_LIBRARY="$HOME/tools/luajit/src/libluajit.so"
-path=(~/tools/luarocks $path)
-path=(~/tools/nodejs/bin $path)
 path=(~/tools/perl/bin $path)
 export PERL_CPANM_HOME="$HOME/tools/cpanm"
-path=(~/tools/php/bin $path)
-path=(~/tools/ruby/bin $path)
 [ -f ~/.cargo/env ] && source "$HOME/.cargo/env"
 
 # Utility tools PATH
@@ -57,6 +45,7 @@ export PISTOL_CHROMA_STYLE=monokai
 path=(~/tools/wezterm/target/release $path)
 path=(~/tools/logiops/build $path)
 path=(~/tools/cider2/opt/cider2 $path)
+path=(~/.asdf/installs/golang/1.20.5/packages/bin $path)
 
 ## Batcat for man & help
 _distro=$(awk '/^ID=/' /etc/*-release | awk -F'=' '{ print tolower($2) }' | tr -d '"')
@@ -111,7 +100,7 @@ bindkey ',' autosuggest-accept
 # qfc_quick_command 'nvim' '\C-p' "nvim $0"
 
 # Init copilot-cli
-eval "$(github-copilot-cli alias -- "$0")"
+# eval "$(github-copilot-cli alias -- "$0")"
 
 # >>> conda initialize >>>
 if [ -f $HOME/tools/anaconda/etc/profile.d/conda.sh ]; then
@@ -131,9 +120,15 @@ export GLFW_IM_MODULE=ibus
 
 # Custom env and aliases
 [[ -f ~/.zsh/aliases.zsh ]] && source ~/.zsh/aliases.zsh
+[[ -f ~/.zsh/asdf.sh ]] && source ~/.zsh/asdf.sh
 [[ -f ~/.zsh/keybind.zsh ]] && source ~/.zsh/keybind.zsh
 [[ -f ~/.zsh/starship.zsh ]] && source ~/.zsh/starship.zsh
 [[ -f ~/.zsh/fzf.zsh ]] && source ~/.zsh/fzf.zsh
 [[ -f ~/.zsh/fzf-tab.zsh ]] && source ~/.zsh/fzf-tab.zsh
 [[ -f ~/.zsh/wsl2fix.zsh ]] && source ~/.zsh/wsl2fix.zsh
 # [[ -f ~/.bash/wayland.zsh ]] && source ~/.zsh/wayland.zsh
+
+# asdf version manager
+. "$HOME/.asdf/asdf.sh"
+. "$HOME/.asdf/plugins/golang/set-env.zsh"
+. "$HOME/.asdf/plugins/java/set-java-home.zsh"

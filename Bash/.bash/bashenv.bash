@@ -15,19 +15,6 @@ HISTFILESIZE=2001
 export XDG_CONFIG_HOME="$HOME/.config"
 
 # Program languages PATH
-export PATH="$PATH:$HOME/tools/golang/bin"
-export PATH="$PATH:$HOME/go/bin"
-export PATH="$PATH:$HOME/tools/java/bin"
-export PATH="$PATH:$HOME/tools/julia/bin"
-export PATH="$PATH:$HOME/tools/lua/src"
-export PATH="$PATH:$HOME/tools/luajit/src"
-export LUA_LIBRARY="$HOME/tools/luajit/src/libluajit.so"
-export PATH="$PATH:$HOME/tools/luarocks"
-export PATH="$PATH:$HOME/tools/nodejs/bin"
-export PATH="$PATH:$HOME/tools/perl/bin"
-export PERL_CPANM_HOME="$HOME/tools/cpanm"
-export PATH="$PATH:$HOME/tools/php/bin"
-export PATH="$PATH:$HOME/tools/ruby/bin"
 [ -f ~/.cargo/env ] && source "$HOME/.cargo/env"
 
 # Utility tools PATH
@@ -122,3 +109,7 @@ export GLFW_IM_MODULE=ibus
 # Cuda env
 export PATH=/usr/local/cuda-12/bin${PATH:+:${PATH}}
 export LD_LIBRARY_PATH=/usr/local/cuda-12/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+
+# asdf version manager
+. "$HOME/.asdf/asdf.sh"
+. "$HOME/.asdf/plugins/java/set-java-home.bash"

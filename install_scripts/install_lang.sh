@@ -1,20 +1,19 @@
-#!/usr/bin/env bash
+#!/usr/bin/sh
 # shellcheck disable=SC2059,SC2154
 set -e
-set -o pipefail
 
-source ./config.sh
+. ./config.sh
 
-# source ./langs/conda.sh
-source ./langs/golang.sh
-source ./langs/java.sh
-source ./langs/julia.sh
-source ./langs/lua.sh
-source ./langs/nodejs.sh
-source ./langs/perl.sh
-# source ./langs/php.sh
-source ./langs/ruby.sh
-source ./langs/rust.sh
+# . ./langs/conda.sh
+# . ./langs/golang.sh
+# . ./langs/java.sh
+# . ./langs/julia.sh
+# . ./langs/lua.sh
+# . ./langs/nodejs.sh
+# . ./langs/perl.sh
+# . ./langs/php.sh
+# . ./langs/ruby.sh
+. ./langs/rust.sh
 
 printf "\n${tty_yellow}====================Script ends====================${tty_reset}\n\n"
 printf "Remember ${tty_yellow}\"source ~/.bashrc or source ~/.zshrc\"${tty_reset} to make \$PATH valid.\n"

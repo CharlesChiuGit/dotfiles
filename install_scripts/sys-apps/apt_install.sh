@@ -54,3 +54,6 @@ sudo nala install fcitx5-chinese-addons fcitx5-chewing
 
 # logiops
 sudo nala install build-essential cmake pkg-config libevdev-dev libudev-dev libconfig++-dev libglib2.0-dev -y
+
+# asdf-ruby
+sudo nala install autoconf patch build-essential rustc libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libgmp-dev libncurses5-dev libffi-dev libgdbm6 libgdbm-dev libdb-dev uuid-dev -y
