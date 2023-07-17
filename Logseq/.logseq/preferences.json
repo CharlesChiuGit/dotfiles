@@ -1,10 +1,10 @@
 {
   "theme": null,
   "themes": {
-    "mode": "dark",
+    "mode": "light",
     "light": {
       "name": "Catppuccin Latte",
-      "url": "assets://C:\\Users\\charles\\.logseq\\plugins\\logseq-catppuccin\\ctp-latte.css",
+      "url": "assets:///home/charles/.logseq/plugins/logseq-catppuccin/ctp-latte.css",
       "description": "Catppuccin Latte",
       "mode": "light",
       "pid": "logseq-catppuccin"

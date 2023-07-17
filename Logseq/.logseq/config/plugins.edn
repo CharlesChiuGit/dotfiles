@@ -21,8 +21,8 @@
  {:version "v1.5.2", :repo "haydenull/logseq-plugin-git", :effect true, :theme false},
  :logseq-mark-map
  {:version "v0.3.17", :repo "vipzhicheng/logseq-plugin-mark-map", :effect false, :theme false}
- :logseq-reminder {:version "v0.4.2", :repo "sethyuan/logseq-plugin-reminder", :effect true, :theme false}
- :logseq-readwise-official-plugin {:version "v1.4.0", :repo "readwiseio/logseq-readwise-official-plugin", :effect true, :theme false}
+ :logseq-reminder {:version "v0.5.3", :repo "sethyuan/logseq-plugin-reminder", :effect true, :theme false}
+ :logseq-readwise-official-plugin {:version "v1.4.5", :repo "readwiseio/logseq-readwise-official-plugin", :effect true, :theme false}
  :logseq-readwise-reader-export {:version "0.2.0", :repo "pstuifzand/logseq-readwise-reader-export", :effect true, :theme false}
  :logseq-quick-capture {:version "0.0.7", :repo "tankcool/logseq-quick-capture", :effect false, :theme false}
  :logseq-datenlp-plugin {:version "3.13.8", :repo "hkgnp/logseq-datenlp-plugin", :effect true, :theme false}

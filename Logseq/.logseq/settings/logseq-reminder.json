@@ -1,4 +1,6 @@
 {
-  "alertOffset": 5,
-  "disabled": false
+  "remindings": "15m, 5m",
+  "dateTimeFormat": "",
+  "disabled": false,
+  "alertOffset": 5
 }
