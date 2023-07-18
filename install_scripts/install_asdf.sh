@@ -2,7 +2,7 @@
 
 . ./asdf/asdf.sh
 . ./asdf/asdf_golang.sh
-# . ./asdf/asdf_java.sh
+. ./asdf/asdf_java.sh
 # . ./asdf/asdf_lua.sh
 . ./asdf/asdf_nodejs.sh
 # . ./asdf/asdf_perl.sh
