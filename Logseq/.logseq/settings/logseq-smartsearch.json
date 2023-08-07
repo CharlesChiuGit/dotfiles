@@ -1,6 +1,6 @@
 {
   "shortcut": "ctrl+space",
-  "enableSearchProvider": false,
   "enablePinyin": false,
-  "disabled": false
+  "disabled": false,
+  "enableSearchProvider": false
 }

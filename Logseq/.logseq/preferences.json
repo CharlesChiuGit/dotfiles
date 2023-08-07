@@ -20,6 +20,7 @@
   },
   "externals": [],
   "pinnedToolbarItems": [
+    "logseq-hide-everything-plugin:logseq-plugin-hide-everything",
     "logseq-quick-capture:logseq-quick-capture",
     "logseq-global-custom-css:global-custom-css",
     "logseq-tidy-blocks-plugin:logseq-tidy-blocks",
@@ -30,6 +31,7 @@
     "template-gallery:TemplateGallery",
     "logseq-bionic-speedreader:Bionic",
     "logseq-powertags-plugin:logseq-powertags-plugin",
+    "logseq-git-diff-since:open-diffs-panel",
     "logseq-todo-plugin:logseq-plugin-todo",
     "logseq-writegood-plugin:logseq-writegood-plugin",
     "logseq-tags:tags-plugin-open",

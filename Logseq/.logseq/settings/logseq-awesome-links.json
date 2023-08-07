@@ -4,7 +4,7 @@
   "faviconsEnabled": true,
   "inheritExtColor": true,
   "internalHeading": null,
-  "pageIconsEnabled": true,
+  "pageIconsEnabled": false,
   "inheritingHeading": null,
   "inheritFromProp": "page-type",
   "inheritFromHierarchy": true,
