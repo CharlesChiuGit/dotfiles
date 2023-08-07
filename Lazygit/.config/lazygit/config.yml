@@ -9,7 +9,6 @@ gui:
   language: "en" # one of 'auto' | 'en' | 'zh' | 'pl' | 'nl' | 'ja' | 'ko'
   timeFormat: "2022-11-03 15:04" # https://pkg.go.dev/time#Time.Format
   theme:
-    lightTheme: false
     activeBorderColor:
       - "#a6e3a1" # Green
       - bold
@@ -32,26 +31,26 @@ gui:
   commitLength:
     show: true
   mouseEvents: true
-  skipUnstageLineWarning: false
+  skipDiscardChangeWarning: false
   skipStashWarning: false
   showFileTree: true # for rendering changes files in a tree format
   showListFooter: true # for seeing the '5 of 20' message in list panels
   showRandomTip: false
-  experimentalShowBranchHeads: true # visualize branch heads with (*) in commits list
+  showBranchCommitHash: false # show commit hashes alongside branch names
   showBottomLine: false # for hiding the bottom information line (unless it has important information to tell you)
   showCommandLog: true
-  showIcons: true
+  nerdFontsVersion: "3" # nerd fonts version to use ("2" or "3"); empty means don't show nerd font icons
   commandLogSize: 8
   splitDiff: "auto" # one of 'auto' | 'always'
   skipRewordInEditorWarning: false # for skipping the confirmation before launching the reword editor
   border: "single" # one of 'single' | 'double' | 'rounded' | 'hidden'
+  animateExplosion: true # shows an explosion animation when nuking the working tree
 git:
   paging:
     colorArg: always
     pager: delta --dark --paging=never
   commit:
     signOff: false
-    verbose: default # one of 'default' | 'always' | 'never'
   merging:
     # only applicable to unix users
     manualCommit: false
@@ -70,7 +69,7 @@ git:
   skipHookPrefix: WIP
   # The main branches. We colour commits green if they belong to one of these branches,
   # so that you can easily see which commits are unique to your branch (coloured in yellow)
-  mainBranches: [master, main]
+  mainBranches: [ master, main ]
   autoFetch: true
   autoRefresh: true
   branchLogCmd: "git log --graph --color=always --abbrev-commit --decorate --date=relative --pretty=medium {{branchName}} --"
@@ -80,6 +79,7 @@ git:
   parseEmoji: false
   diffContextSize: 3 # how many lines of context are shown around a change in diffs
 os:
+  copyToClipboardCmd: '' # See 'Custom Command for Copying to Clipboard' section
   editPreset: "nvim" # see 'Configuring File editing' section
   edit: ""
   editAtLine: ""
@@ -119,10 +119,10 @@ keybinding:
     nextBlock: "<right>" # goto the next block / panel
     prevBlock-alt: "h" # goto the previous block / panel
     nextBlock-alt: "l" # goto the next block / panel
-    jumpToBlock: ["1", "2", "3", "4", "5"] # goto the Nth block / panel
+    jumpToBlock: [ "1", "2", "3", "4", "5" ] # goto the Nth block / panel
     nextMatch: "n"
     prevMatch: "N"
-    optionMenu: "x" # show help menu
+    optionMenu: null # show help menu
     optionMenu-alt1: "?" # show help menu
     select: "<space>"
     goInto: "<enter>"
