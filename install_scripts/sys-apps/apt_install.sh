@@ -45,8 +45,7 @@ sudo nala install pkg-config libasound2-dev libssl-dev cmake libfreetype6-dev li
 
 # fcitx5
 sudo nala install fcitx5 -y
-sudo nala install fcitx5-frontend-gtk2 fcitx5-frontend-gtk3 fcitx5-frontend-gtk4 -y
-sudo nala install fcitx5-config-qt fcitx5-frontend-qt5 -y
+sudo nala install fcitx5-frontend-gtk2 kde-config-fcitx5 -y
 ## chinese input method
 sudo nala install fcitx5-chinese-addons fcitx5-chewing
 ## fcitx5-mcbopomofo is a better one if fcitx5-chewing is having issues.
