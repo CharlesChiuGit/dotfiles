@@ -7,7 +7,7 @@ set -o pipefail
 #                            Bottom Part                             #
 ######################################################################
 # URL: https://github.com/ClementTsang/bottom
-if [[ -z $(command -v bottom) ]]; then
+if [[ -z $(command -v btm) ]]; then
 	echo "Install Bottom"
 	cargo install --locked bottom
 else
