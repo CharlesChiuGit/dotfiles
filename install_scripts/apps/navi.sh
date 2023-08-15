@@ -8,7 +8,7 @@ set -o pipefail
 ######################################################################
 if [[ -z $(command -v navi) ]]; then
     echo "Install Navi"
-    cargo install navi --locked
+    cargo install --git https://github.com/denisidoro/navi.git --locked
 else
     printf "${tty_blue}Navi${tty_reset} is already installed, skip it.\n"
 fi
