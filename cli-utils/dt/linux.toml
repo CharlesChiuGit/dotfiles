@@ -1,0 +1,89 @@
+[global]
+allow_overwrite = true
+
+# shells
+
+[[local]]
+name = "bash"
+base = "~/dotfiles/shells/bash"
+sources = ['.bash/', '.bashrc', '.local/']
+target = "~"
+
+# [[local]]
+# name = "zsh"
+# base = "~/dotfiles/shells/zsh"
+# sources = ['.zsh/', '.zshrc', '.zshenv']
+# target = "~"
+
+[[local]]
+name = "shelden"
+base = "~/dotfiles/shells/shelden"
+sources = ['plugins.toml']
+target = "~/.config/sheldon"
+
+# cli-utils
+[[local]]
+name = "bat"
+base = "~/dotfiles/cli-utils/bat"
+sources = ['config', 'themes/']
+target = "~/.config/bat"
+
+[[local]]
+name = "bottom"
+base = "~/dotfiles/cli-utils/bottom"
+sources = ['bottom.toml']
+target = "~/.config/bottom"
+
+[[local]]
+name = "btop"
+base = "~/dotfiles/cli-utils/btop"
+sources = ['btop.conf', 'themes/']
+target = "~/.config/btop"
+
+[[local]]
+name = "dt-cli"
+base = "~/dotfiles/cli-utils/dt"
+sources = ['*.toml']
+target = "~/.config/dt"
+
+[[local]]
+name = "fd"
+base = "~/dotfiles/cli-utils/fd"
+sources = ['ignore']
+target = "~/.config/fd"
+
+[[local]]
+name = "gitui"
+base = "~/dotfiles/cli-utils/gitui"
+sources = ['theme.ron']
+target = "~/.config/gitui"
+
+[[local]]
+name = "glow"
+base = "~/dotfiles/cli-utils/glow"
+sources = ["glow.yml"]
+target = "~/.config/glow"
+
+[[local]]
+name = "htop"
+base = "~/dotfiles/cli-utils/htop"
+sources = ["htoprc"]
+target = "~/.config/htop"
+
+[[local]]
+name = "lazygit"
+base = "~/dotfiles/cli-utils/lazygit"
+sources = ["config.yml"]
+target = "~/.config/lazygit"
+
+[[local]]
+name = "lf"
+base = "~/dotfiles/cli-utils/lf"
+sources = ["lfrc", "git-prompt.sh", "icon.sh"]
+target = "~/.config/lf"
+
+[[local]]
+name = "manual"                      #man
+base = "~/dotfiles/cli-utils/Manual"
+sources = ['*.1', "fzf/", "zoxide/"]
+target = "~/.local/share/man/man1"
