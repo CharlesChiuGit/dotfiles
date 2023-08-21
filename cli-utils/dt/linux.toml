@@ -177,7 +177,7 @@ target = "~/.config/gtk-4.0"
 [[local]]
 name = "gtk"
 base = "~/dotfiles/gui-utils/gtk/Catppuccin-Macchiato-Standard-Teal-dark"
-sources = ["gtk-2.0/", "gtk-3.0/", "gtk-4.0/", "index.theme"]
+sources = ["gtk-2.0/", "gtk-3.0/", "index.theme"]
 target = "~/.themes"
 
 [[local]]
@@ -189,7 +189,7 @@ target = "~/.themes/gnome-shell"
 [[lcoal]]
 name = "logseq"
 base = "~/dotfiles/gui-utils/logseq"
-sources = ["config/", "settings/", "preferences.json"]
+sources = ["config/*.edn", "settings/*.json", "preferences.json"]
 target = "~/.logseq"
 
 #--------------------------------------------------------------------#
