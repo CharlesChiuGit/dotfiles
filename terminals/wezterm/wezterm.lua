@@ -136,15 +136,23 @@ end
 
 for _, gpu in ipairs(wezterm.gui.enumerate_gpus()) do
 	if gpu.backend == "Dx12" and gpu.device_type == "DiscreteGpu" then
-		config.webgpu_preferred_adapter = gpu
 		config.front_end = "WebGpu"
+		config.webgpu_preferred_adapter = gpu
+		config.webgpu_power_preference = "HighPerformance"
+		config.webgpu_force_fallback_adapter = true
 		break
 	elseif gpu.backend == "Vulkan" and gpu.device_type == "DiscreteGpu" then
-		config.webgpu_preferred_adapter = gpu
 		config.front_end = "WebGpu"
+		config.webgpu_preferred_adapter = gpu
+		config.webgpu_power_preference = "HighPerformance"
+		config.webgpu_force_fallback_adapter = true
 		break
-	else
-		config.front_end = "OpenGL"
+	elseif gpu.backend == "Vulkan" and gpu.device_type == "IntegratedGpu" then
+		config.front_end = "WebGpu"
+		config.webgpu_preferred_adapter = gpu
+		config.webgpu_power_preference = "LowPower"
+		config.webgpu_force_fallback_adapter = true
+		break
 	end
 end
 
