@@ -1,54 +1,8 @@
 # Dotfiles
 
-## Manage dotfiles with [GNU stow](https://www.gnu.org/software/stow/)
+## Manage dotfiles with [dt-cli](https://github.com/blurgyy/dt)
 
-Gnu stow use symlinks to manage dotfiles, every folder in this repo can be seen as `home_dir`.
-Place your dotfiles in each folder as if they are in the `home_dir`.
-
-## Install GNU stow
-
-```sh
-# NOTE: make sure perl is installed
-# NOTE: also, cpanm install Test::Output
-STOW_DIR=$HOME/tools/stow
-STOW_SRC_NAME=$HOME/packages/stow.tar.gz
-STOW_LINK="https://ftp.gnu.org/gnu/stow/stow-2.3.1.tar.gz"
-if [[ -z "$(command -v stow)" ]]; then
- echo "Install GNU stow"
- if [[ ! -f $STOW_SRC_NAME ]]; then
-  echo "Downloading stow and renaming"
-  wget $STOW_LINK -O "$STOW_SRC_NAME"
- fi
-
- if [[ ! -d "$STOW_DIR" ]]; then
-  echo "Creating stow directory under tools directory"
-  mkdir -p "$STOW_DIR"
-  echo "Extracting to $HOME/tools/stow directory"
-  tar zxvf "$STOW_SRC_NAME" -C "$STOW_DIR" --strip-components 1
-    cd "$STOW_DIR"
-    echo "Assign perl location"
-    export PERL_PREFIX="$HOME/.plenv/versions/5.36.0"
-    ./configure --prefix="$PERL_PREFIX"
-    make
-    make install
- fi
-
- if [[ "$ADD_TO_SYSTEM_PATH" = true ]] && [[ "$USE_BASH_SHELL" = true ]]; then
-  echo "export PATH=\"$STOW_DIR/bin:\$PATH\"" >>"$HOME/.bashrc"
-    export PATH="$STOW_DIR/bin:$PATH"
- fi
-
-else
- echo "GNU stow is already installed. Skip installing it."
-fi
-```
-
-and put below lines in `.bashrc`:
-
-```sh
-# GNU Stow
-export PATH="$HOME/tools/stow/bin":$PATH
-```
+`dt` is a dot files manager written in rust, check [here](https://github.com/CharlesChiuGit/dotfiles/tree/main/cli-utils/dt) to see my current settings.
 
 ## Usage
 
@@ -58,24 +12,14 @@ Clone into your `$HOME` or `~`.
 git clone git@github.com:CharlesChiuGit/dotfiles.git ~
 ```
 
-Run `stow` to symlink the things you need.
+Run `dt-cli -c XXX.toml` to symlink/copy configs to it's correlated location.
 
 ```sh
-stow */ # Everything ('/' ignores the README)
+cd dotfiles/cli-utils/dt
+dt-cli -c linux.toml
 ```
 
-```sh
-stow Bash
-```
-
-## Stow parameters
-
-- `-D`: remove the created symlink.
-- `-S`: create assigned symlink.
-- `-R`: remove & recreate assigned symlink.
-- `--dotfiles`: If everything in this repo has a `dot-` prefix, it will be replaced with `.`. eg. `dotfiles/zsh/dot-zshrc -> ~/.zshrc`.
-
-GNU stow will not handle any conflict files, it will stop all operation once it found one. GNU stow will only manage the folders and files under it created.
+See [dt-cli Hands-on Guide](https://dt.cli.rs/config/guide/) for more info.
 
 ---
 
