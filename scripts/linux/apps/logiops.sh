@@ -28,7 +28,7 @@ if [[ -z $(command -v logid) ]] && [[ ! -f $LGO_DIR/logiops ]]; then
 		make
 		sudo make install
 		sudo systemctl enable --now logid
-		cd ~/dotfiles/install_scripts/
+		cd ~/dotfiles/scripts/linux
 	fi
 
 	if [[ "$ADD_TO_SYSTEM_PATH" = true ]]; then
@@ -37,5 +37,5 @@ export PATH="$PATH:$HOME/tools/fzy"
 EOT
 	fi
 else
-	printf "${tty_blue}Fzy${tty_reset} is already installed, skip it.\n"
+	printf "${tty_blue}LogiOps${tty_reset} is already installed, skip it.\n"
 fi

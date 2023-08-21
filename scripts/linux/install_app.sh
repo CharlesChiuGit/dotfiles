@@ -5,12 +5,12 @@ set -o pipefail
 
 source ./config.sh
 
-source ./apps/ascii-image-converter.sh
+# source ./apps/ascii-image-converter.sh
 source ./apps/batcat.sh
-source ./apps/bottom.sh
+# source ./apps/bottom.sh
 source ./apps/btop.sh
 # source ./apps/chafa.sh
-source ./apps/cpufetch.sh
+# source ./apps/cpufetch.sh
 source ./apps/delta.sh
 source ./apps/dt-cli.sh
 source ./apps/dua.sh
@@ -19,9 +19,9 @@ source ./apps/exa.sh
 source ./apps/fdfind.sh
 source ./apps/fzf.sh
 source ./apps/fzy.sh
-source ./apps/gitui.sh
+# source ./apps/gitui.sh
 source ./apps/glow.sh
-source ./apps/gping.sh
+# source ./apps/gping.sh
 # source ./apps/jq.sh
 source ./apps/lazydocker.sh
 source ./apps/lazygit.sh
@@ -37,12 +37,12 @@ source ./apps/pistol.sh
 source ./apps/ripgrep.sh
 source ./apps/sd.sh
 source ./apps/sheldon.sh
-source ./apps/silicon.sh
+# source ./apps/silicon.sh
 source ./apps/starship.sh
-source ./apps/stow.sh
+# source ./apps/stow.sh
 source ./apps/tealdeer.sh
 source ./apps/termpix.sh
-source ./apps/tmux.sh
+# source ./apps/tmux.sh
 source ./apps/trashy.sh
 source ./apps/treesitter.sh
 # source ./apps/ugrep.sh

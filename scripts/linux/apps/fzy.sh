@@ -22,7 +22,7 @@ if [[ -z $(command -v fzy) ]] && [[ ! -f $FZY_DIR/fzy ]]; then
         echo "Extracting to $HOME/tools/fzy directory"
         tar zxvf "$FZY_SRC_NAME" -C "$FZY_DIR" --strip-components 1
         make -C "$FZY_DIR"
-        cd ~/dotfiles/install_scripts/
+        cd ~/dotfiles/scripts/linux
     fi
 
     if [[ "$ADD_TO_SYSTEM_PATH" = true ]]; then

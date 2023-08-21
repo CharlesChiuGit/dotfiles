@@ -21,7 +21,7 @@ if [[ -z $(command -v lf) ]] && [[ ! -f $LF_DIR/ ]]; then
 		mkdir -p "$LF_DIR"
 		echo "Extracting to $HOME/tools/lf directory"
 		tar zxvf "$LF_SRC_NAME" -C "$LF_DIR"
-		cd ~/dotfiles/install_scripts/
+		cd ~/dotfiles/scripts/linux
 	fi
 
 	if [[ "$ADD_TO_SYSTEM_PATH" = true ]]; then
