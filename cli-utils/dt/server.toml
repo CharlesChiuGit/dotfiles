@@ -1,0 +1,160 @@
+[global]
+allow_overwrite = true
+renderable = false     # globally disables templating
+
+#--------------------------------------------------------------------#
+#                             core-utils                             #
+#--------------------------------------------------------------------#
+
+[[local]]
+name = "bash"
+base = "~/dotfiles/core-utils/bash"
+sources = [".bash/", ".bashrc", ".local/"]
+target = "~"
+
+[[local]]
+name = "zsh"
+base = "~/dotfiles/core-utils/zsh"
+sources = [".zsh/", ".zshrc", ".zshenv"]
+target = "~"
+
+[[local]]
+name = "shelden"
+base = "~/dotfiles/core-utils/shelden"
+sources = ["plugins.toml"]
+target = "~/.config/sheldon"
+
+[[local]]
+name = "git"
+base = "~/dotfiles/core-utils/git"
+sources = [".gitconfig"]
+target = "~"
+
+[[local]]
+name = "ssh"
+base = "~/dotfiles/core-utils/ssh"
+sources = ["config"]
+target = "~/.ssh"
+method = "Copy"
+
+#--------------------------------------------------------------------#
+#                              lang-vms                              #
+#--------------------------------------------------------------------#
+
+# [[local]]
+# name = "asdf-vm"
+# base = "~/dotfiles/lang-vms/asdf"
+# sources = [".tool-versions"]
+# target = "~"
+
+[[local]]
+name = "rtx-vm"
+base = "~/dotfiles/lang-vms/rtx"
+sources = ["config.toml"]
+target = "~/.config/rtx"
+
+#--------------------------------------------------------------------#
+#                             cli-utils                              #
+#--------------------------------------------------------------------#
+
+[[local]]
+name = "bat"
+base = "~/dotfiles/cli-utils/bat"
+sources = ["config", "themes/"]
+target = "~/.config/bat"
+
+# [[local]]
+# name = "bottom"
+# base = "~/dotfiles/cli-utils/bottom"
+# sources = ["bottom.toml"]
+# target = "~/.config/bottom"
+
+[[local]]
+name = "btop"
+base = "~/dotfiles/cli-utils/btop"
+sources = ["btop.conf", "themes/"]
+target = "~/.config/btop"
+
+[[local]]
+name = "dt-cli"
+base = "~/dotfiles/cli-utils/dt"
+sources = ["*.toml"]
+target = "~/.config/dt"
+
+[[local]]
+name = "fd"
+base = "~/dotfiles/cli-utils/fd"
+sources = ["ignore"]
+target = "~/.config/fd"
+
+# [[local]]
+# name = "gitui"
+# base = "~/dotfiles/cli-utils/gitui"
+# sources = ["theme.ron"]
+# target = "~/.config/gitui"
+
+[[local]]
+name = "glow"
+base = "~/dotfiles/cli-utils/glow"
+sources = ["glow.yml"]
+target = "~/.config/glow"
+
+# [[local]]
+# name = "htop"
+# base = "~/dotfiles/cli-utils/htop"
+# sources = ["htoprc"]
+# target = "~/.config/htop"
+
+[[local]]
+name = "lazygit"
+base = "~/dotfiles/cli-utils/lazygit"
+sources = ["config.yml"]
+target = "~/.config/lazygit"
+
+[[local]]
+name = "lf"
+base = "~/dotfiles/cli-utils/lf"
+sources = ["lfrc", "git-prompt.sh", "icon.sh"]
+target = "~/.config/lf"
+
+[[local]]
+name = "manual"                      #man
+base = "~/dotfiles/cli-utils/Manual"
+sources = ["*.1", "fzf/", "zoxide/"]
+target = "~/.local/share/man/man1"
+
+# [[local]]
+# name = "navi"
+# base = "~/dotfiles/cli-utils/navi"
+# sources = ["config.yaml"]
+# target = "~/.config/navi"
+
+# [[local]]
+# name = "neofetch"
+# base = "~/dotfiles/cli-utils/neofetch"
+# sources = ["config.conf"]
+# target = "~/.config/neofetch"
+
+[[local]]
+name = "pistol"
+base = "~/dotfiles/cli-utils/pistol"
+sources = ["pistol.conf"]
+target = "~/.config/pistol"
+
+[[local]]
+name = "starship"
+base = "~/dotfiles/cli-utils/starship"
+sources = ["starship.toml"]
+target = "~/.config"
+
+[[local]]
+name = "tmux"
+base = "~/dotfiles/cli-utils/tmux"
+sources = ["tmux.conf"]
+target = "~/.config/tmux"
+
+[[local]]
+name = "Usercommand"                      # scripts
+base = "~/dotfiles/cli-utils/Usercommand"
+sources = ["./*"]
+target = "~/.local/bin"
