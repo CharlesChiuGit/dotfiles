@@ -165,7 +165,7 @@ target = "~/.local/bin"
 [[local]]
 name = "Fonts"
 base = "~/dotfiles/gui-utils/Fonts"
-sources = ["*.otf", "*.ttf"]
+sources = ["./*"]
 target = "~/.local/share/fonts"
 
 [[local]]
