@@ -1,62 +1,97 @@
 [global]
 allow_overwrite = true
+renderable = false     # globally disables templating
 
-# shells
+#--------------------------------------------------------------------#
+#                             core-utils                             #
+#--------------------------------------------------------------------#
 
 [[local]]
 name = "bash"
-base = "~/dotfiles/shells/bash"
-sources = ['.bash/', '.bashrc', '.local/']
+base = "~/dotfiles/core-utils/bash"
+sources = [".bash/", ".bashrc", ".local/"]
 target = "~"
 
 # [[local]]
 # name = "zsh"
-# base = "~/dotfiles/shells/zsh"
-# sources = ['.zsh/', '.zshrc', '.zshenv']
+# base = "~/dotfiles/core-utils/zsh"
+# sources = [".zsh/", ".zshrc", ".zshenv"]
 # target = "~"
 
 [[local]]
 name = "shelden"
-base = "~/dotfiles/shells/shelden"
-sources = ['plugins.toml']
+base = "~/dotfiles/core-utils/shelden"
+sources = ["plugins.toml"]
 target = "~/.config/sheldon"
 
-# cli-utils
+[[local]]
+name = "git"
+base = "~/dotfiles/core-utils/git"
+sources = [".gitconfig"]
+target = "~"
+
+[[local]]
+name = "ssh"
+base = "~/dotfiles/core-utils/ssh"
+sources = ["config"]
+target = "~/.ssh"
+method = "Copy"
+
+#--------------------------------------------------------------------#
+#                              lang-vms                              #
+#--------------------------------------------------------------------#
+
+# [[local]]
+# name = "asdf-vm"
+# base = "~/dotfiles/lang-vms/asdf"
+# sources = [".tool-versions"]
+# target = "~"
+
+[[local]]
+name = "rtx-vm"
+base = "~/dotfiles/lang-vms/rtx"
+sources = ["config.toml"]
+target = "~/.config/rtx"
+
+#--------------------------------------------------------------------#
+#                             cli-utils                              #
+#--------------------------------------------------------------------#
+
 [[local]]
 name = "bat"
 base = "~/dotfiles/cli-utils/bat"
-sources = ['config', 'themes/']
+sources = ["config", "themes/"]
 target = "~/.config/bat"
 
-[[local]]
-name = "bottom"
-base = "~/dotfiles/cli-utils/bottom"
-sources = ['bottom.toml']
-target = "~/.config/bottom"
+# [[local]]
+# name = "bottom"
+# base = "~/dotfiles/cli-utils/bottom"
+# sources = ["bottom.toml"]
+# target = "~/.config/bottom"
 
 [[local]]
 name = "btop"
 base = "~/dotfiles/cli-utils/btop"
-sources = ['btop.conf', 'themes/']
+sources = ["btop.conf", "themes/"]
 target = "~/.config/btop"
 
 [[local]]
 name = "dt-cli"
 base = "~/dotfiles/cli-utils/dt"
-sources = ['*.toml']
+sources = ["*.toml"]
 target = "~/.config/dt"
 
 [[local]]
 name = "fd"
 base = "~/dotfiles/cli-utils/fd"
-sources = ['ignore']
+sources = ["ignore"]
 target = "~/.config/fd"
 
-[[local]]
-name = "gitui"
-base = "~/dotfiles/cli-utils/gitui"
-sources = ['theme.ron']
-target = "~/.config/gitui"
+# [[local]]
+# name = "gitui"
+# base = "~/dotfiles/cli-utils/gitui"
+# sources = ["theme.ron"]
+# target = "~/.config/gitui"
 
 [[local]]
 name = "glow"
@@ -64,11 +99,11 @@ base = "~/dotfiles/cli-utils/glow"
 sources = ["glow.yml"]
 target = "~/.config/glow"
 
-[[local]]
-name = "htop"
-base = "~/dotfiles/cli-utils/htop"
-sources = ["htoprc"]
-target = "~/.config/htop"
+# [[local]]
+# name = "htop"
+# base = "~/dotfiles/cli-utils/htop"
+# sources = ["htoprc"]
+# target = "~/.config/htop"
 
 [[local]]
 name = "lazygit"
@@ -85,5 +120,102 @@ target = "~/.config/lf"
 [[local]]
 name = "manual"                      #man
 base = "~/dotfiles/cli-utils/Manual"
-sources = ['*.1', "fzf/", "zoxide/"]
+sources = ["*.1", "fzf/", "zoxide/"]
 target = "~/.local/share/man/man1"
+
+# [[local]]
+# name = "navi"
+# base = "~/dotfiles/cli-utils/navi"
+# sources = ["config.yaml"]
+# target = "~/.config/navi"
+
+# [[local]]
+# name = "neofetch"
+# base = "~/dotfiles/cli-utils/neofetch"
+# sources = ["config.conf"]
+# target = "~/.config/neofetch"
+
+[[local]]
+name = "pistol"
+base = "~/dotfiles/cli-utils/pistol"
+sources = ["pistol.conf"]
+target = "~/.config/pistol"
+
+[[local]]
+name = "starship"
+base = "~/dotfiles/cli-utils/starship"
+sources = ["starship.toml"]
+target = "~/.config"
+
+[[local]]
+name = "tmux"
+base = "~/dotfiles/cli-utils/tmux"
+sources = ["tmux.conf"]
+target = "~/.config/tmux"
+
+[[local]]
+name = "Usercommand"                      # scripts
+base = "~/dotfiles/cli-utils/Usercommand"
+sources = ["./*"]
+target = "~/.local/bin"
+
+#--------------------------------------------------------------------#
+#                             gui-utils                              #
+#--------------------------------------------------------------------#
+[[local]]
+name = "Fonts"
+base = "~/dotfiles/gui-utils/Fonts"
+sources = ["*.otf", "*.ttf"]
+target = "~/.local/share/fonts"
+
+[[local]]
+name = "gtk4"
+base = "~/dotfiles/gui-utils/gtk/Catppuccin-Macchiato-Standard-Teal-dark/gtk-4.0"
+sources = ["assets/", "*.css"]
+target = "~/.config/gtk-4.0"
+
+[[local]]
+name = "gtk"
+base = "~/dotfiles/gui-utils/gtk/Catppuccin-Macchiato-Standard-Teal-dark"
+sources = ["gtk-2.0/", "gtk-3.0/", "gtk-4.0/", "index.theme"]
+target = "~/.themes"
+
+[[local]]
+name = "gnome-shell-theme"
+base = "~/dotfiles/gui-utils/gtk/Catppuccin-Macchiato-Standard-Teal-dark/gnome-shell"
+sources = ["assets/", "*.css", "*.svg"]
+target = "~/.themes/gnome-shell"
+
+[[lcoal]]
+name = "logseq"
+base = "~/dotfiles/gui-utils/logseq"
+sources = ["config/", "settings/", "preferences.json"]
+target = "~/.logseq"
+
+#--------------------------------------------------------------------#
+#                             terminals                              #
+#--------------------------------------------------------------------#
+
+[[local]]
+name = "wezterm"
+base = "~/dotfiles/terminals/wezterm"
+sources = ["config/", "*.lua"]
+target = "~/.config/wezterm"
+
+#--------------------------------------------------------------------#
+#                              wm-utils                              #
+#--------------------------------------------------------------------#
+
+#NOTE: will have permissions issue, copy it manually
+# [[local]]
+# name = "logiops"
+# base = "~/dotfiles/wm-utils/logiops"
+# sources = ["logid.cfg"]
+# target = "/etc"
+# method = "Copy"
+
+[[local]]
+name = "rofi"
+base = "~/dotfiles/wm-utils/rofi"
+sources = ["config.rasi", "scripts/", "themes/"]
+target = "~/.config/rofi"
