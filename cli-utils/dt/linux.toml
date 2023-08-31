@@ -2,6 +2,11 @@
 allow_overwrite = true
 renderable = false     # globally disables templating
 
+[context]
+btop.theme = "\"/home/charles/.config/btop/themes/catppuccin_mocha.theme\""
+logseq.dark_theme = "\"assets:///home/charles/.logseq/plugins/logseq-catppuccin/ctp-macchiato.css\""
+logseq.light_theme = "\"assets:///home/charles/.logseq/plugins/logseq-catppuccin/ctp-latte.css\""
+
 #--------------------------------------------------------------------#
 #                             core-utils                             #
 #--------------------------------------------------------------------#
@@ -74,6 +79,7 @@ name = "btop"
 base = "~/dotfiles/cli-utils/btop"
 sources = ["btop.conf", "themes/"]
 target = "~/.config/btop"
+renderable = true
 
 [[local]]
 name = "dt-cli"
@@ -118,7 +124,7 @@ sources = ["lfrc", "git-prompt.sh", "icon.sh"]
 target = "~/.config/lf"
 
 [[local]]
-name = "manual"                      #man
+name = "Manual"                      #man
 base = "~/dotfiles/cli-utils/Manual"
 sources = ["*.1", "fzf/", "zoxide/"]
 target = "~/.local/share/man/man1"
@@ -147,11 +153,11 @@ base = "~/dotfiles/cli-utils/starship"
 sources = ["starship.toml"]
 target = "~/.config"
 
-[[local]]
-name = "tmux"
-base = "~/dotfiles/cli-utils/tmux"
-sources = ["tmux.conf"]
-target = "~/.config/tmux"
+# [[local]]
+# name = "tmux"
+# base = "~/dotfiles/cli-utils/tmux"
+# sources = ["tmux.conf"]
+# target = "~/.config/tmux"
 
 [[local]]
 name = "Usercommand"                      # scripts
@@ -186,11 +192,12 @@ base = "~/dotfiles/gui-utils/gtk/Catppuccin-Macchiato-Standard-Teal-dark/gnome-s
 sources = ["assets/", "*.css", "*.svg"]
 target = "~/.themes/gnome-shell"
 
-[[lcoal]]
+[[local]]
 name = "logseq"
 base = "~/dotfiles/gui-utils/logseq"
 sources = ["config/*.edn", "settings/*.json", "preferences.json"]
 target = "~/.logseq"
+renderable = true
 
 #--------------------------------------------------------------------#
 #                             terminals                              #
