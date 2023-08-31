@@ -7,9 +7,7 @@
  :logseq-copy-code-plugin
  {:version "v.1.2.0", :repo "vyleung/logseq-copy-code-plugin", :effect true, :theme false},
  :logseq-osmmaps-plugin
- {:version "2.2.2", :repo "hkgnp/logseq-osmmaps-plugin", :effect true, :theme false},
- :logseq-ol
- {:version "v0.6.1", :repo "sethyuan/logseq-plugin-ol", :effect false, :theme false},
+ {:version "2.2.3", :repo "hkgnp/logseq-osmmaps-plugin", :effect true, :theme false},
  :logseq-schrodinger
  {:version "1.5.5",
   :repo "sawhney17/logseq-schrodinger",
@@ -36,14 +34,17 @@
  :logseq-smartsearch {:version "v0.29.1", :repo "sethyuan/logseq-plugin-smartsearch", :effect true, :theme false}
  :logseq-fenced-code-plus {:version "0.0.7", :repo "xyhp915/logseq-fenced-code-plus", :effect true, :theme false}
  :logseq-git-diff-since {:version "v1.1.1", :repo "Glooory/logseq-git-diff-since", :effect true, :theme false}
- :logseq-image-editor {:version "v1.0.1", :repo "b-yp/logseq-image-editor", :effect true, :theme false}
- :logseq-plugin-short-namespaces {:version "v1.5.2", :repo "YU000jp/logseq-plugin-short-namespaces", :effect true, :theme false}
+ :logseq-image-editor {:version "v1.2.0", :repo "b-yp/logseq-image-editor", :effect true, :theme false}
+ :logseq-plugin-short-namespaces {:version "v1.5.3", :repo "YU000jp/logseq-plugin-short-namespaces", :effect true, :theme false}
  :logseq-remove-empty-blocks {:version "v0.0.4", :repo "Cologler/logseq-remove-empty-blocks-typescript", :effect false, :theme false}
- :logseq-plugin-confirmation-hyperlink {:version "v1.6.6", :repo "YU000jp/logseq-plugin-confirmation-hyperlink", :effect true, :theme false}
- :logseq-plugin-confirmation-done-task {:version "v1.7.4", :repo "YU000jp/logseq-plugin-confirmation-done-task", :effect true, :theme false}
- :logseq-plugin-show-weekday-and-week-number {:version "v1.24.4", :repo "YU000jp/logseq-plugin-show-weekday-and-week-number", :effect true, :theme false}
- :logseq-display-math {:version "v1.0.0", :repo "AllanChain/logseq-display-math", :effect true, :theme false}
+ :logseq-plugin-confirmation-hyperlink {:version "v1.6.7", :repo "YU000jp/logseq-plugin-confirmation-hyperlink", :effect true, :theme false}
+ :logseq-plugin-confirmation-done-task {:version "v1.8.0", :repo "YU000jp/logseq-plugin-confirmation-done-task", :effect true, :theme false}
+ :logseq-plugin-show-weekday-and-week-number {:version "v1.29.1", :repo "YU000jp/logseq-plugin-show-weekday-and-week-number", :effect true, :theme false}
+ :logseq-display-math {:version "v1.0.1", :repo "AllanChain/logseq-display-math", :effect true, :theme false}
  :logseq-hide-everything-plugin {:version "v1.1.0", :repo "ahonn/logseq-plugin-hide-everything", :effect true, :theme false}
  :logseq-footnote-plugin {:version "v0.0.3", :repo "gremi-jr/logseq-footnote-plugin", :effect false, :theme false}
- :logseq-tabbed-sidebar {:version "v0.6.7", :repo "sethyuan/logseq-plugin-tabbed-sidebar", :effect true, :theme false}
- :logseq-plugin-multiple-assets {:version "v1.1.4", :repo "YU000jp/logseq-plugin-multiple-assets", :effect true, :theme false}}
+ :logseq-plugin-multiple-assets {:version "v1.1.4", :repo "YU000jp/logseq-plugin-multiple-assets", :effect true, :theme false}
+ :logseq-tabbed-sidebar {:version "v0.10.7", :repo "sethyuan/logseq-plugin-tabbed-sidebar", :effect true, :theme false}
+ :logseq-live-math {:version "v1.1.2", :repo "AllanChain/logseq-live-math", :effect true, :theme false}
+ :logseq-bidi {:version "0.1.0", :repo "dobidi/logseq-bidi", :effect true, :theme false}
+ :logseq-hierarchy-jump {:version "v0.3.3", :repo "sethyuan/logseq-plugin-hierarchy-jump", :effect true, :theme false}}
