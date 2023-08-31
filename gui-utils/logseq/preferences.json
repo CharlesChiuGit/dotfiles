@@ -1,7 +1,7 @@
 {
   "theme": null,
   "themes": {
-    "mode": "light",
+    "mode": "dark",
     "light": {
       "name": "Catppuccin Latte",
       "url": "assets:///home/charles/.logseq/plugins/logseq-catppuccin/ctp-latte.css",
@@ -11,7 +11,7 @@
     },
     "dark": {
       "name": "Catppuccin Macchiato",
-      "url": "assets://C:\\Users\\Charles\\.logseq\\plugins\\logseq-catppuccin\\ctp-macchiato.css",
+      "url": "assets:///home/charles/.logseq/plugins/logseq-catppuccin/ctp-macchiato.css",
       "description": "Catppuccin Macchiato",
       "mode": "dark",
       "pid": "logseq-catppuccin",

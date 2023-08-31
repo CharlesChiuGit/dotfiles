@@ -4,6 +4,7 @@
   "booleanDayOfWeek": true,
   "longOrShort": "long",
   "booleanWeekNumber": false,
+  "booleanWeekNumberHideYear": false,
   "weekNumberOfTheYearOrMonth": "Year",
   "booleanWeekendsColor": true,
   "booleanRelativeTime": true,
@@ -21,6 +22,7 @@
   "booleanWeeklyJournalThisWeekWeekday": false,
   "booleanWeeklyJournalThisWeekLinkWeekday": false,
   "booleanJournalLinkLocalizeDayOfWeek": true,
+  "disabled": false,
   "booleanJournalLinkAddLocalizeDayOfWeek": true,
-  "disabled": false
+  "notice": "20230822no01"
 }
