@@ -9,7 +9,7 @@ brew install curl
 brew install git
 brew install sheldon
 brew install starship
-brew install exa
+brew install lsd
 brew install fzf
 brew install bat
 brew install zoxide
@@ -25,6 +25,7 @@ brew install ripgrep
 brew install sd
 brew install xh
 brew install xq
+brew install joshuto
 brew install neovim
 brew install btop
 brew install zellij
