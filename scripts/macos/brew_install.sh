@@ -28,6 +28,10 @@ brew install xq
 brew install neovim
 brew install btop
 brew install zellij
+brew install topgrade
+brew install procs
+brew install tokei
+brew install ripsecrets
 brew install jdx/tap/rtx
 
 # Install gui-tools
@@ -41,7 +45,6 @@ brew install --cask logseq
 brew install --cask obsidian
 brew install --cask logi-options-plus
 brew install —-cask appcleaner
-brew install --cask macupdater
 brew install --cask cheatsheet
 brew install --cask raindropio
 brew install --cask steam
@@ -64,6 +67,7 @@ wget -P ~/Downloads/ https://github.com/th-ch/youtube-music/releases/download/v1
 # NOTE: `xattr -cr /Applications/YouTube\ Music.app`
 
 # symlink configs
+cargo install cargo-update
 cargo install --git https://github.com/kamiyaa/joshuto.git --force
 cargo install dt-cli
 dt-cli -c "~/Workspace/dotfiles/cli-utils/dt/macos.toml"
