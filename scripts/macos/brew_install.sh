@@ -25,7 +25,6 @@ brew install ripgrep
 brew install sd
 brew install xh
 brew install xq
-brew install joshuto
 brew install neovim
 brew install btop
 brew install zellij
@@ -65,6 +64,7 @@ wget -P ~/Downloads/ https://github.com/th-ch/youtube-music/releases/download/v1
 # NOTE: `xattr -cr /Applications/YouTube\ Music.app`
 
 # symlink configs
+cargo install --git https://github.com/kamiyaa/joshuto.git --force
 cargo install dt-cli
 dt-cli -c "~/Workspace/dotfiles/cli-utils/dt/macos.toml"
 bat cache --build
