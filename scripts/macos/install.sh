@@ -15,7 +15,6 @@ brew install bat
 brew install zoxide
 brew tap homebrew/cask-fonts
 brew install --cask font-jetbrains-mono-nerd-font
-brew install joshuto
 brew install lazydocker
 brew install lazygit
 brew install git-delta
