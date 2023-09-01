@@ -107,6 +107,12 @@ target = "~/.config/glow"
 # target = "~/.config/htop"
 
 [[local]]
+name = "joshuto"
+base = "~/dotfiles/cli-utils/joshuto"
+sources = ["*.toml"]
+target = "~/.config/joshuto"
+
+[[local]]
 name = "lazygit"
 base = "~/dotfiles/cli-utils/lazygit"
 sources = ["config.yml"]
@@ -117,6 +123,12 @@ target = "~/.config/lazygit"
 # base = "~/dotfiles/cli-utils/lf"
 # sources = ["lfrc", "git-prompt.sh", "icon.sh"]
 # target = "~/.config/lf"
+
+[[local]]
+name = "lsd"
+base = "~/dotfiles/cli-utils/lsd"
+sources = ["config.yaml"]
+target = "~/.config/lsd"
 
 [[local]]
 name = "Manual"                      #man
