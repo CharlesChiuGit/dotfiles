@@ -32,6 +32,7 @@ brew install topgrade
 brew install procs
 brew install tokei
 brew install ripsecrets
+brew install eva
 brew install jdx/tap/rtx
 
 # Install gui-tools
