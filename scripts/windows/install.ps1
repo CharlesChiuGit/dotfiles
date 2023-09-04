@@ -9,42 +9,62 @@ $ErrorActionPreference = "Stop" # Exit when command fails
 
 # package mgr vars
 $winget_id = @(
-    	"CrystalDewWorld.CrystalDiskInfo",
-	"CrystalDewWorld.CrystalDiskMark",
-	"JGraph.Draw",
-	"FastStone.Viewer",
-	"Foxit.FoxitReader",
-	"Harmonoid.Harmonoid",
-	"CosmoX.Lepton",
-	"Logitech.OptionsPlus",
-	"Logitech.LogiBolt",
-	"Obsidian.Obsidian",
-	"PopcornTime.Popcorn-Time",
-	"Daum.PotPlayer",
-	"Telegram.TelegramDesktop",
-	"Microsoft.VisualStudioCode",
-	"Bandisoft.Honeyview",
-	"DIscord.Discord",
-	"Git.Git",
-	"Google.Chrome",
-	"Logseq.Logseq",
-	"Microsoft.PowerShell",
-	"Microsoft.PowerToys",
-	"Nvidia.GeForceExperience",
-	"RARLab.WinRAR",
-	"RustemMussabekov.Raindrop",
-	"Valve.Steam",
-	"CiderCollective.Cider",
-	"th-ch.YouTubeMusic",
-	"File-New-Project.EarTrumpet",
-	"Element.Element",
-	"Mozilla.Firefox",
-	"Microsoft.WindowsSDK.10.0.22621",
-	"GeekUninstaller.GeekUninstaller",
-	"Rustlang.Rustup"
+    "Bandisoft.Honeyview",
+    "CiderCollective.Cider",
+    "CosmoX.Lepton",
+    "CrystalDewWorld.CrystalDiskInfo",
+    "CrystalDewWorld.CrystalDiskMark",
+    "Daum.PotPlayer",
+    "Discord.Discord",
+    "Element.Element",
+    "FastStone.Viewer",
+    "File-New-Project.EarTrumpet",
+    "Foxit.FoxitReader",
+    "GeekUninstaller.GeekUninstaller",
+    "Git.Git",
+    "Google.Chrome",
+    "Harmonoid.Harmonoid",
+    "JGraph.Draw",
+    "Logitech.LogiBolt",
+    "Logitech.OptionsPlus",
+    "Logseq.Logseq",
+    "Microsoft.PowerShell",
+    "Microsoft.PowerToys",
+    "Microsoft.VisualStudioCode",
+    "Microsoft.WindowsSDK.10.0.22621",
+    "Mozilla.Firefox",
+    "Nvidia.GeForceExperience",
+    "Obsidian.Obsidian",
+    "PopcornTime.Popcorn-Time",
+    "RARLab.WinRAR",
+    "RustemMussabekov.Raindrop",
+    "Rustlang.Rustup",
+    "Telegram.TelegramDesktop",
+    "Valve.Steam",
+    "th-ch.YouTubeMusic"
 )
-# $scoop_package_matrix = @{ "" }
+$scoop_id = @(
+    "7zip",
+    "JetBrainsMono-NF",
+    "JetBrainsMono-NF-Mono",
+    "dark",
+    "delta",
+    "lazygit",
+    "neovim",
+    "nodejs",
+    "python",
+    "starship",
+    "zoxide"
+)
 
 # env vars
 # $env:XDG_CONFIG_HOME ??= $env:LOCALAPPDATA
-echo $winget_id
+
+For ($i = 0; $i -le ($winget_id-1); $i++) (
+    winget install -e --id $winget_id[i] --ignore-security-hash
+)
+
+For ($i = 0; $i -le ($scoop_id-1); $i++) (
+    scoop install $scoop_id[i] 
+)
+
