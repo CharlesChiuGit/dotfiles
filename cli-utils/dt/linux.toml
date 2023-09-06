@@ -6,6 +6,7 @@ renderable = false     # globally disables templating
 btop.theme = "\"/home/charles/.config/btop/themes/catppuccin_mocha.theme\""
 logseq.dark_theme = "\"assets:///home/charles/.logseq/plugins/logseq-catppuccin/ctp-macchiato.css\""
 logseq.light_theme = "\"assets:///home/charles/.logseq/plugins/logseq-catppuccin/ctp-latte.css\""
+wezterm.window_decorations = "\"INTEGRATED_BUTTONS | RESIZE\""
 
 #--------------------------------------------------------------------#
 #                             core-utils                             #
@@ -220,6 +221,7 @@ name = "wezterm"
 base = "~/dotfiles/terminals/wezterm"
 sources = ["config/", "*.lua"]
 target = "~/.config/wezterm"
+renderable = true
 
 #--------------------------------------------------------------------#
 #                              wm-utils                              #
