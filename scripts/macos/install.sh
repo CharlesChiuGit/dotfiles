@@ -1,77 +1,120 @@
-#!/bin/sh
+#!/bin/bash
 
 # Install brew
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+######################################################################
+#                           Brew Install                             #
+######################################################################
+if [[ -z $(command -v brew) ]]; then
+	echo "Install Homebrew"
+	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+else
+	printf "${tty_blue}Homebrew${tty_reset} is already installed, skip it.\n"
+fi
+
+# Add extra repo
+repos=(
+	"homebrew/cask-fonts"
+)
+for i in "${repos[@]}"; do
+	brew tap $i
+done
 
 # Install cli-tools
-brew install wget
-brew install curl
-brew install git
-brew install sheldon
-brew install starship
-brew install lsd
-brew install fzf
-brew install bat
-brew install zoxide
-brew tap homebrew/cask-fonts
-brew install --cask font-jetbrains-mono-nerd-font
-brew install lazydocker
-brew install lazygit
-brew install git-delta
-brew install dua-cli
-brew install fzy
-brew install ripgrep
-brew install sd
-brew install xh
-brew install xq
-brew install neovim
-brew install btop
-brew install zellij
-brew install topgrade
-brew install procs
-brew install tokei
-brew install ripsecrets
-brew install eva
-brew install pnpm
-brew install jdx/tap/rtx
+cli_tools=(
+	"bat"
+	"brew-cask-completion"
+	"btop"
+	"curl"
+	"dua-cli"
+	"eva"
+	"fzf"
+	"fzy"
+	"git"
+	"git-delta"
+	"jdx/tap/rtx"
+	"lazydocker"
+	"lazygit"
+	"lsd"
+	"neovim"
+	"ripgrep"
+	"ripsecrets"
+	"sd"
+	"sheldon"
+	"tokei"
+	"topgrade"
+	"wget"
+	"xh"
+	"xq"
+	"zellij"
+	"zoxide"
+	"libyaml"
+)
+for i in "${cli_tools[@]}"; do
+	brew install $i
+done
 
 # Install gui-tools
-brew install brew-cask-completion
-brew install --cask raycast
-brew install --cask cron
-brew install --cask arc
-brew install --cask hey
-brew install --cask discord
-brew install --cask logseq
-brew install --cask obsidian
-brew install --cask logi-options-plus
-brew install —-cask appcleaner
-brew install --cask cheatsheet
-brew install --cask raindropio
-brew install --cask steam
-brew install --cask cider
-brew install --cask iina
-brew install --cask wezterm
+gui_tools=(
+	"appcleaner"
+	"arc"
+	"cider"
+	"cron"
+	"discord"
+	"font-jetbrains-mono-nerd-font"
+	"hey"
+	"iina"
+	"logi-options-plus"
+	"logseq"
+	"obsidian"
+	"raindropio"
+	"raycast"
+	"steam"
+	"wezterm"
+	"visual-studio-code"
+)
+for i in "${gui_tools[@]}"; do
+	brew install --cask $i
+done
 
 # Install langs
-rtx install node@16.16.0
-rtx install python@3.11.5
-brew install libyaml && rtx install ruby@3.2.2
-rtx install go@1.20.7
-rtx install java@openjdk-21
-rtx install rust@1.72.0
+rtx plugin install rust https://github.com/code-lever/asdf-rust
+langs=(
+	"node@20.6.0"
+	"python@3.11.5"
+	"ruby@3.2.2"
+	"go@1.20.7"
+	"java@openjdk-21"
+	"rust@1.72.0"
+)
+for i in "${langs[@]}"; do
+	rtx install $i
+done
 rtx reshim
 
+# cargo install
+cargo_repo=(
+	"https://github.com/nabijaczleweli/cargo-update.git"
+	"https://github.com/kamiyaa/joshuto.git"
+	"https://github.com/blurgyy/dt.git dt-cli"
+)
+for i in "${cargo_repo[@]}"; do
+	cargo install --git $i --force --locked
+done
+
 # Install extras
-# th-ch/youtube-music
-wget -P ~/Downloads/ https://github.com/th-ch/youtube-music/releases/download/v1.20.0/YouTube-Music-1.20.0-arm64.dmg
-# NOTE: `xattr -cr /Applications/YouTube\ Music.app`
+if ! (find -x /Applications -type d -name YouTube\ Music.app) &>/dev/null; then
+	echo "th-ch/YouTube-Music is not installed!"
+	wget -P ~/Downloads/ https://github.com/th-ch/youtube-music/releases/download/v1.20.0/YouTube-Music-1.20.0-arm64.dmg
+	sudo hdiutil attach ~/Downloads/YouTube-Music-1.20.0-arm64.dmg
+	sudo cp -rf /Volumes/YouTube\ Music\ 1.20.0-arm64 /Applications
+	sudo hdiutil detach /Volumes/YouTube\ Music\ 1.20.0-arm64
+	xattr -cr /Applications/YouTube\ Music.app
+fi
 
 # symlink configs
-cargo install cargo-update
-cargo install --git https://github.com/kamiyaa/joshuto.git --force
-cargo install dt-cli
-dt-cli -c "~/Workspace/dotfiles/cli-utils/dt/macos.toml"
+dt-cli -c "$HOME/dotfiles/cli-utils/dt/macos.toml"
+
+# misc
 bat cache --build
 
 # Post macOS setup
