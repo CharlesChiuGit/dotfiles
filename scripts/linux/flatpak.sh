@@ -34,5 +34,5 @@ flatpaks=(
 
 )
 for i in "${flatpaks[@]}"; do
-	flatpak install flathub $i
+	flatpak install flathub $i -y
 done
