@@ -1,4 +1,4 @@
-#!/usr/bash
+#!/usr/bin/bash
 
 if [ -f /etc/os-release ]; then
 	# freedesktop.org and systemd
