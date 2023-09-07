@@ -18,7 +18,6 @@ $winget_id = @(
     "Discord.Discord",
     "Element.Element",
     "FastStone.Viewer",
-    "File-New-Project.EarTrumpet",
     "Foxit.FoxitReader",
     "GeekUninstaller.GeekUninstaller",
     "Git.Git",
