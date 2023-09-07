@@ -98,7 +98,7 @@ cargo_repo=(
 	"https://github.com/blurgyy/dt.git dt-cli"
 )
 for i in "${cargo_repo[@]}"; do
-	cargo install --git $i --force --locked
+	cargo install --git $i --locked
 done
 
 # Install extras
