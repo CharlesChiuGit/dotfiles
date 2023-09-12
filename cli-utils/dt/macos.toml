@@ -28,8 +28,8 @@ target = "~/.config/sheldon"
 [[local]]
 name = "git"
 base = "~/dotfiles/core-utils/git"
-sources = [".gitconfig"]
-target = "~"
+sources = ["config"]
+target = "~/.config/git"
 
 # [[local]]
 # name = "ssh"
