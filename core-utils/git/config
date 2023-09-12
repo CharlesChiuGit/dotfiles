@@ -1,0 +1,30 @@
+[user]
+    name = CharlesChiuGit
+	email = charleschiu@hey.com
+[core]
+    pager = delta
+[alias]
+	st = status
+	cm = commit -m
+	co = checkout
+	br = branch
+	lo = log --oneline --graph
+	ls = log --graph --pretty=format:'%C(bold red)%h%Creset %C(bold cyan)<%an>%Creset %C(yellow)%d%Creset %s %Cgreen(%cr)' --abbrev-commit --date=relative
+	rh = reset --hard origin/main
+	rp = remote prune origin
+	lrh = ls-remote --heads
+	lrt = ls-remote --tags
+	
+[interactive]
+    diffFilter = delta --color-only
+[delta]
+    navigate = true    # use n and N to move between diff sections
+    light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
+    line-numbers = true
+    side-by-side = true
+[merge]
+    conflictstyle = diff3
+[diff]
+    colorMoved = default
+[delta "interactive"]
+    keep-plus-minus-markers = true
