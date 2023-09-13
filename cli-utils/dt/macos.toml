@@ -8,16 +8,25 @@ btop.theme = "\"/Users/charles/.config/btop/themes/catppuccin_macchiato.theme\""
 logseq.dark_theme = "\"assets:///Users/charles/.logseq/plugins/logseq-catppuccin/ctp-macchiato.css\""
 logseq.light_theme = "\"assets:///Users/charles/.logseq/plugins/logseq-catppuccin/ctp-latte.css\""
 wezterm.window_decorations = "\"RESIZE\""
+wget.hst = "/Users/charles/.cache/wget-hsts"
 
 #--------------------------------------------------------------------#
 #                             core-utils                             #
 #--------------------------------------------------------------------#
 
-# [[local]]
-# name = "zsh"
-# base = "~/dotfiles/core-utils/zsh"
-# sources = [".zsh/", ".zshrc", ".zshenv"]
-# target = "~"
+[[local]]
+name = "zsh"
+base = "~/dotfiles/core-utils/zsh"
+sources = ["zsh/"]
+target = "~/.config/zsh"
+method = "Copy"
+
+[[local]]
+name = "zshenv"
+base = "~/dotfiles/core-utils/zsh"
+sources = [".zshenv"]
+target = "~"
+method = "Copy"
 
 [[local]]
 name = "shelden"
@@ -159,7 +168,7 @@ target = "~/.local/share/man/man1"
 name = "starship"
 base = "~/dotfiles/cli-utils/starship"
 sources = ["starship.toml"]
-target = "~/.config"
+target = "~/.config/starship"
 
 # [[local]]
 # name = "tmux"
@@ -168,10 +177,29 @@ target = "~/.config"
 # target = "~/.config/tmux"
 
 [[local]]
+name = "topgrade"
+base = "~/dotfiles/cli-utils/topgrade.d"
+sources = ["topgrade.toml"]
+target = "~/.config/topgrade.d"
+
+[[local]]
 name = "Usercommand"                      # scripts
 base = "~/dotfiles/cli-utils/Usercommand"
 sources = ["./*"]
 target = "~/.local/bin"
+
+[[local]]
+name = "wget"
+base = "~/dotfiles/cli-utils/wget"
+sources = ["wgetrc"]
+target = "~/.config/wget"
+renderable = true
+
+[[local]]
+name = "yarn"
+base = "~/dotfiles/cli-utils/yarn"
+sources = ["config"]
+target = "~/.config/yarn"
 
 #--------------------------------------------------------------------#
 #                             gui-utils                              #
