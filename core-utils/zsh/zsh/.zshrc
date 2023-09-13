@@ -21,7 +21,6 @@ compinit -d ~/.cache/zsh/zcompdump-$ZSH_VERSION
 # rcfiles
 rcfiles=(
     "$XDG_CONFIG_HOME"/zsh/aliasrc
-    "$XDG_CONFIG_HOME"/zsh/keybind.zsh
     "$XDG_CONFIG_HOME"/zsh/fzf.zsh
     "$XDG_CONFIG_HOME"/zsh/fzf-tab.zsh
 )
@@ -46,3 +45,9 @@ eval "$(sheldon source)"
 bindkey '^[[a' history-substring-search-up
 bindkey '^[[b' history-substring-search-down
 bindkey ',' autosuggest-accept
+
+# Keybinds
+bindkey  "^[[H"   beginning-of-line
+bindkey  "^[[F"   end-of-line
+bindkey  "^[[2~"  vi-insert
+bindkey  "^[[3~"  delete-char
