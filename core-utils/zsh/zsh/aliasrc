@@ -1,22 +1,22 @@
-#!/usr/bin/zsh
+#!/bin/sh
 
 # Alias
-alias sozsh='source ~/.zshenv && source ~/.zshrc'
-alias nvzsh='nvim ~/.zshrc'
+alias sozsh='source ~/.zshenv && source "$XDG_CONFIG_HOME"/zsh/.zshrc'
 alias nv='nvim'
-alias cat='bat'  # wrapper for bat
+alias vim='vim -i NONE'
+alias cat='/usr/share/vim/vim90/macros/less.sh' # wrapper for bat
+alias yarn='yarn --use-yarnrc "$XDG_CONFIG_HOME/yarn/config"'
 alias py='python3'
 alias nvf='nvim `fzf`'
-alias ls='exa -1 -l -T -F --colour always --icons -a -L=1 \
-    --group-directories-first -b -h --git --time-style long-iso --no-permissions --octal-permissions'
+alias ls='lsd -l'
 # alias rm='trash' # mv to trash bin
 alias lg='lazygit'
 alias lzd='lazydocker'
-alias CA='conda activate'
-alias CD='conda deactivate'
-alias tb='tensorboard --logdir'
-[[ $TMUX != "" ]] && export TERM="tmux-256color"
-alias tmux="~/tools/tmux/tmux -f ~/.config/tmux/tmux.conf"
+# alias CA='conda activate'
+# alias CD='conda deactivate'
+# alias tb='tensorboard --logdir'
+# [[ $TMUX != "" ]] && export TERM="tmux-256color"
+# alias tmux="~/tools/tmux/tmux -f ~/.config/tmux/tmux.conf"
 alias zzf='zoxide query | fzf'
 alias rm='rm -iv'
 alias mkdir='mkdir -pv'
