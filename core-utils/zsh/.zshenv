@@ -15,11 +15,19 @@ export LESSKEY="$XDG_DATA_HOME/less/lesskey"
 export WGETRC="$XDG_CONFIG_HOME/wget/wgetrc"
 export CARGO_HOME="$XDG_DATA_HOME"/cargo
 export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
+export GOPATH="$XDG_DATA_HOME"/go
+export GOMODCACHE="$XDG_CACHE_HOME"/go/mod
+export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
 export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship.toml"
+export STARSHIP_CACHE="$XDG_CACHE_HOME"/starship
 export DVDCSS_CACHE="$XDG_CACHE_HOME/dvdcss"
 export NODE_REPL_HISTORY=""
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 export PNPM_HOME="{{{ zsh.pnpm_path }}}"
+export DISCORD_USER_DATA_DIR="$XDG_DATA_HOME"
+export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
+export MACHINE_STORAGE_PATH="$XDG_DATA_HOME"/docker-machine
+export FFMPEG_DATADIR="$XDG_CONFIG_HOME"/ffmpeg
 export EDITOR='nvim'
 
 add_path() {
