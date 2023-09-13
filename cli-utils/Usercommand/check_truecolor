@@ -1,0 +1,13 @@
+#!/bin/sh
+
+## Truecolor support check
+# NOTE: https://github.com/termstandard/colors
+# Don't change $TERM in your zshrc/bashrc!
+# Setting $TERM in zshrc/bashrc add confusions when your terminal emulators cannot actually supoorts it.
+case $TERM in screen-256color | tmux-256color | xterm-256color)
+	# COLORTERM opts:no|yes|truecolor
+	export COLORTERM=truecolor
+	;;
+vte*) ;;
+esac
+echo $COLORTERM
