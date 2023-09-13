@@ -8,6 +8,9 @@ logseq.dark_theme = "\"assets:///home/charles/.logseq/plugins/logseq-catppuccin/
 logseq.light_theme = "\"assets:///home/charles/.logseq/plugins/logseq-catppuccin/ctp-latte.css\""
 wezterm.window_decorations = "\"INTEGRATED_BUTTONS | RESIZE\""
 wget.hst = "/home/charles/.cache/wget-hsts"
+zsh.xdg_runtime_dir = "/run/user/$UID"
+zsh.homebrew_path = ""
+zsh.pnpm_path = "$XDG_DATA_HOME/pnpm"
 
 #--------------------------------------------------------------------#
 #                             core-utils                             #
@@ -21,8 +24,8 @@ wget.hst = "/home/charles/.cache/wget-hsts"
 
 [[local]]
 name = "zsh"
-base = "~/dotfiles/core-utils/zsh"
-sources = ["zsh/"]
+base = "~/dotfiles/core-utils/zsh/zsh"
+sources = [".zshrc", "aliasrc", "completion/", "*.zsh"]
 target = "~/.config/zsh"
 method = "Copy"
 
@@ -32,6 +35,7 @@ base = "~/dotfiles/core-utils/zsh"
 sources = [".zshenv"]
 target = "~"
 method = "Copy"
+renderable = true
 
 [[local]]
 name = "shelden"
