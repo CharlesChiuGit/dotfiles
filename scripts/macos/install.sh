@@ -36,6 +36,7 @@ cli_tools=(
 	"lazygit"
 	"lsd"
 	"neovim"
+	"libyaml"
 	"ripgrep"
 	"ripsecrets"
 	"sd"
@@ -43,11 +44,11 @@ cli_tools=(
 	"tokei"
 	"topgrade"
 	"wget"
+	"xdg-ninja"
 	"xh"
 	"xq"
 	"zellij"
 	"zoxide"
-	"libyaml"
 )
 for i in "${cli_tools[@]}"; do
 	brew install $i
