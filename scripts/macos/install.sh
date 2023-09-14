@@ -47,7 +47,6 @@ cli_tools=(
 	"sheldon"
 	"tokei"
 	"topgrade"
-	"viu"
 	"wget"
 	"xdg-ninja"
 	"xh"
