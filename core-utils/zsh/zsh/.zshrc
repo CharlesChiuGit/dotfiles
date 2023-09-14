@@ -29,7 +29,8 @@ eval "$(rtx activate zsh)"
 
 # Init zoxide
 eval "$(zoxide init zsh)"
-export _ZO_EXCLUDE_DIRS="$HOME/.local"
+export _ZO_DATA_DIR="$XDG_DATA_HOME"/zoxide
+export _ZO_EXCLUDE_DIRS="$XDG_CACHE_HOME;$XDG_DATA_HOME;$XDG_STATE_HOME"
 
 # Init Starship
 eval "$(starship init zsh)"

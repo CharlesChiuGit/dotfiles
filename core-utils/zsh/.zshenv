@@ -23,12 +23,13 @@ export STARSHIP_CACHE="$XDG_CACHE_HOME"/starship
 export DVDCSS_CACHE="$XDG_CACHE_HOME"/dvdcss
 export NODE_REPL_HISTORY=""
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME"/npm/npmrc
-export PNPM_HOME="{{{ zsh.pnpm_path }}}"
+export PNPM_HOME="$XDG_DATA_HOME"/pnpm
 export DISCORD_USER_DATA_DIR="$XDG_DATA_HOME"
 export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
 export MACHINE_STORAGE_PATH="$XDG_DATA_HOME"/docker-machine
 export FFMPEG_DATADIR="$XDG_CONFIG_HOME"/ffmpeg
 export EDITOR='nvim'
+path=("$XDG_DATA_HOME"/go/bin $path[@])
 
 add_path() {
     case ":${PATH}:" in
