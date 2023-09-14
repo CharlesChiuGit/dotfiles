@@ -27,6 +27,7 @@ cli_tools=(
 	"curl"
 	"dua-cli"
 	"eva"
+	"fd"
 	"fzf"
 	"fzy"
 	"git"
@@ -34,15 +35,19 @@ cli_tools=(
 	"jdx/tap/rtx"
 	"lazydocker"
 	"lazygit"
+	"libmagic"
+	"libyaml"
+	"lnav"
 	"lsd"
 	"neovim"
-	"libyaml"
+	"poppler"
 	"ripgrep"
 	"ripsecrets"
 	"sd"
 	"sheldon"
 	"tokei"
 	"topgrade"
+	"viu"
 	"wget"
 	"xdg-ninja"
 	"xh"
@@ -98,10 +103,15 @@ cargo_repo=(
 	"https://github.com/matthiaskrgr/cargo-cache.git"
 	"https://github.com/kamiyaa/joshuto.git"
 	"https://github.com/blurgyy/dt.git dt-cli"
+	"https://github.com/mmacedoeu/termpix.git"
 )
 for i in "${cargo_repo[@]}"; do
 	cargo install --git $i --locked
 done
+
+# go install
+export HOMEBREW_PREFIX=$(brew --prefix)
+CGO_CFLAGS="-I${HOMEBREW_PREFIX}/include" CGO_LDFLAGS="-L${HOMEBREW_PREFIX}/lib" go install github.com/doronbehar/pistol/cmd/pistol@latest
 
 # Install extras
 if ! (find -x /Applications -type d -name YouTube\ Music.app) &>/dev/null; then
