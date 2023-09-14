@@ -3,26 +3,26 @@ typeset -U PATH path # make sure $PATH is unique
 path=("$HOME/.local/bin" "$path[@]")
 export PATH
 {{{ zsh.homebrew_path }}}
-export XDG_CONFIG_HOME="$HOME/.config" # analogous to /etc
-export XDG_CACHE_HOME="$HOME/.cache" # analogous to /var/cache
-export XDG_DATA_HOME="$HOME/.local/share" # analogous to /usr/share
-export XDG_STATE_HOME="$HOME/.local/state" # analogous to /var/lib
+export XDG_CONFIG_HOME="$HOME"/.config # analogous to /etc
+export XDG_CACHE_HOME="$HOME"/.cache # analogous to /var/cache
+export XDG_DATA_HOME="$HOME"/.local/share # analogous to /usr/share
+export XDG_STATE_HOME="$HOME"/.local/state # analogous to /var/lib
 export XDG_RUNTIME_DIR="{{{ zsh.xdg_runtime_dir }}}"
-export HISTFILE="$XDG_STATE_HOME/sh_history/histfile"
+export HISTFILE="$XDG_STATE_HOME"/zsh/history
 export ZDOTDIR="$HOME"/.config/zsh
-export LESSHISTFILE="$XDG_DATA_HOME/less/lesshst"
-export LESSKEY="$XDG_DATA_HOME/less/lesskey"
-export WGETRC="$XDG_CONFIG_HOME/wget/wgetrc"
+export LESSHISTFILE="$XDG_DATA_HOME"/less/lesshst
+export LESSKEY="$XDG_DATA_HOME"/less/lesskey
+export WGETRC="$XDG_CONFIG_HOME"/wget/wgetrc
 export CARGO_HOME="$XDG_DATA_HOME"/cargo
 export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
 export GOPATH="$XDG_DATA_HOME"/go
 export GOMODCACHE="$XDG_CACHE_HOME"/go/mod
 export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
-export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship.toml"
+export STARSHIP_CONFIG="$XDG_CONFIG_HOME"/starship/starship.toml
 export STARSHIP_CACHE="$XDG_CACHE_HOME"/starship
-export DVDCSS_CACHE="$XDG_CACHE_HOME/dvdcss"
+export DVDCSS_CACHE="$XDG_CACHE_HOME"/dvdcss
 export NODE_REPL_HISTORY=""
-export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
+export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME"/npm/npmrc
 export PNPM_HOME="{{{ zsh.pnpm_path }}}"
 export DISCORD_USER_DATA_DIR="$XDG_DATA_HOME"
 export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker

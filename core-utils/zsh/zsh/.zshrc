@@ -1,18 +1,12 @@
-# Lines configured by zsh-newuser-install
-if [ ! -d ~/.local/state/sh_history ] ; then
-  mkdir ~/.local/state/sh_history
-fi
-export HISTFILE=~/.local/state/sh_history/histfile
 HISTSIZE=1000
 SAVEHIST=1000
+HISTTIMEFORMAT="[%F %T] "
 setopt extendedglob nomatch notify nobeep autocd
 setopt hist_ignore_dups hist_ignore_all_dups hist_expire_dups_first hist_find_no_dups hist_reduce_blanks hist_save_no_dups
 setopt INC_APPEND_HISTORY
-export HISTTIMEFORMAT="[%F %T] "
 bindkey -v
-# End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
-zstyle :compinstall filename "$HOME/.zshrc"
+zstyle ':completion:*' cache-path $XDG_CACHE_HOME/zsh/zcompcache
 fpath[1,0]=~/.config/zsh/completion/ # local comp files
 autoload -Uz compinit
 compinit -d ~/.cache/zsh/zcompdump-$ZSH_VERSION
