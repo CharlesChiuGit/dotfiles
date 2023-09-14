@@ -205,6 +205,12 @@ target = "~/.config/wget"
 renderable = true
 
 [[local]]
+name = "xdg-user-dirs"
+base = "~/dotfiles/cli-utils/xdg-user-dirs"
+sources = ["user-dirs.dirs"]
+target = "~/.config"
+
+[[local]]
 name = "yarn"
 base = "~/dotfiles/cli-utils/yarn"
 sources = ["config"]
