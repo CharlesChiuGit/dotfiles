@@ -187,9 +187,9 @@ target = "~/.config/starship"
 
 [[local]]
 name = "topgrade"
-base = "~/dotfiles/cli-utils/topgrade.d"
+base = "~/dotfiles/cli-utils/topgrade"
 sources = ["topgrade.toml"]
-target = "~/.config/topgrade.d"
+target = "~/.config/topgrade"
 
 [[local]]
 name = "Usercommand"                      # scripts
