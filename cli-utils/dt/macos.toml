@@ -11,7 +11,6 @@ wezterm.window_decorations = "\"RESIZE\""
 wget.hst = "/Users/charles/.cache/wget-hsts"
 zsh.xdg_runtime_dir = "~/Library/Caches/TemporaryItems"
 zsh.homebrew_path = "[ -d /opt/homebrew/bin/ ] && path=(/opt/homebrew/bin/ $path)"
-zsh.pnpm_path = "$HOME/Library/pnpm"
 
 #--------------------------------------------------------------------#
 #                             core-utils                             #
@@ -20,7 +19,7 @@ zsh.pnpm_path = "$HOME/Library/pnpm"
 [[local]]
 name = "zsh"
 base = "~/dotfiles/core-utils/zsh/zsh"
-sources = [".zshrc", "aliasrc", "completion/", "*.zsh"]
+sources = [".zshrc", "aliasrc", "*.zsh"]
 target = "~/.config/zsh"
 method = "Copy"
 
