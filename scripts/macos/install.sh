@@ -53,6 +53,8 @@ cli_tools=(
 	"xq"
 	"zellij"
 	"zoxide"
+	"gawk"
+	"grep"
 )
 for i in "${cli_tools[@]}"; do
 	brew install $i
