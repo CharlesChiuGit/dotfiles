@@ -137,11 +137,11 @@ target = "~/.config/lazygit"
 # sources = ["lfrc", "git-prompt.sh", "icon.sh"]
 # target = "~/.config/lf"
 
-[[local]]
-name = "lsd"
-base = "~/dotfiles/cli-utils/lsd"
-sources = ["config.yaml"]
-target = "~/.config/lsd"
+# [[local]]
+# name = "lsd"
+# base = "~/dotfiles/cli-utils/lsd"
+# sources = ["config.yaml"]
+# target = "~/.config/lsd"
 
 [[local]]
 name = "Manual"                      #man
