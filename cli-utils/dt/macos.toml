@@ -161,11 +161,11 @@ target = "~/.local/share/man/man1"
 # sources = ["config.conf"]
 # target = "~/.config/neofetch"
 
-# [[local]]
-# name = "pistol"
-# base = "~/dotfiles/cli-utils/pistol"
-# sources = ["pistol.conf"]
-# target = "~/.config/pistol"
+[[local]]
+name = "pistol"
+base = "~/dotfiles/cli-utils/pistol"
+sources = ["pistol.conf"]
+target = "~/.config/pistol"
 
 [[local]]
 name = "starship"
