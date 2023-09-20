@@ -30,11 +30,11 @@ target = "~"
 method = "Copy"
 renderable = true
 
-[[local]]
-name = "shelden"
-base = "~/dotfiles/core-utils/shelden"
-sources = ["plugins.toml"]
-target = "~/.config/sheldon"
+# [[local]]
+# name = "shelden"
+# base = "~/dotfiles/core-utils/shelden"
+# sources = ["plugins.toml"]
+# target = "~/.config/sheldon"
 
 [[local]]
 name = "git"
