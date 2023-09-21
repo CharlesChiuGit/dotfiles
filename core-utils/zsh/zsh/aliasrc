@@ -8,8 +8,8 @@ alias cat='/usr/share/vim/vim90/macros/less.sh' # wrapper for bat
 alias yarn='yarn --use-yarnrc "$XDG_CONFIG_HOME/yarn/config"'
 alias py='python3'
 alias nvf='nvim `fzf`'
-# alias ls='lsd -l'
-alias ls='eza -1lFaBhHm --git --group-directories-first --no-permissions --octal-permissions --time-style="long-iso" -I=".DS_Store|.CFUserTextEncoding"'
+alias ls='lsd -l'
+# alias ls='eza -1lFaBhHm --git --group-directories-first --no-permissions --octal-permissions --time-style="long-iso" -I=".DS_Store|.CFUserTextEncoding"'
 # alias rm='trash' # mv to trash bin
 alias lg='lazygit'
 alias lzd='lazydocker'

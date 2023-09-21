@@ -13,7 +13,7 @@ blocks:
   - permission
   - user
   - group
-  - size
+  # - size
   - date
   - git
   - name

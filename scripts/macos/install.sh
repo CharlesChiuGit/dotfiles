@@ -53,6 +53,7 @@ cli_tools=(
 	"xq"
 	"zellij"
 	"zoxide"
+	"lsd"
 	"gawk"
 	"grep"
 )
