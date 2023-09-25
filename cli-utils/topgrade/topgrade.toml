@@ -6,7 +6,7 @@
 
 [misc]
 # Don't ask for confirmations
-#assume_yes = true
+assume_yes = true
 
 # Disable specific steps - same options as the command line flag
 #disable = ["system", "emacs"]
@@ -25,7 +25,7 @@ no_retry = true
 
 # Run `sudo -v` to cache credentials at the start of the run
 # This avoids a blocking password prompt in the middle of an unattended run
-#pre_sudo = false
+pre_sudo = true
 
 # Run inside tmux
 #run_in_tmux = true
@@ -162,7 +162,7 @@ autoremove = true
 
 [flatpak]
 # Use sudo for updating the system-wide installation
-#use_sudo = true
+use_sudo = true
 
 [distrobox]
 #use_root = false
