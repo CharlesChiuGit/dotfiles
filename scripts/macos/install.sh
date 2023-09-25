@@ -89,12 +89,12 @@ zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) 
 # Install langs
 rtx plugin install rust https://github.com/code-lever/asdf-rust
 langs=(
-	"node@20.6.0"
+	"node@20.7.0"
 	"python@3.11.5"
 	"ruby@3.2.2"
-	"go@1.20.7"
+	"go@1.21.1"
 	"java@openjdk-21"
-	"rust@1.72.0"
+	"rust@1.72.1"
 )
 for i in "${langs[@]}"; do
 	rtx install $i
