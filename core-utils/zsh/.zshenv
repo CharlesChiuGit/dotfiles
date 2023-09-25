@@ -28,6 +28,7 @@ export DISCORD_USER_DATA_DIR="$XDG_DATA_HOME"
 export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
 export MACHINE_STORAGE_PATH="$XDG_DATA_HOME"/docker-machine
 export FFMPEG_DATADIR="$XDG_CONFIG_HOME"/ffmpeg
+export ANSIBLE_CONFIG="$XDG_CONFIG_HOME"/ansible/ansible.cfg
 export EDITOR='nvim'
 path=("$XDG_DATA_HOME"/go/bin $path[@])
 
@@ -42,6 +43,6 @@ add_path() {
 }
 
 autoload -Uz add_path
-add_path "$CARGO_HOME/bin"
+add_path "$CARGO_HOME"/bin
 add_path "$PNPM_HOME"
 
