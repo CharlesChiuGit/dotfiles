@@ -9,7 +9,7 @@ logseq.light_theme = "\"assets:///home/charles/.logseq/plugins/logseq-catppuccin
 wezterm.window_decorations = "\"INTEGRATED_BUTTONS | RESIZE\""
 wget.hst = "/home/charles/.cache/wget-hsts"
 zsh.xdg_runtime_dir = "/run/user/$UID"
-zsh.homebrew_path = ""
+zsh.homebrew_path = "[ -d /home/linuxbrew/.linuxbrew/bin ] && path=(/home/linuxbrew/.linuxbrew/bin $path)"
 
 #--------------------------------------------------------------------#
 #                             core-utils                             #
@@ -136,11 +136,11 @@ target = "~/.config/lazygit"
 # sources = ["lfrc", "git-prompt.sh", "icon.sh"]
 # target = "~/.config/lf"
 
-# [[local]]
-# name = "lsd"
-# base = "~/dotfiles/cli-utils/lsd"
-# sources = ["config.yaml"]
-# target = "~/.config/lsd"
+[[local]]
+name = "lsd"
+base = "~/dotfiles/cli-utils/lsd"
+sources = ["config.yaml"]
+target = "~/.config/lsd"
 
 [[local]]
 name = "Manual"                      #man
