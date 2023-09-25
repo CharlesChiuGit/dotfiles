@@ -104,7 +104,7 @@ rtx reshim
 # cargo install
 cargo_repo=(
 	"https://github.com/nabijaczleweli/cargo-update.git"
-	"https://github.com/matthiaskrgr/cargo-cache.git"
+	"https://github.com/matthiaskrgr/cargo-cache.git cargo-cache"
 	"https://github.com/kamiyaa/joshuto.git"
 	"https://github.com/blurgyy/dt.git dt-cli"
 	"https://github.com/mmacedoeu/termpix.git"
