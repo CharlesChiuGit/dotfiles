@@ -44,7 +44,6 @@ cli_tools=(
 	"ripgrep"
 	"ripsecrets"
 	"sd"
-	"sheldon"
 	"tokei"
 	"topgrade"
 	"wget"
@@ -83,6 +82,9 @@ gui_tools=(
 for i in "${gui_tools[@]}"; do
 	brew install --cask $i
 done
+
+# Instal zap-zsh
+zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --branch release-v1
 
 # Install langs
 rtx plugin install rust https://github.com/code-lever/asdf-rust
