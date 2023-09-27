@@ -9,7 +9,7 @@ logseq.dark_theme = "\"assets:///Users/charles/.logseq/plugins/logseq-catppuccin
 logseq.light_theme = "\"assets:///Users/charles/.logseq/plugins/logseq-catppuccin/ctp-latte.css\""
 wezterm.window_decorations = "\"RESIZE\""
 wget.hst = "/Users/charles/.cache/wget-hsts"
-zsh.xdg_runtime_dir = "~/Library/Caches/TemporaryItems"
+zsh.xdg_runtime_dir = "/tmp"
 zsh.homebrew_path = "[ -d /opt/homebrew/bin/ ] && path=(/opt/homebrew/bin/ $path)"
 
 #--------------------------------------------------------------------#
@@ -225,4 +225,3 @@ base = "~/dotfiles/terminals/wezterm"
 sources = ["config/", "*.lua"]
 target = "~/.config/wezterm"
 renderable = true
-
