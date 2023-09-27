@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-sudo pacman -S git curl wget adobe-source-han-tw-fonts 
-sudo pacman -S make openssl cmake net-tools openssh
+sudo pacman -S git curl wget adobe-source-han-tw-fonts
+sudo pacman -S make openssl cmake net-tools openssh unzip
 sudo pacman -S xdg-desktop-protal xdg-user-dirs xdg-desktop-protal-gtk
 sudo pacman -S freetype2 libjpeg-turbo librsvg libtiff libwebp autoconf automake libtool gtk-doc
 sudo pacman -S ImageMagick
