@@ -6,12 +6,11 @@ python = "3.11.5"
 ruby = "3.2.2"
 go = "1.21.1"
 java = "openjdk-21"
-rust = "1.72.1"
 
 [settings]
 # configure `rtx install` to always keep the downloaded archive
-always_keep_download = false        # deleted after install by default
-always_keep_install = false         # deleted on failure by default
+always_keep_download = false # deleted after install by default
+always_keep_install = false  # deleted on failure by default
 
 # configure how frequently (in minutes) to fetch updated plugin repository changes
 # this is updated whenever a new runtime is installed
@@ -19,15 +18,13 @@ always_keep_install = false         # deleted on failure by default
 plugin_autoupdate_last_check_duration = '1 week' # set to 0 to disable updates
 
 # config files with these prefixes will be trusted by default
-trusted_config_paths = [
-    '~/Workspaces',
-]
+trusted_config_paths = ['~/Workspaces']
 
-verbose = false     # set to true to see full installation output, see `RTX_VERBOSE`
-jobs = 4            # number of plugins or runtimes to install in parallel. The default is `4`.
+verbose = false # set to true to see full installation output, see `RTX_VERBOSE`
+jobs = 4        # number of plugins or runtimes to install in parallel. The default is `4`.
 
 experimental = true # enable experimental features
-log_level = 'warn' # log verbosity, see `RTX_LOG_LEVEL`
+log_level = 'warn'  # log verbosity, see `RTX_LOG_LEVEL`
 
 [plugins]
 # specify a custom repo url
