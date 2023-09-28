@@ -12,7 +12,7 @@ cp -r ~/dotfiles/core-utils/zsh/zsh ~/.config/
 chsh -s "$(which zsh)"
 
 # Instal zap-zsh
-if [[ -z $(command -v zap) ]]; then
+if command -v zap &>/dev/null; then
 	echo "Install zap-zsh"
 	zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --branch release-v1
 else
