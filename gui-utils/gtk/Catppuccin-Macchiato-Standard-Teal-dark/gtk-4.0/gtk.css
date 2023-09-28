@@ -27,6 +27,10 @@
   color: #FFFFFF;
 }
 
+#desktopwindow.background {
+  background-color: transparent;
+}
+
 dnd {
   color: #FFFFFF;
 }

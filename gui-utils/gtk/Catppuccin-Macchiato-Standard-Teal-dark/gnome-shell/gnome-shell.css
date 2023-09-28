@@ -1319,12 +1319,12 @@ StEntry StLabel.hint-text, .popup-menu .search-entry StLabel.hint-text {
   padding: 4px 8px;
   min-height: 26px;
   border-radius: 9999px;
-  caret-color: rgba(0, 0, 0, 0.87);
+  caret-color: #FFFFFF;
   background-color: rgba(255, 255, 255, 0.04);
   border-radius: 0;
   border: none;
-  box-shadow: inset 0 -1px rgba(0, 0, 0, 0.15);
-  color: rgba(0, 0, 0, 0.87);
+  box-shadow: inset 0 -1px rgba(255, 255, 255, 0.15);
+  color: #FFFFFF;
 }
 
 .login-dialog StEntry:focus,
@@ -1332,19 +1332,19 @@ StEntry StLabel.hint-text, .popup-menu .search-entry StLabel.hint-text {
   border: none;
   background-color: rgba(255, 255, 255, 0.04);
   box-shadow: inset 0 -2px #8bd5ca;
-  color: rgba(0, 0, 0, 0.87);
+  color: #FFFFFF;
 }
 
 .login-dialog StEntry:insensitive,
 .unlock-dialog StEntry:insensitive {
   border: none;
   background-color: rgba(255, 255, 255, 0.04);
-  color: rgba(0, 0, 0, 0.35);
+  color: rgba(255, 255, 255, 0.35);
 }
 
 .login-dialog StEntry StLabel.hint-text,
 .unlock-dialog StEntry StLabel.hint-text {
-  color: rgba(0, 0, 0, 0.38);
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .login-dialog .modal-dialog-button-box,
