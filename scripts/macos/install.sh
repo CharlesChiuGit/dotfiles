@@ -11,7 +11,7 @@ else
 	printf 'Homebrew is already installed, skip it.\n'
 fi
 
-# Add extra repo
+# Add extra tap
 repos=(
 	"homebrew/cask-fonts"
 )
@@ -47,7 +47,6 @@ cli_tools=(
 	"ripsecrets"
 	"sd"
 	"sqlite"
-	"stats"
 	"tokei"
 	"topgrade"
 	"tree-sitter"
@@ -58,8 +57,16 @@ cli_tools=(
 	"zellij"
 	"zoxide"
 )
+
+# installed formulae list
+form_list=$(brew list --formulae)
+
 for i in "${cli_tools[@]}"; do
-	brew install "$i"
+	if [[ $form_list =~ (^|[[:space:]])$i($|[[:space:]]) ]]; then
+		echo "$i is already installed, skip it."
+	else
+		brew install "$i"
+	fi
 done
 
 # Install gui-tools
@@ -80,12 +87,20 @@ gui_tools=(
 	"obsidian"
 	"raindropio"
 	"raycast"
+	"stats"
 	"steam"
 	"visual-studio-code"
 	"wezterm"
 )
+# installed cask list
+cask_list=$(brew list --cask)
+
 for i in "${gui_tools[@]}"; do
-	brew install --cask "$i"
+	if [[ $cask_list =~ (^|[[:space:]])$i($|[[:space:]]) ]]; then
+		echo "$i is already installed, skip it."
+	else
+		brew install --cask "$i"
+	fi
 done
 
 # Install langs
