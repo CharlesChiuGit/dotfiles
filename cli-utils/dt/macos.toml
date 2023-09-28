@@ -162,6 +162,12 @@ target = "~/.local/share/man/man1"
 # target = "~/.config/neofetch"
 
 [[local]]
+name = "npm"
+base = "~/dotfiles/cli-utils/npm"
+sources = ["npmrc"]
+target = "~/.config/npm"
+
+[[local]]
 name = "pistol"
 base = "~/dotfiles/cli-utils/pistol"
 sources = ["pistol.conf"]
