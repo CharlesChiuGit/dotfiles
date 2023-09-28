@@ -125,14 +125,16 @@ fi
 if [[ -z $(command -v flatpak) ]]; then
 	echo "Install Flatpak"
 	if [[ $OS == "Arch Linux" ]]; then
-		sudo pacman -S flatpak
+		sudo pacman -S --noconfirm flatpak
 	elif [[ $OS == "Ubuntu" ]]; then
-		sudo apt install flatpak
+		sudo apt install flatpak -y
 		flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 	fi
 else
 	printf "Flatpak is already installed, skip it.\n"
 fi
+
+export XDG_DATA_DIRS="/var/lib/flatpak/exports/share:$HOME/.local/share/flatpak/exports/share:$XDG_DATA_DIRS"
 
 flatpaks=(
 	"com.discordapp.Discord"
