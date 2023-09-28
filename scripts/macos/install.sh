@@ -113,7 +113,7 @@ langs=(
 	"java@openjdk-21"
 )
 for i in "${langs[@]}"; do
-	rtx install "$i"
+	rtx use -g "$i"
 done
 rtx reshim
 
@@ -165,6 +165,7 @@ fi
 
 # symlink configs
 dt-cli -c "$HOME/dotfiles/cli-utils/dt/macos.toml"
+rtx trust ~/.config/rtx/config.toml
 
 # misc
 bat cache --build
