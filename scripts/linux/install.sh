@@ -75,7 +75,7 @@ rtx reshim
 # Install rustup
 if [[ -z "$(command -v rustup)" ]]; then
 	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-	source "$HOME/.zshenv"
+	source "$HOME/.local/share/cargo/env"
 else
 	printf "Rustup is already installed, skip it.\n"
 fi
