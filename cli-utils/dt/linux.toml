@@ -161,6 +161,12 @@ target = "~/.local/share/man/man1"
 # target = "~/.config/neofetch"
 
 [[local]]
+name = "npm"
+base = "~/dotfiles/cli-utils/npm"
+sources = ["npmrc"]
+target = "~/.config/npm"
+
+[[local]]
 name = "pistol"
 base = "~/dotfiles/cli-utils/pistol"
 sources = ["pistol.conf"]
@@ -220,21 +226,27 @@ target = "~/.local/share/fonts"
 
 [[local]]
 name = "gtk4"
-base = "~/dotfiles/gui-utils/gtk/Catppuccin-Macchiato-Standard-Teal-dark/gtk-4.0"
-sources = ["assets/", "*.css"]
-target = "~/.config/gtk-4.0"
-
-[[local]]
-name = "gtk"
 base = "~/dotfiles/gui-utils/gtk/Catppuccin-Macchiato-Standard-Teal-dark"
-sources = ["gtk-2.0/", "gtk-3.0/", "index.theme"]
-target = "~/.themes"
+sources = ["gtk-4.0/"]
+target = "~/.config"
 
 [[local]]
-name = "gnome-shell-theme"
-base = "~/dotfiles/gui-utils/gtk/Catppuccin-Macchiato-Standard-Teal-dark/gnome-shell"
-sources = ["assets/", "*.css", "*.svg"]
-target = "~/.themes/gnome-shell"
+name = "gtk3"
+base = "~/dotfiles/gui-utils/gtk/Catppuccin-Macchiato-Standard-Teal-dark"
+sources = ["gtk-3.0/"]
+target = "~/.config"
+
+[[local]]
+name = "gtk2"
+base = "~/dotfiles/gui-utils/gtk/Catppuccin-Macchiato-Standard-Teal-dark"
+sources = ["gtk-2.0/"]
+target = "~/.config"
+
+# [[local]]
+# name = "gnome-shell-theme"
+# base = "~/dotfiles/gui-utils/gtk/Catppuccin-Macchiato-Standard-Teal-dark/gnome-shell"
+# sources = ["assets/", "*.css", "*.svg"]
+# target = "~/.themes/gnome-shell"
 
 [[local]]
 name = "logseq"
