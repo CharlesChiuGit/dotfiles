@@ -7,9 +7,11 @@ set -o pipefail
 ######################################################################
 #                           Brew Install                             #
 ######################################################################
+export PATH="$PATH:/home/linuxbrew/.linuxbrew/bin"
 if [[ -z $(command -v brew) ]]; then
 	echo "Install Homebrew"
 	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        export PATH="$PATH:/home/linuxbrew/.linuxbrew/bin"
 else
 	printf 'Homebrew is already installed, skip it.\n'
 fi
