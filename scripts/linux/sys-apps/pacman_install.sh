@@ -8,3 +8,4 @@ sudo pacman -S ImageMagick
 sudo pacman -S python-pip python-setuptools
 sudo pacman -S pre2 zlib libbz2 lz4 ztsd
 sudo pacman -S base-devel procps-ng file
+sudo pacman -S zsh
