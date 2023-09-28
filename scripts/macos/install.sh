@@ -58,7 +58,7 @@ cli_tools=(
 	"zoxide"
 )
 
-# installed formulae list
+# Installed formulae list
 form_list=$(brew list --formulae)
 
 for i in "${cli_tools[@]}"; do
@@ -92,7 +92,8 @@ gui_tools=(
 	"visual-studio-code"
 	"wezterm"
 )
-# installed cask list
+
+# Installed cask list
 cask_list=$(brew list --cask)
 
 for i in "${gui_tools[@]}"; do
@@ -137,7 +138,12 @@ done
 # go install
 _homebrew_prefix=$(brew --prefix)
 export HOMEBREW_PREFIX=_homebrew_prefix
-# CGO_CFLAGS="-I${HOMEBREW_PREFIX}/include" CGO_LDFLAGS="-L${HOMEBREW_PREFIX}/lib" go install github.com/doronbehar/pistol/cmd/pistol@latest
+if [[ -z $(command -v pistol) ]]; then
+	echo "Install Pistol"
+	CGO_CFLAGS="-I${HOMEBREW_PREFIX}/include" CGO_LDFLAGS="-L${HOMEBREW_PREFIX}/lib" go install github.com/doronbehar/pistol/cmd/pistol@latest
+else
+	printf 'Pistol is already installed, skip it.\n'
+fi
 
 # Install extras
 if ! (find -x /Applications -type d -name YouTube\ Music.app) &>/dev/null; then
