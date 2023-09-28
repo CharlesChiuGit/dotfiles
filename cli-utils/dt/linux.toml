@@ -242,11 +242,11 @@ base = "~/dotfiles/gui-utils/gtk/Catppuccin-Macchiato-Standard-Teal-dark"
 sources = ["gtk-2.0/"]
 target = "~/.config"
 
-# [[local]]
-# name = "gnome-shell-theme"
-# base = "~/dotfiles/gui-utils/gtk/Catppuccin-Macchiato-Standard-Teal-dark/gnome-shell"
-# sources = ["assets/", "*.css", "*.svg"]
-# target = "~/.themes/gnome-shell"
+[[local]]
+name = "gnome-shell-theme"
+base = "~/dotfiles/gui-utils/gtk/Catppuccin-Macchiato-Standard-Teal-dark"
+sources = ["gnome-shell"]
+target = "~/.local/share/themes/ctp-macchiato-teal-dark/gnome-shell"
 
 [[local]]
 name = "logseq"
