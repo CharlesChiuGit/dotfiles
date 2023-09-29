@@ -161,3 +161,5 @@ fc-cache -f -v
 LC_ALL=C xdg-user-dirs-update --force
 rm -rf "$HOME/Templates"
 rm -rf "$HOME/Public"
+mkdir -p ~/.local/state/zsh
+mkdir -p ~/.lcoal/share/less

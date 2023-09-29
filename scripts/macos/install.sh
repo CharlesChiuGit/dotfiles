@@ -169,6 +169,8 @@ rtx trust ~/.config/rtx/config.toml
 
 # misc
 bat cache --build
+mkdir -p ~/.local/state/zsh
+mkdir -p ~/.lcoal/share/less
 
 # Post macOS setup
 ## show all hidden files in Finder
