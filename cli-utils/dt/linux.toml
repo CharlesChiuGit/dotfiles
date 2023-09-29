@@ -190,6 +190,7 @@ name = "topgrade"
 base = "~/dotfiles/cli-utils/topgrade"
 sources = ["topgrade.toml"]
 target = "~/.config"
+method = "Copy"
 
 [[local]]
 name = "Usercommand"                      # scripts
