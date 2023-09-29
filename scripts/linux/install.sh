@@ -11,7 +11,7 @@ export PATH="$PATH:/home/linuxbrew/.linuxbrew/bin"
 if [[ -z $(command -v brew) ]]; then
 	echo "Install Homebrew"
 	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-        export PATH="$PATH:/home/linuxbrew/.linuxbrew/bin"
+	export PATH="$PATH:/home/linuxbrew/.linuxbrew/bin"
 else
 	printf 'Homebrew is already installed, skip it.\n'
 fi
@@ -78,6 +78,7 @@ rtx reshim
 if [[ -z "$(command -v rustup)" ]]; then
 	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 	source "$HOME/.local/share/cargo/env"
+	rm ~/.profile
 else
 	printf "Rustup is already installed, skip it.\n"
 fi
@@ -157,3 +158,6 @@ done
 # misc
 bat cache --build
 fc-cache -f -v
+LC_ALL=C xdg-user-dirs-update --force
+rm -rf "$HOME/Templates"
+rm -rf "$HOME/Public"
