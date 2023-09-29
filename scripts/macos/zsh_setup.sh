@@ -5,7 +5,7 @@ if [[ -f ~/.zshenv ]]; then
 	echo "Backup ~/.zshenv to ~/.zshenv.bak"
 	mv ~/.zshenv ~/.zshenv.bak
 fi
-cp ~/dotfiles/core-utils/zsh/.zshenv ~
+cp ~/dotfiles/core-utils/zsh_tmp/.zshenv ~
 cp -r ~/dotfiles/core-utils/zsh/zsh ~/.config/
 
 # make sure zsh is default shell
