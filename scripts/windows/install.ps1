@@ -8,7 +8,7 @@ Set-StrictMode -Version 3.0
 $ErrorActionPreference = "Stop" # Exit when command fails
 
 # package mgr vars
-$winget_id = @(
+$winget_ids = @(
     "Bandisoft.Honeyview",
     "CiderCollective.Cider",
     "CosmoX.Lepton",
@@ -42,7 +42,7 @@ $winget_id = @(
     "Valve.Steam",
     "th-ch.YouTubeMusic"
 )
-$scoop_id = @(
+$scoop_ids= @(
     "7zip",
     "JetBrainsMono-NF",
     "JetBrainsMono-NF-Mono",
@@ -59,11 +59,9 @@ $scoop_id = @(
 # env vars
 # $env:XDG_CONFIG_HOME ??= $env:LOCALAPPDATA
 
-For ($i = 0; $i -le ($winget_id-1); $i++) (
-    winget install -e --id $winget_id[i] --ignore-security-hash
-)
+foreach ($winget_id in $winget_ids) {
+    winget install -e --id $winget_id --ignore-security-hash
+}
 
-For ($i = 0; $i -le ($scoop_id-1); $i++) (
-    scoop install $scoop_id[i] 
-)
-
+foreach ($scoop_id in $scoop_ids) {}
+    scoop install $scoop_id
