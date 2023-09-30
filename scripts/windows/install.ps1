@@ -9,7 +9,7 @@ $ErrorActionPreference = "Stop" # Exit when command fails
 
 # package mgr vars
 $winget_ids = @(
-    "Bandisoft.Honeyview",
+    # "Bandisoft.Honeyview",
     "CiderCollective.Cider",
     "CosmoX.Lepton",
     "CrystalDewWorld.CrystalDiskInfo",
@@ -17,7 +17,7 @@ $winget_ids = @(
     "Daum.PotPlayer",
     "Discord.Discord",
     "Element.Element",
-    "FastStone.Viewer",
+    # "FastStone.Viewer",
     "Foxit.FoxitReader",
     "GeekUninstaller.GeekUninstaller",
     "Git.Git",
