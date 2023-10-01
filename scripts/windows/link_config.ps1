@@ -45,7 +45,7 @@ foreach ($dir in $dirs) {
         Write-Host "$dir already exists"
     } else {
         mkdir $dir
-        Write-Host "mkdir for $key"
+        Write-Host "mkdir for $dir"
     }
 }
 
