@@ -33,6 +33,21 @@ $dict = @{
     )
 }
 
+# mkdir
+@dirs = @(
+    "$Env:USERPROFILE\.config",
+    "$Env:USERPROFILE\Documents\PowerShell",
+    "$Env:APPDATA\lazygit"
+)
+
+foreach ($dir in $dirs) {
+    if (Test-Path -Path $dir) {
+        mkdir $dir
+        Write-Host "mkdir for $key"
+    }
+}
+
+
 foreach ($key in $dict.Keys) {
     if (Test-Path -Path $dict[$key][0]) {
         rm $dict[$key][0]
