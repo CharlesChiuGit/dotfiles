@@ -1,7 +1,7 @@
 $dict = @{
     gitconfig = @(
         "$Env:USERPROFILE\.gitconfig", 
-        "$Env:USERPROFILE\dotfiles\core-utils\git\.gitconfig"
+        "$Env:USERPROFILE\dotfiles\core-utils\git\config"
     )
     pwsh_profile = @(
         "$Env:USERPROFILE\Documents\PowerShell\Microsoft.PowerShell_profile.ps1", 
