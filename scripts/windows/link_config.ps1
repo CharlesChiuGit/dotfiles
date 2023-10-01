@@ -39,12 +39,9 @@ $dict = @{
     )
 }
 
-if (Test-Path -Path $Env:APPDATA\lazygit) {
-    mkdir $Env:APPDATA\lazygit
-} else {
-    Write-Host "Lazygit config folder already exists."
-}
-
 foreach ($key in $dict.Keys) {
+    if (Test-Path -Path $dict[$key][0]) {
+        rm $dict[$key][0]
+    }
     New-Item -ItemType SymbolicLink -Path $dict[$key][0] -Target $dict[$key][1]
 }
