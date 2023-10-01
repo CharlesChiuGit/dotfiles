@@ -37,5 +37,9 @@ foreach ($key in $dict.Keys) {
     if (Test-Path -Path $dict[$key][0]) {
         rm $dict[$key][0]
     }
-    New-Item -ItemType SymbolicLink -Path $dict[$key][0] -Target $dict[$key][1]
+    try {
+        New-Item -ItemType SymbolicLink -Path $dict[$key][0] -Target $dict[$key][1]
+    } cathc {
+        Write-Host "Failed to create symlink for $key"
+    }
 }
