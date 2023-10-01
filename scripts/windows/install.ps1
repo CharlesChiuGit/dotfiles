@@ -7,12 +7,6 @@ Set-StrictMode -Version 3.0
 
 $ErrorActionPreference = "Stop" # Exit when command fails
 
-# Check if running as admin
-if (!([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] 'Administrator')) {
-    Start-Process -FilePath PowerShell.exe -Verb Runas -ArgumentList "-File `"$($MyInvocation.MyCommand.Path)`" `"$($MyInvocation.MyCommand.UnboundArguments)`""
-    Exit
-}
-
 # package mgr vars
 $winget_ids = @(
     "Audient.EVO", # EVO 4 Control

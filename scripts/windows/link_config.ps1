@@ -1,3 +1,9 @@
+# Check if running as admin
+if (!([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] 'Administrator')) {
+    Start-Process -FilePath PowerShell.exe -Verb Runas -ArgumentList "-File `"$($MyInvocation.MyCommand.Path)`" `"$($MyInvocation.MyCommand.UnboundArguments)`""
+    Exit
+}
+
 $dict = @{
     gitconfig = @(
         "$Env:USERPROFILE\.gitconfig", 
@@ -33,7 +39,12 @@ $dict = @{
     )
 }
 
-mkdir $Env:APPDATA\lazygit
+if (Test-Path -Path $Env:APPDATA\lazygit) {
+    mkdir $Env:APPDATA\lazygit
+} else {
+    Write-Host "Lazygit config folder already exists."
+}
+
 foreach ($key in $dict.Keys) {
     New-Item -ItemType SymbolicLink -Path $dict[$key][0] -Target $dict[$key][1]
 }
