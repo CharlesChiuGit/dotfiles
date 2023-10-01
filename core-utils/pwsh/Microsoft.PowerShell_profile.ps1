@@ -11,3 +11,7 @@ Invoke-Expression (& {
 Set-Alias -Name lg -Value "$env:UserProfile\scoop\shims\lazygit.exe"
 del alias:nv -Force
 Set-Alias -Name nv -Value "$env:UserProfile\scoop\shims\nvim.exe"
+
+function sudo {
+    Start-Process pwsh –Verb RunAs
+}
