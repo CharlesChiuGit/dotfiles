@@ -34,7 +34,7 @@ $dict = @{
 }
 
 # mkdir
-@dirs = @(
+$dirs = @(
     "$Env:USERPROFILE\.config",
     "$Env:USERPROFILE\Documents\PowerShell",
     "$Env:APPDATA\lazygit"
