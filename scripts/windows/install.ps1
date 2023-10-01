@@ -72,7 +72,7 @@ $scoop_ids= @(
 winget settings --enable InstallerOverride
 
 foreach ($winget_id in $winget_ids) {
-    winget install -e --id $winget_id --ignore-security-hash -y
+    winget install -e -h --id $winget_id --ignore-security-hash --disable-interactivity --accept-source-agreements --accept-package-agreements
 }
 
 if (-not (Get-Command scoop -ErrorAction SilentlyContinue)) {
