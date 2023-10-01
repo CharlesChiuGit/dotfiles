@@ -11,10 +11,10 @@ $dict = @{
         "$Env:USERPROFILE\Documents\PowerShell\powershell.config.json", 
         "$Env:USERPROFILE\dotfiles\core-utils\pwsh\powershell.config.json"
     )
-    windows_terminal = @(
-        "$Env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json", 
-        "$Env:USERPROFILE\dotfiles\windows_terminal\settings.json"
-    )
+    # windows_terminal = @(
+    #     "$Env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json", 
+    #     "$Env:USERPROFILE\dotfiles\windows_terminal\settings.json"
+    # )
     lazygit = @(
         "$Env:APPDATA\lazygit\config.yml", 
         "$Env:USERPROFILE\dotfiles\cli-utils\lazygit\config.yml"
