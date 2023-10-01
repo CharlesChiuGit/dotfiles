@@ -42,6 +42,8 @@ $dirs = @(
 
 foreach ($dir in $dirs) {
     if (Test-Path -Path $dir) {
+        Write-Host "$dir already exists"
+    } else {
         mkdir $dir
         Write-Host "mkdir for $key"
     }
