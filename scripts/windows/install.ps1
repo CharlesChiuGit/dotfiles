@@ -69,8 +69,10 @@ $scoop_ids= @(
 # env vars
 # $env:XDG_CONFIG_HOME ??= $env:LOCALAPPDATA
 
+winget settings --enable InstallerOverride
+
 foreach ($winget_id in $winget_ids) {
-    winget install -e --id $winget_id --ignore-security-hash
+    winget install -e --id $winget_id --ignore-security-hash -y
 }
 
 if (-not (Get-Command scoop -ErrorAction SilentlyContinue)) {
@@ -82,5 +84,6 @@ if (-not (Get-Command scoop -ErrorAction SilentlyContinue)) {
 scoop bucket add extras
 scoop bucket add nerd-fonts
 
-foreach ($scoop_id in $scoop_ids) {}
+foreach ($scoop_id in $scoop_ids) {
     scoop install $scoop_id
+}
