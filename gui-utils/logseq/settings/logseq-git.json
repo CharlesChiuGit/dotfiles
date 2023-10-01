@@ -6,7 +6,7 @@
     "Commit & Push"
   ],
   "checkWhenDBChanged": true,
-  "autoCheckSynced": true,
+  "autoCheckSynced": false,
   "autoPush": false,
   "disabled": false
 }

@@ -1,17 +1,17 @@
 {
   "theme": null,
   "themes": {
-    "mode": "dark",
+    "mode": "light",
     "light": {
       "name": "Catppuccin Latte",
-      "url": {{{ logseq.light_theme }}},
+      "url": "assets:///home/charles/.logseq/plugins/logseq-catppuccin/ctp-latte.css",
       "description": "Catppuccin Latte",
       "mode": "light",
       "pid": "logseq-catppuccin"
     },
     "dark": {
       "name": "Catppuccin Macchiato",
-      "url": {{{ logseq.dark_theme }}},
+      "url": "assets://C:\\Users\\Charles\\.logseq\\plugins\\logseq-catppuccin\\ctp-macchiato.css",
       "description": "Catppuccin Macchiato",
       "mode": "dark",
       "pid": "logseq-catppuccin",

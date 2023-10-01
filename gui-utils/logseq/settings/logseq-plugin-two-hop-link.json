@@ -1,0 +1,19 @@
+{
+  "outgoingLinks": true,
+  "externalLinks": true,
+  "keywordsIncludeHierarchy": true,
+  "excludePages": "",
+  "excludeJournalFromOutgoingLinks": true,
+  "excludeDateFromOutgoingLinks": false,
+  "excludeJournalFromResult": true,
+  "excludeDateFromResult": false,
+  "collapseLinkedReferences": false,
+  "collapseHierarchy": false,
+  "collapsePageTags": false,
+  "excludeCurrentPage": false,
+  "tooltipShowUpdatedAt": true,
+  "tooltipShowPageTags": true,
+  "tooltipShowAlias": true,
+  "disabled": false,
+  "hopLinkType": "unset"
+}

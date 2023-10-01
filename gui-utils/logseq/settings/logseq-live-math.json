@@ -1,8 +1,20 @@
 {
   "dollarTrigger": true,
   "preferDisplay": false,
+  "preferMultiline": false,
   "selectEdit": true,
-  "keybindings": [],
-  "inlineShortcuts": {},
+  "selectModifier": "<none>",
+  "keybindings": [
+    {
+      "key": "ctrl+b",
+      "command": [
+        "insert",
+        "\\mathbf{#@}"
+      ]
+    }
+  ],
+  "inlineShortcuts": {
+    "Logseq": "\\mathrm{Logseq}"
+  },
   "disabled": false
 }
