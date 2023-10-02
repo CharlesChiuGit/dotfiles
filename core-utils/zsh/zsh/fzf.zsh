@@ -4,7 +4,7 @@
 #     --preview='pistol {}' --bind='E:execute(nvim {})' --preview-label='┓ ⟪Preview⟫ ┏' --preview-window=right,border-bold
 export FZF_DEFAULT_OPTS="\
     --ansi --height 40% --layout=reverse --border --separator='╸' --header='E to edit' \
-    --preview-label='┓ ⟪Preview⟫ ┏' --preview-window=right,border-bold \
+    --preview-label='┓ ⟪Preview⟫ ┏' --preview-window=border-bold --scrollbar '▌▐'\
     --color=border:#cba6f7,label:#cba6f7,separator:#a6e3a1 \
     --color=bg+:#313244,bg:,spinner:#f5e0dc,hl:#f38ba8 \
     --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
