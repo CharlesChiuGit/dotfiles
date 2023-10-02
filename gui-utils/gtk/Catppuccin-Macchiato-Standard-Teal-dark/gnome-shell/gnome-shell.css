@@ -511,6 +511,7 @@ StWidget.focused .app-well-app-running-dot {
   background-color: rgba(255, 255, 255, 0.3);
 }
 
+.calendar .calendar-day,
 .calendar .calendar-day-base {
   font-size: 10pt;
   text-align: center;
@@ -524,20 +525,32 @@ StWidget.focused .app-well-app-running-dot {
   font-feature-settings: "tnum";
 }
 
-.calendar .calendar-day-base:hover, .calendar .calendar-day-base:focus {
+.calendar .calendar-day:hover, .calendar .calendar-day:focus,
+.calendar .calendar-day-base:hover,
+.calendar .calendar-day-base:focus {
   background-color: rgba(255, 255, 255, 0.12);
+  box-shadow: none;
 }
 
-.calendar .calendar-day-base:active, .calendar .calendar-day-base:selected {
+.calendar .calendar-day:active, .calendar .calendar-day:selected,
+.calendar .calendar-day-base:active,
+.calendar .calendar-day-base:selected {
   color: #FFFFFF;
   background-color: rgba(255, 255, 255, 0.3);
-  border-color: transparent;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
 }
 
+.calendar .calendar-day.calendar-day-heading,
 .calendar .calendar-day-base.calendar-day-heading {
   margin-top: 1em;
   color: rgba(255, 255, 255, 0.5);
   font-size: 10pt;
+}
+
+.calendar.calendar-weekend {
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .calendar .calendar-day {
@@ -554,7 +567,7 @@ StWidget.focused .app-well-app-running-dot {
 
 .calendar .calendar-nonwork-day {
   color: rgba(255, 255, 255, 0.5);
-  font-weight: bold;
+  font-weight: normal;
 }
 
 .calendar .calendar-today {
@@ -587,6 +600,7 @@ StWidget.focused .app-well-app-running-dot {
 .calendar .calendar-day-with-events {
   color: rgba(255, 255, 255, 0.7);
   background-image: url("assets/calendar-today.svg");
+  background-size: contain;
 }
 
 .calendar .calendar-day-with-events.calendar-work-day {
@@ -594,9 +608,10 @@ StWidget.focused .app-well-app-running-dot {
   font-weight: bold;
 }
 
+.calendar .calendar-other-month,
 .calendar .calendar-other-month-day {
-  color: rgba(255, 255, 255, 0.32);
-  opacity: 0.5;
+  color: rgba(255, 255, 255, 0.32) !important;
+  font-weight: normal;
 }
 
 .calendar .calendar-week-number {
@@ -2424,6 +2439,17 @@ StEntry StLabel.hint-text, .popup-menu .search-entry StLabel.hint-text {
   -natural-hpadding: 18px;
 }
 
+#panel .panel-button#panelActivities StBoxLayout {
+  spacing: 6px;
+}
+
+#panel .panel-button#panelActivities .workspace-dot {
+  border-radius: 9999px;
+  min-width: 8px;
+  min-height: 8px;
+  background-color: #FFFFFF;
+}
+
 #panel:overview, #panel.unlock-screen, #panel.login-screen, #panel.lock-screen {
   background-color: transparent;
   box-shadow: none;
@@ -2463,6 +2489,10 @@ StEntry StLabel.hint-text, .popup-menu .search-entry StLabel.hint-text {
 #panel:overview .panel-button:active.clock-display .clock, #panel:overview .panel-button:overview.clock-display .clock, #panel:overview .panel-button:focus.clock-display .clock, #panel:overview .panel-button:checked.clock-display .clock, #panel.unlock-screen .panel-button:active.clock-display .clock, #panel.unlock-screen .panel-button:overview.clock-display .clock, #panel.unlock-screen .panel-button:focus.clock-display .clock, #panel.unlock-screen .panel-button:checked.clock-display .clock, #panel.login-screen .panel-button:active.clock-display .clock, #panel.login-screen .panel-button:overview.clock-display .clock, #panel.login-screen .panel-button:focus.clock-display .clock, #panel.login-screen .panel-button:checked.clock-display .clock, #panel.lock-screen .panel-button:active.clock-display .clock, #panel.lock-screen .panel-button:overview.clock-display .clock, #panel.lock-screen .panel-button:focus.clock-display .clock, #panel.lock-screen .panel-button:checked.clock-display .clock {
   box-shadow: inset 0 0 0 1000px rgba(255, 255, 255, 0.2);
   color: #FFFFFF;
+}
+
+#panel:overview .panel-button#panelActivities .workspace-dot, #panel.unlock-screen .panel-button#panelActivities .workspace-dot, #panel.login-screen .panel-button#panelActivities .workspace-dot, #panel.lock-screen .panel-button#panelActivities .workspace-dot {
+  background-color: #FFFFFF;
 }
 
 #panel:overview .panel-corner, #panel.unlock-screen .panel-corner, #panel.login-screen .panel-corner, #panel.lock-screen .panel-corner {
