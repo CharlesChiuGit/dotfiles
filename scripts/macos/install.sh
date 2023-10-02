@@ -71,6 +71,7 @@ done
 
 # Install gui-tools
 gui_tools=(
+	"alt-tab"
 	"appcleaner"
 	"arc"
 	"cider"
@@ -87,8 +88,10 @@ gui_tools=(
 	"obsidian"
 	"raindropio"
 	"raycast"
+	"shottr"
 	"stats"
 	"steam"
+	"tyke"
 	"visual-studio-code"
 	"wezterm"
 )
