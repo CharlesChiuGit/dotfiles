@@ -10,6 +10,5 @@
   "modeSelect": "As block property",
   "insertBlockCollapsed": false,
   "removePropertyWithoutDONEtask": true,
-  "disabled": false,
-  "insertBlockModeUseReference": true
+  "disabled": false
 }

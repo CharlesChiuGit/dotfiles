@@ -3,6 +3,5 @@
   "dateTimeFormat": "",
   "hasDefaultReminding": false,
   "defaultRemindingTime": "08:00",
-  "disabled": false,
-  "alertOffset": 5
+  "disabled": false
 }
