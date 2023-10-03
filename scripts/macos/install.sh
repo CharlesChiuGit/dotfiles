@@ -93,6 +93,7 @@ gui_tools=(
 	"shottr"
 	"stats"
 	"steam"
+	"tiles"
 	"tyke"
 	"visual-studio-code"
 	"wezterm"
