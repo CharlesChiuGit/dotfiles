@@ -81,6 +81,7 @@ gui_tools=(
 	"dropzone"
 	"font-jetbrains-mono-nerd-font"
 	"hey"
+	"hey"
 	"hiddenbar"
 	"iina"
 	"logi-options-plus"
