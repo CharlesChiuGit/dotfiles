@@ -81,7 +81,6 @@ gui_tools=(
 	"dropzone"
 	"font-jetbrains-mono-nerd-font"
 	"hey"
-	"hey"
 	"hiddenbar"
 	"iina"
 	"linear-linear"
@@ -94,7 +93,6 @@ gui_tools=(
 	"shottr"
 	"stats"
 	"steam"
-	"tyke"
 	"visual-studio-code"
 	"wezterm"
 )
