@@ -32,6 +32,7 @@ export FFMPEG_DATADIR="$XDG_CONFIG_HOME"/ffmpeg
 export ANSIBLE_CONFIG="$XDG_CONFIG_HOME"/ansible/ansible.cfg
 export GTK_RC_FILES="$XDG_CONFIG_HOME"/gtk-1.0/gtkrc
 export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
+export ZELLIJ_CONFIG_DIR="$XDG_CONFIG_HOME"/zellij
 export EDITOR='nvim'
 path=("$XDG_DATA_HOME"/go/bin $path[@])
 
