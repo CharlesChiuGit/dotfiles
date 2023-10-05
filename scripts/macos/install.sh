@@ -88,7 +88,6 @@ gui_tools=(
 	"linear-linear"
 	"logi-options-plus"
 	"logseq"
-	"maccy"
 	"morgen"
 	"obsidian"
 	"raindropio"
