@@ -80,7 +80,6 @@ gui_tools=(
 	"discord"
 	"dropzone"
 	"font-jetbrains-mono-nerd-font"
-	"gitify"
 	"hey"
 	"hey"
 	"hiddenbar"
