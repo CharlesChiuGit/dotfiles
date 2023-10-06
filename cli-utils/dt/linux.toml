@@ -218,6 +218,12 @@ base = "~/dotfiles/cli-utils/yarn"
 sources = ["config"]
 target = "~/.config/yarn"
 
+[[local]]
+name = "zellij"
+base = "~/dotfiles/cli-utils/zellij"
+sources = ["config.kdl"]
+target = "~/.config/zellij"
+
 #--------------------------------------------------------------------#
 #                             gui-utils                              #
 #--------------------------------------------------------------------#
