@@ -1,5 +1,3 @@
-#Requires -Version 7.1
-
 # We don't need return codes for "$(command)", only stdout is needed.
 # Allow `func "$(command)"`, pipes, etc.
 
@@ -69,7 +67,7 @@ $scoop_ids= @(
 # env vars
 # $env:XDG_CONFIG_HOME ??= $env:LOCALAPPDATA
 
-winget settings --enable InstallerOverride
+winget settings --enable InstallerHashOverride
 
 foreach ($winget_id in $winget_ids) {
     winget install -e -h --id $winget_id --ignore-security-hash --disable-interactivity --accept-source-agreements --accept-package-agreements
