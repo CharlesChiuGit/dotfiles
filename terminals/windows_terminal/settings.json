@@ -1,11 +1,9 @@
 {
     "$help": "https://aka.ms/terminal-documentation",
     "$schema": "https://aka.ms/terminal-profiles-schema",
-    "actions": 
-    [
+    "actions": [
         {
-            "command": 
-            {
+            "command": {
                 "action": "copy",
                 "singleLine": false
             },
@@ -16,36 +14,29 @@
             "keys": "ctrl+v"
         },
         {
-            "command": 
-            {
+            "command": {
                 "action": "resizePane",
                 "direction": "left"
             },
             "keys": "alt+shift+h"
         },
         {
-            "command": "find",
-            "keys": "/"
+            "command": "find"
         },
         {
-            "command": 
-            {
+            "command": {
                 "action": "findMatch",
                 "direction": "next"
-            },
-            "keys": "n"
+            }
         },
         {
-            "command": 
-            {
+            "command": {
                 "action": "findMatch",
                 "direction": "prev"
-            },
-            "keys": "shift+n"
+            }
         },
         {
-            "command": 
-            {
+            "command": {
                 "action": "switchToTab",
                 "index": 6
             },
@@ -172,8 +163,15 @@
             "keys": "ctrl+shift+f"
         },
         {
-            "command": 
-            {
+            "command": "unbound",
+            "keys": "n"
+        },
+        {
+            "command": "unbound",
+            "keys": "shift+n"
+        },
+        {
+            "command": {
                 "action": "splitPane",
                 "split": "auto",
                 "splitMode": "duplicate"
@@ -181,67 +179,58 @@
             "keys": "alt+shift+d"
         },
         {
-            "command": 
-            {
+            "command": {
                 "action": "switchToTab",
                 "index": 7
             },
             "keys": "alt+8"
         },
         {
-            "command": 
-            {
+            "command": {
                 "action": "switchToTab",
                 "index": 2
             },
             "keys": "alt+3"
         },
         {
-            "command": 
-            {
+            "command": {
                 "action": "prevTab"
             }
         },
         {
-            "command": 
-            {
+            "command": {
                 "action": "nextTab"
             }
         },
         {
-            "command": 
-            {
+            "command": {
                 "action": "clearBuffer",
                 "clear": "all"
             }
         },
         {
-            "command": 
-            {
+            "command": {
                 "action": "splitPane",
                 "split": "down"
             },
             "keys": "alt+minus"
         },
         {
-            "command": 
-            {
+            "command": {
                 "action": "moveFocus",
                 "direction": "down"
             },
             "keys": "alt+j"
         },
         {
-            "command": 
-            {
+            "command": {
                 "action": "splitPane",
                 "split": "right"
             },
             "keys": "alt+\\"
         },
         {
-            "command": 
-            {
+            "command": {
                 "action": "switchToTab",
                 "index": 4294967295
             },
@@ -251,39 +240,34 @@
             "command": "openTabRenamer"
         },
         {
-            "command": 
-            {
+            "command": {
                 "action": "resizePane",
                 "direction": "down"
             },
             "keys": "alt+shift+j"
         },
         {
-            "command": 
-            {
+            "command": {
                 "action": "switchToTab",
                 "index": 0
             },
             "keys": "alt+1"
         },
         {
-            "command": 
-            {
+            "command": {
                 "action": "newTab"
             },
             "keys": "alt+n"
         },
         {
-            "command": 
-            {
+            "command": {
                 "action": "switchToTab",
                 "index": 1
             },
             "keys": "alt+2"
         },
         {
-            "command": 
-            {
+            "command": {
                 "action": "newTab",
                 "elevate": true,
                 "tabTitle": "sudo"
@@ -291,64 +275,56 @@
             "keys": "alt+s"
         },
         {
-            "command": 
-            {
+            "command": {
                 "action": "moveFocus",
                 "direction": "right"
             },
             "keys": "alt+l"
         },
         {
-            "command": 
-            {
+            "command": {
                 "action": "resizePane",
                 "direction": "up"
             },
             "keys": "alt+shift+k"
         },
         {
-            "command": 
-            {
+            "command": {
                 "action": "switchToTab",
                 "index": 3
             },
             "keys": "alt+4"
         },
         {
-            "command": 
-            {
+            "command": {
                 "action": "switchToTab",
                 "index": 4
             },
             "keys": "alt+5"
         },
         {
-            "command": 
-            {
+            "command": {
                 "action": "switchToTab",
                 "index": 5
             },
             "keys": "alt+6"
         },
         {
-            "command": 
-            {
+            "command": {
                 "action": "moveFocus",
                 "direction": "up"
             },
             "keys": "alt+k"
         },
         {
-            "command": 
-            {
+            "command": {
                 "action": "moveFocus",
                 "direction": "left"
             },
             "keys": "alt+h"
         },
         {
-            "command": 
-            {
+            "command": {
                 "action": "resizePane",
                 "direction": "right"
             },
@@ -359,8 +335,7 @@
             "keys": "ctrl+a"
         },
         {
-            "command": 
-            {
+            "command": {
                 "action": "closeTab"
             }
         },
@@ -375,8 +350,7 @@
             "command": "toggleBlockSelection"
         },
         {
-            "command": 
-            {
+            "command": {
                 "action": "commandPalette"
             },
             "keys": "ctrl+p"
@@ -392,21 +366,17 @@
     "language": "en-US",
     "largePasteWarning": false,
     "minimizeToNotificationArea": false,
-    "newTabMenu": 
-    [
+    "newTabMenu": [
         {
             "type": "remainingProfiles"
         }
     ],
-    "profiles": 
-    {
-        "defaults": 
-        {
+    "profiles": {
+        "defaults": {
             "antialiasingMode": "cleartype",
             "bellStyle": "none",
             "experimental.retroTerminalEffect": false,
-            "font": 
-            {
+            "font": {
                 "face": "JetBrainsMono Nerd Font"
             },
             "intenseTextStyle": "none",
@@ -414,12 +384,10 @@
             "useAcrylic": true,
             "useAtlasEngine": true
         },
-        "list": 
-        [
+        "list": [
             {
                 "colorScheme": "Catppuccin Macchiato",
-                "font": 
-                {
+                "font": {
                     "face": "JetBrainsMono Nerd Font Mono"
                 },
                 "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
@@ -458,8 +426,7 @@
             }
         ]
     },
-    "schemes": 
-    [
+    "schemes": [
         {
             "background": "#0C0C0C",
             "black": "#0C0C0C",
@@ -762,122 +729,103 @@
     ],
     "showTabsInTitlebar": true,
     "tabSwitcherMode": "mru",
-    "themes": 
-    [
+    "themes": [
         {
             "name": "Catppuccin Frappe",
-            "tab": 
-            {
+            "tab": {
                 "background": "#303446FF",
                 "showCloseButton": "always",
                 "unfocusedBackground": null
             },
-            "tabRow": 
-            {
+            "tabRow": {
                 "background": "#292C3CFF",
                 "unfocusedBackground": "#232634FF"
             },
-            "window": 
-            {
+            "window": {
                 "applicationTheme": "dark",
                 "useMica": false
             }
         },
         {
             "name": "Catppuccin Latte",
-            "tab": 
-            {
+            "tab": {
                 "background": "#EFF1F5FF",
                 "showCloseButton": "always",
                 "unfocusedBackground": null
             },
-            "tabRow": 
-            {
+            "tabRow": {
                 "background": "#E6E9EFFF",
                 "unfocusedBackground": "#DCE0E8FF"
             },
-            "window": 
-            {
+            "window": {
                 "applicationTheme": "light",
                 "useMica": false
             }
         },
         {
             "name": "Catppuccin Macchiato",
-            "tab": 
-            {
+            "tab": {
                 "background": "#24273AFF",
                 "showCloseButton": "always",
                 "unfocusedBackground": null
             },
-            "tabRow": 
-            {
+            "tabRow": {
                 "background": "#1E2030FF",
                 "unfocusedBackground": "#181926FF"
             },
-            "window": 
-            {
+            "window": {
                 "applicationTheme": "dark",
                 "useMica": false
             }
         },
         {
             "name": "Catppuccin Mocha",
-            "tab": 
-            {
+            "tab": {
                 "background": "#1E1E2EFF",
                 "showCloseButton": "always",
                 "unfocusedBackground": null
             },
-            "tabRow": 
-            {
+            "tabRow": {
                 "background": "#181825FF",
                 "unfocusedBackground": "#11111BFF"
             },
-            "window": 
-            {
+            "window": {
                 "applicationTheme": "dark",
                 "useMica": false
             }
         },
         {
             "name": "legacyDark",
-            "tab": 
-            {
+            "tab": {
                 "background": null,
                 "showCloseButton": "always",
                 "unfocusedBackground": null
             },
-            "window": 
-            {
+            "window": {
                 "applicationTheme": "dark",
                 "useMica": false
             }
         },
         {
             "name": "legacyLight",
-            "tab": 
-            {
+            "tab": {
                 "background": null,
                 "showCloseButton": "always",
                 "unfocusedBackground": null
             },
-            "window": 
-            {
+            "window": {
                 "applicationTheme": "light",
                 "useMica": false
             }
         },
         {
             "name": "legacySystem",
-            "tab": 
-            {
+            "tab": {
                 "background": null,
                 "showCloseButton": "always",
                 "unfocusedBackground": null
             },
-            "window": 
-            {
+            "window": {
                 "applicationTheme": "system",
                 "useMica": false
             }
