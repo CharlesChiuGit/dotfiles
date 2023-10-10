@@ -1,7 +1,0 @@
-{
-  "removeEmptyLine": true,
-  "splitCodeBlock": true,
-  "transformShortcut": "ctrl+t",
-  "transformToolboxShortcut": "ctrl+shift+s",
-  "disabled": false
-}

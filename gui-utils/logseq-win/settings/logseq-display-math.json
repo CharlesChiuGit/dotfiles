@@ -1,7 +1,0 @@
-{
-  "macros": {
-    "\\differentialD": "\\mathrm{d}"
-  },
-  "preferDisplay": true,
-  "disabled": false
-}

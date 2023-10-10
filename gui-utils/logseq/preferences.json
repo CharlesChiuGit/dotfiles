@@ -2,21 +2,8 @@
   "theme": null,
   "themes": {
     "mode": "dark",
-    "light": {
-      "name": "Catppuccin Latte",
-      "url": "assets:///home/charles/.logseq/plugins/logseq-catppuccin/ctp-latte.css",
-      "description": "Catppuccin Latte",
-      "mode": "light",
-      "pid": "logseq-catppuccin"
-    },
-    "dark": {
-      "name": "Catppuccin Macchiato",
-      "url": "assets:///home/charles/.logseq/plugins/logseq-catppuccin/ctp-macchiato.css",
-      "description": "Catppuccin Macchiato",
-      "mode": "dark",
-      "pid": "logseq-catppuccin",
-      "selected": false
-    }
+    "light": {},
+    "dark": {}  
   },
   "externals": [],
   "pinnedToolbarItems": [
