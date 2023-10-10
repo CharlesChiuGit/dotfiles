@@ -1,0 +1,15 @@
+{
+  "semiAuto": true,
+  "insertDateProperty": true,
+  "lang": "",
+  "specialCharHeading": "",
+  "dateChar": "@",
+  "scheduledChar": "%",
+  "deadlineChar": "^",
+  "disabled": false,
+  "auto": false,
+  "notifications": false,
+  "defaultSnooze": 5,
+  "useBlockAsAlarmTitle": true,
+  "preferredDateFormat": "yyyy-MM-dd"
+}

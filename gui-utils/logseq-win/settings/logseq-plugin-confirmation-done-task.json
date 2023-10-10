@@ -1,0 +1,14 @@
+{
+  "customPropertyName": "completed",
+  "addDate": true,
+  "createDateLink": true,
+  "addTime": true,
+  "emphasisTime": "*",
+  "smallDONEproperty": true,
+  "timeoutMode": false,
+  "timeout": "5000",
+  "modeSelect": "As block property",
+  "insertBlockCollapsed": false,
+  "removePropertyWithoutDONEtask": true,
+  "disabled": false
+}
