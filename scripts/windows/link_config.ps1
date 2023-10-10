@@ -23,6 +23,10 @@ $dict = @{
         "$Env:USERPROFILE\.config\starship.toml", 
         "$Env:USERPROFILE\dotfiles\cli-utils\starship\starship.toml"
     )
+    topgrade = @(
+        "$Env:APPDATA\topgrade.toml", 
+	"$Env:USERPROFILE\dotfiles\cli-utils\topgrade\topgrade.toml"
+    )
 }
 
 # mkdir
