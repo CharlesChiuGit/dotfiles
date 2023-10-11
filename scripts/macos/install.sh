@@ -82,6 +82,7 @@ gui_tools=(
 	"font-jetbrains-mono-nerd-font"
 	"hey"
 	"hiddenbar"
+	"hot"
 	"iina"
 	"linear-linear"
 	"logi-options-plus"
@@ -166,6 +167,8 @@ if ! (find -x /Applications -type d -name YouTube\ Music.app) &>/dev/null; then
 	sudo hdiutil detach /Volumes/YouTube\ Music\ 1.20.0-arm64
 	xattr -cr /Applications/YouTube\ Music.app
 fi
+# install vChewing-macOS
+# https://github.com/vChewing/vChewing-macOS/releases
 
 # symlink configs
 dt-cli -c "$HOME/dotfiles/cli-utils/dt/macos.toml"
