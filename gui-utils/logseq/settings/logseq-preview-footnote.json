@@ -1,1 +1,10 @@
-{}
+{
+  "setFootnotesBlock": "## Footnotes",
+  "closePreviewMouseLeave": false,
+  "mouseDelay": "2500",
+  "limitPreview": true,
+  "closePreviewWhenOpenPage": true,
+  "maxWidth": "60",
+  "youtubePreview": true,
+  "disabled": false
+}
