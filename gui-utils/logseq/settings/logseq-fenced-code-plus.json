@@ -1,1 +1,6 @@
-/Users/charles/Library/Application Support/dt/staging/logseq/settings/logseq-fenced-code-plus.json
+{
+  "mermaid": true,
+  "echarts": true,
+  "tikzjax": false,
+  "disabled": false
+}

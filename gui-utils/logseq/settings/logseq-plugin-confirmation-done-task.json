@@ -1,1 +1,20 @@
-/Users/charles/Library/Application Support/dt/staging/logseq/settings/logseq-plugin-confirmation-done-task.json
+{
+  "addDate": true,
+  "createDateLink": true,
+  "omitDateIfSameAsJournal": false,
+  "addTime": true,
+  "timeStampPosition": "after",
+  "emphasisTime": "*",
+  "smallDONEproperty": true,
+  "onlyFromBulletList": false,
+  "removePropertyWithoutDONEtask": true,
+  "enableHiddenProperty": true,
+  "updateBlockContentPosition": "before",
+  "updateBlockSeparator": " - ",
+  "insertBlockCollapsed": false,
+  "modeSelect": "As block property",
+  "timeoutMode": false,
+  "timeout": "5000",
+  "customPropertyName": "completed",
+  "disabled": false
+}

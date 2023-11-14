@@ -1,1 +1,6 @@
-/Users/charles/Library/Application Support/dt/staging/logseq/settings/logseq-plugin-multiple-assets.json
+{
+  "overwrite": "skip",
+  "timestamp": false,
+  "fromLocalBlockContext": true,
+  "disabled": false
+}

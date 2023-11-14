@@ -1,1 +1,7 @@
-/Users/charles/Library/Application Support/dt/staging/logseq/settings/logseq-paste-more.json
+{
+  "indentHeaders": true,
+  "newLineBlock": true,
+  "enablePasteMore": true,
+  "disabled": false,
+  "KeyboardShortcut_paste": "mod+ctrl+shift+v"
+}

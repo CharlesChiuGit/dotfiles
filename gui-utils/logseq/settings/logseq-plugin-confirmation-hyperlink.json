@@ -1,1 +1,6 @@
-/Users/charles/Library/Application Support/dt/staging/logseq/settings/logseq-plugin-confirmation-hyperlink.json
+{
+  "bulletMenuOnly": false,
+  "onlinePDF": true,
+  "disabled": false,
+  "linkIcon": false
+}

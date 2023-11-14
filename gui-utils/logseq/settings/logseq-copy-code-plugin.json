@@ -1,1 +1,6 @@
-/Users/charles/Library/Application Support/dt/staging/logseq/settings/logseq-copy-code-plugin.json
+{
+  "IconTopPosition": "-1em",
+  "IconRightPosition": "0em",
+  "AlwaysShowInlineCopyButton": false,
+  "disabled": false
+}

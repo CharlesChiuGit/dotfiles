@@ -1,1 +1,12 @@
-/Users/charles/Library/Application Support/dt/staging/logseq/settings/logseq-git.json
+{
+  "buttons": [
+    "Check Status",
+    "Show Log",
+    "Pull Rebase",
+    "Commit & Push"
+  ],
+  "checkWhenDBChanged": true,
+  "autoCheckSynced": false,
+  "autoPush": false,
+  "disabled": false
+}

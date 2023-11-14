@@ -1,1 +1,5 @@
-/Users/charles/Library/Application Support/dt/staging/logseq/settings/logseq-catppuccin.json
+{
+  "CtpAccent": "Full palette",
+  "CtpReloadCss": false,
+  "disabled": false
+}

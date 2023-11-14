@@ -1,1 +1,16 @@
-/Users/charles/Library/Application Support/dt/staging/logseq/settings/logseq-mark-map.json
+{
+  "theme": "auto",
+  "nodeAnchorEnabled": false,
+  "nodeAnchorIcon": "🟢",
+  "autofitEnabled": true,
+  "replaceLatexMathExpressionEnabled": false,
+  "syncCollapsedState": false,
+  "colorFreezeLevel": "0",
+  "disableShortcuts": false,
+  "disabled": false,
+  "keyBindings": {
+    "openMarkmap": "ctrl+m ctrl+m",
+    "openMarkmapFull": "ctrl+alt+shift+m ctrl+alt+shift+m"
+  },
+  "settingsVersion": "v3"
+}

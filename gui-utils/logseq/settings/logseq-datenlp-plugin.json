@@ -1,1 +1,16 @@
-/Users/charles/Library/Application Support/dt/staging/logseq/settings/logseq-datenlp-plugin.json
+{
+  "semiAuto": true,
+  "insertDateProperty": true,
+  "lang": "",
+  "removeTime": "false",
+  "specialCharHeading": "",
+  "dateChar": "@",
+  "scheduledChar": "%",
+  "deadlineChar": "^",
+  "disabled": false,
+  "auto": false,
+  "notifications": false,
+  "defaultSnooze": 5,
+  "useBlockAsAlarmTitle": true,
+  "preferredDateFormat": "yyyy-MM-dd"
+}

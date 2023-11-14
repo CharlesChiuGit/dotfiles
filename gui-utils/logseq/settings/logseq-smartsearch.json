@@ -1,1 +1,6 @@
-/Users/charles/Library/Application Support/dt/staging/logseq/settings/logseq-smartsearch.json
+{
+  "shortcut": "ctrl+space",
+  "enablePinyin": false,
+  "disabled": false,
+  "enableSearchProvider": false
+}

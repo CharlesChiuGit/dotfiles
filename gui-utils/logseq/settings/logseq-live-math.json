@@ -1,1 +1,28 @@
-/Users/charles/Library/Application Support/dt/staging/logseq/settings/logseq-live-math.json
+{
+  "triggerSettings": null,
+  "dollarTrigger": true,
+  "selectEdit": true,
+  "selectModifier": "<none>",
+  "formatSettings": null,
+  "preferDisplay": false,
+  "preferMultiline": false,
+  "smartFormat": true,
+  "mathliveSettings": null,
+  "inlinePreview": false,
+  "smartFence": true,
+  "smartMode": false,
+  "smartSuperscript": false,
+  "keybindings": [
+    {
+      "key": "ctrl+b",
+      "command": [
+        "insert",
+        "\\mathbf{#@}"
+      ]
+    }
+  ],
+  "inlineShortcuts": {
+    "Logseq": "\\mathrm{Logseq}"
+  },
+  "disabled": false
+}
