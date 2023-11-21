@@ -36,7 +36,7 @@
  :logseq-image-editor {:version "v1.2.0", :repo "b-yp/logseq-image-editor", :effect true, :theme false}
  :logseq-plugin-short-namespaces {:version "v1.6.1", :repo "YU000jp/logseq-plugin-short-namespaces", :effect true, :theme false}
  :logseq-remove-empty-blocks {:version "v0.0.4", :repo "Cologler/logseq-remove-empty-blocks-typescript", :effect false, :theme false}
- :logseq-plugin-confirmation-hyperlink {:version "v1.7.2", :repo "YU000jp/logseq-plugin-confirmation-hyperlink", :effect true, :theme false}
+ :logseq-plugin-confirmation-hyperlink {:version "v1.7.3", :repo "YU000jp/logseq-plugin-confirmation-hyperlink", :effect true, :theme false}
  :logseq-plugin-confirmation-done-task {:version "v1.11.2", :repo "YU000jp/logseq-plugin-confirmation-done-task", :effect true, :theme false}
  :logseq-plugin-show-weekday-and-week-number {:version "v1.43.1", :repo "YU000jp/logseq-plugin-show-weekday-and-week-number", :effect true, :theme false}
  :logseq-display-math {:version "v1.0.1", :repo "AllanChain/logseq-display-math", :effect true, :theme false}
