@@ -3,7 +3,7 @@
  :logseq-paste-more
  {:version "v1.5.8", :repo "usoonees/logseq-plugin-paste-more", :effect true, :theme false},
  :logseq-todo-plugin
- {:version "v1.19.0", :repo "ahonn/logseq-plugin-todo", :effect true, :theme false},
+ {:version "v1.20.0", :repo "ahonn/logseq-plugin-todo", :effect true, :theme false},
  :logseq-copy-code-plugin
  {:version "v.1.2.0", :repo "vyleung/logseq-copy-code-plugin", :effect true, :theme false},
  :logseq-osmmaps-plugin
@@ -25,35 +25,35 @@
  :logseq-quick-capture {:version "0.0.7", :repo "tankcool/logseq-quick-capture", :effect false, :theme false}
  :logseq-datenlp-plugin {:version "v4.3.2", :repo "hkgnp/logseq-datenlp-plugin", :effect true, :theme false}
  :logseq-awesome-links {:version "v1.15.16", :repo "yoyurec/logseq-awesome-links", :effect true, :theme false}
- :logseq-smart-typing {:version "v0.13.1", :repo "sethyuan/logseq-plugin-smart-typing", :effect true, :theme false}
+ :logseq-smart-typing {:version "v0.14.0", :repo "sethyuan/logseq-plugin-smart-typing", :effect true, :theme false}
  :logseq-plugin-query-chart {:version "v0.5.61", :repo "0w0miki/logseq-plugin-query-chart", :effect true, :theme false}
  :logseq-catppuccin {:version "v0.4.0", :repo "catppuccin/logseq", :effect false, :theme true}
  :template-gallery {:version "0.12", :repo "dangermccann/logseq-template-gallery", :effect true, :theme false}
- :logseq-query-builder-plugin {:version "0.7", :repo "adxsoft/logseq-query-builder-plugin", :effect false, :theme false}
- :logseq-smartsearch {:version "v0.30.4", :repo "sethyuan/logseq-plugin-smartsearch", :effect true, :theme false}
+ :logseq-query-builder-plugin {:version "0.81", :repo "adxsoft/logseq-query-builder-plugin", :effect false, :theme false}
+ :logseq-smartsearch {:version "v0.30.6", :repo "sethyuan/logseq-plugin-smartsearch", :effect true, :theme false}
  :logseq-fenced-code-plus {:version "0.0.7", :repo "xyhp915/logseq-fenced-code-plus", :effect true, :theme false}
  :logseq-git-diff-since {:version "v1.1.1", :repo "Glooory/logseq-git-diff-since", :effect true, :theme false}
  :logseq-image-editor {:version "v1.2.0", :repo "b-yp/logseq-image-editor", :effect true, :theme false}
  :logseq-plugin-short-namespaces {:version "v1.6.1", :repo "YU000jp/logseq-plugin-short-namespaces", :effect true, :theme false}
  :logseq-remove-empty-blocks {:version "v0.0.4", :repo "Cologler/logseq-remove-empty-blocks-typescript", :effect false, :theme false}
  :logseq-plugin-confirmation-hyperlink {:version "v1.7.3", :repo "YU000jp/logseq-plugin-confirmation-hyperlink", :effect true, :theme false}
- :logseq-plugin-confirmation-done-task {:version "v1.11.2", :repo "YU000jp/logseq-plugin-confirmation-done-task", :effect true, :theme false}
- :logseq-plugin-show-weekday-and-week-number {:version "v1.43.1", :repo "YU000jp/logseq-plugin-show-weekday-and-week-number", :effect true, :theme false}
+ :logseq-plugin-confirmation-done-task {:version "v1.12.1", :repo "YU000jp/logseq-plugin-confirmation-done-task", :effect true, :theme false}
+ :logseq-plugin-show-weekday-and-week-number {:version "v1.44.0", :repo "YU000jp/logseq-plugin-show-weekday-and-week-number", :effect true, :theme false}
  :logseq-display-math {:version "v1.0.1", :repo "AllanChain/logseq-display-math", :effect true, :theme false}
  :logseq-hide-everything-plugin {:version "v1.1.0", :repo "ahonn/logseq-plugin-hide-everything", :effect true, :theme false}
  :logseq-footnote-plugin {:version "v0.0.3", :repo "gremi-jr/logseq-footnote-plugin", :effect false, :theme false}
  :logseq-plugin-multiple-assets {:version "v1.2.0", :repo "YU000jp/logseq-plugin-multiple-assets", :effect true, :theme false}
  :logseq-sort-blocks {:version "v0.0.2", :repo "Cologler/logseq-sort-blocks-typescript", :effect false, :theme false}
  :logseq_block_spacer {:version "v1.0.1", :repo "gfgafn/logseq_block_spacer", :effect false, :theme false}
- :logseq-plugin-block-transformer {:version "v1.0.3", :repo "JuniverseCoder/logseq-plugin-block-transformer", :effect false, :theme false}
+ :logseq-plugin-block-transformer {:version "v1.1.1", :repo "JuniverseCoder/logseq-plugin-block-transformer", :effect false, :theme false}
  :logseq-plugin-two-hop-link {:version "v1.19.0", :repo "YU000jp/logseq-plugin-two-hop-link", :effect true, :theme false}
  :logseq-mhtml-viewer {:version "v1.0.2", :repo "lee88688/logseq-mhtml-view-plugin", :effect true, :theme false}
- :logseq-live-math {:version "v1.2.1", :repo "AllanChain/logseq-live-math", :effect true, :theme false}
+ :logseq-live-math {:version "v1.2.4", :repo "AllanChain/logseq-live-math", :effect true, :theme false}
  :logseq-bidi {:version "0.1.0", :repo "dobidi/logseq-bidi", :effect true, :theme false}
  :logseq-hierarchy-jump {:version "v0.3.4", :repo "sethyuan/logseq-plugin-hierarchy-jump", :effect true, :theme false}
  :logseq-assets-plus {:version "v0.0.5", :repo "xyhp915/logseq-assets-plus", :effect false, :theme false}
  :logseq-localassets-plugin {:version "v2.0.0", :repo "hkgnp/logseq-localassets-plugin", :effect true, :theme false}
  :logseq-preview-footnote {:version "v1.2.0", :repo "b-yp/logseq-preview-footnote", :effect true, :theme false}
- :logseq-scroll-past-bottom {:version "v1.0.0", :repo "RubenSmn/logseq-scroll-past-bottom", :effect false, :theme false}
+ :logseq-scroll-past-bottom {:version "v1.1.0", :repo "RubenSmn/logseq-scroll-past-bottom", :effect false, :theme false}
  :logseq-ai-auto-tags {:version "v1.0.0", :repo "b-yp/logseq-ai-auto-tags", :effect true, :theme false}
- :logseq-plugin-preview-image {:version "v1.1.1", :repo "YU000jp/logseq-plugin-preview-image", :effect true, :theme false}}
+ :logseq-plugin-preview-image {:version "v1.2.0", :repo "YU000jp/logseq-plugin-preview-image", :effect true, :theme false}}
