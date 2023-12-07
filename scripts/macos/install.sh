@@ -14,6 +14,7 @@ fi
 # Add extra tap
 repos=(
 	"homebrew/cask-fonts"
+	"alienator88/homebrew-cask"
 )
 for i in "${repos[@]}"; do
 	brew tap "$i"
@@ -72,7 +73,6 @@ done
 # Install gui-tools
 gui_tools=(
 	"alt-tab"
-	"appcleaner"
 	"arc"
 	"beeper"
 	"cider"
@@ -89,6 +89,7 @@ gui_tools=(
 	"logseq"
 	"morgen"
 	"obsidian"
+	"pearcleaner"
 	"raindropio"
 	"raycast"
 	"shottr"
