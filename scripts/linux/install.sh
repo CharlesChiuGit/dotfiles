@@ -22,7 +22,7 @@ cli_tools=(
 	"btop"
 	"dua-cli"
 	"eva"
-	"eza"
+	# "eza"
 	"fd"
 	"fzf"
 	"fzy"
