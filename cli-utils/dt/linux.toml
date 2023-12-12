@@ -10,7 +10,7 @@ wezterm.window_decorations = "\"INTEGRATED_BUTTONS | RESIZE\""
 wget.hst = "/home/charles/.cache/wget-hsts"
 zsh.xdg_runtime_dir = "/run/user/$UID"
 zsh.homebrew_path = "[ -d /home/linuxbrew/.linuxbrew/bin ] && path=(/home/linuxbrew/.linuxbrew/bin $path)"
-flatpak.xdg_data_dirs = "export XDG_DATA_DIRS=$XDG_DATA_DIRS:/var/lib/flatpak/exports/share:$HOME/.local/share/flatpak/exports/share"
+flatpak.xdg_data_dirs = "export XDG_DATA_DIRS=$XDG_DATA_DIRS:/usr/share:/var/lib/flatpak/exports/share:$HOME/.local/share/flatpak/exports/share"
 
 #--------------------------------------------------------------------#
 #                             core-utils                             #
