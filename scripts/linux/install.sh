@@ -104,7 +104,7 @@ done
 # go install
 _homebrew_prefix=$(brew --prefix)
 export HOMEBREW_PREFIX=_homebrew_prefix
-if [[ -z $(command -v pistol) ]]; then
+if ! command -v pistol &>/dev/null; then
 	echo "Install Pistol"
 	CGO_CFLAGS="-I${HOMEBREW_PREFIX}/include" CGO_LDFLAGS="-L${HOMEBREW_PREFIX}/lib" go install github.com/doronbehar/pistol/cmd/pistol@latest
 else
@@ -123,7 +123,7 @@ if [ -f /etc/os-release ]; then
 	# VER=$VERSION_ID
 fi
 
-if [[ -z $(command -v flatpak) ]]; then
+if ! command -v flatpak &>/dev/null; then
 	echo "Install Flatpak"
 	if [[ $OS == "Arch Linux" ]]; then
 		sudo pacman -S --noconfirm flatpak
