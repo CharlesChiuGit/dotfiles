@@ -37,6 +37,7 @@ alias ....='cd ../../..'
 alias .....='cd ../../../..'
 alias tree='tree -CAF --dirsfirst'
 alias treed='tree -CAFd'
+alias cargobin='cargo binstall --no-discover-github-token -y'
 
 # cd to the previous directory
 alias bd='cd "$OLDPWD"'
