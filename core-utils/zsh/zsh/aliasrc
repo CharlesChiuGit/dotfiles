@@ -4,7 +4,7 @@
 alias sozsh='source ~/.zshenv && source "$XDG_CONFIG_HOME"/zsh/.zshrc'
 alias nv='nvim'
 alias vim='vim -i NONE'
-alias cat='/usr/share/vim/vim90/macros/less.sh' # wrapper for bat
+# alias cat='/usr/share/vim/vim90/macros/less.sh' # wrapper for bat
 alias yarn='yarn --use-yarnrc "$XDG_CONFIG_HOME/yarn/config"'
 alias py='python3'
 alias nvf='nvim `fzf`'
