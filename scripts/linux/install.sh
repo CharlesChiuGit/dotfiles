@@ -85,6 +85,7 @@ fi
 
 # cargo install
 cargo_pkg=(
+	"cargo-binstall"
 	"cargo-update"
 	"cargo-cache"
 	"dt-cli"
