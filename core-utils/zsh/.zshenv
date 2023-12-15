@@ -36,6 +36,8 @@ export ZELLIJ_CONFIG_DIR="$XDG_CONFIG_HOME"/zellij
 export GNUPGHOME="$XDG_DATA_HOME"/gnupg
 export EDITOR='nvim'
 path=("$XDG_DATA_HOME"/go/bin $path[@])
+path=("$HOME/tools/bin" "$path[@]")
+
 
 add_path() {
     case ":${PATH}:" in
