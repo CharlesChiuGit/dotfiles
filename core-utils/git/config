@@ -1,20 +1,21 @@
 [user]
     name = CharlesChiuGit
-	email = charleschiu@hey.com
+    email = charleschiu@hey.com
 [core]
     pager = delta
 [alias]
-	st = status
-	cm = commit -m
-	co = checkout
-	br = branch
-	lo = log --oneline --graph
-	ls = log --graph --pretty=format:'%C(bold red)%h%Creset %C(bold cyan)<%an>%Creset %C(yellow)%d%Creset %s %Cgreen(%cr)' --abbrev-commit --date=relative
-	rh = reset --hard origin/main
-	rp = remote prune origin
-	lrh = ls-remote --heads
-	lrt = ls-remote --tags
-	
+    st = status
+    cm = commit -m
+    co = checkout
+    br = branch
+    lo = log --oneline --graph
+    ls = log --graph --pretty=format:'%C(bold red)%h%Creset %C(bold cyan)<%an>%Creset %C(yellow)%d%Creset %s %Cgreen(%cr)' --abbrev-commit --date=relative
+    rh = reset --hard origin/main
+    rp = remote prune origin
+    lrh = ls-remote --heads
+    lrt = ls-remote --tags
+    anmoclone = clone -c 'user.email=charles@anmo.com.tw'
+
 [interactive]
     diffFilter = delta --color-only
 [delta]
