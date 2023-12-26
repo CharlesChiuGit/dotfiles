@@ -24,5 +24,6 @@
   "inlineShortcuts": {
     "Logseq": "\\mathrm{Logseq}"
   },
+  "disableDefaultShortcuts": false,
   "disabled": false
 }

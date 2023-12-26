@@ -1,7 +1,11 @@
 {
+  "transformMode": "split",
   "removeEmptyLine": true,
   "splitCodeBlock": true,
+  "orderedToNonOrdered": false,
+  "removeTailPunctuation": true,
   "transformShortcut": "ctrl+t",
-  "transformToolboxShortcut": "ctrl+shift+s",
-  "disabled": false
+  "transformModeShortcut": "ctrl+shift+t",
+  "disabled": false,
+  "transformToolboxShortcut": "ctrl+shift+s"
 }

@@ -34,6 +34,7 @@
   "booleanWeeklyJournalThisWeekEmbedding": false,
   "booleanWJThisWeekEmbeddingUnlink": false,
   "booleanWeeklyJournalThisWeekLinkWeekday": false,
+  "thisWeekPopup": true,
   "disabled": false,
   "descriptionWeeklyJournalSlashCommand": "",
   "notice": "20231024no01"
