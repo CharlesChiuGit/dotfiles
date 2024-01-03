@@ -1,34 +1,39 @@
 [global]
 allow_overwrite = true
 renderable = false     # globally disables templating
+# method = "Copy"
+
+[context]
+btop.theme = "\"/Users/charles/.config/btop/themes/catppuccin_macchiato.theme\""
+wget.hst = "/Users/charles/.cache/wget-hsts"
+zsh.xdg_runtime_dir = "/tmp"
+zsh.homebrew_path = "[ -d /home/linuxbrew/.linuxbrew/bin ] && path=(/home/linuxbrew/.linuxbrew/bin $path)"
+
 
 #--------------------------------------------------------------------#
 #                             core-utils                             #
 #--------------------------------------------------------------------#
 
 [[local]]
-name = "bash"
-base = "~/dotfiles/core-utils/bash"
-sources = [".bash/", ".bashrc", ".local/"]
-target = "~"
-
-[[local]]
 name = "zsh"
-base = "~/dotfiles/core-utils/zsh"
-sources = [".zsh/", ".zshrc", ".zshenv"]
-target = "~"
+base = "~/dotfiles/core-utils/zsh/zsh"
+sources = [".zshrc", "aliasrc", "*.zsh"]
+target = "~/.config/zsh"
+method = "Copy"
 
 [[local]]
-name = "shelden"
-base = "~/dotfiles/core-utils/shelden"
-sources = ["plugins.toml"]
-target = "~/.config/sheldon"
+name = "zshenv"
+base = "~/dotfiles/core-utils/zsh"
+sources = [".zshenv"]
+target = "~"
+method = "Copy"
+renderable = true
 
 [[local]]
 name = "git"
 base = "~/dotfiles/core-utils/git"
-sources = [".gitconfig"]
-target = "~"
+sources = ["config"]
+target = "~/.config/git"
 
 [[local]]
 name = "ssh"
