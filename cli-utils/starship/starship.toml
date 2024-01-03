@@ -179,14 +179,19 @@ disabled = true
 [battery]
 disabled = true
 
+[python]
+disabled = false
+style = "yellow bold"
+format = '\[[${symbol}${pyenv_prefix}(${version})(\($virtualenv\))]($style)\]'
+version_format = 'v${raw}'
+symbol = '󰌠 '
+
 # add these back to format if you want them:
 [c]
 disabled = true
 [conda]
 disabled = true
 [nodejs]
-disabled = true
-[python]
 disabled = true
 [rust]
 disabled = true
