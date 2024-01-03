@@ -40,8 +40,8 @@ bindkey '^[[a' history-substring-search-up
 bindkey '^[[b' history-substring-search-down
 bindkey ',' autosuggest-accept
 
-# Init rtx-vm
-eval "$(rtx activate zsh)"
+# Init mise
+eval "$(mise activate zsh)"
 
 # Init zoxide
 eval "$(zoxide init zsh)"

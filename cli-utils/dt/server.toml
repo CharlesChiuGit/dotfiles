@@ -48,10 +48,10 @@ method = "Copy"
 # target = "~"
 
 [[local]]
-name = "rtx-vm"
-base = "~/dotfiles/lang-vms/rtx"
+name = "mise"
+base = "~/dotfiles/lang-vms/mise"
 sources = ["config.toml"]
-target = "~/.config/rtx"
+target = "~/.config/mise"
 
 #--------------------------------------------------------------------#
 #                             cli-utils                              #
