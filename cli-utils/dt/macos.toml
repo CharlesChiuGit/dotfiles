@@ -64,7 +64,7 @@ target = "~/.config/git"
 [[local]]
 name = "mise"
 base = "~/dotfiles/lang-vms/mise"
-sources = ["config.toml"]
+sources = ["settings.toml"]
 target = "~/.config/mise"
 
 #--------------------------------------------------------------------#
