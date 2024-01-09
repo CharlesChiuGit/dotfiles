@@ -1,13 +1,3 @@
-[tools]
-# global tool versions go here
-# you can set these with `rtx use -g`
-node = "20.7.0"
-python = "3.11.5"
-ruby = "3.2.2"
-go = "1.21.1"
-java = "openjdk-21"
-
-[settings]
 # configure `rtx install` to always keep the downloaded archive
 always_keep_download = false # deleted after install by default
 always_keep_install = false  # deleted on failure by default
@@ -36,11 +26,3 @@ task_output = "prefix"        # see Task Runner for more information
 # env_file = '.env' # load env vars from a dotenv file, see `MISE_ENV_FILE`
 
 experimental = true # enable experimental features
-
-[plugins]
-# specify a custom repo url
-# note this will only be used if the plugin does not already exist
-rust = 'https://github.com/code-lever/asdf-rust'
-perl = 'https://github.com/ouest/asdf-perl'
-lua = 'https://github.com/Stratus3D/asdf-lua'
-php = 'https://github.com/asdf-community/asdf-php'

@@ -55,7 +55,7 @@ method = "Copy"
 [[local]]
 name = "mise"
 base = "~/dotfiles/lang-vms/mise"
-sources = ["settings.toml"]
+sources = ["config.toml", "settings.toml"]
 target = "~/.config/mise"
 
 #--------------------------------------------------------------------#
