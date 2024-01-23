@@ -1,16 +1,15 @@
 [tools]
 # global tool versions go here
 # you can set these with `rtx use -g`
-node = "20.7.0"
-python = "3.11.5"
-ruby = "3.2.2"
-go = "1.21.1"
-java = "openjdk-21"
+node = "21.6.1"
+python = "3.12.1"
+ruby = "3.3.0"
+go = "1.21.6"
+java = "openjdk-21.0.2"
 
 [plugins]
 # specify a custom repo url
 # note this will only be used if the plugin does not already exist
-rust = 'https://github.com/code-lever/asdf-rust'
 perl = 'https://github.com/ouest/asdf-perl'
 lua = 'https://github.com/Stratus3D/asdf-lua'
 php = 'https://github.com/asdf-community/asdf-php'
