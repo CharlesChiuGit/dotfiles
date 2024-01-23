@@ -2,7 +2,7 @@
 # [include] sections are processed in the order you write them
 # Files in $CONFIG_DIR/topgrade.d/ are automatically included before this file
 [include]
-#paths = ["/etc/topgrade.toml"]
+# paths = ["/etc/topgrade.toml"]
 
 [misc]
 # Run `sudo -v` to cache credentials at the start of the run
@@ -31,7 +31,7 @@ pre_sudo = true
 # Arguments to pass tmux when pulling Repositories
 # tmux_arguments = "-S /var/tmux.sock"
 
-# Do not set the terminal title (dfault: true)
+# Do not set the terminal title (default: true)
 # set_title = true
 
 # Display the time in step titles (default: true)
@@ -59,7 +59,33 @@ skip_notify = true
 # bashit_branch = "stable"
 
 # Run specific steps - same options as the command line flag
-# only = ["system", "emacs"]
+only = [
+  "self_update",
+  "brew_cask",
+  "brew_formula",
+  "scoop",
+  "winget",
+  "flatpak",
+  "snap",
+  "rustup",
+  "cargo",
+  "conda",
+  "pip3",
+  "pipupgrade",
+  "pipx",
+  "git_repos",
+  "gnome_shell_extensions",
+  "go",
+  "shell",
+  "tmux",
+  "vim",
+  "vscode",
+  "firmware",
+  "system",
+  "wsl",
+  "wsl_update",
+  "system",
+]
 
 # Whether to self update
 #
@@ -154,29 +180,14 @@ autoremove = true
 [git]
 # max_concurrency = 5
 
-# Git repositories that you want to pull and push
-# repos = [
-#     "~/src/*/",
-#     "~/.config/something"
-# ]
-
-# Repositories that you only want to pull
-pull_only_repos = ["~/.config/nvim", "~/dotfiles"]
-
-# Repositories that you only want to push
-# push_only_repos = [
-#     "~/src/*/",
-#     "~/.config/something_third"
-# ]
+# Additional git repositories to pull
+repos = ["~/.config/nvim", "~/dotfiles"]
 
 # Don't pull the predefined git repos
 # pull_predefined = false
 
-# Arguments to pass Git when pulling repositories
-# pull_arguments = "--rebase --autostash"
-
-# Arguments to pass Git when pushing repositories
-# push_arguments = "--all"
+# Arguments to pass Git when pulling Repositories
+# arguments = "--rebase --autostash"
 
 
 [windows]
@@ -189,12 +200,13 @@ pull_only_repos = ["~/.config/nvim", "~/dotfiles"]
 
 # wsl_update_use_web_download = true
 
-enable_winget = true
-
 # Causes Topgrade to rename itself during the run to allow package managers
 # to upgrade it. Use this only if you installed Topgrade by using a package
 # manager such as Scoop or Cargo
 self_rename = true
+
+# Enable WinGet upgrade
+enable_winget = true
 
 
 [npm]
@@ -237,3 +249,5 @@ use_sudo = true
 # use_root = false
 
 # containers = ["archlinux-latest"]
+[containers]
+# ignored_containers = ["ghcr.io/rancher-sandbox/rancher-desktop/rdx-proxy:latest"]
