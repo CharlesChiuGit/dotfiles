@@ -159,6 +159,12 @@ sources = ["tmux.conf"]
 target = "~/.config/tmux"
 
 [[local]]
+name = "topgrade"
+base = "~/dotfiles/cli-utils/topgrade"
+sources = ["topgrade.toml"]
+target = "~/.config"
+
+[[local]]
 name = "Usercommand"                      # scripts
 base = "~/dotfiles/cli-utils/Usercommand"
 sources = ["./*"]
