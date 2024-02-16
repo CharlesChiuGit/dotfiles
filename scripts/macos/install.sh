@@ -83,6 +83,7 @@ gui_tools=(
 	"hiddenbar"
 	"hot"
 	"iina"
+	"itsycal"
 	"linear-linear"
 	"logi-options-plus"
 	"logseq"
