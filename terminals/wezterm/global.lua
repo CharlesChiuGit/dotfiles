@@ -8,6 +8,8 @@ local function getOS()
 	local fh, err = assert(io.popen("uname -o 2>/dev/null", "r"))
 	if fh then
 		osname = fh:read()
+	else
+		print(err)
 	end
 	return osname
 end
@@ -20,9 +22,11 @@ function M:load_variables()
 	self.is_linux = os_name == "GNU/Linux"
 	local home = wezterm.home_dir
 	if self.is_windows then
-		home = string.gsub(home, "\\", "/")
+		home = home:gsub("\\", "/")
 	elseif self.is_linux then
 		home = home:sub(1)
+	elseif self.is_macos then
+		home = home:gsub("file://", "")
 	end
 	self.home = home
 end
