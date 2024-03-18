@@ -7,7 +7,6 @@ renderable = false     # globally disables templating
 btop.theme = "\"/Users/charles/.config/btop/themes/catppuccin_macchiato.theme\""
 wget.hst = "/Users/charles/.cache/wget-hsts"
 zsh.xdg_runtime_dir = "/tmp"
-zsh.homebrew_path = "[ -d /home/linuxbrew/.linuxbrew/bin ] && path=(/home/linuxbrew/.linuxbrew/bin $path)"
 
 
 #--------------------------------------------------------------------#
@@ -111,6 +110,12 @@ target = "~/.config/glow"
 # target = "~/.config/htop"
 
 [[local]]
+name = "joshuto"
+base = "~/dotfiles/cli-utils/joshuto"
+sources = ["*.toml"]
+target = "~/.config/joshuto"
+
+[[local]]
 name = "lazygit"
 base = "~/dotfiles/cli-utils/lazygit"
 sources = ["config.yml"]
@@ -121,6 +126,12 @@ name = "lf"
 base = "~/dotfiles/cli-utils/lf"
 sources = ["lfrc", "git-prompt.sh", "icon.sh"]
 target = "~/.config/lf"
+
+[[local]]
+name = "lsd"
+base = "~/dotfiles/cli-utils/lsd"
+sources = ["config.yaml"]
+target = "~/.config/lsd"
 
 [[local]]
 name = "manual"                      #man
@@ -139,6 +150,12 @@ target = "~/.local/share/man/man1"
 # base = "~/dotfiles/cli-utils/neofetch"
 # sources = ["config.conf"]
 # target = "~/.config/neofetch"
+
+[[local]]
+name = "npm"
+base = "~/dotfiles/cli-utils/npm"
+sources = ["npmrc"]
+target = "~/.config/npm"
 
 [[local]]
 name = "pistol"
@@ -169,3 +186,22 @@ name = "Usercommand"                      # scripts
 base = "~/dotfiles/cli-utils/Usercommand"
 sources = ["./*"]
 target = "~/.local/bin"
+
+[[local]]
+name = "wget"
+base = "~/dotfiles/cli-utils/wget"
+sources = ["wgetrc"]
+target = "~/.config/wget"
+renderable = true
+
+[[local]]
+name = "yarn"
+base = "~/dotfiles/cli-utils/yarn"
+sources = ["config"]
+target = "~/.config/yarn"
+
+[[local]]
+name = "zellij"
+base = "~/dotfiles/cli-utils/zellij"
+sources = ["config.kdl"]
+target = "~/.config/zellij"
