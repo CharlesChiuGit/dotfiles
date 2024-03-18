@@ -2,7 +2,7 @@
 add_newline = true
 
 # Change command timeout from 500 to 1000 ms
-command_timeout = 5000
+command_timeout = 10000
 
 # Sets user-defined palette
 palette = "catppuccin_macchiato"
