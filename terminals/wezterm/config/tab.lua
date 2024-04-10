@@ -99,6 +99,10 @@ local function get_process(tab)
 			{ Foreground = { Color = palette.sapphire } },
 			{ Text = wezterm.nerdfonts.cod_remote },
 		},
+		["topgrade"] = {
+			{ Foreground = { Color = palette.subtext1 } },
+			{ Text = wezterm.nerdfonts.md_package_up },
+		},
 		["cmd"] = {
 			{ Foreground = { Color = palette.overlay2 } },
 			{ Text = wezterm.nerdfonts.cod_terminal_cmd },
