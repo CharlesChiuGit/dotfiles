@@ -4,6 +4,11 @@ local global = require("global")
 
 local Tab = {}
 
+local _set_process_name = function(s)
+	local a = string.gsub(s, "(.*[/\\])(.*)", "%2")
+	return a:gsub("%.exe$", "")
+end
+
 local function get_process(tab)
 	local process_icons = {
 		["docker"] = {
@@ -16,19 +21,19 @@ local function get_process(tab)
 		},
 		["nvim"] = {
 			{ Foreground = { Color = palette.green } },
-			{ Text = wezterm.nerdfonts.custom_vim },
+			{ Text = wezterm.nerdfonts.custom_neovim },
 		},
 		["vim"] = {
 			{ Foreground = { Color = palette.green } },
-			{ Text = wezterm.nerdfonts.dev_vim },
+			{ Text = wezterm.nerdfonts.custom_vim },
 		},
 		["node"] = {
 			{ Foreground = { Color = palette.green } },
 			{ Text = wezterm.nerdfonts.mdi_hexagon },
 		},
 		["zsh"] = {
-			{ Foreground = { Color = palette.peach } },
-			{ Text = wezterm.nerdfonts.dev_terminal },
+			{ Foreground = { Color = palette.lavender } },
+			{ Text = wezterm.nerdfonts.oct_terminal },
 		},
 		["bash"] = {
 			{ Foreground = { Color = palette.subtext0 } },
@@ -94,21 +99,21 @@ local function get_process(tab)
 			{ Foreground = { Color = palette.sapphire } },
 			{ Text = wezterm.nerdfonts.cod_remote },
 		},
-		["cmd.exe"] = {
+		["cmd"] = {
 			{ Foreground = { Color = palette.overlay2 } },
 			{ Text = wezterm.nerdfonts.cod_terminal_cmd },
 		},
-		["pwsh.exe"] = {
+		["pwsh"] = {
 			{ Foreground = { Color = palette.overlay0 } },
 			{ Text = wezterm.nerdfonts.cod_terminal_powershell },
 		},
-		["powershell.exe"] = {
+		["powershell"] = {
 			{ Foreground = { Color = palette.mantle } },
 			{ Text = wezterm.nerdfonts.cod_terminal_powershell },
 		},
 	}
 
-	local process_name = string.gsub(tab.active_pane.foreground_process_name, "(.*[/\\])(.*)", "%2")
+	local process_name = _set_process_name(tab.active_pane.foreground_process_name)
 
 	if process_name == "" then
 		process_name = "zsh"
@@ -121,15 +126,15 @@ local function get_process(tab)
 end
 
 local function get_current_working_folder_name(tab)
-	local cwd_uri = tab.active_pane.current_working_dir
-	cwd_uri = global.is_linux and cwd_uri:sub(8) or cwd_uri:sub(9)
+	local cwd = ""
+	local cwd_uri = tostring(tab.active_pane.current_working_dir)
 
-	local cwd = cwd_uri
-	if global.is_linux then
-		local slash_index = cwd_uri:find("/")
-		cwd = cwd_uri:sub(slash_index)
-	elseif global.is_windows then
+	if global.is_windows then
 		cwd = cwd_uri:sub(1, -2)
+	else
+		cwd_uri = cwd_uri:sub(8)
+		local slash_index = cwd_uri:find("/") or 0
+		cwd = cwd_uri:sub(slash_index)
 	end
 
 	if cwd == global.home then
