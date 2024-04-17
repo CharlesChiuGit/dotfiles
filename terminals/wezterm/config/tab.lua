@@ -103,6 +103,10 @@ local function get_process(tab)
 			{ Foreground = { Color = palette.subtext1 } },
 			{ Text = wezterm.nerdfonts.md_package_up },
 		},
+		["eva"] = {
+			{ Foreground = { Color = palette.subtext1 } },
+			{ Text = wezterm.nerdfonts.md_calculator_variant_outline },
+		},
 		["cmd"] = {
 			{ Foreground = { Color = palette.overlay2 } },
 			{ Text = wezterm.nerdfonts.cod_terminal_cmd },
