@@ -55,7 +55,7 @@ format = '[$user ]($style)'
 [hostname]
 disabled = false
 ssh_only = true
-ssh_symbol = '🌐 '
+ssh_symbol = ' '
 style = "sky"
 format = "@[$hostname]($style) "
 # trim_at = ".com"
@@ -114,7 +114,8 @@ symbol = "󰏗 "
 format = '\[[$symbol$version]($style)\]'
 
 [docker_context]
-symbol = " "
+disabled = false
+symbol = " "
 format = '\[[$symbol$context]($style)\]'
 
 [character]
@@ -128,33 +129,49 @@ style = 'teal'
 format = "[$symbol ]($style)"
 
 [os.symbols]
+AlmaLinux = ""
+Alpaquita = ""
 Alpine = ""
 Amazon = ""
-Android = ""
+Android = ""
 Arch = ""
-Artix = ""
+Artix = ""
 CentOS = ""
 Debian = ""
+DragonFly = ""
+Emscripten = ""
+EndeavourOS = ""
 Fedora = ""
 FreeBSD = ""
+Garuda = "󰛓"
 Gentoo = ""
+HardenedBSD = "󰞌"
 Illumos = ""
+Kali = ""
 Linux = ""
+Mabox = ""
 Macos = ""
 Manjaro = ""
+Mariner = ""
+MidnightBSD = ""
 Mint = "󰣭"
+NetBSD = ""
 NixOS = ""
 OpenBSD = ""
+openSUSE = ""
+OracleLinux = "󰌷"
 Pop = ""
 Raspbian = ""
 RedHatEnterprise = "󱄛"
 Redhat = "󱄛"
+Redox = "󰀘"
+RockyLinux = ""
+SUSE = ""
 Solus = ""
 Ubuntu = ""
-Unknown = "?"
-# Void = ""
+Unknown = ""
+Void = ""
 Windows = ""
-openSUSE = ""
 
 [shell]
 disabled = false
@@ -185,71 +202,24 @@ style = "yellow bold"
 format = '\[[${symbol}${pyenv_prefix}(${version})(\($virtualenv\))]($style)\]'
 version_format = 'v${raw}'
 symbol = '󰌠 '
-
-# add these back to format if you want them:
-[c]
-disabled = true
-[conda]
-disabled = true
-[nodejs]
-disabled = true
-[rust]
-disabled = true
 [lua]
-disabled = true
-[perl]
-disabled = true
-[php]
-disabled = true
-[ruby]
-disabled = true
-[golang]
-disabled = true
-[kubernetes]
-disabled = true
-[aws]
-disabled = true
-[buf]
-disabled = true
-[dart]
-disabled = true
-[dotnet]
-disabled = true
-[elixir]
-disabled = true
-[elm]
-disabled = true
-[erlang]
-disabled = true
-[helm]
-disabled = true
-[haskell]
-disabled = true
-[hg_branch]
-disabled = true
-[java]
-disabled = true
-[julia]
-disabled = true
-[kotlin]
-disabled = true
-[nim]
-disabled = true
+disabled = false
+symbol = ' '
 [nix_shell]
-disabled = true
-[ocaml]
-disabled = true
-[purescript]
-disabled = true
-[spack]
-disabled = true
-[swift]
-disabled = true
-[zig]
-disabled = true
-[gcloud]
-disabled = true
-[openstack]
-disabled = true
-[crystal]
-disabled = true
+disabled = false
+symbol = '󱄅 '
+[haskell]
+disabled = false
+symbol = ' '
+[c]
+disabled = false
+symbol = ' '
+[nodejs]
+disabled = false
+symbol = ' '
+[rust]
+disabled = false
+symbol = ' '
+[golang]
+disabled = false
+symbol = ' '
