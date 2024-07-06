@@ -1,7 +1,7 @@
 local global = require("global")
 
 if global.is_windows then
-	return { "pwsh.exe" }
+	return { "C:\\Program Files\\Git\\usr\\bin\\zsh.exe" }
 else
 	return { "zsh" }
 end
