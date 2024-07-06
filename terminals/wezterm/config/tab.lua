@@ -33,7 +33,7 @@ local function get_process(tab)
 		},
 		["zsh"] = {
 			{ Foreground = { Color = palette.lavender } },
-			{ Text = wezterm.nerdfonts.oct_terminal },
+			{ Text = wezterm.nerdfonts.md_alpha_z_box_outline },
 		},
 		["bash"] = {
 			{ Foreground = { Color = palette.subtext0 } },
