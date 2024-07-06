@@ -13,8 +13,8 @@ if global.is_windows then
 			args = { "cmd" },
 		},
 		{
-			label = "Git Bash",
-			args = { "C:\\Program Files\\Git\\git-bash.exe" },
+			label = "Zsh",
+			args = { "C:\\Program Files\\Git\\usr\\bin\\zsh.exe" },
 		},
 		{
 			label = "Windows PowerShell",
