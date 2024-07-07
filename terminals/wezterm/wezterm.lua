@@ -62,6 +62,7 @@ config = {
 	show_update_window = false,
 	check_for_updates = false,
 	line_height = 1,
+	default_cursor_style = "SteadyBar",
 	adjust_window_size_when_changing_font_size = false,
 	window_decorations = "RESIZE",
 	window_close_confirmation = "NeverPrompt",
